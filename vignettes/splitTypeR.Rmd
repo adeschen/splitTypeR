@@ -1,0 +1,63 @@
+---
+title: "Subtyping using multimodal distribution"
+output:
+  BiocStyle::html_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Subtyping using multimodal distribution}
+  %\VignettePackage{splitTypeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r style, echo = FALSE, results = 'asis', message = FALSE}
+BiocStyle::markdown()
+library(knitr)
+```
+
+<br>
+**Package**: `r Rpackage("splitTypeR")`<br />
+**Authors**: `r packageDescription("splitTypeR")[["Author"]]`<br />
+**Version**: `r packageDescription("splitTypeR")$Version`<br />
+**Compiled date**: `r Sys.Date()`<br />
+**License**: `r packageDescription("splitTypeR")[["License"]]`<br />
+
+# Licensing and citing
+
+This package and the underlying `r Rpackage("splitTypeR")` code are 
+distributed under the Artistic license 2.0. You are free to use and 
+redistribute this software.
+
+If you use this package for a publication, we would ask you to cite the 
+following:
+
+> TODO
+
+# Introduction
+
+`r Rpackage("splitTypeR")` can ...
+
+
+# Loading `r Rpackage("splitTypeR")` package
+
+As with any R package, the `r Rpackage("splitTypeR")` package should first be 
+loaded with the following command:
+
+```{r loadingPackage, warning=FALSE, message=FALSE}
+library(splitTypeR)
+```
+
+
+# Description
+
+TODO
+
+# Session info
+
+Here is the output of `sessionInfo()` on the system on which this document was 
+compiled:
+
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
+
