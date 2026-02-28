@@ -1,0 +1,23 @@
+Package: splitTypeR
+Type: Package
+Version: 0.99.0
+Date: 2026-02-27
+Title: Subtyping using multimodal distribution
+Description: This package enables Subtyping using multimodal distribution. 
+Authors@R: c(person("Astrid", "Deschênes", email = "adeschen@hotmail.com",
+    role=c("aut", "cre"), comment=c(ORCID = "0000-0001-7846-6749")), 
+    person("Pascal", "Belleau", email = "pascal_belleau@hotmail.com",
+    role=c("aut"), comment = c(ORCID = "0000-0002-0802-1071"))) 
+Encoding: UTF-8
+License: Artistic-2.0
+Depends: R (>= 4.2.0)
+Imports: gprofiler2
+Suggests: 
+    BiocStyle,
+    knitr,
+    rmarkdown
+biocViews: BiologicalQuestion, 
+    Software
+VignetteBuilder: knitr
+URL: https://github.com/adeschen/splitTypeR
+BugReports: https://github.com/adeschen/splitTypeR/issues
