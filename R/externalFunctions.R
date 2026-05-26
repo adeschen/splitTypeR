@@ -25,19 +25,21 @@ runSubtyping <- function(geneLists, expectedCountsMatrix) {
     
 }
 
-#' @title List the available signature names
+#' @title List the names of the available signature 
 #' 
-#' @description The function lists all the available signatures.
+#' @description The function lists the names of all the available signatures.
 #' 
 #' @return a \code{vector} of available signature names
 #' 
 #' @examples
-#' ## TODO
+#' 
+#' ## Print the names of the available signatures 
+#' geneSignaturesListNames()
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
 #' @export
-geneListNames <- function() {
+geneSignaturesListNames <- function() {
     data("signatures")
     return(names(signatures))
 }
