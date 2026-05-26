@@ -2,4 +2,3 @@
 
 export(geneSignaturesListNames)
 export(runSubtyping)
-importFrom(gprofiler2,gconvert)
