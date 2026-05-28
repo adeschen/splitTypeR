@@ -78,3 +78,42 @@
 #' 
 #'
 NULL
+
+
+#' A small normalized expected counts matrix for 30 patients generated to 
+#' be used as a demonstration set in this package.
+#' 
+#' @name expNormalCountsDemo
+#'
+#' @docType data
+#'
+#' @aliases expNormalCountsDemo
+#'
+#' @format a \code{matrix} containing normalized counts for 30 patients 
+#' (columns). Only genes related to 2018 Tiriac PDAC PDO classical and 
+#' basal-like signatures are present (row). 
+#'
+#' @return a \code{matrix} containing normalized counts for 30 patients 
+#' (columns). Only genes related to 2018 Tiriac PDAC PDO classical and 
+#' basal-like signatures are present (row). 
+#'
+#' @seealso
+#' \itemize{
+#'     \item{\link{createNetwork} TODO}
+#' }
+#'
+#' @usage data(expNormalCountsDemo)
+#'
+#' @keywords datasets
+#'
+#' @details
+#' 
+#' The 
+#' 
+#' @examples
+#' 
+#' ## TODO
+#' data(expNormalCountsDemo)
+#' 
+#'
+NULL

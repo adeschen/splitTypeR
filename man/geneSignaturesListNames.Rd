@@ -15,7 +15,7 @@ The function lists the names of all the available signatures.
 }
 \examples{
 
-## Print the names of the available signatures 
+## Print the names of the available signatures
 geneSignaturesListNames()
 
 }

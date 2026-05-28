@@ -5,13 +5,25 @@
 \alias{validateRunSubtyping}
 \title{Parameters validation for the runSubtyping function}
 \usage{
-validateRunSubtyping(geneLists, expectedCountsMatrix)
+validateRunSubtyping(
+  geneLists,
+  expectedCountsMatrix,
+  bootstrapRatio,
+  bootstrapNbr
+)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists. At least 
 two signatures gene lists must be present.}
 
 \item{expectedCountsMatrix}{a \code{matrix}}
+
+\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
+number of samples that are retained for the bootstrap step.
+Default: \code{0.75}.}
+
+\item{bootstrapNbr}{a \code{integer} bigger than zero representing the
+number of bootstrap sampling done.}
 
 \item{collection}{a \code{character} string representing the collection 
 name assigned to the network. Default: "enrichment results".}

@@ -12,6 +12,13 @@
 #' 
 #' @param expectedCountsMatrix a \code{matrix}
 #' 
+#' @param bootstrapRatio a \code{numeric} between 0 and 1 representing the
+#' number of samples that are retained for the bootstrap step.
+#' Default: \code{0.75}.
+#'
+#' @param bootstrapNbr a \code{integer} bigger than zero representing the
+#' number of bootstrap sampling done. 
+#' 
 #' @return \code{TRUE} when all parameters are valid
 #' 
 #' @examples
@@ -34,7 +41,8 @@
 #' @author Astrid Deschênes
 #' @encoding UTF-8
 #' @keywords internal
-validateRunSubtyping <- function(geneLists, expectedCountsMatrix) {
+validateRunSubtyping <- function(geneLists, expectedCountsMatrix, 
+        bootstrapRatio, bootstrapNbr) {
     
     if (!(inherits(geneLists, "list") && length(geneLists) > 1)) {
         stop("The \'geneLists\' object must be a list with a least 2 entries.")

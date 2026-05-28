@@ -5,12 +5,24 @@
 \alias{runSubtyping}
 \title{TODO}
 \usage{
-runSubtyping(geneLists, expectedCountsMatrix)
+runSubtyping(
+  geneLists,
+  expectedCountsMatrix,
+  bootstrapRatio = 0.75,
+  bootstrapNbr = 200
+)
 }
 \arguments{
 \item{geneLists}{a \code{list} TODO}
 
 \item{expectedCountsMatrix}{a TODO}
+
+\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
+number of samples that are retained for the bootstrap step.
+Default: \code{0.75}.}
+
+\item{bootstrapNbr}{a \code{integer} bigger than zero representing the
+number of bootstrap sampling done. Default: \code{200}.}
 }
 \value{
 \code{TRUE}
@@ -23,8 +35,13 @@ TODO.
 ## Loading signatures
 data(signatures)
 
+## Load demo normalized expected counts for 30 patients
+data(expNormalCountsDemo)
+
 ## Some of the enrichment results present in the dataset
 ## TODO
+runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
+    bootstrapRatio=0.75, bootstrapNbr=20)
 
 }
 \author{
