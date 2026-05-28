@@ -45,8 +45,13 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
         bootstrapRatio, bootstrapNbr) {
     
     if (!(inherits(geneLists, "list") && length(geneLists) > 1)) {
-        stop("The \'geneLists\' object must be a list with a least 2 entries.")
+        stop("The \'geneLists\' object must be a list with ",
+            "at least 2 entries.")
     }
     
+    if (!(inherits(expectedCountsMatrix, "matrix"))) {
+        stop("The \'expectedCountsMatrix\' object must be a matrix.")
+    }
+
     return(TRUE)
 }
