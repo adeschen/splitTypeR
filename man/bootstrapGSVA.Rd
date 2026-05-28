@@ -3,27 +3,37 @@
 \encoding{UTF-8}
 \name{bootstrapGSVA}
 \alias{bootstrapGSVA}
-\title{Title}
+\title{Use bootstrapping method to calculate the variance associated to the GSVA 
+score obtained for each sample}
 \usage{
-bootstrapGSVA(geneLists, retainedCounts, bootstrapRatio, bootstrapNbr)
+bootstrapGSVA(geneLists, countMatrix, bootstrapRatio, bootstrapNbr)
 }
 \arguments{
-\item{geneLists}{TODO}
+\item{geneLists}{a \code{list} containing signature gene lists.}
 
-\item{retainedCounts}{TODO}
+\item{countMatrix}{a normalized gene expression data 
+\code{matrix} with rows corresponding to genes and columns to samples. The 
+\code{matrix} has been filtered to contained only the genes present in the 
+signature gene lists.}
+
+\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
+number of samples that are retained for the bootstrap step.}
 }
 \value{
-TODO
+a \code{list} containing the variance calculated from the 
+bootstrapping method on each sample for each signature gene list. The 
+\code{list} contains one entry per signature gene list.
 }
 \description{
-Title
+Use bootstrapping method to calculate the variance associated to the GSVA 
+score obtained for each sample
 }
 \examples{
-TODO
 
 ## Load signatures
 data(signatures)
 
+## Create a list of two signatures
 geneLists <- list()
 geneLists[["classical"]] <- 
     signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
@@ -35,7 +45,7 @@ data(expNormalCountsDemo)
 
 ## Calculate variance for each sample using boostrap method
 splitTypeR:::bootstrapGSVA(geneLists=geneLists, 
-    retainedCounts=expNormalCountsDemo, bootstrapRatio=0.75, 
+    countMatrix=expNormalCountsDemo, bootstrapRatio=0.75, 
     bootstrapNbr=20)
 
 }

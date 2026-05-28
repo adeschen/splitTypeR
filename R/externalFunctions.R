@@ -2,12 +2,17 @@
 #'
 #' @description TODO.
 #'
-#' @param geneLists a \code{list} TODO
+#' @param geneLists a \code{list} containing signature gene lists. At least 
+#' two signature gene lists must be present.
 #'
-#' @param expectedCountsMatrix a TODO
+#' @param expectedCountsMatrix a normalized gene expression data 
+#' \code{matrix} with rows corresponding to genes and columns to samples. 
 #'
 #' @param bootstrapRatio a \code{numeric} between 0 and 1 representing the
-#' number of samples that are retained for the bootstrap step.
+#' number of samples that are retained for the bootstrap step. The 
+#' rounded value of the number of patients multiplied by this \code{numeric}  
+#' should be inferior to the total number of patients so that the 
+#' bootstrap step is not done on the entire cohort.
 #' Default: \code{0.75}.
 #'
 #' @param bootstrapNbr a \code{integer} bigger than zero representing the
@@ -40,10 +45,11 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
         expectedCountsMatrix=expectedCountsMatrix, 
         bootstrapRatio=bootstrapRatio, bootstrapNbr=bootstrapNbr)
 
+    ## Retain genes present in the expression matrix
     genes <- unique(unlist(signatures, use.names=FALSE))
-
     genes <- genes[genes %in% rownames(expectedCountsMatrix)]
 
+    ## Subset matrix to retained genes
     retained <- expectedCountsMatrix[genes, ]
 
     gsvaParameter <- gsvaParam(exprData=as.matrix(retained),
@@ -54,8 +60,8 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
     finalSaveData <- list()
     finalSaveData[["GSVA_RESULTS"]] <- resClass
 
-    resVar <- bootstrapGSVA(geneLists = geneLists, retainedCounts = retained, 
-        bootstrapRatio = bootstrapRatio, bootstrapNbr = bootstrapNbr)
+    resVar <- bootstrapGSVA(geneLists=geneLists, countMatrix=retained, 
+        bootstrapRatio=bootstrapRatio, bootstrapNbr=bootstrapNbr)
 
     finalSaveData[["BOOTSTRAP_VAR"]] <- resVar
   
@@ -75,8 +81,8 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
 #'
 #' @author Astrid Deschênes
 #' @encoding UTF-8
+#' @importFrom utils data
 #' @export
 geneSignaturesListNames <- function() {
-    data("signatures")
-    return(names(signatures))
+    return(names(data(signatures)))
 }

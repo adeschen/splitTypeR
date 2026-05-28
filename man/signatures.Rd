@@ -3,7 +3,7 @@
 \docType{data}
 \name{signatures}
 \alias{signatures}
-\title{The gene signatures from some publications.}
+\title{A list of published gene signatures, mostly related to PDAC classification.}
 \format{
 a \code{list} containing one entry per signature:
 \itemize{
@@ -30,10 +30,10 @@ a \code{list} containing one entry per signature:
 }
 }
 \description{
-The gene signatures from some publications.
+A list of published gene signatures, mostly related to PDAC classification.
 }
 \details{
-The PDAC PDO Classical and Basal-like signatures are 
+The PDAC PDO classical and basal-like signatures are 
 associated to this publication:
 
 Tiriac et al. Organoid Profiling Identifies Common Responders to 
@@ -43,14 +43,14 @@ PMCID: PMC6125219.
 }
 \examples{
 
-## TODO
+## Load the published signature gene list
 data(signatures)
 
 
 }
 \seealso{
 \itemize{
-    \item{\link{createNetwork} TODO}
+    \item{\link{runSubtyping} for TODO}
 }
 }
 \keyword{datasets}

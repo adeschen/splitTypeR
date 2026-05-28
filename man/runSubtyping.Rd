@@ -13,12 +13,17 @@ runSubtyping(
 )
 }
 \arguments{
-\item{geneLists}{a \code{list} TODO}
+\item{geneLists}{a \code{list} containing signature gene lists. At least 
+two signature gene lists must be present.}
 
-\item{expectedCountsMatrix}{a TODO}
+\item{expectedCountsMatrix}{a normalized gene expression data 
+\code{matrix} with rows corresponding to genes and columns to samples.}
 
 \item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
-number of samples that are retained for the bootstrap step.
+number of samples that are retained for the bootstrap step. The 
+rounded value of the number of patients multiplied by this \code{numeric}  
+should be inferior to the total number of patients so that the 
+bootstrap step is not done on the entire cohort.
 Default: \code{0.75}.}
 
 \item{bootstrapNbr}{a \code{integer} bigger than zero representing the

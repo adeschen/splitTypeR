@@ -3,10 +3,10 @@
 \docType{data}
 \name{expNormalCountsDemo}
 \alias{expNormalCountsDemo}
-\title{A small normalized expected counts matrix for 30 patients generated to 
+\title{A small normalized expected gene counts matrix for 30 patients generated to 
 be used as a demonstration set in this package.}
 \format{
-a \code{matrix} containing normalized counts for 30 patients 
+a \code{matrix} containing normalized gene counts for 30 patients 
 (columns). Only genes related to 2018 Tiriac PDAC PDO classical and 
 basal-like signatures are present (row).
 }
@@ -14,27 +14,27 @@ basal-like signatures are present (row).
 data(expNormalCountsDemo)
 }
 \value{
-a \code{matrix} containing normalized counts for 30 patients 
+a \code{matrix} containing normalized gene counts for 30 patients 
 (columns). Only genes related to 2018 Tiriac PDAC PDO classical and 
 basal-like signatures are present (row).
 }
 \description{
-A small normalized expected counts matrix for 30 patients generated to 
+A small normalized expected gene counts matrix for 30 patients generated to 
 be used as a demonstration set in this package.
 }
 \details{
-The
+The TODO
 }
 \examples{
 
-## TODO
+## Load the demo normalized expected count matrix
 data(expNormalCountsDemo)
 
 
 }
 \seealso{
 \itemize{
-    \item{\link{createNetwork} TODO}
+    \item{\link{runSubtyping} for TODO}
 }
 }
 \keyword{datasets}

@@ -16,7 +16,7 @@ TODO
 }
 \seealso{
 \itemize{
-    \item{\code{\link{TODO}} TODO}
+    \item{\code{\link{runSubtyping}} for TODO}
 }
 }
 \author{

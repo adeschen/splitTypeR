@@ -5,16 +5,16 @@
 #' the user before quitting the program.
 #' 
 #' @param geneLists a \code{list} containing signature gene lists. At least 
-#' two signatures gene lists must be present.
+#' two signature gene lists must be present.
 #' 
-#' @param collection a \code{character} string representing the collection 
-#' name assigned to the network. Default: "enrichment results".
-#' 
-#' @param expectedCountsMatrix a \code{matrix}
+#' @param expectedCountsMatrix a normalized gene expression data 
+#' \code{matrix} with rows corresponding to genes and columns to samples. 
 #' 
 #' @param bootstrapRatio a \code{numeric} between 0 and 1 representing the
-#' number of samples that are retained for the bootstrap step.
-#' Default: \code{0.75}.
+#' number of samples that are retained for the bootstrap step. The 
+#' rounded value of the number of patients multiplied by this \code{numeric}  
+#' should be inferior to the total number of patients so that the 
+#' bootstrap step is not done on the entire cohort.
 #'
 #' @param bootstrapNbr a \code{integer} bigger than zero representing the
 #' number of bootstrap sampling done. 
@@ -36,7 +36,7 @@
 #' 
 #' ## The function returns TRUE when all parameters are valid
 #' splitTypeR:::validateRunSubtyping(geneLists=gList, 
-#'      expectedCountsMatrix=matrix(data=rep(3, 6), nrow = 2))
+#'      expectedCountsMatrix=expCounts, bootstrapRatio=0.8, bootstrapNbr=10)
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
@@ -53,5 +53,16 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
         stop("The \'expectedCountsMatrix\' object must be a matrix.")
     }
 
+    genes <- unique(unlist(geneLists, use.names=FALSE))
+
+    if (sum(genes %in% rownames(expectedCountsMatrix)) < 1) {
+        stop("None of the genes in the signatures are present in the row ", 
+            "names of the \'expectedCountsMatrix\' matrix.")
+    }
+
+    if (!(is.numeric(bootstrapRatio) && bootstrapRatio > 0 && 
+            bootstrapRatio < 1)) {
+        stop("The \'bootstrapRatio\' must be a numeric between 0 and 1")
+    }
     return(TRUE)
 }

@@ -38,7 +38,24 @@ test_that("runSubtyping() must return error when geneLists is a character vector
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
     
-    exCounts <- data.frame(P1=c(2, 3, 4), P2=c(3,4,5))
+    exCounts <- data.frame(P1=c(2, 3, 4), P2=c(3, 4, 5))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+})
+
+test_that("runSubtyping() must return error when geneLists is a character vector", {
+    
+    error_message <- paste0("None of the genes in the signatures are present", 
+        " in the row names of the \'expectedCountsMatrix\' matrix.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("TT1", "TT2", "TT3")
+    colnames(exCounts) <- c("P1", "P2")
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
