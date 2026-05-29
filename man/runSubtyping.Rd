@@ -38,10 +38,10 @@ TODO.
 \examples{
 
 ## Loading signatures
-data(signatures)
+data("signatures")
 
 ## Load demo normalized expected counts for 30 patients
-data(expNormalCountsDemo)
+data("expNormalCountsDemo")
 
 ## Some of the enrichment results present in the dataset
 ## TODO

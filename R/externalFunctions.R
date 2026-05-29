@@ -23,10 +23,10 @@
 #' @examples
 #'
 #' ## Loading signatures
-#' data(signatures)
+#' data("signatures")
 #'
 #' ## Load demo normalized expected counts for 30 patients
-#' data(expNormalCountsDemo)
+#' data("expNormalCountsDemo")
 #' 
 #' ## Some of the enrichment results present in the dataset
 #' ## TODO
@@ -45,8 +45,14 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
         expectedCountsMatrix=expectedCountsMatrix, 
         bootstrapRatio=bootstrapRatio, bootstrapNbr=bootstrapNbr)
 
+    ## If fewer than 10 samples, a warning
+    if (ncol(expectedCountsMatrix) < 10) {
+        warning("A minimum of 10 samples is recommanded to run a GSVA ", 
+            "analysis.")
+    }
+    
     ## Retain genes present in the expression matrix
-    genes <- unique(unlist(signatures, use.names=FALSE))
+    genes <- unique(unlist(geneLists, use.names=FALSE))
     genes <- genes[genes %in% rownames(expectedCountsMatrix)]
 
     ## Subset matrix to retained genes
@@ -60,10 +66,17 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
     finalSaveData <- list()
     finalSaveData[["GSVA_RESULTS"]] <- resClass
 
-    resVar <- bootstrapGSVA(geneLists=geneLists, countMatrix=retained, 
+    resultBoot <- bootstrapGSVA(geneLists=geneLists, countMatrix=retained, 
         bootstrapRatio=bootstrapRatio, bootstrapNbr=bootstrapNbr)
 
-    finalSaveData[["BOOTSTRAP_VAR"]] <- resVar
+    
+    varLists <- list()
+    for (g in names(geneLists)) { 
+      varLists[[g]] <- apply(resultBoot[[g]], MARGIN=1, FUN=function(x) {
+                                                        sd(x, na.rm=TRUE)})
+    }
+    finalSaveData[["BOOTSTRAP"]] <- resultBoot
+    finalSaveData[["BOOTSTRAP_VAR"]] <- varLists
   
     return(finalSaveData)
 }
@@ -84,5 +97,5 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
 #' @importFrom utils data
 #' @export
 geneSignaturesListNames <- function() {
-    return(names(data(signatures)))
+    return(names(splitTypeR::signatures))
 }

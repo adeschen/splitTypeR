@@ -67,11 +67,5 @@ bootstrapGSVA <- function(geneLists, countMatrix, bootstrapRatio,
         }
     }
 
-  varLists <- list()
-  for (g in names(geneLists)) { 
-      varLists[[g]] <- apply(resultBoot[[g]], MARGIN=1, FUN=function(x) {
-                                                        sd(x, na.rm=TRUE)})
-  }
-
-  return(varLists)
+    return(resultBoot)
 }

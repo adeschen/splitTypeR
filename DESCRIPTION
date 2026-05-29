@@ -12,7 +12,7 @@ Authors@R: c(person("Astrid", "Deschênes", email = "adeschen@hotmail.com",
 Encoding: UTF-8
 License: Artistic-2.0
 Depends: R (>= 4.2.0)
-Imports: mixtools,
+Imports: S4Vectors,
     GSVA
 Suggests: 
     BiocStyle,
@@ -22,6 +22,7 @@ Suggests:
 biocViews: BiologicalQuestion, 
     Software
 VignetteBuilder: knitr
+LazyData: true
 URL: https://github.com/adeschen/splitTypeR
 BugReports: https://github.com/adeschen/splitTypeR/issues
 Config/roxygen2/version: 8.0.0

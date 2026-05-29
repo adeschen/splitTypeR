@@ -39,6 +39,7 @@
 #'      expectedCountsMatrix=expCounts, bootstrapRatio=0.8, bootstrapNbr=10)
 #' 
 #' @author Astrid Deschênes
+#' @importFrom S4Vectors isSingleInteger isSingleNumber
 #' @encoding UTF-8
 #' @keywords internal
 validateRunSubtyping <- function(geneLists, expectedCountsMatrix, 
@@ -60,9 +61,18 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
             "names of the \'expectedCountsMatrix\' matrix.")
     }
 
-    if (!(is.numeric(bootstrapRatio) && bootstrapRatio > 0 && 
+    if (!(isSingleNumber(bootstrapRatio) && bootstrapRatio > 0 && 
             bootstrapRatio < 1)) {
-        stop("The \'bootstrapRatio\' must be a numeric between 0 and 1")
+        stop("The \'bootstrapRatio\' must be a numeric between 0 and 1.")
     }
+
+    if (!(isSingleInteger(bootstrapNbr) || isSingleNumber(bootstrapNbr) && 
+            bootstrapNbr > 0)) {
+        stop("The \'bootstrapNbr\' must be an integer higher than 0.")
+    }
+
+    nb <- round(ncol(expectedCountsMatrix) * bootstrapRatio)
+
+
     return(TRUE)
 }

@@ -61,3 +61,53 @@ test_that("runSubtyping() must return error when geneLists is a character vector
         expectedCountsMatrix=exCounts, 
         bootstrapRatio=0.8, bootstrapNbr=10), error_message)
 })
+
+test_that("runSubtyping() must return error when bootstrapRatio is a negative numeric", {
+    
+    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
+
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("ABC1", "KRAS", "TT3")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=-0.8, bootstrapNbr=10), error_message)
+})
+
+test_that("runSubtyping() must return error when bootstrapRatio is a numeric vector", {
+    
+    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
+
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("ABC1", "KRAS", "TT3")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=c(0.3, 0.4), bootstrapNbr=10), error_message)
+})
+
+test_that("runSubtyping() must return error when bootstrapNbr is a character vector", {
+    
+    error_message <- "The \'bootstrapNbr\' must be an integer higher than 0."
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("KRAS", "ABC1", "TT3")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=0.8, bootstrapNbr="toto"), error_message)
+})
