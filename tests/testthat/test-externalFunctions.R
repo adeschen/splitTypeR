@@ -111,3 +111,21 @@ test_that("runSubtyping() must return error when bootstrapNbr is a character vec
         expectedCountsMatrix=exCounts, 
         bootstrapRatio=0.8, bootstrapNbr="toto"), error_message)
 })
+
+
+test_that("runSubtyping() must return error when bootstrapRatio is a character vector", {
+    
+    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
+    
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio="TEST", bootstrapNbr=10), error_message)
+})
