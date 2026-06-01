@@ -163,3 +163,18 @@ test_that("runSubtyping() must return a warning when not enough samples", {
         expectedCountsMatrix=exCounts, 
         bootstrapRatio=0.8, bootstrapNbr=10), error_message)
 })
+
+
+#############################################################################
+### Tests geneSignaturesListNames() results
+#############################################################################
+
+test_that("geneSignaturesListNames() must return the expected signature names", {
+    
+    expResults <- c("2018_Tiriac_PDAC_PDO_classical_signature",
+                     "2018_Tiriac_PDAC_PDO_basal-like_signature")
+
+    results <- geneSignaturesListNames()
+
+    expect_equal(results, expResults)
+})
