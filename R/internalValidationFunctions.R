@@ -73,6 +73,10 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
 
     nb <- round(ncol(expectedCountsMatrix) * bootstrapRatio)
 
+    if (nb == ncol(expectedCountsMatrix)) {
+        stop("The \'bootstrapRatio\' is too close to one. All samples are ", 
+            "selected for the bootstrap step rather than a subset.")
+    }
 
     return(TRUE)
 }

@@ -129,3 +129,20 @@ test_that("runSubtyping() must return error when bootstrapRatio is a character v
         expectedCountsMatrix=exCounts, 
         bootstrapRatio="TEST", bootstrapNbr=10), error_message)
 })
+
+test_that("runSubtyping() must return error when bootstrapRatio is too close to one", {
+    
+    error_message <- paste0("The \'bootstrapRatio\' is too close to one. All", 
+        " samples are selected for the bootstrap step rather than a subset.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(rep(2:7, 10)), byrow = TRUE, nrow=6)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1", "TP53", "MUC12")
+    colnames(exCounts) <- c(paste0("P", 1:10))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=0.99, bootstrapNbr=10), error_message)
+})
