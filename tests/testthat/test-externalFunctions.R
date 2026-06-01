@@ -62,17 +62,76 @@ test_that("runSubtyping() must return error when geneLists is a character vector
         bootstrapRatio=0.8, bootstrapNbr=10), error_message)
 })
 
-test_that("runSubtyping() must return error when bootstrapRatio is a negative numeric", {
+test_that("runSubtyping() must return error when geneLists is a character vector", {
     
-    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
-
+    error_message <- paste0("For at least one gene signature, none of the ", 
+        "genes are present in the row names of the \'expectedCountsMatrix\' ", 
+        "matrix.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
     
     exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
-    rownames(exCounts) <- c("ABC1", "KRAS", "TT3")
+    rownames(exCounts) <- c("ABC2", "TT2", "TT3")
     colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+})
+
+
+test_that("runSubtyping() must return error when geneLists is a character vector", {
+    
+    error_message <- paste0("For at least one gene signature, none of the ", 
+        "genes are present in the row names of the \'expectedCountsMatrix\' ", 
+        "matrix.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
+    rownames(exCounts) <- c("ABC2", "TT2", "TT3")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+})
+
+test_that("runSubtyping() must return error when genes not present for one signatures", {
+    
+    error_message <- paste0("For at least one gene signature, none of the ", 
+        "genes are present in the row names of the \'expectedCountsMatrix\' ", 
+            "matrix.")
+
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(rep(2:17, 3), byrow=TRUE, nrow=4)
+    rownames(exCounts) <- c("ABC11", "KRAS", "ABC22", "FYN")
+    colnames(exCounts) <- c(paste0("P", 1:12))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        bootstrapRatio=-0.8, bootstrapNbr=10), error_message)
+})
+
+
+test_that("runSubtyping() must return error when 1 gene present for one signatures", {
+    
+    error_message <- paste0("For at least one gene signature, only one gene ", 
+        "is present in the row names of the 'expectedCountsMatrix' ", 
+        "matrix.")
+
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(rep(2:17, 3), byrow=TRUE, nrow=4)
+    rownames(exCounts) <- c("ABC1", "KRAS", "ABC22", "FYN")
+    colnames(exCounts) <- c(paste0("P", 1:12))
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
@@ -87,9 +146,9 @@ test_that("runSubtyping() must return error when bootstrapRatio is a numeric vec
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
     
-    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
-    rownames(exCounts) <- c("ABC1", "KRAS", "TT3")
-    colnames(exCounts) <- c("P1", "P2")
+    exCounts <- matrix(rep(2:7, 8), byrow = FALSE, nrow=4)
+    rownames(exCounts) <- c("ABC1", "KRAS", "FYN", "ABC2")
+    colnames(exCounts) <- c(paste0("P", 1:12))
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
@@ -103,8 +162,8 @@ test_that("runSubtyping() must return error when bootstrapNbr is a character vec
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
     
-    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
-    rownames(exCounts) <- c("KRAS", "ABC1", "TT3")
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5, 12, 11), byrow = FALSE, nrow=4)
+    rownames(exCounts) <- c("KRAS", "ABC1", "ABC2", "FYN")
     colnames(exCounts) <- c("P1", "P2")
 
     expect_error(runSubtyping(geneLists=gList, 
@@ -121,9 +180,9 @@ test_that("runSubtyping() must return error when bootstrapRatio is a character v
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
     
-    exCounts <- matrix(c(2, 3, 4, 3, 4, 5), byrow = FALSE, nrow=3)
-    rownames(exCounts) <- c("KRAS", "ABC2", "FYN")
-    colnames(exCounts) <- c("P1", "P2")
+    exCounts <- matrix(rep(2:13, 4), byrow = FALSE, nrow=4)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1")
+    colnames(exCounts) <- c(paste0("P", 1:12))
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
@@ -149,7 +208,7 @@ test_that("runSubtyping() must return error when bootstrapRatio is too close to 
 
 test_that("runSubtyping() must return a warning when not enough samples", {
     
-    error_message <- paste0("A minimum of 10 samples is recommanded to run ", 
+    message <- paste0("! A minimum of 10 samples is recommanded to run ", 
         "a GSVA analysis.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
@@ -161,7 +220,7 @@ test_that("runSubtyping() must return a warning when not enough samples", {
 
     expect_warning(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        bootstrapRatio=0.8, bootstrapNbr=10), message)
 })
 
 

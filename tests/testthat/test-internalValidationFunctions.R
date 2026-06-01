@@ -13,8 +13,8 @@ test_that("validateRunSubtyping() must return TRUE when all parameters are valid
     testSignature[["signatureA"]] <- c("SMAD4", "KRAS", "CDC")
     testSignature[["signatureB"]] <- c("ABC", "FYN", "DHC")
 
-    testMatrix <- matrix(data=rep(3, 6), nrow = 2)
-    rownames(testMatrix) <- c("ABC", "KRAS")
+    testMatrix <- matrix(data=rep(3:6, 6), nrow = 4)
+    rownames(testMatrix) <- c("ABC", "KRAS", "SMAD4", "FYN")
 
     expect_true(splitTypeR:::validateRunSubtyping(geneLists=testSignature, 
         expectedCountsMatrix=testMatrix, 

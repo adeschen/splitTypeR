@@ -29,17 +29,17 @@
 #' gList[["signature2"]] <- c("FYN", "RAS", "SMAD4")
 #' 
 #' ## Create a small gene matrix
-#' expCounts <- matrix(data=rep(22, 12), nrow = 2)
-#' rownames(expCounts) <- c("ABC1", "RAS")
-#' colnames(expCounts) <- c("Sample1", "Sample2", "Sample3", "Sample4", 
-#'                             "Sample5", "Sample6")
+#' expCounts <- matrix(data=rep(22:25, 15), nrow=4)
+#' rownames(expCounts) <- c("ABC1", "RAS", "FYN", "SMAD3")
+#' colnames(expCounts) <- c(paste0("Sample_", 1:15))
 #' 
 #' ## The function returns TRUE when all parameters are valid
 #' splitTypeR:::validateRunSubtyping(geneLists=gList, 
 #'      expectedCountsMatrix=expCounts, bootstrapRatio=0.8, bootstrapNbr=10)
 #' 
 #' @author Astrid Deschênes
-#' @importFrom S4Vectors isSingleInteger isSingleNumber
+#' @importFrom S4Vectors isSingleInteger 
+#' @importFrom S4Vectors isSingleNumber
 #' @encoding UTF-8
 #' @keywords internal
 validateRunSubtyping <- function(geneLists, expectedCountsMatrix, 
@@ -49,7 +49,7 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
         stop("The \'geneLists\' object must be a list with ",
             "at least 2 entries.")
     }
-    
+
     if (!(inherits(expectedCountsMatrix, "matrix"))) {
         stop("The \'expectedCountsMatrix\' object must be a matrix.")
     }
@@ -59,6 +59,22 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
     if (sum(genes %in% rownames(expectedCountsMatrix)) < 1) {
         stop("None of the genes in the signatures are present in the row ", 
             "names of the \'expectedCountsMatrix\' matrix.")
+    }
+    
+    test01 <- lapply(geneLists, FUN=function(x) 
+                    {sum(x %in% rownames(expectedCountsMatrix)) > 0})
+
+    if (!all(unlist(test01))){
+        stop("For at least one gene signature, none of the genes are present ", 
+            "in the row names of the \'expectedCountsMatrix\' matrix.")
+    }
+
+    test02 <- lapply(geneLists, FUN=function(x) 
+                    {sum(x %in% rownames(expectedCountsMatrix)) > 1})
+
+    if (!all(unlist(test02))){
+        stop("For at least one gene signature, only one gene is present ", 
+            "in the row names of the \'expectedCountsMatrix\' matrix.")
     }
 
     if (!(isSingleNumber(bootstrapRatio) && bootstrapRatio > 0 && 
