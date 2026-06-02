@@ -111,6 +111,7 @@ number of bootstrap sampling done. Default: <code>200</code>.</p></dd>
 <span class="r-in"><span><span class="co">## TODO</span></span></span>
 <span class="r-in"><span><span class="fu">runSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signatures</span>, expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
 <span class="r-in"><span>    bootstrapRatio<span class="op">=</span><span class="fl">0.75</span>, bootstrapNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $GSVA_RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            Patient_1  Patient_2  Patient_3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_classical_signature   0.1422663  0.4274225 -0.7532768</span>
@@ -142,6 +143,87 @@ number of bootstrap sampling done. Default: <code>200</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                           Patient_28 Patient_29 Patient_30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_classical_signature  -0.2808672  0.6611142  0.3823810</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_basal-like_signature  0.3847667 -0.7322511 -0.4204301</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$originalClassWasSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$geneSets</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$geneSets$`2018_Tiriac_PDAC_PDO_classical_signature`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "VIL1"       "DDC"        "LGALS4"     "TSPAN8"     "SLC5A1"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "SEMA4G"     "TNFRSF11A"  "HSD17B2"    "CKMT1A"     "DPCR1"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "GCNT3"      "SLC6A20"    "POF1B"      "NR1I2"      "MUC17"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "HHLA2"      "BTNL8"      "HEPH"       "PDZD3"      "MYO1A"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "CDH17"      "MYO7B"      "GPA33"      "CALML4"     "ANXA13"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "TM4SF20"    "SI"         "SLC44A4"    "FAM83E"     "SLC40A1"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "CTSE"       "BACE2"      "SULT1C2"    "AGR3"       "ATP7B"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "LYZ"        "TESC"       "TOX3"       "SH3BGRL2"   "GMDS"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "GATA6"      "GPX2"       "CA2"        "ST6GALNAC1" "FOXA3"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "AKR1C3"     "TMC5"       "CYP2S1"     "PAQR8"      "HKDC1"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "IYD"        "DOK4"       "CYP2C18"    "KCNE3"      "FZD5"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "RASEF"      "GKN1"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$geneSets$`2018_Tiriac_PDAC_PDO_basal-like_signature`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "CST6"     "CATSPER1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$assay</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$annotation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> geneIdType: Null</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$minSize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$maxSize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$nzcount</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2580</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$ondisk</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "auto"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$checkNA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "auto"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$didCheckNA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$anyNA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$use</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "everything"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$kcdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "auto"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$kcdfNoneMinSampleSize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$tau</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$maxDiff</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$absRanking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$sparse</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"gsvaParam")$filterRows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"assay")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "es"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"geneSets")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"geneSets")$`2018_Tiriac_PDAC_PDO_classical_signature`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span>
