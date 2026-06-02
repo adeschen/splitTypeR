@@ -56,8 +56,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">runSubtyping</span><span class="op">(</span></span>
 <span>  <span class="va">geneLists</span>,</span>
 <span>  <span class="va">expectedCountsMatrix</span>,</span>
-<span>  bootstrapRatio <span class="op">=</span> <span class="fl">0.75</span>,</span>
-<span>  bootstrapNbr <span class="op">=</span> <span class="fl">200</span></span>
+<span>  permRatio <span class="op">=</span> <span class="fl">0.75</span>,</span>
+<span>  bootstrapNbr <span class="op">=</span> <span class="fl">20</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,18 +75,21 @@ two signature gene lists must be present.</p></dd>
 <code>matrix</code> with rows corresponding to genes and columns to samples.</p></dd>
 
 
-<dt id="arg-bootstrapratio">bootstrapRatio<a class="anchor" aria-label="anchor" href="#arg-bootstrapratio"></a></dt>
+<dt id="arg-permratio">permRatio<a class="anchor" aria-label="anchor" href="#arg-permratio"></a></dt>
 <dd><p>a <code>numeric</code> between 0 and 1 representing the
-number of samples that are retained for the bootstrap step. The
+number of samples that are retained for the permutation step. The
 rounded value of the number of patients multiplied by this <code>numeric</code>
 should be inferior to the total number of patients so that the
-bootstrap step is not done on the entire cohort.
+permutation step is not done on the entire cohort.
 Default: <code>0.75</code>.</p></dd>
 
 
 <dt id="arg-bootstrapnbr">bootstrapNbr<a class="anchor" aria-label="anchor" href="#arg-bootstrapnbr"></a></dt>
-<dd><p>a <code>integer</code> bigger than zero representing the
-number of bootstrap sampling done. Default: <code>200</code>.</p></dd>
+<dd><p>a <code>integer</code>, 5 or higher, representing the
+number of permutation sampling done. In addition, the number of permutations
+must be equal or inferior to the total number of unique permutations
+with the dataset considering the parameters selected by the user.
+Default: <code>20</code>.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -110,8 +113,7 @@ number of bootstrap sampling done. Default: <code>200</code>.</p></dd>
 <span class="r-in"><span><span class="co">## Some of the enrichment results present in the dataset</span></span></span>
 <span class="r-in"><span><span class="co">## TODO</span></span></span>
 <span class="r-in"><span><span class="fu">runSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signatures</span>, expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
-<span class="r-in"><span>    bootstrapRatio<span class="op">=</span><span class="fl">0.75</span>, bootstrapNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, bootstrapNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $GSVA_RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            Patient_1  Patient_2  Patient_3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_classical_signature   0.1422663  0.4274225 -0.7532768</span>

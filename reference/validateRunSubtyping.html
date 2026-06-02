@@ -57,12 +57,7 @@ the user before quitting the program.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validateRunSubtyping</span><span class="op">(</span></span>
-<span>  <span class="va">geneLists</span>,</span>
-<span>  <span class="va">expectedCountsMatrix</span>,</span>
-<span>  <span class="va">bootstrapRatio</span>,</span>
-<span>  <span class="va">bootstrapNbr</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validateRunSubtyping</span><span class="op">(</span><span class="va">geneLists</span>, <span class="va">expectedCountsMatrix</span>, <span class="va">permRatio</span>, <span class="va">permNbr</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -79,17 +74,17 @@ two signature gene lists must be present.</p></dd>
 <code>matrix</code> with rows corresponding to genes and columns to samples.</p></dd>
 
 
-<dt id="arg-bootstrapratio">bootstrapRatio<a class="anchor" aria-label="anchor" href="#arg-bootstrapratio"></a></dt>
+<dt id="arg-permratio">permRatio<a class="anchor" aria-label="anchor" href="#arg-permratio"></a></dt>
 <dd><p>a <code>numeric</code> between 0 and 1 representing the
-number of samples that are retained for the bootstrap step. The
+number of samples that are retained for the permutation step. The
 rounded value of the number of patients multiplied by this <code>numeric</code>
 should be inferior to the total number of patients so that the
-bootstrap step is not done on the entire cohort.</p></dd>
+permutation step is not done on the entire cohort.</p></dd>
 
 
-<dt id="arg-bootstrapnbr">bootstrapNbr<a class="anchor" aria-label="anchor" href="#arg-bootstrapnbr"></a></dt>
-<dd><p>a <code>integer</code> bigger than zero representing the
-number of bootstrap sampling done.</p></dd>
+<dt id="arg-permnbr">permNbr<a class="anchor" aria-label="anchor" href="#arg-permnbr"></a></dt>
+<dd><p>a <code>integer</code> bigger than or equal to 5 representing the
+number of permutation samplings done.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -116,7 +111,7 @@ number of bootstrap sampling done.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## The function returns TRUE when all parameters are valid</span></span></span>
 <span class="r-in"><span><span class="fu">splitTypeR</span><span class="fu">:::</span><span class="fu">validateRunSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">gList</span>, </span></span>
-<span class="r-in"><span>     expectedCountsMatrix<span class="op">=</span><span class="va">expCounts</span>, bootstrapRatio<span class="op">=</span><span class="fl">0.8</span>, bootstrapNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>     expectedCountsMatrix<span class="op">=</span><span class="va">expCounts</span>, permRatio<span class="op">=</span><span class="fl">0.8</span>, permNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

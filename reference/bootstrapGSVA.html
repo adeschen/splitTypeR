@@ -55,7 +55,7 @@ score obtained for each sample</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bootstrapGSVA</span><span class="op">(</span><span class="va">geneLists</span>, <span class="va">countMatrix</span>, <span class="va">bootstrapRatio</span>, <span class="va">bootstrapNbr</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bootstrapGSVA</span><span class="op">(</span><span class="va">geneLists</span>, <span class="va">countMatrix</span>, <span class="va">permRatio</span>, <span class="va">bootstrapNbr</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,7 +73,7 @@ score obtained for each sample</p>
 signature gene lists.</p></dd>
 
 
-<dt id="arg-bootstrapratio">bootstrapRatio<a class="anchor" aria-label="anchor" href="#arg-bootstrapratio"></a></dt>
+<dt id="arg-permratio">permRatio<a class="anchor" aria-label="anchor" href="#arg-permratio"></a></dt>
 <dd><p>a <code>numeric</code> between 0 and 1 representing the
 number of samples that are retained for the bootstrap step.</p></dd>
 
@@ -107,7 +107,7 @@ bootstrapping method on each sample for each signature gene list. The
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Calculate variance for each sample using boostrap method</span></span></span>
 <span class="r-in"><span><span class="fu">splitTypeR</span><span class="fu">:::</span><span class="fu">bootstrapGSVA</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">geneLists</span>, </span></span>
-<span class="r-in"><span>    countMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, bootstrapRatio<span class="op">=</span><span class="fl">0.75</span>, </span></span>
+<span class="r-in"><span>    countMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, permRatio<span class="op">=</span><span class="fl">0.75</span>, </span></span>
 <span class="r-in"><span>    bootstrapNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $classical</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   [,1]        [,2]        [,3]        [,4]       [,5]</span>
