@@ -53,12 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">runSubtyping</span><span class="op">(</span></span>
-<span>  <span class="va">geneLists</span>,</span>
-<span>  <span class="va">expectedCountsMatrix</span>,</span>
-<span>  permRatio <span class="op">=</span> <span class="fl">0.75</span>,</span>
-<span>  bootstrapNbr <span class="op">=</span> <span class="fl">20</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">runSubtyping</span><span class="op">(</span><span class="va">geneLists</span>, <span class="va">expectedCountsMatrix</span>, permRatio <span class="op">=</span> <span class="fl">0.75</span>, permNbr <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -84,7 +79,7 @@ permutation step is not done on the entire cohort.
 Default: <code>0.75</code>.</p></dd>
 
 
-<dt id="arg-bootstrapnbr">bootstrapNbr<a class="anchor" aria-label="anchor" href="#arg-bootstrapnbr"></a></dt>
+<dt id="arg-permnbr">permNbr<a class="anchor" aria-label="anchor" href="#arg-permnbr"></a></dt>
 <dd><p>a <code>integer</code>, 5 or higher, representing the
 number of permutation sampling done. In addition, the number of permutations
 must be equal or inferior to the total number of unique permutations
@@ -113,7 +108,7 @@ Default: <code>20</code>.</p></dd>
 <span class="r-in"><span><span class="co">## Some of the enrichment results present in the dataset</span></span></span>
 <span class="r-in"><span><span class="co">## TODO</span></span></span>
 <span class="r-in"><span><span class="fu">runSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signatures</span>, expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
-<span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, bootstrapNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $GSVA_RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            Patient_1  Patient_2  Patient_3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_classical_signature   0.1422663  0.4274225 -0.7532768</span>
