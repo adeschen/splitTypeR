@@ -24,6 +24,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: write
+  
 name: R-CMD-check-bioc
 
 ## These environment variables control whether to run GHA code later on that is
@@ -282,7 +285,7 @@ jobs:
         with:
           clean: false
           branch: gh-pages
-          folder: docs
+          folder: docs        # The directory containing your compiled site files
 
       - name: Upload check results
         if: failure()
