@@ -68,7 +68,7 @@
       <h1 data-toc-skip>Subtyping using multimodal distribution</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/adeschen/splitTypeR/blob/HEAD/vignettes/splitTypeR.Rmd" class="external-link"><code>vignettes/splitTypeR.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/adeschen/splitTypeR/blob/devel/vignettes/splitTypeR.Rmd" class="external-link"><code>vignettes/splitTypeR.Rmd</code></a></small>
       <div class="hidden name"><code>splitTypeR.Rmd</code></div>
 
     </div>
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script><p><br><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-05-28<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-06-02<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -124,71 +124,75 @@ be loaded with the following command:</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R version 4.5.3 (2026-03-11)</span></span>
-<span><span class="co">## Platform: aarch64-apple-darwin20</span></span>
-<span><span class="co">## Running under: macOS Tahoe 26.3.1</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-05-31 r90090)</span></span>
+<span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
+<span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
-<span><span class="co">## BLAS:   /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRblas.0.dylib </span></span>
-<span><span class="co">## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1</span></span>
+<span><span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
+<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## locale:</span></span>
-<span><span class="co">## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span><span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span><span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span><span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span><span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span><span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## time zone: America/New_York</span></span>
-<span><span class="co">## tzcode source: internal</span></span>
+<span><span class="co">## time zone: UTC</span></span>
+<span><span class="co">## tzcode source: system (glibc)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## attached base packages:</span></span>
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] splitTypeR_0.99.0 knitr_1.51        BiocStyle_2.38.0 </span></span>
+<span><span class="co">## [1] splitTypeR_0.99.0 knitr_1.51        BiocStyle_2.41.0 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] SummarizedExperiment_1.40.0 KEGGREST_1.50.0            </span></span>
+<span><span class="co">##  [1] SummarizedExperiment_1.43.0 KEGGREST_1.53.0            </span></span>
 <span><span class="co">##  [3] rjson_0.2.23                xfun_0.57                  </span></span>
-<span><span class="co">##  [5] bslib_0.11.0                htmlwidgets_1.6.4          </span></span>
-<span><span class="co">##  [7] rhdf5_2.54.1                Biobase_2.70.0             </span></span>
-<span><span class="co">##  [9] GSVA_2.4.9                  lattice_0.22-9             </span></span>
-<span><span class="co">## [11] rhdf5filters_1.22.0         vctrs_0.7.3                </span></span>
-<span><span class="co">## [13] tools_4.5.3                 generics_0.1.4             </span></span>
-<span><span class="co">## [15] stats4_4.5.3                parallel_4.5.3             </span></span>
-<span><span class="co">## [17] AnnotationDbi_1.72.0        RSQLite_3.53.1             </span></span>
-<span><span class="co">## [19] blob_1.3.0                  Matrix_1.7-5               </span></span>
-<span><span class="co">## [21] sparseMatrixStats_1.22.0    desc_1.4.3                 </span></span>
-<span><span class="co">## [23] S4Vectors_0.48.1            graph_1.88.1               </span></span>
-<span><span class="co">## [25] lifecycle_1.0.5             compiler_4.5.3             </span></span>
-<span><span class="co">## [27] textshaping_1.0.5           Biostrings_2.78.0          </span></span>
-<span><span class="co">## [29] Seqinfo_1.0.0               codetools_0.2-20           </span></span>
-<span><span class="co">## [31] htmltools_0.5.9             sass_0.4.10                </span></span>
-<span><span class="co">## [33] yaml_2.3.12                 pkgdown_2.2.0              </span></span>
-<span><span class="co">## [35] crayon_1.5.3                jquerylib_0.1.4            </span></span>
-<span><span class="co">## [37] SingleCellExperiment_1.32.0 BiocParallel_1.44.0        </span></span>
-<span><span class="co">## [39] DelayedArray_0.36.1         cachem_1.1.0               </span></span>
-<span><span class="co">## [41] magick_2.9.1                abind_1.4-8                </span></span>
-<span><span class="co">## [43] rsvd_1.0.5                  digest_0.6.39              </span></span>
-<span><span class="co">## [45] BiocSingular_1.26.1         bookdown_0.46              </span></span>
-<span><span class="co">## [47] fastmap_1.2.0               grid_4.5.3                 </span></span>
-<span><span class="co">## [49] cli_3.6.6                   SparseArray_1.10.10        </span></span>
-<span><span class="co">## [51] magrittr_2.0.5              S4Arrays_1.10.1            </span></span>
-<span><span class="co">## [53] h5mread_1.2.1               XML_3.99-0.23              </span></span>
-<span><span class="co">## [55] GSEABase_1.72.0             bit64_4.8.2                </span></span>
-<span><span class="co">## [57] rmarkdown_2.31              XVector_0.50.0             </span></span>
+<span><span class="co">##  [5] bslib_0.11.0                rhdf5_2.57.0               </span></span>
+<span><span class="co">##  [7] Biobase_2.73.1              GSVA_2.7.2                 </span></span>
+<span><span class="co">##  [9] lattice_0.22-9              rhdf5filters_1.25.0        </span></span>
+<span><span class="co">## [11] vctrs_0.7.3                 tools_4.7.0                </span></span>
+<span><span class="co">## [13] generics_0.1.4              stats4_4.7.0               </span></span>
+<span><span class="co">## [15] parallel_4.7.0              AnnotationDbi_1.75.0       </span></span>
+<span><span class="co">## [17] RSQLite_3.53.1              blob_1.3.0                 </span></span>
+<span><span class="co">## [19] Matrix_1.7-5                desc_1.4.3                 </span></span>
+<span><span class="co">## [21] S4Vectors_0.51.2            sparseMatrixStats_1.25.0   </span></span>
+<span><span class="co">## [23] graph_1.91.0                lifecycle_1.0.5            </span></span>
+<span><span class="co">## [25] compiler_4.7.0              textshaping_1.0.5          </span></span>
+<span><span class="co">## [27] Biostrings_2.81.2           Seqinfo_1.3.0              </span></span>
+<span><span class="co">## [29] codetools_0.2-20            htmltools_0.5.9            </span></span>
+<span><span class="co">## [31] sass_0.4.10                 yaml_2.3.12                </span></span>
+<span><span class="co">## [33] pkgdown_2.2.0               crayon_1.5.3               </span></span>
+<span><span class="co">## [35] jquerylib_0.1.4             SingleCellExperiment_1.35.1</span></span>
+<span><span class="co">## [37] BiocParallel_1.47.0         DelayedArray_0.39.2        </span></span>
+<span><span class="co">## [39] cachem_1.1.0                magick_2.9.1               </span></span>
+<span><span class="co">## [41] abind_1.4-8                 rsvd_1.0.5                 </span></span>
+<span><span class="co">## [43] digest_0.6.39               BiocSingular_1.29.0        </span></span>
+<span><span class="co">## [45] bookdown_0.46               fastmap_1.2.0              </span></span>
+<span><span class="co">## [47] grid_4.7.0                  cli_3.6.6                  </span></span>
+<span><span class="co">## [49] SparseArray_1.13.2          magrittr_2.0.5             </span></span>
+<span><span class="co">## [51] S4Arrays_1.13.0             h5mread_1.5.0              </span></span>
+<span><span class="co">## [53] XML_3.99-0.23               GSEABase_1.75.0            </span></span>
+<span><span class="co">## [55] DelayedMatrixStats_1.35.0   bit64_4.8.2                </span></span>
+<span><span class="co">## [57] rmarkdown_2.31              XVector_0.53.0             </span></span>
 <span><span class="co">## [59] httr_1.4.8                  matrixStats_1.5.0          </span></span>
-<span><span class="co">## [61] bit_4.6.0                   otel_0.2.0                 </span></span>
-<span><span class="co">## [63] ragg_1.5.2                  png_0.1-9                  </span></span>
-<span><span class="co">## [65] SpatialExperiment_1.20.0    ScaledMatrix_1.18.0        </span></span>
-<span><span class="co">## [67] beachmat_2.26.0             memuse_4.2-3               </span></span>
-<span><span class="co">## [69] HDF5Array_1.38.0            memoise_2.0.1              </span></span>
-<span><span class="co">## [71] evaluate_1.0.5              GenomicRanges_1.62.1       </span></span>
-<span><span class="co">## [73] IRanges_2.44.0              irlba_2.3.7                </span></span>
-<span><span class="co">## [75] rlang_1.2.0                 Rcpp_1.1.1-1.1             </span></span>
-<span><span class="co">## [77] xtable_1.8-8                DBI_1.3.0                  </span></span>
-<span><span class="co">## [79] BiocManager_1.30.27         BiocGenerics_0.56.0        </span></span>
-<span><span class="co">## [81] annotate_1.88.0             jsonlite_2.0.0             </span></span>
-<span><span class="co">## [83] Rhdf5lib_1.32.0             R6_2.6.1                   </span></span>
-<span><span class="co">## [85] MatrixGenerics_1.22.0       systemfonts_1.3.2          </span></span>
-<span><span class="co">## [87] fs_2.1.0</span></span></code></pre>
+<span><span class="co">## [61] bit_4.6.0                   ragg_1.5.2                 </span></span>
+<span><span class="co">## [63] png_0.1-9                   SpatialExperiment_1.23.0   </span></span>
+<span><span class="co">## [65] ScaledMatrix_1.21.0         beachmat_2.29.0            </span></span>
+<span><span class="co">## [67] memuse_4.2-3                HDF5Array_1.41.0           </span></span>
+<span><span class="co">## [69] memoise_2.0.1               evaluate_1.0.5             </span></span>
+<span><span class="co">## [71] GenomicRanges_1.65.0        IRanges_2.47.1             </span></span>
+<span><span class="co">## [73] irlba_2.3.7                 rlang_1.2.0                </span></span>
+<span><span class="co">## [75] Rcpp_1.1.1-1.1              xtable_1.8-8               </span></span>
+<span><span class="co">## [77] DBI_1.3.0                   BiocManager_1.30.27        </span></span>
+<span><span class="co">## [79] BiocGenerics_0.59.3         annotate_1.91.0            </span></span>
+<span><span class="co">## [81] jsonlite_2.0.0              Rhdf5lib_2.1.0             </span></span>
+<span><span class="co">## [83] R6_2.6.1                    MatrixGenerics_1.25.0      </span></span>
+<span><span class="co">## [85] systemfonts_1.3.2           fs_2.1.0</span></span></code></pre>
 </div>
   </div>
 
