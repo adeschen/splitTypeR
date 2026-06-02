@@ -278,7 +278,7 @@ jobs:
 
       - name: Deploy pkgdown site to GitHub pages 🚀
         if: github.ref == 'refs/heads/devel' && env.run_pkgdown == 'true' && runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           clean: false
           branch: gh-pages
@@ -288,5 +288,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-biocversion-RELEASE_3_21-r-4.5-results
+          name: ${{ runner.os }}-biocversion-RELEASE_${{ runner.bioc }}-r-${{ runner.r }}-results
           path: check
