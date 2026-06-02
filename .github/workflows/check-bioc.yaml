@@ -24,9 +24,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  contents: write
-  
 name: R-CMD-check-bioc
 
 ## These environment variables control whether to run GHA code later on that is
@@ -50,6 +47,10 @@ jobs:
     name: ${{ matrix.config.os }} (R ${{ matrix.config.r }}) (Bioc ${{ matrix.config.bioc }})
     container: ${{ matrix.config.cont }}
     ## Environment variables unique to this job.
+
+    # Grant write access to repository contents for this specific job
+    permissions:
+      contents: write
 
     strategy:
       fail-fast: false
