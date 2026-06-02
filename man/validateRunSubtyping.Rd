@@ -44,10 +44,9 @@ gList[["signature1"]] <- c("ABC1", "ABC2", "SMAD3", "MUC12")
 gList[["signature2"]] <- c("FYN", "RAS", "SMAD4")
 
 ## Create a small gene matrix
-expCounts <- matrix(data=rep(22, 12), nrow = 2)
-rownames(expCounts) <- c("ABC1", "RAS")
-colnames(expCounts) <- c("Sample1", "Sample2", "Sample3", "Sample4", 
-                            "Sample5", "Sample6")
+expCounts <- matrix(data=rep(22:25, 15), nrow=4)
+rownames(expCounts) <- c("ABC1", "RAS", "FYN", "SMAD3")
+colnames(expCounts) <- c(paste0("Sample_", 1:15))
 
 ## The function returns TRUE when all parameters are valid
 splitTypeR:::validateRunSubtyping(geneLists=gList, 
