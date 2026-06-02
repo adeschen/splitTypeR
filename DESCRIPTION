@@ -2,7 +2,7 @@ Package: splitTypeR
 Type: Package
 Version: 0.99.0
 Date: 2026-02-27
-Title: Subtyping using multimodal distribution
+Title: Subtyping using multimodal distributions
 Description: This package enables subtyping, based on RNA expression, using 
     multimodal distribution with at least two gene signature lists. 
 Authors@R: c(person("Astrid", "Deschênes", email = "adeschen@hotmail.com",
