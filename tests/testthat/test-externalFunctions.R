@@ -222,6 +222,25 @@ test_that("runSubtyping() must return error when permRatio is too close to one",
         error_message)
 })
 
+test_that("runSubtyping() must return error when permNbr is too high for the number of samples", {
+    
+    error_message <- paste0("The \'permNbr\' is too high for the number of", 
+        " samples. The number of unique combinations for selecting 8 out of ", 
+        "10 samples is 45.")
+    
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(rep(2:7, 10)), byrow = TRUE, nrow=6)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1", "TP53", "MUC12")
+    colnames(exCounts) <- c(paste0("P", 1:10))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=200), 
+        error_message)
+})
+
 test_that("runSubtyping() must return a warning when not enough samples", {
     
     message <- paste0("! A minimum of 10 samples is recommended to run ", 

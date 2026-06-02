@@ -131,7 +131,7 @@ validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr) {
 
     if (permNbr > choose(nbAll, nb)) {
         stop("The \'permNbr\' is too high for the number of samples. ",
-            " The number of unique combinations for selecting ", nb, 
+            "The number of unique combinations for selecting ", nb, 
             " out of ", nbAll, " samples is ", choose(nbAll, nb), ".")
     }
     
