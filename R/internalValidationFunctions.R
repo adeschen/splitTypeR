@@ -38,8 +38,6 @@
 #'      expectedCountsMatrix=expCounts, permRatio=0.8, permNbr=10)
 #' 
 #' @author Astrid Deschênes
-#' @importFrom S4Vectors isSingleInteger 
-#' @importFrom S4Vectors isSingleNumber
 #' @encoding UTF-8
 #' @keywords internal
 validateRunSubtyping <- function(geneLists, expectedCountsMatrix, 
@@ -77,6 +75,43 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
             "in the row names of the \'expectedCountsMatrix\' matrix.")
     }
 
+    return(validateRunSubtypingSubSection(nbAll=ncol(expectedCountsMatrix), 
+        permRatio=permRatio, permNbr=permNbr))
+}
+
+#' @title Permutation parameters validation for the runSubtyping function
+#' 
+#' @description This function is validation the permutation parameters for the 
+#' runSubtyping function. When a parameter is incorrect, a message is sent to 
+#' the user before quitting the program.
+#' 
+#' @param nbAll a \code{integer} representing the total number of samples 
+#' present in the expression matrix. 
+#' 
+#' @param permRatio a \code{numeric} between 0 and 1 representing the
+#' number of samples that are retained for the permutation step. The 
+#' rounded value of the number of patients multiplied by this \code{numeric}  
+#' should be inferior to the total number of patients so that the 
+#' permutation step is not done on the entire cohort.
+#'
+#' @param permNbr a \code{integer} bigger than or equal to 5 representing the
+#' number of permutation samplings done. 
+#' 
+#' @return \code{TRUE} when all parameters are valid
+#' 
+#' @examples
+#' 
+#' ## The function returns TRUE when all parameters are valid
+#' splitTypeR:::validateRunSubtypingSubSection(nbAll=15, permRatio=0.8, 
+#'     permNbr=10)
+#' 
+#' @author Astrid Deschênes
+#' @importFrom S4Vectors isSingleInteger 
+#' @importFrom S4Vectors isSingleNumber
+#' @encoding UTF-8
+#' @keywords internal
+validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr) {
+    
     if (!(isSingleNumber(permRatio) && permRatio > 0 && 
             permRatio < 1)) {
         stop("The \'permRatio\' must be a numeric between 0 and 1.")
@@ -84,11 +119,9 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
 
     if (!(isSingleInteger(permNbr) || isSingleNumber(permNbr) && 
             permNbr > 4)) {
-        stop("The \'permNbr\' must be an integer higher than or ", 
-            "equal to 5.")
+        stop("The \'permNbr\' must be an integer higher than or equal to 5.")
     }
 
-    nbAll <- ncol(expectedCountsMatrix)
     nb <- round(nbAll * permRatio)
 
     if (nb == nbAll) {
@@ -96,12 +129,11 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
             "selected for the permutation step rather than a subset.")
     }
 
-    if (permNbr > choose(ncol(expectedCountsMatrix), nb)) {
+    if (permNbr > choose(nbAll, nb)) {
         stop("The \'permNbr\' is too high for the number of samples. ",
             " The number of unique combinations for selecting ", nb, 
-            " out of ", nbAll, " samples is ", 
-            choose(ncol(expectedCountsMatrix), nb), ".")
+            " out of ", nbAll, " samples is ", choose(nbAll, nb), ".")
     }
-
-    return(TRUE)
+    
+    return(TRUE)    
 }

@@ -21,4 +21,13 @@ test_that("validateRunSubtyping() must return TRUE when all parameters are valid
         expectedCountsMatrix=testMatrix, permRatio=0.8, permNbr=10))
 })
 
+#############################################################################
+### Tests validateRunSubtypingSubSection() results
+#############################################################################
+
+test_that("validateRunSubtypingSubSection() must return TRUE when all parameters are valid", {
+
+    expect_true(splitTypeR:::validateRunSubtypingSubSection(nbAll=20, 
+        permRatio=0.8, permNbr=10))
+})
 
