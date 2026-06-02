@@ -87,11 +87,19 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
         stop("The \'bootstrapNbr\' must be an integer higher than 0.")
     }
 
-    nb <- round(ncol(expectedCountsMatrix) * bootstrapRatio)
+    nbAll <- ncol(expectedCountsMatrix)
+    nb <- round(nbAll * bootstrapRatio)
 
-    if (nb == ncol(expectedCountsMatrix)) {
+    if (nb == nbAll) {
         stop("The \'bootstrapRatio\' is too close to one. All samples are ", 
             "selected for the bootstrap step rather than a subset.")
+    }
+
+    if (bootstrapNbr > choose(ncol(expectedCountsMatrix), nb)) {
+        stop("The \'bootstrapNbr\' is too high for the number of samples. ",
+            " The number of unique combinations for selecting ", nb, 
+            " out of ", nbAll, " sample is ", 
+            choose(ncol(expectedCountsMatrix), nb), ".")
     }
 
     return(TRUE)

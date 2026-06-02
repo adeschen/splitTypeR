@@ -208,7 +208,7 @@ test_that("runSubtyping() must return error when bootstrapRatio is too close to 
 
 test_that("runSubtyping() must return a warning when not enough samples", {
     
-    message <- paste0("! A minimum of 10 samples is recommanded to run ", 
+    message <- paste0("! A minimum of 10 samples is recommended to run ", 
         "a GSVA analysis.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
@@ -220,7 +220,7 @@ test_that("runSubtyping() must return a warning when not enough samples", {
 
     expect_warning(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), message)
+        bootstrapRatio=0.8, bootstrapNbr=5), message)
 })
 
 

@@ -44,10 +44,10 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
     validateRunSubtyping(geneLists=geneLists,
         expectedCountsMatrix=expectedCountsMatrix, 
         bootstrapRatio=bootstrapRatio, bootstrapNbr=bootstrapNbr)
-
+    print(ncol(expectedCountsMatrix))
     ## If fewer than 10 samples, a warning
     if (ncol(expectedCountsMatrix) < 10) {
-        warning("! A minimum of 10 samples is recommanded to run a GSVA ", 
+        warning("! A minimum of 10 samples is recommended to run a GSVA ", 
             "analysis.")
     }
     
