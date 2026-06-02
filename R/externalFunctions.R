@@ -15,7 +15,7 @@
 #' permutation step is not done on the entire cohort.
 #' Default: \code{0.75}.
 #'
-#' @param bootstrapNbr a \code{integer}, 5 or higher, representing the
+#' @param permNbr a \code{integer}, 5 or higher, representing the
 #' number of permutation sampling done. In addition, the number of permutations 
 #' must be equal or inferior to the total number of unique permutations 
 #' with the dataset considering the parameters selected by the user. 
@@ -34,19 +34,19 @@
 #' ## Some of the enrichment results present in the dataset
 #' ## TODO
 #' runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
-#'     permRatio=0.75, bootstrapNbr=20)
+#'     permRatio=0.75, permNbr=20)
 #'
 #' @author Astrid Deschênes
 #' @importFrom GSVA gsvaParam gsva
 #' @encoding UTF-8
 #' @export
-runSubtyping <- function(geneLists, expectedCountsMatrix, 
-    permRatio=0.75, bootstrapNbr=20) {
+runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75, 
+    permNbr=20) {
   
     ## Validate parameters
     validateRunSubtyping(geneLists=geneLists,
-        expectedCountsMatrix=expectedCountsMatrix, 
-        permRatio=permRatio, permNbr=bootstrapNbr)
+        expectedCountsMatrix=expectedCountsMatrix, permRatio=permRatio, 
+        permNbr=permNbr)
 
     ## If fewer than 10 samples, a warning
     if (ncol(expectedCountsMatrix) < 10) {
@@ -70,7 +70,7 @@ runSubtyping <- function(geneLists, expectedCountsMatrix,
     finalSaveData[["GSVA_RESULTS"]] <- resClass
 
     resultBoot <- bootstrapGSVA(geneLists=geneLists, countMatrix=retained, 
-        permRatio=permRatio, bootstrapNbr=bootstrapNbr)
+        permRatio=permRatio, permNbr=permNbr)
 
     
     varLists <- list()

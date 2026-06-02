@@ -61,7 +61,7 @@ test_that("bootstrapGSVA() must return expected results", {
     set.seed(121)
 
     results <- splitTypeR:::bootstrapGSVA(geneLists=gList, 
-        countMatrix=expectedCountsMatrix, permRatio=0.8, bootstrapNbr=5)
+        countMatrix=expectedCountsMatrix, permRatio=0.8, permNbr=5)
     
     expect_true(is.list(results))
     expect_equal(names(results), names(expResults))

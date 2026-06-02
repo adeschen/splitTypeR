@@ -5,12 +5,7 @@
 \alias{runSubtyping}
 \title{TODO}
 \usage{
-runSubtyping(
-  geneLists,
-  expectedCountsMatrix,
-  permRatio = 0.75,
-  bootstrapNbr = 20
-)
+runSubtyping(geneLists, expectedCountsMatrix, permRatio = 0.75, permNbr = 20)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists. At least 
@@ -26,7 +21,7 @@ should be inferior to the total number of patients so that the
 permutation step is not done on the entire cohort.
 Default: \code{0.75}.}
 
-\item{bootstrapNbr}{a \code{integer}, 5 or higher, representing the
+\item{permNbr}{a \code{integer}, 5 or higher, representing the
 number of permutation sampling done. In addition, the number of permutations 
 must be equal or inferior to the total number of unique permutations 
 with the dataset considering the parameters selected by the user. 
@@ -49,7 +44,7 @@ data("expNormalCountsDemo")
 ## Some of the enrichment results present in the dataset
 ## TODO
 runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
-    permRatio=0.75, bootstrapNbr=20)
+    permRatio=0.75, permNbr=20)
 
 }
 \author{

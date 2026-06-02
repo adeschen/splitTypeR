@@ -3,10 +3,10 @@
 \encoding{UTF-8}
 \name{bootstrapGSVA}
 \alias{bootstrapGSVA}
-\title{Use bootstrapping method to calculate the variance associated to the GSVA 
-score obtained for each sample}
+\title{Use the permutation method to calculate the variance associated 
+with the GSVA score obtained for each sample}
 \usage{
-bootstrapGSVA(geneLists, countMatrix, permRatio, bootstrapNbr)
+bootstrapGSVA(geneLists, countMatrix, permRatio, permNbr)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists.}
@@ -17,16 +17,21 @@ bootstrapGSVA(geneLists, countMatrix, permRatio, bootstrapNbr)
 signature gene lists.}
 
 \item{permRatio}{a \code{numeric} between 0 and 1 representing the
-number of samples that are retained for the bootstrap step.}
+number of samples that are retained for the permutation step.}
+
+\item{permNbr}{a \code{integer} bigger than or equal to 5 representing the
+number of permutation samplings done.}
 }
 \value{
-a \code{list} containing the variance calculated from the 
-bootstrapping method on each sample for each signature gene list. The 
-\code{list} contains one entry per signature gene list.
+a \code{list} containing an entry for each gene signature present 
+in the \code{geneLists} object. Each entry contains a \code{matrix} with 
+all the GSVA results from all the permutation sampling done. Each column 
+represent one perutation sampling while each row represent a sample 
+present in the \code{countMatrix}.
 }
 \description{
-Use bootstrapping method to calculate the variance associated to the GSVA 
-score obtained for each sample
+Calculate GSVA score for multiple permuatation sampling of the 
+dataset to obtain the variance associated with each sample.
 }
 \examples{
 
@@ -45,8 +50,7 @@ data(expNormalCountsDemo)
 
 ## Calculate variance for each sample using boostrap method
 splitTypeR:::bootstrapGSVA(geneLists=geneLists, 
-    countMatrix=expNormalCountsDemo, permRatio=0.75, 
-    bootstrapNbr=20)
+    countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 
 }
 \author{
