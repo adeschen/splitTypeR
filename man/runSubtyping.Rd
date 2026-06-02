@@ -8,8 +8,8 @@
 runSubtyping(
   geneLists,
   expectedCountsMatrix,
-  bootstrapRatio = 0.75,
-  bootstrapNbr = 200
+  permRatio = 0.75,
+  bootstrapNbr = 20
 )
 }
 \arguments{
@@ -19,15 +19,18 @@ two signature gene lists must be present.}
 \item{expectedCountsMatrix}{a normalized gene expression data 
 \code{matrix} with rows corresponding to genes and columns to samples.}
 
-\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
-number of samples that are retained for the bootstrap step. The 
+\item{permRatio}{a \code{numeric} between 0 and 1 representing the
+number of samples that are retained for the permutation step. The 
 rounded value of the number of patients multiplied by this \code{numeric}  
 should be inferior to the total number of patients so that the 
-bootstrap step is not done on the entire cohort.
+permutation step is not done on the entire cohort.
 Default: \code{0.75}.}
 
-\item{bootstrapNbr}{a \code{integer} bigger than zero representing the
-number of bootstrap sampling done. Default: \code{200}.}
+\item{bootstrapNbr}{a \code{integer}, 5 or higher, representing the
+number of permutation sampling done. In addition, the number of permutations 
+must be equal or inferior to the total number of unique permutations 
+with the dataset considering the parameters selected by the user. 
+Default: \code{20}.}
 }
 \value{
 \code{TRUE}
@@ -46,7 +49,7 @@ data("expNormalCountsDemo")
 ## Some of the enrichment results present in the dataset
 ## TODO
 runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
-    bootstrapRatio=0.75, bootstrapNbr=20)
+    permRatio=0.75, bootstrapNbr=20)
 
 }
 \author{

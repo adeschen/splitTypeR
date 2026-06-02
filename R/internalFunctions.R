@@ -8,7 +8,7 @@
 #' \code{matrix} has been filtered to contained only the genes present in the 
 #' signature gene lists.
 #' 
-#' @param bootstrapRatio a \code{numeric} between 0 and 1 representing the
+#' @param permRatio a \code{numeric} between 0 and 1 representing the
 #' number of samples that are retained for the bootstrap step.
 #' 
 #' @returns a \code{list} containing the variance calculated from the 
@@ -32,7 +32,7 @@
 #' 
 #' ## Calculate variance for each sample using boostrap method
 #' splitTypeR:::bootstrapGSVA(geneLists=geneLists, 
-#'     countMatrix=expNormalCountsDemo, bootstrapRatio=0.75, 
+#'     countMatrix=expNormalCountsDemo, permRatio=0.75, 
 #'     bootstrapNbr=20)
 #' 
 #' @author Astrid Deschênes
@@ -40,10 +40,10 @@
 #' @importFrom stats sd
 #' @encoding UTF-8
 #' @keywords internal
-bootstrapGSVA <- function(geneLists, countMatrix, bootstrapRatio, 
+bootstrapGSVA <- function(geneLists, countMatrix, permRatio, 
     bootstrapNbr) {
     ## Number of samples used for bootstrap
-    nb <- round(ncol(countMatrix) * bootstrapRatio)
+    nb <- round(ncol(countMatrix) * permRatio)
 
     ## Storage for the results of the bootstrap
     resultBoot <- list()

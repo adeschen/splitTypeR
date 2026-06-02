@@ -18,8 +18,7 @@ test_that("validateRunSubtyping() must return TRUE when all parameters are valid
     colnames(testMatrix) <- paste0("Sample_", 1:12)
 
     expect_true(splitTypeR:::validateRunSubtyping(geneLists=testSignature, 
-        expectedCountsMatrix=testMatrix, 
-        bootstrapRatio=0.8, bootstrapNbr=10))
+        expectedCountsMatrix=testMatrix, permRatio=0.8, permNbr=10))
 })
 
 

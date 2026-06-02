@@ -6,7 +6,7 @@
 \title{Use bootstrapping method to calculate the variance associated to the GSVA 
 score obtained for each sample}
 \usage{
-bootstrapGSVA(geneLists, countMatrix, bootstrapRatio, bootstrapNbr)
+bootstrapGSVA(geneLists, countMatrix, permRatio, bootstrapNbr)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists.}
@@ -16,7 +16,7 @@ bootstrapGSVA(geneLists, countMatrix, bootstrapRatio, bootstrapNbr)
 \code{matrix} has been filtered to contained only the genes present in the 
 signature gene lists.}
 
-\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
+\item{permRatio}{a \code{numeric} between 0 and 1 representing the
 number of samples that are retained for the bootstrap step.}
 }
 \value{
@@ -45,7 +45,7 @@ data(expNormalCountsDemo)
 
 ## Calculate variance for each sample using boostrap method
 splitTypeR:::bootstrapGSVA(geneLists=geneLists, 
-    countMatrix=expNormalCountsDemo, bootstrapRatio=0.75, 
+    countMatrix=expNormalCountsDemo, permRatio=0.75, 
     bootstrapNbr=20)
 
 }

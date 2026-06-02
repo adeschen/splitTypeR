@@ -5,12 +5,7 @@
 \alias{validateRunSubtyping}
 \title{Parameters validation for the runSubtyping function}
 \usage{
-validateRunSubtyping(
-  geneLists,
-  expectedCountsMatrix,
-  bootstrapRatio,
-  bootstrapNbr
-)
+validateRunSubtyping(geneLists, expectedCountsMatrix, permRatio, permNbr)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists. At least 
@@ -19,14 +14,14 @@ two signature gene lists must be present.}
 \item{expectedCountsMatrix}{a normalized gene expression data 
 \code{matrix} with rows corresponding to genes and columns to samples.}
 
-\item{bootstrapRatio}{a \code{numeric} between 0 and 1 representing the
-number of samples that are retained for the bootstrap step. The 
+\item{permRatio}{a \code{numeric} between 0 and 1 representing the
+number of samples that are retained for the permutation step. The 
 rounded value of the number of patients multiplied by this \code{numeric}  
 should be inferior to the total number of patients so that the 
-bootstrap step is not done on the entire cohort.}
+permutation step is not done on the entire cohort.}
 
-\item{bootstrapNbr}{a \code{integer} bigger than zero representing the
-number of bootstrap sampling done.}
+\item{permNbr}{a \code{integer} bigger than or equal to 5 representing the
+number of permutation samplings done.}
 }
 \value{
 \code{TRUE} when all parameters are valid
@@ -50,7 +45,7 @@ colnames(expCounts) <- c(paste0("Sample_", 1:15))
 
 ## The function returns TRUE when all parameters are valid
 splitTypeR:::validateRunSubtyping(geneLists=gList, 
-     expectedCountsMatrix=expCounts, bootstrapRatio=0.8, bootstrapNbr=10)
+     expectedCountsMatrix=expCounts, permRatio=0.8, permNbr=10)
 
 }
 \author{

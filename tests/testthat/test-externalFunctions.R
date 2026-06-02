@@ -16,7 +16,7 @@ test_that("runSubtyping() must return error when geneLists is a list with 1 entr
     
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=matrix(data=rep(3, 6), nrow = 2), 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -27,7 +27,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
     
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=matrix(data=rep(3, 6), nrow = 2), 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -42,7 +42,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -59,7 +59,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -77,7 +77,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 
@@ -96,7 +96,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=10), error_message)
+        permRatio=0.8, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when genes not present for one signatures", {
@@ -115,7 +115,7 @@ test_that("runSubtyping() must return error when genes not present for one signa
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=-0.8, bootstrapNbr=10), error_message)
+        permRatio=-0.8, bootstrapNbr=10), error_message)
 })
 
 
@@ -135,12 +135,12 @@ test_that("runSubtyping() must return error when 1 gene present for one signatur
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=-0.8, bootstrapNbr=10), error_message)
+        permRatio=-0.8, bootstrapNbr=10), error_message)
 })
 
-test_that("runSubtyping() must return error when bootstrapRatio is a numeric vector", {
+test_that("runSubtyping() must return error when permRatio is a numeric vector", {
     
-    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
+    error_message <- "The \'permRatio\' must be a numeric between 0 and 1."
 
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
@@ -152,12 +152,13 @@ test_that("runSubtyping() must return error when bootstrapRatio is a numeric vec
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=c(0.3, 0.4), bootstrapNbr=10), error_message)
+        permRatio=c(0.3, 0.4), bootstrapNbr=10), error_message)
 })
 
-test_that("runSubtyping() must return error when bootstrapNbr is a character vector", {
+test_that("runSubtyping() must return error when permNbr is a character vector", {
     
-    error_message <- "The \'bootstrapNbr\' must be an integer higher than 0."
+    error_message <- paste0("The \'permNbr\' must be an integer higher", 
+        " than or equal to 5.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
@@ -168,13 +169,29 @@ test_that("runSubtyping() must return error when bootstrapNbr is a character vec
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr="toto"), error_message)
+        permRatio=0.8, bootstrapNbr="toto"), error_message)
 })
 
-
-test_that("runSubtyping() must return error when bootstrapRatio is a character vector", {
+test_that("runSubtyping() must return error when permNbr is 4", {
     
-    error_message <- "The \'bootstrapRatio\' must be a numeric between 0 and 1."
+    error_message <- paste0("The \'permNbr\' must be an integer higher", 
+        " than or equal to 5.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(2, 3, 4, 3, 4, 5, 12, 11), byrow = FALSE, nrow=4)
+    rownames(exCounts) <- c("KRAS", "ABC1", "ABC2", "FYN")
+    colnames(exCounts) <- c("P1", "P2")
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, 
+        permRatio=0.8, bootstrapNbr=4), error_message)
+})
+
+test_that("runSubtyping() must return error when permRatio is a character vector", {
+    
+    error_message <- "The \'permRatio\' must be a numeric between 0 and 1."
     
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
@@ -186,13 +203,13 @@ test_that("runSubtyping() must return error when bootstrapRatio is a character v
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio="TEST", bootstrapNbr=10), error_message)
+        permRatio="TEST", bootstrapNbr=10), error_message)
 })
 
-test_that("runSubtyping() must return error when bootstrapRatio is too close to one", {
+test_that("runSubtyping() must return error when permRatio is too close to one", {
     
-    error_message <- paste0("The \'bootstrapRatio\' is too close to one. All", 
-        " samples are selected for the bootstrap step rather than a subset.")
+    error_message <- paste0("The \'permRatio\' is too close to one. All", 
+        " samples are selected for the permutation step rather than a subset.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
@@ -203,7 +220,7 @@ test_that("runSubtyping() must return error when bootstrapRatio is too close to 
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.99, bootstrapNbr=10), error_message)
+        permRatio=0.99, bootstrapNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return a warning when not enough samples", {
@@ -220,7 +237,7 @@ test_that("runSubtyping() must return a warning when not enough samples", {
 
     expect_warning(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        bootstrapRatio=0.8, bootstrapNbr=5), message)
+        permRatio=0.8, bootstrapNbr=5), message)
 })
 
 
