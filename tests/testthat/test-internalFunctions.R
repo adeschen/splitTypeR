@@ -91,3 +91,74 @@ test_that("permuteGSVA() must return expected results", {
     expect_equal(rownames(results$SD$classical), rownames(expSD$classical))
     expect_equal(results$SD$classical, expSD$classical, tolerance=1e-4)
 })
+
+#############################################################################
+### Tests extractFromNormalDist() results
+#############################################################################
+
+test_that("extractFromNormalDist() must return expected results", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=12, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:12)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971, 
+        -0.6732937,  0.5735090, -0.1247647, -0.1261704, -0.1287452,  0.4370278, 
+        0.5913501, -0.2002262)
+    gsvaRes["basal", ] <- c(-0.2385417, -0.4403292,  0.8006550, -0.4500838,  
+        0.8175287, -0.6076389,  0.1209839, 0.2276770, 0.1643817, -0.4448441, 
+        -0.6485138, 0.1993417)
+
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, NA, 0.11087233, 
+        0.03055436, 0.03655507, 0.08054100, 0.07157925, 0.10636982,
+        0.08411299, 0.07672066, 0.05807137)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:12)    
+    gsvaSD[["basal"]] <- c(0.09652651, 0.07183212, NA, 0.11841886, 0.02106352, 
+        0.01166254, 0.11538878, 0.06553981, 0.13836817, 0.09841366, 0.06659764, 
+        0.11975838)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:12)
+
+    expResults <- list()
+    expResults[["classical"]] <- matrix(data=NA, nrow=12, ncol=3)
+    rownames(expResults[["classical"]]) <- paste0("Patient_", 1:12)
+    expResults[["classical"]][, 1] <- c(0.11603187, 0.42448551, NA, 0.38095574, 
+        -0.64538079, 0.55885569, -0.04416501, -0.20911208, -0.09669008, 
+        0.49115370, 0.50398990, -0.12025550)
+    expResults[["classical"]][, 2] <- c(0.15340016,  0.40156837, NA, 
+        0.34160496, -0.63043219, 0.55282036, -0.24308195, -0.09021758, 
+        -0.13315220, 0.36913511, 0.52457597, -0.18797949)
+    expResults[["classical"]][, 3] <- c(0.15539382,  0.48594004, NA, 
+        0.22608098, -0.69961528,  0.59341924, -0.02684826, -0.09962719,
+        -0.03222638, 0.50282396, 0.55008371, -0.22744472)
+    expResults[["basal"]] <- matrix(data=NA, nrow=12, ncol=3)
+    rownames(expResults[["basal"]]) <- paste0("Patient_", 1:12)
+    expResults[["basal"]][, 1] <- c(-0.374418011, -0.406328077, NA, 
+        -0.374606267, 0.780689038, -0.610763217, 0.154905628, 0.093331315, 
+        -0.001235112, -0.413533630, -0.640828328,  0.276673695)
+    expResults[["basal"]][, 2] <- c(-0.2588540, -0.3890133, NA, -0.5394992, 
+        0.8190593, -0.5998769, 0.1731128, 0.1678703, 0.2572114,
+        -0.3855583, -0.7094234, 0.2126101)
+    expResults[["basal"]][, 3] <- c(-0.16896966, -0.44142794, NA, -0.37024311, 
+        0.80471797, -0.60270496, 0.01350371, 0.29972715, -0.28054256, 
+        -0.32014899, -0.78445331, 0.26931493)
+
+    ## Fix seed
+    set.seed(121)
+
+    results <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=3)
+    
+    expect_true(is.list(results))
+    expect_equal(names(results), names(expResults))
+    expect_equal(rownames(results$classical), rownames(expResults$classical))
+    expect_equal(results$classical, expResults$classical, tolerance=1e-4)
+    expect_equal(rownames(results$basal), rownames(expResults$basal))
+    expect_equal(results$basal, expResults$basal, tolerance=1e-4)
+})
