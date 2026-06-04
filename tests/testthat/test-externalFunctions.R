@@ -16,7 +16,7 @@ test_that("runSubtyping() must return error when geneLists is a list with 1 entr
     
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=matrix(data=rep(3, 6), nrow = 2), 
-        permRatio=0.8, permNbr=10), error_message)
+        permRatio=0.8, permNbr=10, upscaleNbr=4), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -27,7 +27,7 @@ test_that("runSubtyping() must return error when geneLists is a character vector
     
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=matrix(data=rep(3, 6), nrow = 2), 
-        permRatio=0.8, permNbr=10), error_message)
+        permRatio=0.8, permNbr=10, upscaleNbr=4), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -41,8 +41,8 @@ test_that("runSubtyping() must return error when geneLists is a character vector
     exCounts <- data.frame(P1=c(2, 3, 4), P2=c(3, 4, 5))
 
     expect_error(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=10), 
-        error_message)
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=10, 
+        upscaleNbr=4), error_message)
 })
 
 test_that("runSubtyping() must return error when geneLists is a character vector", {
@@ -76,8 +76,8 @@ test_that("runSubtyping() must return error when geneLists is a character vector
     colnames(exCounts) <- c("P1", "P2")
 
     expect_error(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=10), 
-        error_message)
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=10, 
+        upscaleNbr=3), error_message)
 })
 
 
@@ -114,8 +114,8 @@ test_that("runSubtyping() must return error when genes not present for one signa
     colnames(exCounts) <- c(paste0("P", 1:12))
 
     expect_error(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio=-0.8, permNbr=10), 
-        error_message)
+        expectedCountsMatrix=exCounts, permRatio=-0.8, permNbr=10, 
+        upscaleNbr=5), error_message)
 })
 
 
@@ -135,7 +135,7 @@ test_that("runSubtyping() must return error when 1 gene present for one signatur
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        permRatio=-0.8, permNbr=10), error_message)
+        permRatio=-0.8, permNbr=10, upscaleNbr=3), error_message)
 })
 
 test_that("runSubtyping() must return error when permRatio is a numeric vector", {
@@ -152,7 +152,7 @@ test_that("runSubtyping() must return error when permRatio is a numeric vector",
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        permRatio=c(0.3, 0.4), permNbr=10), error_message)
+        permRatio=c(0.3, 0.4), permNbr=10, upscaleNbr=3), error_message)
 })
 
 test_that("runSubtyping() must return error when permNbr is a character vector", {
@@ -169,7 +169,7 @@ test_that("runSubtyping() must return error when permNbr is a character vector",
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, 
-        permRatio=0.8, permNbr="toto"), error_message)
+        permRatio=0.8, permNbr="toto", upscaleNbr=3), error_message)
 })
 
 test_that("runSubtyping() must return error when permNbr is 4", {
@@ -185,7 +185,8 @@ test_that("runSubtyping() must return error when permNbr is 4", {
     colnames(exCounts) <- c("P1", "P2")
 
     expect_error(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=4), error_message)
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=4, upscaleNbr=5), 
+        error_message)
 })
 
 test_that("runSubtyping() must return error when permRatio is a character vector", {
@@ -201,8 +202,8 @@ test_that("runSubtyping() must return error when permRatio is a character vector
     colnames(exCounts) <- c(paste0("P", 1:12))
 
     expect_error(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio="TEST", permNbr=10), 
-        error_message)
+        expectedCountsMatrix=exCounts, permRatio="TEST", permNbr=10, 
+        upscaleNbr=10), error_message)
 })
 
 test_that("runSubtyping() must return error when permRatio is too close to one", {
@@ -254,9 +255,43 @@ test_that("runSubtyping() must return a warning when not enough samples", {
     colnames(exCounts) <- c(paste0("P", 1:5))
 
     expect_warning(runSubtyping(geneLists=gList, 
-        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5), message)
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
+        upscaleNbr=10), message)
 })
 
+test_that("runSubtyping() must return an error when upscaleNbr is string", {
+    
+    message <- paste0("The \'upscaleNbr\' must be an integer equal to or ", 
+                "bigger than 2.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(rep(2:7, 12)), byrow = TRUE, nrow=6)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1", "TP53", "MUC12")
+    colnames(exCounts) <- c(paste0("P", 1:12))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
+        upscaleNbr="info"), message)
+})
+
+test_that("runSubtyping() must return an error when upscaleNbr is 1", {
+    
+    message <- paste0("The \'upscaleNbr\' must be an integer equal to or ", 
+                "bigger than 2.")
+    gList <- list()
+    gList[["test1"]] <- c("ABC1", "ABC2")
+    gList[["test2"]] <- c("KRAS", "FYN")
+    
+    exCounts <- matrix(c(rep(2:7, 12)), byrow = TRUE, nrow=6)
+    rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1", "TP53", "MUC12")
+    colnames(exCounts) <- c(paste0("P", 1:12))
+
+    expect_error(runSubtyping(geneLists=gList, 
+        expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
+        upscaleNbr=1), message)
+})
 
 #############################################################################
 ### Tests geneSignaturesListNames() results

@@ -49,7 +49,7 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     ## Validate parameters
     validateRunSubtyping(geneLists=geneLists,
         expectedCountsMatrix=expectedCountsMatrix, permRatio=permRatio, 
-        permNbr=permNbr)
+        permNbr=permNbr, upscaleNbr=upscaleNbr)
 
     ## If fewer than 10 samples, a warning
     if (ncol(expectedCountsMatrix) < 10) {

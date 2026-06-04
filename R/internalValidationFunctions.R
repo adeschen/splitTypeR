@@ -19,6 +19,10 @@
 #' @param permNbr a \code{integer} bigger than or equal to 5 representing the
 #' number of permutation samplings done. 
 #' 
+#' @param upscaleNbr a \code{integer}, 2 or higher, representing the
+#' number of values taken for the normal distribution for each sample to run 
+#' the upscaling step. 
+#' 
 #' @return \code{TRUE} when all parameters are valid
 #' 
 #' @examples
@@ -35,13 +39,14 @@
 #' 
 #' ## The function returns TRUE when all parameters are valid
 #' splitTypeR:::validateRunSubtyping(geneLists=gList, 
-#'      expectedCountsMatrix=expCounts, permRatio=0.8, permNbr=10)
+#'      expectedCountsMatrix=expCounts, permRatio=0.8, permNbr=10, 
+#'      upscaleNbr=20)
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
 #' @keywords internal
 validateRunSubtyping <- function(geneLists, expectedCountsMatrix, 
-        permRatio, permNbr) {
+        permRatio, permNbr, upscaleNbr) {
     
     if (!(inherits(geneLists, "list") && length(geneLists) > 1)) {
         stop("The \'geneLists\' object must be a list with ",
@@ -76,7 +81,7 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
     }
 
     return(validateRunSubtypingSubSection(nbAll=ncol(expectedCountsMatrix), 
-        permRatio=permRatio, permNbr=permNbr))
+        permRatio=permRatio, permNbr=permNbr, upscaleNbr=upscaleNbr))
 }
 
 #' @title Permutation parameters validation for the runSubtyping function
@@ -97,20 +102,25 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
 #' @param permNbr a \code{integer} bigger than or equal to 5 representing the
 #' number of permutation samplings done. 
 #' 
+#' @param upscaleNbr a \code{integer}, 2 or higher, representing the
+#' number of values taken for the normal distribution for each sample to run 
+#' the upscaling step. 
+#' 
 #' @return \code{TRUE} when all parameters are valid
 #' 
 #' @examples
 #' 
 #' ## The function returns TRUE when all parameters are valid
 #' splitTypeR:::validateRunSubtypingSubSection(nbAll=15, permRatio=0.8, 
-#'     permNbr=10)
+#'     permNbr=10, upscaleNbr=10)
 #' 
 #' @author Astrid Deschênes
 #' @importFrom S4Vectors isSingleInteger 
 #' @importFrom S4Vectors isSingleNumber
 #' @encoding UTF-8
 #' @keywords internal
-validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr) {
+validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr, 
+    upscaleNbr) {
     
     if (!(isSingleNumber(permRatio) && permRatio > 0 && 
             permRatio < 1)) {
@@ -133,6 +143,12 @@ validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr) {
         stop("The \'permNbr\' is too high for the number of samples. ",
             "The number of unique combinations for selecting ", nb, 
             " out of ", nbAll, " samples is ", choose(nbAll, nb), ".")
+    }  
+
+    if (!(isSingleInteger(upscaleNbr) || isSingleNumber(upscaleNbr) && 
+            upscaleNbr > 1)) {
+        stop("The \'upscaleNbr\' must be an integer equal to or ", 
+            "bigger than 2.")
     }
     
     return(TRUE)    

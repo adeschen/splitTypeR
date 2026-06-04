@@ -5,7 +5,7 @@
 \alias{validateRunSubtypingSubSection}
 \title{Permutation parameters validation for the runSubtyping function}
 \usage{
-validateRunSubtypingSubSection(nbAll, permRatio, permNbr)
+validateRunSubtypingSubSection(nbAll, permRatio, permNbr, upscaleNbr)
 }
 \arguments{
 \item{nbAll}{a \code{integer} representing the total number of samples 
@@ -19,6 +19,10 @@ permutation step is not done on the entire cohort.}
 
 \item{permNbr}{a \code{integer} bigger than or equal to 5 representing the
 number of permutation samplings done.}
+
+\item{upscaleNbr}{a \code{integer}, 2 or higher, representing the
+number of values taken for the normal distribution for each sample to run 
+the upscaling step.}
 }
 \value{
 \code{TRUE} when all parameters are valid
@@ -32,7 +36,7 @@ the user before quitting the program.
 
 ## The function returns TRUE when all parameters are valid
 splitTypeR:::validateRunSubtypingSubSection(nbAll=15, permRatio=0.8, 
-    permNbr=10)
+    permNbr=10, upscaleNbr=10)
 
 }
 \author{
