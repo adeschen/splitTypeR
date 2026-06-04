@@ -4,10 +4,12 @@
 <url><loc>/articles/splitTypeR.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
-<url><loc>/reference/bootstrapGSVA.html</loc></url>
 <url><loc>/reference/expNormalCountsDemo.html</loc></url>
+<url><loc>/reference/extractFromNormalDist.html</loc></url>
 <url><loc>/reference/geneSignaturesListNames.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/mixModel.html</loc></url>
+<url><loc>/reference/permuteGSVA.html</loc></url>
 <url><loc>/reference/runSubtyping.html</loc></url>
 <url><loc>/reference/signatures.html</loc></url>
 <url><loc>/reference/splitTypeR-package.html</loc></url>
