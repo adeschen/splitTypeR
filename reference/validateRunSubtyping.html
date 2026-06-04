@@ -57,7 +57,13 @@ the user before quitting the program.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validateRunSubtyping</span><span class="op">(</span><span class="va">geneLists</span>, <span class="va">expectedCountsMatrix</span>, <span class="va">permRatio</span>, <span class="va">permNbr</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validateRunSubtyping</span><span class="op">(</span></span>
+<span>  <span class="va">geneLists</span>,</span>
+<span>  <span class="va">expectedCountsMatrix</span>,</span>
+<span>  <span class="va">permRatio</span>,</span>
+<span>  <span class="va">permNbr</span>,</span>
+<span>  <span class="va">upscaleNbr</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,6 +92,12 @@ permutation step is not done on the entire cohort.</p></dd>
 <dd><p>a <code>integer</code> bigger than or equal to 5 representing the
 number of permutation samplings done.</p></dd>
 
+
+<dt id="arg-upscalenbr">upscaleNbr<a class="anchor" aria-label="anchor" href="#arg-upscalenbr"></a></dt>
+<dd><p>a <code>integer</code>, 2 or higher, representing the
+number of values taken for the normal distribution for each sample to run
+the upscaling step.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -111,7 +123,8 @@ number of permutation samplings done.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## The function returns TRUE when all parameters are valid</span></span></span>
 <span class="r-in"><span><span class="fu">splitTypeR</span><span class="fu">:::</span><span class="fu">validateRunSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">gList</span>, </span></span>
-<span class="r-in"><span>     expectedCountsMatrix<span class="op">=</span><span class="va">expCounts</span>, permRatio<span class="op">=</span><span class="fl">0.8</span>, permNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>     expectedCountsMatrix<span class="op">=</span><span class="va">expCounts</span>, permRatio<span class="op">=</span><span class="fl">0.8</span>, permNbr<span class="op">=</span><span class="fl">10</span>, </span></span>
+<span class="r-in"><span>     upscaleNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
