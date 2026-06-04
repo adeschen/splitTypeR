@@ -5,7 +5,13 @@
 \alias{runSubtyping}
 \title{TODO}
 \usage{
-runSubtyping(geneLists, expectedCountsMatrix, permRatio = 0.75, permNbr = 20)
+runSubtyping(
+  geneLists,
+  expectedCountsMatrix,
+  permRatio = 0.75,
+  permNbr = 20,
+  upscaleNbr = 10
+)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists. At least 
@@ -26,6 +32,10 @@ number of permutation sampling done. In addition, the number of permutations
 must be equal or inferior to the total number of unique permutations 
 with the dataset considering the parameters selected by the user. 
 Default: \code{20}.}
+
+\item{upscaleNbr}{a \code{integer}, 2 or higher, representing the
+number of values taken for the normal distribution for each sample to run 
+the upscaling step. Default: \code{10}.}
 }
 \value{
 \code{TRUE}
@@ -41,10 +51,9 @@ data("signatures")
 ## Load demo normalized expected counts for 30 patients
 data("expNormalCountsDemo")
 
-## Some of the enrichment results present in the dataset
-## TODO
+## Run subtyping on the 30 patients
 runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
-    permRatio=0.75, permNbr=20)
+    permRatio=0.75, permNbr=20, upscaleNbr=10)
 
 }
 \author{

@@ -13,6 +13,7 @@ Encoding: UTF-8
 License: Artistic-2.0
 Depends: R (>= 4.2.0)
 Imports: S4Vectors,
+    mixtools,
     GSVA
 Suggests: 
     BiocStyle,

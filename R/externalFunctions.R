@@ -20,6 +20,10 @@
 #' must be equal or inferior to the total number of unique permutations 
 #' with the dataset considering the parameters selected by the user. 
 #' Default: \code{20}.
+#' 
+#' @param upscaleNbr a \code{integer}, 2 or higher, representing the
+#' number of values taken for the normal distribution for each sample to run 
+#' the upscaling step. Default: \code{10}.
 #'
 #' @return \code{TRUE}
 #'
@@ -31,17 +35,16 @@
 #' ## Load demo normalized expected counts for 30 patients
 #' data("expNormalCountsDemo")
 #' 
-#' ## Some of the enrichment results present in the dataset
-#' ## TODO
+#' ## Run subtyping on the 30 patients
 #' runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
-#'     permRatio=0.75, permNbr=20)
+#'     permRatio=0.75, permNbr=20, upscaleNbr=10)
 #'
 #' @author Astrid Deschênes
 #' @importFrom GSVA gsvaParam gsva
 #' @encoding UTF-8
 #' @export
 runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75, 
-    permNbr=20) {
+    permNbr=20, upscaleNbr=10) {
   
     ## Validate parameters
     validateRunSubtyping(geneLists=geneLists,
@@ -69,17 +72,14 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     finalSaveData <- list()
     finalSaveData[["GSVA_RESULTS"]] <- resClass
 
-    resultBoot <- bootstrapGSVA(geneLists=geneLists, countMatrix=retained, 
+    permResult <- permuteGSVA(geneLists=geneLists, countMatrix=retained, 
         permRatio=permRatio, permNbr=permNbr)
 
-    
-    varLists <- list()
-    for (g in names(geneLists)) { 
-      varLists[[g]] <- apply(resultBoot[[g]], MARGIN=1, FUN=function(x) {
-                                                        sd(x, na.rm=TRUE)})
-    }
-    finalSaveData[["BOOTSTRAP"]] <- resultBoot
-    finalSaveData[["BOOTSTRAP_VAR"]] <- varLists
+    finalSaveData[["PERMUTATIONS"]] <- permResult$PERMUTATIONS
+    finalSaveData[["SD"]] <- permResult$SD
+
+    #extractFromNormalDist(geneLists=geneLists, gsvaRes=resClass, 
+    #    gsvaVar=permResult$SD, nbValues=nbValues)
   
     return(finalSaveData)
 }

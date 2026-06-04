@@ -4,18 +4,20 @@ library(splitTypeR)
 library(testthat)
 
 #############################################################################
-### Tests bootstrapGSVA() results
+### Tests permuteGSVA() results
 #############################################################################
 
-test_that("bootstrapGSVA() must return expected results", {
+test_that("permuteGSVA() must return expected results", {
     
     ## Demo normalized expected counts matrix
     expectedCountsMatrix <- splitTypeR::expNormalCountsDemo[, 1:15]
     
     ## Basal and classical gene list signatures
     gList <- list()
-    gList[["classical"]] <- splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
-    gList[["basal"]] <- splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+    gList[["classical"]] <- 
+        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 
     ## Expected results
     expResults <- list()
@@ -57,16 +59,35 @@ test_that("bootstrapGSVA() must return expected results", {
         0.8178843, -0.5032110, 0.2782609, 0.3647727, 0.1999366, -0.3446735, 
         -0.6529557, 0.3031940, NA, -0.3018909, NA)
 
+    expSD <- list()
+    expSD[["classical"]] <- c(0.10273488, 0.03622632, NA, 0.11087233, 
+        0.03055436, 0.03655507, 0.08054100, 0.07157925, 0.10636982,
+        0.08411299, 0.07672066, 0.05807137, 0.04191741, 0.11095127, 0.11108967)
+    names(expSD[["classical"]]) <- paste0("Patient_", 1:15)    
+    expSD[["basal"]] <- c(0.09652651, 0.07183212, NA, 0.11841886, 0.02106352, 
+        0.01166254, 0.11538878, 0.06553981, 0.13836817, 0.09841366, 0.06659764, 
+        0.11975838, 0.12796290, 0.11051607, 0.13049066)
+    names(expSD[["basal"]]) <- paste0("Patient_", 1:15)
+
     ## Fix seed
     set.seed(121)
 
-    results <- splitTypeR:::bootstrapGSVA(geneLists=gList, 
+    results <- splitTypeR:::permuteGSVA(geneLists=gList, 
         countMatrix=expectedCountsMatrix, permRatio=0.8, permNbr=5)
     
     expect_true(is.list(results))
-    expect_equal(names(results), names(expResults))
-    expect_equal(rownames(results$classical), rownames(expResults$classical))
-    expect_equal(results$classical, expResults$classical, tolerance=1e-4)
-    expect_equal(rownames(results$basal), rownames(expResults$basal))
-    expect_equal(results$basal, expResults$basal, tolerance=1e-4)
+    expect_equal(names(results), c("PERMUTATIONS", "SD"))
+    expect_equal(rownames(results$PERMUTATIONS$classical), 
+        rownames(expResults$classical))
+    expect_equal(results$PERMUTATIONS$classical, expResults$classical, 
+        tolerance=1e-4)
+    expect_equal(rownames(results$PERMUTATIONS$basal), 
+        rownames(expResults$basal))
+    expect_equal(results$PERMUTATIONS$basal, expResults$basal, tolerance=1e-4)
+    expect_equal(rownames(results$PERMUTATIONS$basal), 
+        rownames(expResults$basal))
+    expect_equal(rownames(results$SD$basal), rownames(expSD$basal))
+    expect_equal(results$SD$basal, expSD$basal, tolerance=1e-4)
+    expect_equal(rownames(results$SD$classical), rownames(expSD$classical))
+    expect_equal(results$SD$classical, expSD$classical, tolerance=1e-4)
 })
