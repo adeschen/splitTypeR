@@ -1,4 +1,4 @@
-Subtyping using multimodal distribution with **splitTypeR**
+Transcriptomic subtyping using multimodal distribution with **splitTypeR**
 =====================
 [![R-CMD-check-bioc](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml/badge.svg)](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml)
 [![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)

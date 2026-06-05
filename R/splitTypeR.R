@@ -1,10 +1,14 @@
-#' Subtyping using multimodal distributions
+#' Transcriptomic subtyping using multimodal distributions
 #'
-#' The \code{splitTypeR} package enables the typing of RNA-seq samples 
+#' The \code{splitTypeR} package enables the typing of transcriptomic samples 
 #' using multimodal distributions. 
 #' 
-#' Using available gene list describing each subtype, this package use
-#' TODO
+#' Using gene signature list, this package first assigns a Gene Set 
+#' Variation Analysis (GSVA) score to 
+#' each sample. Through a permutation step, it then extract the standard 
+#' deviation for each sample. By combining both the GSVA score and the 
+#' standard deviation, the package can establish a normal distribution for 
+#' each sample. Through an upscaling step, TODO
 #'
 #' @name splitTypeR-package
 #'
