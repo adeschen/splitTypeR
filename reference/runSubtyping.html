@@ -120,6 +120,8 @@ the upscaling step. Default: <code>10</code>.</p></dd>
 <span class="r-in"><span><span class="co">## Run subtyping on the 30 patients</span></span></span>
 <span class="r-in"><span><span class="fu">runSubtyping</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signatures</span>, expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
 <span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span>, upscaleNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> number of iterations= 37 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> number of iterations= 24 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $GSVA_RESULTS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            Patient_1  Patient_2  Patient_3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2018_Tiriac_PDAC_PDO_classical_signature   0.1422663  0.4274225 -0.7532768</span>
@@ -257,282 +259,282 @@ the upscaling step. Default: <code>10</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $PERMUTATIONS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $PERMUTATIONS$`2018_Tiriac_PDAC_PDO_classical_signature`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    [,1]         [,2]        [,3]        [,4]        [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.131724485           NA  0.22069141  0.23843619          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2            NA  0.372704531  0.47622785          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3            NA -0.759967781 -0.74805532          NA -0.74658703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4            NA           NA          NA  0.32853324  0.40674722</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5            NA -0.676976403 -0.62890808 -0.65397686          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6            NA  0.479231378  0.56648183  0.56112853  0.55661538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.158513035 -0.217343024          NA -0.15259484 -0.13456653</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8  -0.179083771 -0.317989580 -0.09858131 -0.22437907 -0.22048508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.175573158 -0.112124185          NA -0.08070433 -0.09621108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10  0.416999345           NA  0.38000000  0.45746815  0.45191576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.575321821  0.551513811  0.59241239          NA  0.57052338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.239263070 -0.302986573          NA -0.12650639 -0.22445913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.166397369  0.189543637          NA  0.20313667  0.16400092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14  0.295686275  0.319930070  0.30012019  0.32858873          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15  0.007030604  0.005532596  0.09741671  0.08347386  0.03962302</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.412009478 -0.385162231          NA          NA -0.33762631</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17           NA           NA -0.68498507 -0.67856125          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18           NA  0.650274951  0.71031097          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.144087256           NA -0.08648633 -0.04623155          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.487937350           NA          NA -0.46436789 -0.48678660</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.443776936  0.448729010  0.48277648  0.51537153  0.45764909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.219089193 -0.261019879 -0.21021322 -0.17448698 -0.22935564</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.515190181  0.405610311  0.53760206  0.54453756  0.51889972</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24           NA  0.294149512  0.39431108  0.46273178  0.44574067</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.884615385           NA -0.88461538          NA -0.92307692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.537591076 -0.563811189 -0.57682795 -0.47578099 -0.47501010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.766255144  0.738524590          NA          NA  0.74651354</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28 -0.401804078 -0.296191554 -0.29681398 -0.30531001 -0.34061587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.670105315           NA  0.65536687  0.68885765  0.69218362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.341493629  0.321080818  0.39190092          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  [,6]        [,7]        [,8]         [,9]       [,10]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1          NA  0.33097411  0.07356299           NA  0.24683425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2   0.3832970  0.51550960  0.42235123           NA  0.48191882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3  -0.7708530 -0.70967742          NA           NA -0.74117647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4          NA  0.48320351          NA  0.432560590  0.40191225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.6888112 -0.60090119 -0.69217309 -0.665816327 -0.69047619</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6          NA  0.63293384  0.49850070           NA  0.59574724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.2171150  0.06623058 -0.21436939 -0.017208167 -0.06139307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8  -0.2071721          NA          NA -0.001010581 -0.01494793</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.1033581          NA -0.18563492           NA  0.05635948</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10  0.3486008  0.50573523          NA  0.473563287  0.46384615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.5128414  0.65991903  0.57567331  0.619736927  0.59577429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.2964429 -0.07991038 -0.25722104 -0.196315349 -0.05980335</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.2114044  0.41996377          NA           NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14  0.2868590  0.36252679  0.29677380  0.359810260          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15  0.1162474  0.23622683 -0.03702494  0.117586118          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.3951705 -0.24632736 -0.45036462 -0.310487905          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17         NA -0.72099564          NA -0.705716302 -0.72465195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.6683054          NA  0.69984855  0.722408027          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19         NA  0.15378652 -0.15977477  0.075310559          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.5110703          NA -0.51451020 -0.453785345 -0.44798184</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.4417395  0.60057194  0.39455488  0.502231557  0.52514916</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.2585279 -0.10926311 -0.25934579 -0.170771610 -0.28561873</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.4324708          NA  0.48677885  0.537077804          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24         NA  0.54314766  0.35255413           NA  0.45630477</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25         NA -0.84491784 -0.88461538 -0.884615385 -0.90404743</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.5644054 -0.39971958 -0.56198025 -0.503415257 -0.43503833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.7361111          NA  0.74271845  0.748960931  0.76342282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28         NA -0.16794037          NA -0.175518176          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.6346935          NA  0.61225439           NA  0.70886356</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.3164152          NA          NA  0.414642115  0.45102163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  [,11]       [,12]       [,13]      [,14]       [,15]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.18852823  0.07692308  0.20456467  0.1879987  0.10982470</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2           NA  0.33717949  0.45701357  0.4998587          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3  -0.73941227 -0.79264957 -0.74343501 -0.7232406          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4   0.38720830          NA          NA  0.4098356          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.67001212 -0.69849691 -0.65658616 -0.6704996 -0.70120898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.57272343  0.44682378  0.53938388  0.5949519  0.52628863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7           NA          NA          NA -0.1696434 -0.10617735</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.00499304 -0.31788244          NA -0.0703808          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.04283283 -0.15381655 -0.07349581         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10          NA  0.32668988  0.42692919         NA  0.46046010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.60422039  0.51022552          NA  0.6032088  0.60744010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12          NA -0.31266223 -0.15035532 -0.1801154 -0.23447781</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.33604162  0.20981561  0.26905216  0.2813007  0.20931611</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14          NA  0.27778482  0.36613070  0.2862090  0.28227692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15          NA          NA  0.12777053  0.1077561  0.06278327</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16          NA -0.40016103 -0.35709135         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17 -0.68973890          NA -0.64314257 -0.6813337 -0.68025100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.71031097  0.61532046  0.68949816  0.7228927  0.69288175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.10097273 -0.28960170 -0.05864009 -0.1008983 -0.17141574</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.46369081 -0.50918876 -0.47836538         NA -0.51314898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.50111673          NA          NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.25718726          NA -0.16437183         NA -0.26120556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.50937041  0.44287772  0.47891417  0.5074191  0.50588163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24          NA  0.26832862  0.44727478         NA  0.40157668</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.88461538          NA          NA -0.9042090 -0.90429758</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.50563660 -0.60215924 -0.51647425 -0.5334448 -0.52523937</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.75331126  0.72441663          NA  0.7638315  0.76910435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28 -0.29009754          NA          NA -0.2673299          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.68118166  0.58620039  0.67181642         NA  0.62337421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.39793827  0.24020896  0.38784119  0.4120185  0.35403876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 [,16]       [,17]       [,18]       [,19]       [,20]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1          NA  0.17220280          NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2          NA  0.43016713  0.33681603  0.40387569  0.43016791</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3          NA -0.75609509          NA -0.74910323 -0.77031039</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4   0.2882639  0.39823718  0.26138148  0.35973036          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.6981943          NA -0.72217429 -0.67112887 -0.68021978</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.5399782  0.56553943          NA  0.49186212          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.2330163          NA -0.24811066 -0.23080230          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8  -0.1831502 -0.18902825 -0.30976801 -0.18729097 -0.12211241</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.1235201 -0.16371681 -0.14047196 -0.05079272 -0.10347099</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10  0.3873626  0.43639397          NA  0.46653816  0.43883297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.5363195          NA  0.54665416          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12         NA -0.27686345 -0.24016136          NA -0.24530446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.2124278  0.23848492  0.07148702  0.17769693  0.28785680</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14         NA  0.34183232  0.30830524  0.32403539  0.34770785</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15         NA  0.06802024 -0.01076658  0.02777778  0.07139644</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.4456823 -0.41443190          NA -0.32206682 -0.37398824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17 -0.6743307          NA -0.70768520 -0.66755975 -0.69623675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.6362939          NA  0.66202946          NA  0.67839196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.0762651 -0.02599551 -0.27096433          NA -0.05289207</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.5221029          NA          NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.4136578  0.49323753  0.42186448  0.49492080  0.45656927</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.3360528 -0.26025937 -0.28993131 -0.22452547          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.4356468  0.51600269  0.43197926  0.51153846  0.53258764</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24  0.4054666          NA  0.25007637          NA  0.44171415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.8846154 -0.88461538          NA          NA -0.88645720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26         NA -0.52785597 -0.60412758 -0.54081350          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.7446809  0.75695581  0.74529075  0.76119403  0.75362319</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28         NA -0.32100006 -0.34715285 -0.30744215 -0.28366149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.6416987          NA  0.64090266  0.67154472  0.72204214</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.3247732  0.36925477          NA  0.33437615  0.39780395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,1]        [,2]        [,3]        [,4]        [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.06542660  0.21742286  0.12155421          NA  0.19783791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2   0.38663071  0.48612213  0.31121463  0.44340901          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3           NA -0.72413453 -0.75962361          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4   0.35628338          NA  0.32269262  0.42535021  0.35084578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.68830476 -0.62921727          NA -0.69665494 -0.67178159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.54373938  0.57647271  0.51549509  0.55037494          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.22783518          NA -0.21880342 -0.14974619          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8           NA          NA -0.26313785          NA -0.16774898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9           NA -0.04523192 -0.11591841 -0.04964722 -0.13457249</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10          NA          NA  0.33916636          NA  0.41290285</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.53468772  0.63695612  0.56587595  0.59103740  0.59656301</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.22961660 -0.15914308 -0.19687857 -0.17901235          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13          NA  0.27092717  0.15318971  0.20044661          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14  0.23700457  0.33020565  0.26158199  0.29521261  0.36009615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15          NA  0.15166120  0.05639098  0.06982053  0.05015593</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.43831037          NA          NA -0.31321620 -0.38520080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17 -0.69763097 -0.66074859 -0.72488519 -0.66989814 -0.71098493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.67057692  0.72445889  0.68511570  0.67307692          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.08073696 -0.05541770          NA          NA -0.04266052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.50147456          NA -0.53063029 -0.49890631          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.43000518  0.50327054  0.40301581  0.45101007  0.49784511</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.23121960 -0.23320204          NA          NA -0.17612265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.50207077  0.55696981  0.48411116  0.51573983  0.52137438</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24          NA  0.43203536  0.28060885          NA  0.38894743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.88461538 -0.88624973          NA -0.88635376 -0.88461538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26          NA -0.54990122 -0.62511350 -0.47836126 -0.54253240</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.72557003          NA          NA  0.74331984  0.76374077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28 -0.32276383 -0.27737703          NA -0.27168576 -0.35125437</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.64749272  0.67972144          NA          NA  0.66119135</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.38449575          NA  0.29459135  0.38975372  0.40270798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    [,6]        [,7]        [,8]        [,9]       [,10]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.287892206  0.07731092          NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2            NA  0.40490657  0.48065710          NA  0.40648911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3  -0.713863060          NA -0.74908112          NA -0.76551724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4   0.485377243  0.36076737  0.40403166  0.43316267  0.38833239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.641047688 -0.69069533          NA -0.67113559 -0.67383821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.596352102  0.55937295          NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7            NA -0.15551271 -0.11001488 -0.05044030 -0.14205794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8  -0.007484251 -0.05375705 -0.08480358 -0.09033141          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.009386447 -0.11683653          NA -0.10876116 -0.04685369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10  0.444117474          NA  0.48044126  0.45232187  0.43006993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.671872066          NA  0.56856187          NA  0.57246561</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.164035811 -0.21286724          NA          NA -0.27964613</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.447729519  0.16545774  0.30348287  0.24917146  0.23532989</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14           NA  0.27393162  0.39030673  0.34027149  0.34995403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15  0.157614345          NA  0.07809252  0.05874894  0.13523573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.340800652          NA -0.38362993          NA -0.34240740</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17           NA -0.70018536 -0.67908543 -0.65975250 -0.66834456</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18           NA  0.70197044  0.69161184  0.69070513  0.65384615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.144051601          NA          NA -0.04086538 -0.08170015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.444967103 -0.46998124 -0.46255303 -0.49807692 -0.55373992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.550699301  0.47548036  0.52666232          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.162102448          NA -0.19325736 -0.22513642          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.539898769  0.49604658          NA  0.53039852  0.49654755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24  0.501368315          NA  0.41337948  0.38616939  0.39907981</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.884615385 -0.92307692 -0.90401115 -0.88461538          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.419018168 -0.49331104 -0.51731742 -0.50251123 -0.53099201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27           NA  0.75325733  0.77483444  0.78127589  0.74079157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28           NA -0.34474298 -0.24262487 -0.28445513          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29           NA  0.66354732          NA  0.69795371          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.420801820  0.41047850  0.42000000  0.40045597  0.37525988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,11]      [,12]       [,13]       [,14]      [,15]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.231869929         NA  0.08741851  0.15280841  0.1346960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2            NA  0.5311133  0.36520147          NA  0.4230769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3            NA -0.7176773 -0.78352799          NA -0.7423840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4            NA         NA          NA  0.39058034  0.3253041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.675862299 -0.6619803          NA -0.67393603 -0.6315825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.592925770  0.6137244  0.50073086          NA  0.5729996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.134196624         NA -0.23967052          NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8            NA  0.1109385 -0.31308298 -0.09801111 -0.2119439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9            NA  0.1153545 -0.14325988 -0.11383261 -0.1815562</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10  0.467919447  0.5214042  0.38175156  0.43317009  0.3908571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.594158953  0.5863409  0.55022328  0.61797824  0.5448563</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.150349650 -0.1370079 -0.31563275          NA -0.2627612</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.261096909  0.4059829  0.15915426  0.24701386  0.2217230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14  0.283359498         NA  0.21336624  0.30696203  0.2985348</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15           NA         NA  0.01330849  0.06908951         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16 -0.427350427 -0.2729917          NA          NA -0.4117941</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17 -0.707819805 -0.6699993 -0.69578484 -0.69642350         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.702676137         NA  0.66530278  0.70318475  0.7091503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.006534583  0.1130536 -0.11365534 -0.14897574         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.474480784 -0.4216641 -0.53464771 -0.47212566 -0.4823574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21  0.471104704  0.6004121  0.42023164  0.49940727         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 -0.218727534 -0.1713314 -0.28200972 -0.27229089         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23           NA  0.5311741  0.46402545  0.49774115  0.5206668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24           NA         NA          NA  0.35196501  0.3823305</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.884615385 -0.9041554          NA -0.88461538 -0.8863883</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.512820513 -0.3796044          NA -0.52862633         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.769550749  0.7733783  0.72691992  0.77395577         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28 -0.292259084 -0.1972809 -0.37053796          NA -0.3380893</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.673375196  0.7283994          NA          NA  0.6633358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.405136205         NA          NA  0.38105688  0.3485086</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 [,16]       [,17]       [,18]       [,19]      [,20]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1   0.1451049  0.13731615  0.19619143  0.06526012         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2          NA  0.49309006  0.48826155  0.39880342  0.3148460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3          NA -0.75101215 -0.72939560 -0.76048951 -0.7661996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4   0.3801619          NA  0.34733032          NA  0.2574957</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  -0.7021816 -0.64988105 -0.63033081 -0.68703259         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6   0.5634209          NA  0.53888221  0.50152383         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7  -0.1738877 -0.10563568 -0.13621660 -0.24413839         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8          NA -0.06129426 -0.08814715 -0.23117148 -0.3446617</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.1272562  0.03116401 -0.10162368 -0.16172063 -0.1975277</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10         NA          NA          NA          NA  0.3662154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11  0.5787061  0.58282559  0.59073783  0.55533499  0.5204583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12 -0.2117465          NA          NA -0.26866792 -0.2996537</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13  0.1735693  0.34527439  0.30276877          NA  0.0937817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14  0.2648141  0.38346366  0.27689911  0.24774317  0.3064655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15         NA  0.13141575          NA          NA  0.0184988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16         NA -0.31949501 -0.34766214          NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17 -0.6767399 -0.62315392 -0.68846506          NA -0.7502870</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18  0.6858183          NA  0.73852459  0.69816731  0.6425658</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.1151793 -0.04698512          NA -0.15455951         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20 -0.4867054 -0.44372470          NA -0.49163880 -0.5337188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21         NA  0.50975691  0.49650644  0.47094017  0.4149903</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22         NA -0.17347692          NA -0.29683775 -0.3073844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23  0.5027055  0.50281134  0.52250574  0.44205679  0.4339421</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24  0.4209768  0.41796899          NA          NA  0.2360346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25 -0.9041912          NA -0.88461538          NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26 -0.5608866 -0.51676195 -0.48259452 -0.59216255 -0.6097187</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27  0.7459016  0.79258010          NA  0.72784730  0.7189542</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28 -0.3758154          NA -0.35358217 -0.34935897 -0.3145131</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29  0.6460553          NA  0.69186633  0.64479451  0.6424605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30  0.3671220  0.38501379  0.38615385  0.31889764         NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $PERMUTATIONS$`2018_Tiriac_PDAC_PDO_basal-like_signature`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,1]        [,2]        [,3]       [,4]         [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.16800000          NA -0.29660446 -0.2573491           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2           NA -0.36034946 -0.47421384         NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3           NA  0.82785680  0.79161850         NA  0.798941408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4           NA          NA          NA -0.4410234 -0.430284192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5           NA  0.84700240  0.76761905  0.8211310           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6           NA -0.52275313 -0.58042813 -0.5983421 -0.611324430</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.15198777  0.24504249          NA  0.1574156  0.123552894</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.25494505  0.35757576  0.19385298  0.2868237  0.249549550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.19007092  0.09069767          NA  0.1020576  0.112376238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10 -0.47706093          NA -0.42604736 -0.5103976 -0.442509363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.68397436 -0.61972574 -0.66166667         NA -0.680183727</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12  0.25757845  0.21535581          NA  0.2127208  0.186584651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.19496124 -0.20135551          NA -0.2588235 -0.287630208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14 -0.35952381 -0.34292274 -0.33971880 -0.4267703           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15  0.05208333 -0.01342926 -0.02260062 -0.1324284  0.001449275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.49375804  0.46675243          NA         NA  0.474812030</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17          NA          NA  0.74037375  0.7529259           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18          NA -0.79567511 -0.81921850         NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.21683039          NA  0.15609319  0.1913998           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.59234020          NA          NA  0.6183007  0.610426929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.58758073 -0.63333333 -0.60504286 -0.6663943 -0.585741811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.31100917  0.25887231  0.27863720  0.1578483  0.270626151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.57384220 -0.40566038 -0.60984340 -0.5709220 -0.602218330</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24          NA -0.27466433 -0.40551378 -0.3832207 -0.410663236</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.95213454          NA  0.94723295         NA  0.963057325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.62642276  0.69397163  0.64119497  0.5925189  0.598231966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.79411146 -0.76261261          NA         NA -0.792857143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28  0.43888889  0.44400000  0.36217105  0.3966238  0.361965812</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.72500000          NA -0.74921260 -0.7701550 -0.724958949</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.40443425 -0.29743590 -0.41271478         NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,6]        [,7]       [,8]         [,9]       [,10]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1           NA -0.36311475 -0.1900498           NA -0.22229299</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  -0.41301775 -0.47676768 -0.3562633           NA -0.47226721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3   0.82728551  0.79479167         NA           NA  0.79529590</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4           NA -0.55470085         NA -0.465021930 -0.50000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.86063830  0.77339450  0.8252597  0.842372462  0.81562655</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6           NA -0.69365482 -0.5894144           NA -0.64172494</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.24008439 -0.02087327  0.1726887  0.027726575  0.05340633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.31515651          NA         NA  0.100450450  0.13684211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.19476190          NA  0.1859025           NA  0.03420398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10 -0.49007491 -0.58625304         NA -0.528571429 -0.48324226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.63743961 -0.74089980 -0.6758900 -0.705284553 -0.65932070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12  0.28013333 -0.01960784  0.2498858  0.097720545  0.20895954</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.15232975 -0.41530612         NA           NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14 -0.35618414 -0.45685218 -0.3188815 -0.420138889          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15 -0.08913043 -0.18120567  0.0212618 -0.102773575          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.45789474  0.35125241  0.5246149  0.436654367          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17          NA  0.75496689         NA  0.762845850  0.74757174</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18 -0.79049080          NA -0.7785714 -0.829555896          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19          NA -0.08464520  0.2650538  0.007040998          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.65939968          NA  0.6123360  0.560844749  0.60658263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.56256831 -0.71676892 -0.5749518 -0.641703594 -0.66769231</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.31344086  0.15157963  0.3690265  0.168585132  0.33047945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.45533211          NA -0.4765671 -0.600106496          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24          NA -0.57475490 -0.2900829           NA -0.47649573</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25          NA  0.89334176  0.9399745  0.950904393  0.92944862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.72686497  0.49813084  0.6926065  0.566666667  0.57116788</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.77186667          NA -0.7965198 -0.796542828 -0.82252664</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28          NA  0.18639291         NA  0.333014862          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.71132686          NA -0.6649123           NA -0.74500526</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.32513661          NA         NA -0.496089049 -0.34100762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,11]       [,12]       [,13]       [,14]        [,15]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.237669801 -0.12065112 -0.26876877 -0.25662526 -0.168746904</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2            NA -0.37826087 -0.42664117 -0.45628415           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3   0.798651252  0.85156538  0.81081277  0.79465875           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  -0.403731343          NA          NA -0.53000000           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.815134371  0.82887651  0.77921348  0.80948905  0.835576459</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  -0.642708333 -0.51716992 -0.58773690 -0.61818981 -0.602405498</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7            NA          NA          NA  0.07205285  0.146448087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.100922722  0.33030551          NA  0.07249071           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.004089219  0.21030303  0.06442786          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10           NA -0.44084967 -0.51954315          NA -0.475516224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.651916933 -0.59337748          NA -0.66320755 -0.691070482</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12           NA  0.33133544  0.25609756  0.06289134  0.287625814</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.284271420 -0.09234973 -0.28243567 -0.36384977 -0.158045977</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14           NA -0.32979003 -0.43321957 -0.38670034 -0.303978854</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15           NA          NA -0.22892377 -0.01200828 -0.001863354</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16           NA  0.49173531  0.41693029          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17  0.746560847          NA  0.74228275  0.75062057  0.763852243</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18 -0.791706539 -0.75205128 -0.82705167 -0.84341693 -0.785355106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.083928571  0.34360731  0.13747885  0.15107914  0.252836879</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.561471861  0.62946824  0.62409163          NA  0.591666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.599262537          NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.260379597          NA  0.20405405          NA  0.305855856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.578302417 -0.29929453 -0.55564738 -0.55273224 -0.515000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24           NA -0.25350877 -0.42536232          NA -0.382620321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.934010152          NA          NA  0.94024081  0.946343537</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.589356555  0.73843441  0.62956259  0.59596733  0.607884232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.796463859 -0.79387646          NA -0.79811912 -0.816772152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28  0.335903814          NA          NA  0.37440945           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.742724458 -0.69962726 -0.74835610          NA -0.699697968</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.345287958 -0.25960452 -0.31379310 -0.43027444 -0.288674839</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 [,16]       [,17]       [,18]       [,19]        [,20]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1          NA -0.20213398          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2          NA -0.39951591 -0.30060241 -0.39865935 -0.433739013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3          NA  0.79061033          NA  0.82624216  0.813328632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  -0.3756849 -0.45929007 -0.29028986 -0.44893843           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.8460641          NA  0.85942029  0.84543708  0.814403292</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  -0.5780551 -0.58487973          NA -0.55264026           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.2104790          NA  0.26824165  0.18736638           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.3180751  0.25989583  0.31627051  0.30469522  0.208258528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.2044025  0.22437458  0.12944664  0.10392703  0.141567852</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10 -0.4372420 -0.48100358          NA -0.52167832 -0.477138643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.5748194          NA -0.58896069          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12         NA  0.26219439  0.28000000          NA  0.158111308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.1823899 -0.28461538 -0.08489681 -0.27540297 -0.259994223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14         NA -0.33051410 -0.30993266 -0.41926298 -0.383274021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15         NA  0.01018519  0.03081395  0.00131516  0.006134969</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.5095588  0.46155268          NA  0.45172005  0.444318182</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17  0.7644737          NA  0.80648390  0.77620932  0.750596760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18 -0.7521156          NA -0.79776715          NA -0.803944020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.2319124  0.17979890  0.43333333          NA  0.152534287</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.6333063          NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.5759003 -0.59219219 -0.55617633 -0.64078319 -0.612306202</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.3553381  0.31636364  0.27970297  0.25958941           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.4771930 -0.54132883 -0.45285344 -0.44453552 -0.561488673</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24 -0.3495770          NA -0.29689266          NA -0.365220012</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.9435897  0.94723295          NA          NA  0.938775510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26         NA  0.64287834  0.72220637  0.68308458           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.8074960 -0.79545455 -0.77526539 -0.82869362 -0.783717738</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28         NA  0.37770193  0.42814695  0.40786214  0.380118443</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.7174603          NA -0.69944259 -0.75417340 -0.802032520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.3114180 -0.39691358          NA -0.35770308 -0.472408964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  [,1]        [,2]        [,3]        [,4]        [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.1293820 -0.30238095 -0.15214180          NA -0.18025890</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  -0.3385965 -0.40488798 -0.42979798 -0.44887064          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3          NA  0.82050147  0.81029412          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  -0.3634228          NA -0.38048246 -0.42428811 -0.42827529</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.8301724  0.75498354          NA  0.82391304  0.82549445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  -0.5882960 -0.61338028 -0.56673004 -0.63509532          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.1619492          NA  0.20888562  0.11439280          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8          NA          NA  0.33407960          NA  0.25494505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9          NA  0.10311284  0.19166667  0.09212598  0.17301587</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10         NA          NA -0.44405374          NA -0.43983364</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.6387114 -0.70349099 -0.65806452 -0.67564103 -0.62583732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12  0.2550201  0.11180812  0.29210526  0.12652200          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13         NA -0.30636704 -0.11964286 -0.30185185          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14 -0.3194030 -0.36001178 -0.36013072 -0.38596491 -0.36839484</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15         NA -0.07586912 -0.09785276 -0.05314465 -0.01441103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.5363118          NA          NA  0.43148148  0.44641745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17  0.7458663  0.73463542  0.77734878  0.76374889  0.75000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18 -0.7618901 -0.81825397 -0.78478729 -0.79657534          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.2470880  0.12215113          NA          NA  0.18364780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.6022613          NA  0.63436344  0.57601487          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.5400656 -0.60386330 -0.54614086 -0.57352941 -0.62307501</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.3065728  0.27520793          NA          NA  0.32927429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.4850967 -0.61410256 -0.52607076 -0.54794829 -0.61406423</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24         NA -0.40249554 -0.29215686          NA -0.34813084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.9351970  0.93164557          NA  0.93519695  0.94967742</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26         NA  0.60202492  0.70980392  0.54433870  0.61417166</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.7792271          NA          NA -0.77269273 -0.78174603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28  0.4287472  0.35915033          NA  0.37208931  0.36159420</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.7099781 -0.77209302          NA          NA -0.72598684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.3653641          NA -0.23137083 -0.46289954 -0.47201946</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   [,6]        [,7]        [,8]        [,9]       [,10]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.29225908 -0.08968134          NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2           NA -0.38708087 -0.44916143          NA -0.41829574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3   0.77927928          NA  0.80484983          NA  0.82677794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  -0.56876047 -0.42124183 -0.49256198 -0.47641196 -0.48641189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.77546161  0.83712121          NA  0.82681159  0.83515284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  -0.64455782 -0.62997602          NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7           NA  0.11845238  0.10454545  0.12080182  0.18756004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.09749035  0.18820698  0.15914972  0.16449772          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9   0.02458746  0.16004016          NA  0.10618280 -0.00942029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10 -0.49741697          NA -0.53401908 -0.53168800 -0.51150729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.72473118          NA -0.61587545          NA -0.63996360</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12  0.10497238  0.20651629          NA          NA  0.20152488</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.38523447 -0.17921348 -0.32766990 -0.28269962 -0.30662100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14          NA -0.36213922 -0.40516224 -0.35191638 -0.46936027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15 -0.17343358          NA -0.05576441  0.01081081 -0.10663189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.41793169          NA  0.41992337          NA  0.39687500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17          NA  0.75194805  0.75785340  0.72825607  0.77129145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18          NA -0.79387216 -0.81240126 -0.80852594 -0.82923417</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19 -0.08680927          NA          NA  0.12439479  0.21824058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.55222965  0.56941303  0.57447046  0.57011494  0.66974110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.67299546 -0.58484848 -0.62750374          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.20931559          NA  0.26199518  0.23277571          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.66391586 -0.50168350          NA -0.57339956 -0.53506045</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24 -0.54256595          NA -0.41369048 -0.41880190 -0.37543860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.94601542  0.96060991  0.92708333  0.94601542          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.51399491  0.64721030  0.60980392  0.59817518  0.62740741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27          NA -0.79049919 -0.80327613 -0.81059190 -0.78778468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28          NA  0.40476190  0.29000000  0.38247366          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29          NA -0.74805195          NA -0.74199134          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.44637681 -0.39905009 -0.48105647 -0.45303030 -0.40126904</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 [,11]       [,12]      [,13]       [,14]      [,15]      [,16]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.1640575          NA -0.1517937 -0.20965309 -0.1797764 -0.1496974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2          NA -0.50440252 -0.4101928          NA -0.3962199         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3          NA  0.78602794  0.8414651          NA  0.8028986         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4          NA          NA         NA -0.36808511 -0.3860438 -0.4801846</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.8376437  0.80619048         NA  0.82676399  0.7725420  0.8482759</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  -0.6199324 -0.65289855 -0.5253697          NA -0.5878378 -0.6201754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.1255725          NA  0.2336469          NA         NA  0.1158371</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8          NA  0.01598407  0.3448187  0.18333333  0.2728727         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9          NA -0.04673660  0.1845052  0.08148148  0.2271150  0.2126506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10 -0.5214953 -0.57385159 -0.4750000 -0.44304813 -0.4070142         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.6158385 -0.67046414 -0.6297657 -0.65655608 -0.6662252 -0.6549922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12  0.2327402  0.04067358  0.2926929          NA  0.2249548  0.1788288</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.2461905 -0.35726341 -0.1398551 -0.19064171 -0.2580756 -0.2279762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14 -0.3563768          NA -0.2775081 -0.31495726 -0.3386814 -0.3303922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15         NA          NA  0.0463925 -0.01597542         NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.4607672  0.34259259         NA          NA  0.4907407         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17  0.7408694  0.73072917  0.7748366  0.73888889         NA  0.7468736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18 -0.8128931          NA -0.7612440 -0.78467310 -0.7838667 -0.7929548</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.1410714 -0.07857143  0.2892367  0.20274725         NA  0.2057621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.5835609  0.54134615  0.6921598  0.59926160  0.5605964  0.5910468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.6166667 -0.72050754 -0.5885714 -0.60785609         NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.2671091  0.15654762  0.3052846  0.31358025         NA         NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23         NA -0.56623236 -0.4357418 -0.54052066 -0.5876823 -0.5104794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24         NA          NA         NA -0.37271386 -0.3595771 -0.3674603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25  0.9269521  0.93661616         NA  0.94358974  0.9363868  0.9390295</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.6379643  0.52101449         NA  0.62415170         NA  0.6721973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.8180835 -0.83499496 -0.7880952 -0.79978769         NA -0.7743508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28  0.3971698  0.24974671  0.4798667          NA  0.3768473  0.4242905</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 -0.7730769 -0.78333333         NA          NA -0.7562667 -0.7300000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.3813933          NA         NA -0.39818841 -0.3821739 -0.3943953</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  [,17]       [,18]      [,19]       [,20]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  -0.19420290 -0.21578100 -0.1411111          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  -0.41759628 -0.46015326 -0.4070140 -0.34797768</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3   0.81376812  0.78546310  0.8280142  0.84686469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4           NA -0.43635308         NA -0.32981575</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5   0.83199513  0.77913652  0.8549737          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6           NA -0.61376684 -0.5132027          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_7   0.15748446  0.06666667  0.1865530          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_8   0.18627617  0.15555556  0.2975248  0.36012514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_9  -0.06243339  0.12183236  0.1722222  0.19133858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_10          NA          NA         NA -0.46597106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_11 -0.64314495 -0.66923077 -0.6412151 -0.59425837</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_12          NA          NA  0.2554927  0.26005510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_13 -0.35651769 -0.26327575         NA -0.09464286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_14 -0.45632184 -0.35943953 -0.2697966 -0.39257703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15 -0.14831625          NA         NA  0.03225108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_16  0.40312307  0.45691523         NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_17  0.74600000  0.74190853         NA  0.77734878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_18          NA -0.84353471 -0.7813008 -0.79890966</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_19  0.14009324          NA  0.2945946          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_20  0.60130293          NA  0.6380296  0.69812030</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_21 -0.69414025 -0.58484848 -0.6119784 -0.52488061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22  0.17584864          NA  0.2842429  0.37666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_23 -0.54490823 -0.56038251 -0.3994505 -0.43127413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_24 -0.43527397          NA         NA -0.30991926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_25          NA  0.93046776         NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_26  0.62744361  0.54312407  0.7234017  0.77134293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_27 -0.83521870          NA -0.8122257 -0.77680000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_28          NA  0.31644295  0.4629333  0.40707871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29          NA -0.77445681 -0.7110763 -0.68354978</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_30 -0.34915825 -0.44581056 -0.3104491          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $SD</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $SD$`2018_Tiriac_PDAC_PDO_classical_signature`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Patient_1  Patient_2  Patient_3  Patient_4  Patient_5  Patient_6  Patient_7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.07525652 0.05853536 0.02120160 0.06433028 0.02882614 0.04942779 0.09244187 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06761385 0.06714942 0.02178279 0.05565734 0.02417271 0.03563254 0.05831655 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Patient_8  Patient_9 Patient_10 Patient_11 Patient_12 Patient_13 Patient_14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.10684281 0.06177529 0.04941508 0.04096201 0.07660467 0.07956310 0.03042514 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.12562910 0.08134402 0.05168530 0.03644722 0.05833163 0.09260057 0.04986102 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15 Patient_16 Patient_17 Patient_18 Patient_19 Patient_20 Patient_21 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06662980 0.05768925 0.02238712 0.03358856 0.11419969 0.02610208 0.05072414 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.04966692 0.05169848 0.02905760 0.02493697 0.09060446 0.03577008 0.05241450 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 Patient_23 Patient_24 Patient_25 Patient_26 Patient_27 Patient_28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.05533580 0.04329473 0.08509572 0.01811274 0.05392747 0.01232988 0.06350747 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.05036711 0.03207177 0.06963245 0.01203991 0.06210010 0.02327648 0.05069715 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 Patient_30 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.03718490 0.05248334 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.02596018 0.03477593 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $SD$`2018_Tiriac_PDAC_PDO_basal-like_signature`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Patient_1  Patient_2  Patient_3  Patient_4  Patient_5  Patient_6  Patient_7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06547320 0.05322573 0.01884877 0.07319749 0.02822649 0.04537055 0.08625883 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.05873195 0.04316848 0.02178375 0.06434722 0.02987455 0.04337084 0.04754415 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Patient_8  Patient_9 Patient_10 Patient_11 Patient_12 Patient_13 Patient_14 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.09209113 0.06786416 0.04231860 0.04582427 0.09289786 0.09054065 0.04889792 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.09961950 0.09029813 0.04920713 0.03166041 0.07673620 0.08636134 0.05151586 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_15 Patient_16 Patient_17 Patient_18 Patient_19 Patient_20 Patient_21 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.08126758 0.04433780 0.01760890 0.02774835 0.12558308 0.02865780 0.04418419 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06945595 0.05114272 0.01614104 0.02240488 0.11941258 0.04751882 0.05354357 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_22 Patient_23 Patient_24 Patient_25 Patient_26 Patient_27 Patient_28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06589751 0.08194343 0.08847561 0.01652843 0.06463532 0.01758221 0.06599959 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.06222335 0.06797764 0.06495541 0.00942914 0.07028981 0.02082624 0.06139822 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Patient_29 Patient_30 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.03385338 0.06938392 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.03114349 0.06515294 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>

@@ -119,6 +119,9 @@ to the samples, while the columns correspond to the number of draws.</p>
 <span class="r-in"><span><span class="co">## Load demo normalized expected counts</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Fix seed for reproducibility</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">144</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Calculate the real GSVA values</span></span></span>
 <span class="r-in"><span><span class="va">gsvaParameter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GSVA/man/gsvaParam-class.html" class="external-link">gsvaParam</a></span><span class="op">(</span>exprData<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>     geneSets<span class="op">=</span><span class="va">geneLists</span><span class="op">)</span></span></span>
@@ -128,9 +131,20 @@ to the samples, while the columns correspond to the number of draws.</p>
 <span class="r-in"><span><span class="va">permResult</span> <span class="op">&lt;-</span> <span class="fu">splitTypeR</span><span class="fu">:::</span><span class="fu"><a href="permuteGSVA.html">permuteGSVA</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">geneLists</span>, </span></span>
 <span class="r-in"><span>    countMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Extract values from the normal distribution for each sample</span></span></span>
+<span class="r-in"><span><span class="co">## For each signature, randomly extract values from the normal </span></span></span>
+<span class="r-in"><span><span class="co">## distribution for each sample</span></span></span>
 <span class="r-in"><span><span class="va">normResult</span> <span class="op">&lt;-</span> <span class="fu">splitTypeR</span><span class="fu">:::</span><span class="fu">extractFromNormalDist</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">geneLists</span>, </span></span>
 <span class="r-in"><span>    gsvaRes<span class="op">=</span><span class="va">resGSVA</span>, gsvaSD<span class="op">=</span><span class="va">permResult</span><span class="op">$</span><span class="va">SD</span>, nbValues<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## For the classical signature, the sampled values for the first 3 patients</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">normResult</span><span class="op">$</span><span class="va">classical</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  [,1]        [,2]       [,3]       [,4]        [,5]       [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  0.06552621 -0.04744088  0.2579767  0.1401724  0.04282027  0.0736576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  0.50276388  0.48996602  0.4534817  0.2593450  0.59265803  0.3882175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3 -0.74669360 -0.73819720 -0.7839284 -0.7288436 -0.73232883 -0.7401041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 [,7]       [,8]       [,9]      [,10]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  0.1773961  0.2352225  0.2480705  0.2423369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  0.4912494  0.4785465  0.4901619  0.5812916</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3 -0.7637563 -0.7414708 -0.7394799 -0.7666406</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
