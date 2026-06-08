@@ -254,6 +254,8 @@ test_that("runSubtyping() must return a warning when not enough samples", {
     rownames(exCounts) <- c("KRAS", "ABC2", "FYN", "ABC1", "TP53", "MUC12")
     colnames(exCounts) <- c(paste0("P", 1:5))
 
+    set.seed(1211)
+
     expect_warning(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
         upscaleNbr=10), message)
@@ -262,7 +264,7 @@ test_that("runSubtyping() must return a warning when not enough samples", {
 test_that("runSubtyping() must return an error when upscaleNbr is string", {
     
     message <- paste0("The \'upscaleNbr\' must be an integer equal to or ", 
-                "bigger than 2.")
+                "higher than 2.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")
@@ -279,7 +281,7 @@ test_that("runSubtyping() must return an error when upscaleNbr is string", {
 test_that("runSubtyping() must return an error when upscaleNbr is 1", {
     
     message <- paste0("The \'upscaleNbr\' must be an integer equal to or ", 
-                "bigger than 2.")
+                "higher than 2.")
     gList <- list()
     gList[["test1"]] <- c("ABC1", "ABC2")
     gList[["test2"]] <- c("KRAS", "FYN")

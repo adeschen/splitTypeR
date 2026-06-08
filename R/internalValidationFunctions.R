@@ -148,7 +148,7 @@ validateRunSubtypingSubSection <- function(nbAll, permRatio, permNbr,
     if (!(isSingleInteger(upscaleNbr) || isSingleNumber(upscaleNbr) && 
             upscaleNbr > 1)) {
         stop("The \'upscaleNbr\' must be an integer equal to or ", 
-            "bigger than 2.")
+            "higher than 2.")
     }
     
     return(TRUE)    

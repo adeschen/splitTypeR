@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{geneSignaturesListNames}
 \alias{geneSignaturesListNames}
-\title{List the names of the available signature}
+\title{List the names of the available signatures}
 \usage{
 geneSignaturesListNames()
 }

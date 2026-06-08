@@ -88,7 +88,7 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     return(finalSaveData)
 }
 
-#' @title List the names of the available signature
+#' @title List the names of the available signatures
 #'
 #' @description The function lists the names of all the available signatures.
 #'

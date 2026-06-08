@@ -69,6 +69,8 @@ permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists,
 ## distribution for each sample
 normResult <- splitTypeR:::extractFromNormalDist(geneLists=geneLists, 
     gsvaRes=resGSVA, gsvaSD=permResult$SD, nbValues=10)
+## For the classical signature, the sampled values for the first 3 patients
+head(normResult$classical[1:3, ])
 
 }
 \author{
