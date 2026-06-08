@@ -20,7 +20,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-biocViews: BiologicalQuestion, 
+biocViews: BiologicalQuestion,
+    Classification, 
     Software
 VignetteBuilder: knitr
 LazyData: true
