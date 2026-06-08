@@ -3,8 +3,8 @@
 \encoding{UTF-8}
 \name{permuteGSVA}
 \alias{permuteGSVA}
-\title{Use the permutation method to calculate the variance associated 
-with the GSVA score obtained for each sample}
+\title{Use the permutation method to calculate the standard deviation 
+associated with the GSVA score obtained for each sample}
 \usage{
 permuteGSVA(geneLists, countMatrix, permRatio, permNbr)
 }
@@ -36,7 +36,8 @@ present when the standard deviation could not be calculated.
 }
 \description{
 This function calculates GSVA score for multiple permutation 
-sampling of the dataset to obtain the variance associated with each sample.
+sampling of the dataset to obtain the standard deviation associated with 
+each sample.
 }
 \examples{
 
@@ -52,6 +53,9 @@ geneLists[["basal"]] <-
 
 ## Load demo normalized expected counts
 data(expNormalCountsDemo)
+
+## Fix seed for reproducibility
+set.seed(144)
 
 ## Calculate variance for each sample using permutation method
 result <- splitTypeR:::permuteGSVA(geneLists=geneLists, 

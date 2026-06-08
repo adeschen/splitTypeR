@@ -53,6 +53,9 @@ geneLists[["basal"]] <-
 ## Load demo normalized expected counts
 data(expNormalCountsDemo)
 
+## Fix seed for reproducibility
+set.seed(144)
+
 ## Calculate the real GSVA values
 gsvaParameter <- gsvaParam(exprData=as.matrix(expNormalCountsDemo), 
      geneSets=geneLists)
@@ -62,7 +65,8 @@ resGSVA <- GSVA::gsva(param=gsvaParameter, verbose=FALSE)
 permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 
-## Extract values from the normal distribution for each sample
+## For each signature, randomly extract values from the normal 
+## distribution for each sample
 normResult <- splitTypeR:::extractFromNormalDist(geneLists=geneLists, 
     gsvaRes=resGSVA, gsvaSD=permResult$SD, nbValues=10)
 

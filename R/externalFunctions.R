@@ -67,20 +67,24 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     gsvaParameter <- gsvaParam(exprData=as.matrix(retained),
         geneSets=geneLists)
 
-    resClass <- gsva(param=gsvaParameter, verbose=FALSE)
+    resGSVA <- gsva(param=gsvaParameter, verbose=FALSE)
 
     finalSaveData <- list()
-    finalSaveData[["GSVA_RESULTS"]] <- resClass
+    finalSaveData[["GSVA_RESULTS"]] <- resGSVA
 
     permResult <- permuteGSVA(geneLists=geneLists, countMatrix=retained, 
         permRatio=permRatio, permNbr=permNbr)
-
+    
     finalSaveData[["PERMUTATIONS"]] <- permResult$PERMUTATIONS
     finalSaveData[["SD"]] <- permResult$SD
 
-    #extractFromNormalDist(geneLists=geneLists, gsvaRes=resClass, 
-    #    gsvaVar=permResult$SD, nbValues=nbValues)
+    normResult <- extractFromNormalDist(geneLists=geneLists, gsvaRes=resGSVA, 
+        gsvaSD=permResult$SD, nbValues=upscaleNbr)
   
+    resMix <- normalMix(geneLists=geneLists, resultNorm=normResult)
+    resClass <- classification(geneLists=geneLists, gsvaRes=resGSVA, 
+            modelMix=resMix)
+    
     return(finalSaveData)
 }
 
