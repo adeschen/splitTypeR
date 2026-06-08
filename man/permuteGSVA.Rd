@@ -57,7 +57,7 @@ data(expNormalCountsDemo)
 ## Fix seed for reproducibility
 set.seed(144)
 
-## Calculate variance for each sample using permutation method
+## Calculate standard deviation for each sample using permutation method
 result <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 

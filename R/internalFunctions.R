@@ -47,7 +47,7 @@
 #' ## Fix seed for reproducibility
 #' set.seed(144)
 #' 
-#' ## Calculate variance for each sample using permutation method
+#' ## Calculate standard deviation for each sample using permutation method
 #' result <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
 #'     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 #' 
@@ -155,7 +155,7 @@ permuteGSVA <- function(geneLists, countMatrix, permRatio, permNbr) {
 #'      geneSets=geneLists)
 #' resGSVA <- GSVA::gsva(param=gsvaParameter, verbose=FALSE)
 #' 
-#' ## Calculate variance for each sample using permutation method
+#' ## Calculate standard deviation for each sample using the permutation method
 #' permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
 #'     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 #' 
@@ -230,7 +230,7 @@ extractFromNormalDist <- function(geneLists, gsvaRes, gsvaSD, nbValues) {
 #'     geneSets=geneLists)
 #' resClass <- gsva(param=gsvaParameter, verbose=FALSE)
 #' 
-#' ## Calculate variance for each sample using the permutation method
+#' ## Calculate standard deviation for each sample using the permutation method
 #' permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
 #'     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 #' 
@@ -299,7 +299,7 @@ normalMix <- function(geneLists, resultNorm) {
 #'     geneSets=geneLists)
 #' resClass <- gsva(param=gsvaParameter, verbose=FALSE)
 #' 
-#' ## Calculate variance for each sample using permutation method
+#' ## Calculate standard deviation for each sample using the permutation method
 #' permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
 #'     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 #' 

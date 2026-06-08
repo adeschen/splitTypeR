@@ -44,7 +44,7 @@ gsvaParameter <- gsvaParam(exprData=as.matrix(expNormalCountsDemo),
     geneSets=geneLists)
 resClass <- gsva(param=gsvaParameter, verbose=FALSE)
 
-## Calculate variance for each sample using permutation method
+## Calculate standard deviation for each sample using the permutation method
 permResult <- splitTypeR:::permuteGSVA(geneLists=geneLists, 
     countMatrix=expNormalCountsDemo, permRatio=0.75, permNbr=20)
 
