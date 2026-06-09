@@ -1,4 +1,4 @@
-### Unit tests for internalFunctions functions
+### Unit tests for internalFunctions.R functions
 
 library(splitTypeR)
 library(testthat)
@@ -104,9 +104,9 @@ test_that("extractFromNormalDist() must return expected results", {
     ## Basal and classical gene list signatures
     gList <- list()
     gList[["classical"]] <- 
-        signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
     gList[["basal"]] <- 
-        signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 
     gsvaRes<- matrix(data=NA, nrow=2, ncol=12, byrow=FALSE)
     colnames(gsvaRes) <- paste0("Patient_", 1:12)

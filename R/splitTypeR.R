@@ -8,7 +8,7 @@
 #' each sample. Through a permutation step, it then extract the standard 
 #' deviation for each sample. By combining both the GSVA score and the 
 #' standard deviation, the package can establish a normal distribution for 
-#' each sample. Through an upscaling step, TODO
+#' each sample. Through an up-scaling step, TODO
 #'
 #' @name splitTypeR-package
 #'
@@ -124,22 +124,3 @@
 #' 
 #'
 "expNormalCountsDemo"
-
-#' TODO
-#' 
-#' Long description TODO
-#' 
-#' @format A \code{list} of signatures. Each entry contains a \code{vector} 
-#' of gene names:
-#' \itemize{
-#' \item{\code{"2018_Tiriac_PDAC_PDO_classical_signature"}: a \code{vector} of 
-#' gene names associated with the PDAC patient-derived organoid (PDO) Classical 
-#' signature as published in Tiriac et al 2018}
-#' \item{\code{"2018_Tiriac_PDAC_PDO_basal-like_signature"}: a \code{vector} of 
-#' gene names associated with the PDAC patient-derived organoid (PDO) 
-#' Basal-like signature as published in Tiriac et al 2018}
-#' }
-#' 
-#' @source TODO
-#' 
-"signatures"

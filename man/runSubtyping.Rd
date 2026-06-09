@@ -46,13 +46,14 @@ TODO.
 \examples{
 
 ## Loading signatures
-data("signatures")
+data("signaturesDemo")
 
 ## Load demo normalized expected counts for 30 patients
 data("expNormalCountsDemo")
 
 ## Run subtyping on the 30 patients
-runSubtyping(geneLists=signatures, expectedCountsMatrix=expNormalCountsDemo, 
+runSubtyping(geneLists=signaturesDemo, 
+    expectedCountsMatrix=expNormalCountsDemo, 
     permRatio=0.75, permNbr=20, upscaleNbr=10)
 
 }
