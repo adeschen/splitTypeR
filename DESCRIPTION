@@ -24,7 +24,6 @@ biocViews: BiologicalQuestion,
     Classification, 
     Software
 VignetteBuilder: knitr
-LazyData: true
 URL: https://github.com/adeschen/splitTypeR
 BugReports: https://github.com/adeschen/splitTypeR/issues
 Config/roxygen2/version: 8.0.0
