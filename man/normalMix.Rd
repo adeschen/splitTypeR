@@ -3,20 +3,33 @@
 \encoding{UTF-8}
 \name{normalMix}
 \alias{normalMix}
-\title{TODO}
+\title{Extracting the mixtures of two normal distributions for each 
+signature}
 \usage{
 normalMix(geneLists, resultNorm)
 }
 \arguments{
 \item{geneLists}{a \code{list} containing signature gene lists.}
 
-\item{resultNorm}{a TODO}
+\item{resultNorm}{a \code{list} containing one entry for each gene 
+signature present in the \code{geneLists} object. Each entry contains a 
+\code{matrix} with all the values sampled from the normal distribution 
+obtained from the GSVA score (mean) and the permutations (standard 
+deviation). One row of the \code{matrix} represents one sample. The columns 
+correspond to the number of draws.}
 }
 \value{
-a \code{list} TODO
+a \code{list} containing one entry for each gene signature 
+present in the \code{geneLists} object. Each entry contains the mixtures 
+of two normal distributions for the signature calculated with sampled 
+values. The entry corresponds to the object returned by the 
+`mixtools::normalmixEM` function.
 }
 \description{
-This function calculates TODO
+This function calculates the mixtures of two normal 
+distributions for each signature using the sampled values from the normal 
+distribution obtained for each sample (mean=real GSVA score, 
+standard deviation=calculated from the permutation step).
 }
 \examples{
 

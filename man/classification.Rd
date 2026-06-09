@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{classification}
 \alias{classification}
-\title{TODO}
+\title{Assign the typing for each sample and each gene signature}
 \usage{
 classification(geneLists, gsvaRes, modelMix)
 }
@@ -20,7 +20,18 @@ and the signatures (row).}
 a \code{list} TODO
 }
 \description{
-This function calculates TODO
+This function assigns the typing for all samples in each 
+signature using the 
+two normal distributions obtained for each signature. One normal 
+distribution is associated with the samples with the signatures while the 
+other normal distribution is called the alternative distribution.
+The null hypothesis is that the sample is part of the alternative 
+distribution. At this 
+step, the sample is considered "unclassified". The null 
+hypothesis is rejected when the probability of the sample being part of the 
+alternative distribution is inferior to 0.05. The sample is then considered 
+to be part of the distribution associated to the signature and is assigned 
+to the signature.
 }
 \examples{
 

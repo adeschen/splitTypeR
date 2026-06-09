@@ -45,7 +45,7 @@
 #' @export
 runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75, 
     permNbr=20, upscaleNbr=10) {
-  
+
     ## Validate parameters
     validateRunSubtyping(geneLists=geneLists,
         expectedCountsMatrix=expectedCountsMatrix, permRatio=permRatio, 
@@ -80,7 +80,7 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
 
     normResult <- extractFromNormalDist(geneLists=geneLists, gsvaRes=resGSVA, 
         gsvaSD=permResult$SD, nbValues=upscaleNbr)
-  
+
     resMix <- normalMix(geneLists=geneLists, resultNorm=normResult)
     resClass <- classification(geneLists=geneLists, gsvaRes=resGSVA, 
             modelMix=resMix)
