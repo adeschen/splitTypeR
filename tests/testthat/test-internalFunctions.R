@@ -3,6 +3,9 @@
 library(splitTypeR)
 library(testthat)
 
+data(expNormalCountsDemo)
+data(signaturesDemo)
+
 #############################################################################
 ### Tests permuteGSVA() results
 #############################################################################
@@ -10,14 +13,14 @@ library(testthat)
 test_that("permuteGSVA() must return expected results", {
     
     ## Demo normalized expected counts matrix
-    expectedCountsMatrix <- splitTypeR::expNormalCountsDemo[, 1:15]
+    expectedCountsMatrix <- expNormalCountsDemo[, 1:15]
     
     ## Basal and classical gene list signatures
     gList <- list()
     gList[["classical"]] <- 
-        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
     gList[["basal"]] <- 
-        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 
     ## Expected results
     expResults <- list()
@@ -101,9 +104,9 @@ test_that("extractFromNormalDist() must return expected results", {
     ## Basal and classical gene list signatures
     gList <- list()
     gList[["classical"]] <- 
-        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+        signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
     gList[["basal"]] <- 
-        splitTypeR::signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+        signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 
     gsvaRes<- matrix(data=NA, nrow=2, ncol=12, byrow=FALSE)
     colnames(gsvaRes) <- paste0("Patient_", 1:12)

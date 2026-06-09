@@ -28,13 +28,16 @@
 #' @keywords package
 "_PACKAGE"
 
-#' A list of published gene signatures, mostly related to PDAC classification.
+#' A short collection of published gene signatures primarily focuses on PDAC 
+#' classification for patient-derived organoids (PDO). While the 
+#' signatures are accurate, this list is mainly 
+#' compiled for demonstration purposes.
 #' 
-#' @name signatures
+#' @name signaturesDemo
 #'
 #' @docType data
 #'
-#' @aliases signatures
+#' @aliases signaturesDemo
 #'
 #' @format a \code{list} containing one entry per signature:
 #' \itemize{
@@ -61,14 +64,14 @@
 #'     \item{\link{runSubtyping} for TODO}
 #' }
 #'
-#' @usage data(signatures)
+#' @usage data(signaturesDemo)
 #'
 #' @keywords datasets
 #'
 #' @details
 #' 
-#' The PDAC PDO classical and basal-like signatures are 
-#' associated to this publication:
+#' The PDAC patient-derived organoids (PDO) classical and basal-like 
+#' signatures are associated to this publication:
 #' 
 #' Tiriac et al. Organoid Profiling Identifies Common Responders to 
 #' Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 
@@ -78,10 +81,10 @@
 #' @examples
 #' 
 #' ## Load the published signature gene list
-#' data(signatures)
+#' data(signaturesDemo)
 #' 
 #'
-NULL
+"signaturesDemo"
 
 
 #' A small normalized expected gene counts matrix for 30 patients generated to 
@@ -120,4 +123,23 @@ NULL
 #' data(expNormalCountsDemo)
 #' 
 #'
-NULL
+"expNormalCountsDemo"
+
+#' TODO
+#' 
+#' Long description TODO
+#' 
+#' @format A \code{list} of signatures. Each entry contains a \code{vector} 
+#' of gene names:
+#' \itemize{
+#' \item{\code{"2018_Tiriac_PDAC_PDO_classical_signature"}: a \code{vector} of 
+#' gene names associated with the PDAC patient-derived organoid (PDO) Classical 
+#' signature as published in Tiriac et al 2018}
+#' \item{\code{"2018_Tiriac_PDAC_PDO_basal-like_signature"}: a \code{vector} of 
+#' gene names associated with the PDAC patient-derived organoid (PDO) 
+#' Basal-like signature as published in Tiriac et al 2018}
+#' }
+#' 
+#' @source TODO
+#' 
+"signatures"

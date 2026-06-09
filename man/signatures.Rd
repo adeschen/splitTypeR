@@ -3,54 +3,26 @@
 \docType{data}
 \name{signatures}
 \alias{signatures}
-\title{A list of published gene signatures, mostly related to PDAC classification.}
+\title{TODO}
 \format{
-a \code{list} containing one entry per signature:
+A \code{list} of signatures. Each entry contains a \code{vector} 
+of gene names:
 \itemize{
-    \item{\code{"2018_Tiriac_PDAC_PDO_classical_signature"}: a 
-    \code{vector} of gene names associated to the PDAC Patient-derived 
-    Organoid (PDO) Classical signature as published in Tiriac et al 2018 }
-    \item{\code{"2018_Tiriac_PDAC_PDO_basal-like_signature"}: a 
-    \code{vector} of gene names associated to the PDAC Patient-derived 
-    Organoid (PDO) Basal-like signature as published in Tiriac et al 2018 }
+\item{\code{"2018_Tiriac_PDAC_PDO_classical_signature"}: a \code{vector} of 
+gene names associated with the PDAC patient-derived organoid (PDO) Classical 
+signature as published in Tiriac et al 2018}
+\item{\code{"2018_Tiriac_PDAC_PDO_basal-like_signature"}: a \code{vector} of 
+gene names associated with the PDAC patient-derived organoid (PDO) 
+Basal-like signature as published in Tiriac et al 2018}
 }
+}
+\source{
+TODO
 }
 \usage{
 data(signatures)
 }
-\value{
-a \code{list} containing one entry per signature:
-\itemize{
-    \item{\code{"2018_Tiriac_PDAC_PDO_classical_signature"}: a 
-    \code{vector} of gene names associated to the PDAC Patient-derived 
-    Organoid (PDO) Classical signature as published in Tiriac et al 2018 }
-    \item{\code{"2018_Tiriac_PDAC_PDO_basal-like_signature"}: a 
-    \code{vector} of gene names associated to the PDAC Patient-derived 
-    Organoid (PDO) Basal-like signature as published in Tiriac et al 2018 }
-}
-}
 \description{
-A list of published gene signatures, mostly related to PDAC classification.
-}
-\details{
-The PDAC PDO classical and basal-like signatures are 
-associated to this publication:
-
-Tiriac et al. Organoid Profiling Identifies Common Responders to 
-Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 
-doi: 10.1158/2159-8290.CD-18-0349. Epub 2018 May 31. PMID: 29853643; 
-PMCID: PMC6125219.
-}
-\examples{
-
-## Load the published signature gene list
-data(signatures)
-
-
-}
-\seealso{
-\itemize{
-    \item{\link{runSubtyping} for TODO}
-}
+Long description TODO
 }
 \keyword{datasets}

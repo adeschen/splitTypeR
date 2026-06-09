@@ -32,14 +32,14 @@
 #' @examples
 #'
 #' ## Load signatures
-#' data(signatures)
+#' data(signaturesDemo)
 #' 
 #' ## Create a list of two signatures
 #' geneLists <- list()
 #' geneLists[["classical"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
 #' geneLists[["basal"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 #' 
 #' ## Load demo normalized expected counts
 #' data(expNormalCountsDemo)
@@ -135,14 +135,14 @@ permuteGSVA <- function(geneLists, countMatrix, permRatio, permNbr) {
 #' library(GSVA)
 #' 
 #' ## Load signatures
-#' data(signatures)
+#' data(signaturesDemo)
 #' 
 #' ## Create a list of two signatures
 #' geneLists <- list()
 #' geneLists[["classical"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
 #' geneLists[["basal"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 #' 
 #' ## Load demo normalized expected counts
 #' data(expNormalCountsDemo)
@@ -222,14 +222,14 @@ extractFromNormalDist <- function(geneLists, gsvaRes, gsvaSD, nbValues) {
 #' library(GSVA)
 #' 
 #' ## Load signatures
-#' data(signatures)
+#' data(signaturesDemo)
 #' 
 #' ## Create a list of two signatures
 #' geneLists <- list()
 #' geneLists[["classical"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
 #' geneLists[["basal"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 #' 
 #' ## Load demo normalized expected counts
 #' data(expNormalCountsDemo)
@@ -297,23 +297,33 @@ normalMix <- function(geneLists, resultNorm) {
 #' \code{matrix} should contain the GSVA score for all the samples (column) 
 #' and the signatures (row).
 #' 
-#' @param modelMix a TODO
+#' @param modelMix a \code{list} containing one entry for each gene signature 
+#' present in the \code{geneLists} object. Each entry contains the mixtures 
+#' of two normal distributions for the signature calculated with sampled 
+#' values. The entry corresponds to the object returned by the 
+#' `mixtools::normalmixEM` function.
 #' 
-#' @returns a \code{list} TODO
+#' @returns a \code{list} containing one entry for each gene signature 
+#' present in the \code{geneLists} object. Each entry contains the typing 
+#' assigned to each sample for the specific signature. When the sample 
+#' is not assigned to the signature, the "unclassified" value is present. 
+#' When the sample is assigned to the signature, the name of the signature 
+#' is present. 
+#' 
 #' @examples
 #'
 #' ## Required library
 #' library(GSVA)
 #' 
 #' ## Load signatures
-#' data(signatures)
+#' data(signaturesDemo)
 #' 
 #' ## Create a list of two signatures
 #' geneLists <- list()
 #' geneLists[["classical"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
 #' geneLists[["basal"]] <- 
-#'     signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+#'     signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 #' 
 #' ## Load demo normalized expected counts
 #' data(expNormalCountsDemo)

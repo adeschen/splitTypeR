@@ -94,15 +94,73 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
 #'
 #' @return a \code{vector} of available signature names
 #'
+#' @details
+#' 
+#' The PDAC PDO classical and basal-like signatures are 
+#' associated to this publication:
+#' 
+#' Tiriac et al. Organoid Profiling Identifies Common Responders to 
+#' Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 
+#' doi: 10.1158/2159-8290.CD-18-0349. Epub 2018 May 31. PMID: 29853643; 
+#' PMCID: PMC6125219.
+#' 
 #' @examples
 #'
 #' ## Print the names of the available signatures
-#' geneSignaturesListNames()
+#' getGeneSignaturesNames()
 #'
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' @importFrom utils data
 #' @export
-geneSignaturesListNames <- function() {
-    return(names(splitTypeR::signatures))
+getGeneSignaturesNames <- function() {
+    return(names(signatures))
+}
+
+#' @title Return the selected gene list signatures
+#'
+#' @description The function returns the selected gene list signatures.
+#'
+#' @param nameList a \code{list} of signature names. At least one name is 
+#' required. The signature names must all be present in the gene list 
+#' signatures. When \code{NULL}, all gene signatures are returned. 
+#' Default: \code{NULL}. 
+#' 
+#' @return a \code{list} of selected signatures. Each signature is composed of 
+#' a \code{vector} of gene names.
+#' 
+#' @details
+#' 
+#' The PDAC PDO classical and basal-like signatures are 
+#' associated to this publication:
+#' 
+#' Tiriac et al. Organoid Profiling Identifies Common Responders to 
+#' Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 
+#' doi: 10.1158/2159-8290.CD-18-0349. Epub 2018 May 31. PMID: 29853643; 
+#' PMCID: PMC6125219.
+#' 
+#' @examples
+#'
+#' ## Extract the basal-like signature from Tiriac et al 2018
+#' getGeneSignatures(nameList=c("2018_Tiriac_PDAC_PDO_basal-like_signature"))
+#'
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+getGeneSignatures <- function(nameList=NULL) {
+    if (!is.null(nameList) &&!(is.character(nameList) && 
+                        is.vector(nameList))) {
+        stop("The \'nameList\' parameter must be a vector of characters ", 
+            "representing the selected signature names or \'NULL\'.")
+    }
+
+    if (!is.null(nameList) && !all(nameList %in% names(signatures))) {
+        stop("At least one signature is not available.")
+    }
+
+    res <- signatures
+    if (!is.null(nameList)) {
+        res <- signatures[[nameList]]
+    }
+
+    return(res)
 }

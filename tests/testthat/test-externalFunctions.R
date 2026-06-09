@@ -296,15 +296,15 @@ test_that("runSubtyping() must return an error when upscaleNbr is 1", {
 })
 
 #############################################################################
-### Tests geneSignaturesListNames() results
+### Tests getGeneSignaturesNames() results
 #############################################################################
 
-test_that("geneSignaturesListNames() must return the expected signature names", {
+test_that("getGeneSignaturesNames() must return the expected signature names", {
     
     expResults <- c("2018_Tiriac_PDAC_PDO_classical_signature",
                      "2018_Tiriac_PDAC_PDO_basal-like_signature")
 
-    results <- geneSignaturesListNames()
+    results <- getGeneSignaturesNames()
 
     expect_equal(results, expResults)
 })

@@ -41,14 +41,14 @@ returns a user-defined number of values sampled from this distribution.
 library(GSVA)
 
 ## Load signatures
-data(signatures)
+data(signaturesDemo)
 
 ## Create a list of two signatures
 geneLists <- list()
 geneLists[["classical"]] <- 
-    signatures$`2018_Tiriac_PDAC_PDO_classical_signature`
+    signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
 geneLists[["basal"]] <- 
-    signatures$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+    signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
 
 ## Load demo normalized expected counts
 data(expNormalCountsDemo)
