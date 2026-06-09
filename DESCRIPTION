@@ -11,7 +11,7 @@ Authors@R: c(person("Astrid", "Deschênes", email = "adeschen@hotmail.com",
     role=c("aut"), comment = c(ORCID = "0000-0002-0802-1071"))) 
 Encoding: UTF-8
 License: Artistic-2.0
-Depends: R (>= 4.2.0)
+Depends: R (>= 4.5.0)
 Imports: S4Vectors,
     mixtools,
     GSVA
