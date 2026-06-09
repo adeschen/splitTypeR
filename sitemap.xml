@@ -7,12 +7,13 @@
 <url><loc>/reference/classification.html</loc></url>
 <url><loc>/reference/expNormalCountsDemo.html</loc></url>
 <url><loc>/reference/extractFromNormalDist.html</loc></url>
-<url><loc>/reference/geneSignaturesListNames.html</loc></url>
+<url><loc>/reference/getGeneSignatures.html</loc></url>
+<url><loc>/reference/getGeneSignaturesNames.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/normalMix.html</loc></url>
 <url><loc>/reference/permuteGSVA.html</loc></url>
 <url><loc>/reference/runSubtyping.html</loc></url>
-<url><loc>/reference/signatures.html</loc></url>
+<url><loc>/reference/signaturesDemo.html</loc></url>
 <url><loc>/reference/splitTypeR-package.html</loc></url>
 <url><loc>/reference/validateRunSubtyping.html</loc></url>
 <url><loc>/reference/validateRunSubtypingSubSection.html</loc></url>

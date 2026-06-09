@@ -93,12 +93,21 @@ and the signatures (row).</p></dd>
 
 
 <dt id="arg-modelmix">modelMix<a class="anchor" aria-label="anchor" href="#arg-modelmix"></a></dt>
-<dd><p>a TODO</p></dd>
+<dd><p>a <code>list</code> containing one entry for each gene signature
+present in the <code>geneLists</code> object. Each entry contains the mixtures
+of two normal distributions for the signature calculated with sampled
+values. The entry corresponds to the object returned by the
+`mixtools::normalmixEM` function.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <code>list</code> TODO</p>
+    <p>a <code>list</code> containing one entry for each gene signature
+present in the <code>geneLists</code> object. Each entry contains the typing
+assigned to each sample for the specific signature. When the sample
+is not assigned to the signature, the "unclassified" value is present.
+When the sample is assigned to the signature, the name of the signature
+is present.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -112,14 +121,14 @@ and the signatures (row).</p></dd>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rcastelo/GSVA" class="external-link">GSVA</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Load signatures</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">signatures</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">signaturesDemo</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Create a list of two signatures</span></span></span>
 <span class="r-in"><span><span class="va">geneLists</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">geneLists</span><span class="op">[[</span><span class="st">"classical"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span></span>
-<span class="r-in"><span>    <span class="va">signatures</span><span class="op">$</span><span class="va">`2018_Tiriac_PDAC_PDO_classical_signature`</span></span></span>
+<span class="r-in"><span>    <span class="va">signaturesDemo</span><span class="op">$</span><span class="va">`2018_Tiriac_PDAC_PDO_classical_signature`</span></span></span>
 <span class="r-in"><span><span class="va">geneLists</span><span class="op">[[</span><span class="st">"basal"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span></span>
-<span class="r-in"><span>    <span class="va">signatures</span><span class="op">$</span><span class="va">`2018_Tiriac_PDAC_PDO_basal-like_signature`</span></span></span>
+<span class="r-in"><span>    <span class="va">signaturesDemo</span><span class="op">$</span><span class="va">`2018_Tiriac_PDAC_PDO_basal-like_signature`</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Load demo normalized expected counts</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span><span class="op">)</span></span></span>
