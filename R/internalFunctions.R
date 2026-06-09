@@ -267,7 +267,8 @@ normalMix <- function(geneLists, resultNorm) {
     ## Storage for the results of the mixed model
     resModel <- list()
     for (i in names(geneLists)) {
-        allRes <- sapply(resultNorm[[i]], FUN=unlist)
+        ## Vector of all sampled values for the signature (NA might be present)
+        allRes <- vapply(resultNorm[[i]], FUN=unlist, numeric(1))
         ## Remove NA values before calculating the normal distributions
         resModel[[i]] <- normalmixEM(allRes[!is.na(allRes)], k=2, verb=FALSE)
     }
