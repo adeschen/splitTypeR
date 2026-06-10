@@ -165,3 +165,63 @@ test_that("extractFromNormalDist() must return expected results", {
     expect_equal(rownames(results$basal), rownames(expResults$basal))
     expect_equal(results$basal, expResults$basal, tolerance=1e-4)
 })
+
+#############################################################################
+### Tests normalMix() results
+#############################################################################
+
+test_that("normalMix() must return expected results", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=12, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:12)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971, 
+        -0.6732937,  0.5735090, -0.1247647, -0.1261704, -0.1287452,  0.4370278, 
+        0.5913501, -0.2002262)
+    gsvaRes["basal", ] <- c(-0.2385417, -0.4403292,  0.8006550, -0.4500838,  
+        0.8175287, -0.6076389,  0.1209839, 0.2276770, 0.1643817, -0.4448441, 
+        -0.6485138, 0.1993417)
+
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, NA, 0.11087233, 
+        0.03055436, 0.03655507, 0.08054100, 0.07157925, 0.10636982,
+        0.08411299, 0.07672066, 0.05807137)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:12)    
+    gsvaSD[["basal"]] <- c(0.09652651, 0.07183212, NA, 0.11841886, 0.02106352, 
+        0.01166254, 0.11538878, 0.06553981, 0.13836817, 0.09841366, 0.06659764, 
+        0.11975838)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:12)
+
+
+    ## Fix seed
+    set.seed(121)
+
+    normRes <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=10)
+    
+    results <- splitTypeR:::normalMix(geneLists=gList, resultNorm=normRes)
+    
+    expect_true(is.list(results))
+    expect_equal(names(results), c("classical", "basal"))
+    expect_equal(class(results$classical), "mixEM")
+    expect_equal(class(results$basal), "mixEM")
+    expect_equal(results$basal$mu, c(-0.5368805, 0.1890259), tolerance=1e-4)
+    expect_equal(results$classical$mu, c(-0.1394273, 0.4835324), 
+                tolerance=1e-4)
+    expect_equal(results$classical$lambda, c(0.6039348, 0.3960652), 
+                tolerance=1e-4)
+    expect_equal(results$basal$lambda, c(0.4255801, 0.5744199), 
+                tolerance=1e-4)
+    expect_equal(results$basal$sigma, c(0.1192204, 0.3481715), tolerance=1e-4)
+    expect_equal(results$classical$sigma, c(0.29147215, 0.08720805), 
+                tolerance=1e-4)
+    expect_equal(results$classical$loglik, -27.25653, tolerance=1e-4)
+    expect_equal(results$basal$loglik, -47.83847, tolerance=1e-4)
+})
