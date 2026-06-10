@@ -160,7 +160,7 @@ getGeneSignatures <- function(nameList=NULL) {
 
     res <- signatures
     if (!is.null(nameList)) {
-        res <- signatures[[nameList]]
+        res <- signatures[nameList]
     }
 
     return(res)

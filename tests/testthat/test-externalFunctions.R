@@ -348,3 +348,16 @@ test_that("getGeneSignatures() must return error when not all names in nameList 
         nameList=c("2018_Tiriac_PDAC_PDO_classical_signature", "Chateau")), 
         regexp=error_message)
 })
+
+test_that("getGeneSignatures() must return expected results when nameList is one entry", {
+    
+    results <- getGeneSignatures(
+                nameList=c("2018_Tiriac_PDAC_PDO_classical_signature"))
+    
+    expect_true(is.list(results))
+    expect_equal(length(results), 1L)
+    expect_equal(results[[1]][1:5], 
+            c("MUC13", "GPR35", "USH1C", "BAIAP2L2", "GAL3ST1"))
+    expect_equal(results[[1]][46:49],c("GATA6", "GPX2", "CA2", "ST6GALNAC1"))
+    expect_equal(results[[1]][55:58], c("HKDC1", "IYD", "DOK4", "CYP2C18"))
+})
