@@ -292,7 +292,7 @@ test_that("runSubtyping() must return an error when upscaleNbr is 1", {
 
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
-        upscaleNbr=1), message)
+        upscaleNbr=1), regexp=message)
 })
 
 #############################################################################
@@ -307,4 +307,44 @@ test_that("getGeneSignaturesNames() must return the expected signature names", {
     results <- getGeneSignaturesNames()
 
     expect_equal(results, expResults)
+})
+
+#############################################################################
+### Tests getGeneSignatures() results
+#############################################################################
+
+test_that("getGeneSignatures() must return the expected signatures", {
+    
+    expNames <- c("2018_Tiriac_PDAC_PDO_classical_signature",
+                     "2018_Tiriac_PDAC_PDO_basal-like_signature")
+    results <- getGeneSignatures()
+
+    expect_equal(names(results), expNames)
+    expect_equal(length(results[[expNames[1]]]), 62L)
+    expect_equal(results[[expNames[1]]][1:5], 
+            c("MUC13", "GPR35", "USH1C", "BAIAP2L2", "GAL3ST1"))
+    expect_equal(results[[expNames[1]]][46:49], 
+            c("GATA6", "GPX2", "CA2", "ST6GALNAC1"))
+    expect_equal(length(results[[expNames[2]]]), 26L)
+    expect_equal(results[[expNames[2]]][1:5], 
+            c("ANO1", "ADORA2B", "S100A2", "CSF2", "ANXA1"))
+    expect_equal(results[[expNames[2]]][21:24], 
+            c("SPRR1B",  "BCAR3", "TTC9", "PTGES"))
+})
+
+test_that("getGeneSignatures() must return error when nameList is a number", {
+    
+    error_message <- paste0("The \'nameList\' parameter must be a vector of ", 
+        "characters representing the selected signature names or \'NULL\'.")
+
+    expect_error(getGeneSignatures(nameList=33), regexp=error_message)
+})
+
+test_that("getGeneSignatures() must return error when not all names in nameList are present", {
+    
+    error_message <- paste0("At least one signature is not available.")
+
+    expect_error(getGeneSignatures(
+        nameList=c("2018_Tiriac_PDAC_PDO_classical_signature", "Chateau")), 
+        regexp=error_message)
 })
