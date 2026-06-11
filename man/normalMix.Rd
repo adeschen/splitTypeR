@@ -23,7 +23,8 @@ a \code{list} containing one entry for each gene signature
 present in the \code{geneLists} object. Each entry contains the mixtures 
 of two normal distributions for the signature calculated with sampled 
 values. The entry corresponds to the object returned by the 
-`mixtools::normalmixEM` function.
+`mixtools::normalmixEM` function. When the mixturex of two normal 
+distributions cannot be calculated successfull, the \'NA\' value is present.
 }
 \description{
 This function calculates the mixtures of two normal 

@@ -214,7 +214,8 @@ extractFromNormalDist <- function(geneLists, gsvaRes, gsvaSD, nbValues) {
 #' present in the \code{geneLists} object. Each entry contains the mixtures 
 #' of two normal distributions for the signature calculated with sampled 
 #' values. The entry corresponds to the object returned by the 
-#' `mixtools::normalmixEM` function.
+#' `mixtools::normalmixEM` function. When the mixturex of two normal 
+#' distributions cannot be calculated successfull, the \'NA\' value is present. 
 #' 
 #' @examples
 #'
@@ -269,8 +270,22 @@ normalMix <- function(geneLists, resultNorm) {
     for (i in names(geneLists)) {
         ## Vector of all sampled values for the signature (NA might be present)
         allRes <- vapply(resultNorm[[i]], FUN=unlist, numeric(1))
-        ## Remove NA values before calculating the normal distributions
-        resModel[[i]] <- normalmixEM(allRes[!is.na(allRes)], k=2, verb=FALSE)
+        resModel[[i]] <- tryCatch({
+            ## Remove NA values before calculating the normal distributions
+            normalmixEM(allRes[!is.na(allRes)], k=2, verb=FALSE)
+        }, error = function(msg){
+            return(NA)
+        })
+    }
+    
+    success <- vapply(resModel, FUN=function(x){length(x) == 1 && is.na(x)}, 
+                        logical(1))
+    ## Warning when not all signatures are successfull
+    if (any(success)) {
+        i <- paste0(names(success)[which(success)], collapse = ", ")
+        warning(paste0("! The normal distributions could not be calculated ", 
+            "successfully for the signature(s): ", i), call.=FALSE, 
+            immediate.=TRUE)
     }
     
     return(resModel)

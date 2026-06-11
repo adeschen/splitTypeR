@@ -199,7 +199,6 @@ test_that("normalMix() must return expected results", {
         0.11975838)
     names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:12)
 
-
     ## Fix seed
     set.seed(121)
 
@@ -224,4 +223,73 @@ test_that("normalMix() must return expected results", {
                 tolerance=1e-4)
     expect_equal(results$classical$loglik, -27.25653, tolerance=1e-4)
     expect_equal(results$basal$loglik, -47.83847, tolerance=1e-4)
+})
+
+test_that("normalMix() must generate a warning when a distribution cannot be calculated successfully", {
+    
+    message <- "The normal distributions could not be calculated "
+
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=4, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:4)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971)
+    gsvaRes["basal", ] <- c(0.4585417, 0.4403292,  0.4506550, 0.4500838)
+
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, NA, 0.11087233)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:4)    
+    gsvaSD[["basal"]] <- c(0.11, 0.11, NA, 0.11)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:4)
+
+    ## Fix seed
+    set.seed(121)
+
+    normRes <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=1)
+    
+    expect_warning(captions <- capture.output(
+        splitTypeR:::normalMix(geneLists=gList, resultNorm=normRes)), message)
+})
+
+test_that("normalMix() must generate a NA value when a distribution cannot be calculated successfully", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=4, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:4)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971)
+    gsvaRes["basal", ] <- c(0.4585417, 0.4403292,  0.4506550, 0.4500838)
+
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, 0.44444444, 0.11087233)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:4)    
+    gsvaSD[["basal"]] <- c(0.11, NA, NA, 0.11)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:4)
+
+    ## Fix seed
+    set.seed(121)
+
+    normRes <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=1)
+    
+    captions <- capture.output(result <- suppressWarnings(
+        splitTypeR:::normalMix(geneLists=gList, resultNorm=normRes)))
+    
+    expect_true(is.list(result))
+    expect_equal(names(result), c("classical", "basal"))
+    expect_true(is.na(result$basal))
+    expect_equal(class(result$classical), "mixEM")
 })
