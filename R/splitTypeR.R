@@ -1,15 +1,32 @@
-#' Transcriptomic subtyping using multimodal distributions
+#' Transcriptomic classification using multimodal distributions
 #'
-#' The \code{splitTypeR} package enables the typing of transcriptomic samples 
-#' using multimodal distributions. 
+#' The \code{splitTypeR} package provides an automated statistical 
+#' framework to classify heterogeneous biological samples based on 
+#' gene signature lists, effectively isolating the signature-positive 
+#' samples. This classification method is designed for bulk 
+#' transcriptomic datasets. 
 #' 
-#' Using gene signature list, this package first assigns a Gene Set 
-#' Variation Analysis (GSVA) score to 
-#' each sample. Through a permutation step, it then extract the standard 
-#' deviation for each sample. By combining both the GSVA score and the 
-#' standard deviation, the package can establish a normal distribution for 
-#' each sample. Through an up-scaling step, TODO
-#'
+#' The workflow begins by calculating a Gene Set Variation Analysis (GSVA) 
+#' score for each sample to quantify the relative pathway activity. A 
+#' subsequent permutation step extracts sample-specific standard derivations to
+#' capture the variance. By combining these metrics, the package establishes a 
+#' unique normal distribution for each sample. Through an up-scaling step, 
+#' values are randomly drawn from these individual distributions and pooled 
+#' to construct a comprehensive mixture of normal distributions representing 
+#' the entire sample population. 
+#' 
+#' Within this mixture model, the sub-distribution with 
+#' the lower mean value is designated as the alternative distribution. The 
+#' framework applies a hypothesis testing approach where the null hypothesis 
+#' posits that a sample belongs to this alternative distribution. Samples 
+#' that successfully reject the null hypothesis are assigned to the signature 
+#' classification. Conversely, samples that fail to reject the null hypothesis 
+#' remain unclassified. 
+#' 
+#' By automating the classification workflow, the \code{splitTypeR} package 
+#' provides an objective method to identify patient or sample subgroups in 
+#' heterogeneous transcriptomic datasets.
+#' 
 #' @name splitTypeR-package
 #'
 #' @aliases splitTypeR-package splitTypeR
