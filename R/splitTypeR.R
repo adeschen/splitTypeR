@@ -134,15 +134,21 @@
 #' @usage data(expNormalCountsDemo)
 #'
 #' @keywords datasets
-#'
-#' @details
-#' 
-#' The TODO
-#' 
 #' @examples
 #' 
 #' ## Load the demo normalized expected count matrix
-#' data(expNormalCountsDemo)
+#' data("expNormalCountsDemo")
 #' 
-#'
+#' ## Load the demo signatures
+#' data("signaturesDemo")
+#' 
+#' ## Fix seed for reproducibility
+#' set.seed(221)
+#' 
+#' ## Run classification on the 30 patients using 25 permutations on 70% of 
+#' ## the cohort, and 10 points per patient for the up-scaling step
+#' results <- runSubtyping(geneLists=signaturesDemo, 
+#'     expectedCountsMatrix=expNormalCountsDemo, 
+#'     permRatio=0.70, permNbr=25, upscaleNbr=10)
+#' 
 "expNormalCountsDemo"

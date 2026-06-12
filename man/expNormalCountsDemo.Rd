@@ -22,14 +22,22 @@ basal-like signatures are present (row).
 A small normalized expected gene counts matrix for 30 patients generated to 
 be used as a demonstration set in this package.
 }
-\details{
-The TODO
-}
 \examples{
 
 ## Load the demo normalized expected count matrix
-data(expNormalCountsDemo)
+data("expNormalCountsDemo")
 
+## Load the demo signatures
+data("signaturesDemo")
+
+## Fix seed for reproducibility
+set.seed(221)
+
+## Run classification on the 30 patients using 25 permutations on 70\% of 
+## the cohort, and 10 points per patient for the up-scaling step
+results <- runSubtyping(geneLists=signaturesDemo, 
+    expectedCountsMatrix=expNormalCountsDemo, 
+    permRatio=0.70, permNbr=25, upscaleNbr=10)
 
 }
 \seealso{
