@@ -1,10 +1,10 @@
 ---
-title: "Subtyping using multimodal distributions"
+title: "Transcriptomic classification using mixture of normal distributions"
 output:
   BiocStyle::html_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Subtyping using multimodal distributions}
+  %\VignetteIndexEntry{Transcriptomic classification using mixture of normal distributions}
   %\VignettePackage{splitTypeR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
@@ -31,7 +31,9 @@ redistribute this software.
 If you use this package for a publication, we would ask you to cite the 
 following:
 
-> TODO
+>  Deschênes A, Belleau P (2026). _splitTypeR: Transcriptomic classification  
+  using mixture of normal distributions_. R package version 0.99.0,
+  <https://github.com/adeschen/splitTypeR>.
 
 # Introduction
 
