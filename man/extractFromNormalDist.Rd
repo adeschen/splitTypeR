@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{extractFromNormalDist}
 \alias{extractFromNormalDist}
-\title{Sample a specific number of values from the normal distribution 
+\title{Draw a specific number of values from the normal distribution 
 associated with each sample and each gene signature}
 \usage{
 extractFromNormalDist(geneLists, gsvaRes, gsvaSD, nbValues)
@@ -30,10 +30,11 @@ score (mean) and the permutations (standard deviation). The rows correspond
 to the samples, while the columns correspond to the number of draws.
 }
 \description{
-This function generates a normal distribution for each 
-sample and gene signature, using the actual GSVA score for the mean and 
-the permutation results for the standard deviation. The function 
-returns a user-defined number of values sampled from this distribution.
+This function establishes a sample-specific normal distribution
+for each gene signature. For each sample, the actual GSVA score is used as 
+the mean of the normal distribution. The standard deviation is calculated 
+from the permutation results. The function returns a user-defined number 
+of values sampled from each sample-specific normal distribution.
 }
 \examples{
 

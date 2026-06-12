@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{normalMix}
 \alias{normalMix}
-\title{Extracting the mixtures of two normal distributions for each 
+\title{Construct the mixture of two normal distributions for each 
 signature}
 \usage{
 normalMix(geneLists, resultNorm)
@@ -27,10 +27,9 @@ values. The entry corresponds to the object returned by the
 distributions cannot be calculated successfull, the \'NA\' value is present.
 }
 \description{
-This function calculates the mixtures of two normal 
-distributions for each signature using the sampled values from the normal 
-distribution obtained for each sample (mean=real GSVA score, 
-standard deviation=calculated from the permutation step).
+This function constructs a comprehensive mixture of two normal 
+distributions for each signature using the pooled sampled values from 
+the up-scaling step.
 }
 \examples{
 

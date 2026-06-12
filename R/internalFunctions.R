@@ -102,13 +102,14 @@ permuteGSVA <- function(geneLists, countMatrix, permRatio, permNbr) {
     return(list("PERMUTATIONS"=resultBoot, "SD"=resultSD))
 }
 
-#' @title Sample a specific number of values from the normal distribution 
+#' @title Draw a specific number of values from the normal distribution 
 #' associated with each sample and each gene signature
 #' 
-#' @description This function generates a normal distribution for each 
-#' sample and gene signature, using the actual GSVA score for the mean and 
-#' the permutation results for the standard deviation. The function 
-#' returns a user-defined number of values sampled from this distribution.
+#' @description This function establishes a sample-specific normal distribution
+#' for each gene signature. For each sample, the actual GSVA score is used as 
+#' the mean of the normal distribution. The standard deviation is calculated 
+#' from the permutation results. The function returns a user-defined number 
+#' of values sampled from each sample-specific normal distribution.
 #' 
 #' @param geneLists a \code{list} containing signature gene lists. 
 #'
@@ -193,13 +194,12 @@ extractFromNormalDist <- function(geneLists, gsvaRes, gsvaSD, nbValues) {
     return(resultNorm)
 }
 
-#' @title Extracting the mixtures of two normal distributions for each 
+#' @title Construct the mixture of two normal distributions for each 
 #' signature
 #'
-#' @description This function calculates the mixtures of two normal 
-#' distributions for each signature using the sampled values from the normal 
-#' distribution obtained for each sample (mean=real GSVA score, 
-#' standard deviation=calculated from the permutation step).
+#' @description This function constructs a comprehensive mixture of two normal 
+#' distributions for each signature using the pooled sampled values from 
+#' the up-scaling step. 
 #' 
 #' @param geneLists a \code{list} containing signature gene lists. 
 #'
@@ -280,7 +280,7 @@ normalMix <- function(geneLists, resultNorm) {
     
     success <- vapply(resModel, FUN=function(x){length(x) == 1 && is.na(x)}, 
                         logical(1))
-    ## Warning when not all signatures are successfull
+    ## Warning when not all signatures are successful
     if (any(success)) {
         i <- paste0(names(success)[which(success)], collapse = ", ")
         warning(paste0("! The normal distributions could not be calculated ", 
@@ -291,20 +291,18 @@ normalMix <- function(geneLists, resultNorm) {
     return(resModel)
 }
 
-#' @title Assign the typing for each sample and each gene signature
+#' @title Assign a signature-specific classification to each sample
 #'
-#' @description This function assigns the typing for all samples in each 
-#' signature using the 
-#' two normal distributions obtained for each signature. One normal 
-#' distribution is associated with the samples with the signatures while the 
-#' other normal distribution is called the alternative distribution.
-#' The null hypothesis is that the sample is part of the alternative 
-#' distribution. At this 
-#' step, the sample is considered "unclassified". The null 
-#' hypothesis is rejected when the probability of the sample being part of the 
-#' alternative distribution is inferior to 0.05. The sample is then considered 
-#' to be part of the distribution associated to the signature and is assigned 
-#' to the signature.
+#' @description This function assigns a signature-specific classification 
+#' to each sample using the mixture model of normal distributions. In the 
+#' mixture model, the sub-distribution with the lower mean value is 
+#' designated as the alternative distribution. The function applies a 
+#' hypothesis-testing approach where the null hypothesis posits that a 
+#' sample belongs to this alternative distribution. Samples that successfully 
+#' reject the null hypothesis are assigned to the signature classification. 
+#' By contrast, samples that fail to reject the null hypothesis remain 
+#' unclassified. The null hypothesis is rejected when the probability of 
+#' the samples being part of the alternative distribution is inferior to 0.05. 
 #' 
 #' @param geneLists a \code{list} containing signature gene lists. 
 #'
@@ -319,11 +317,11 @@ normalMix <- function(geneLists, resultNorm) {
 #' `mixtools::normalmixEM` function.
 #' 
 #' @returns a \code{list} containing one entry for each gene signature 
-#' present in the \code{geneLists} object. Each entry contains the typing 
-#' assigned to each sample for the specific signature. When the sample 
-#' is not assigned to the signature, the "unclassified" value is present. 
-#' When the sample is assigned to the signature, the name of the signature 
-#' is present. 
+#' present in the \code{geneLists} object. Each entry contains the 
+#' signature-specific classification assigned to each sample. When the sample 
+#' is not assigned to the signature, the \code{unclassified} value is present. 
+#' Conversely, the name of the signature 
+#' is present when the sample is assigned to the signature. 
 #' 
 #' @examples
 #'

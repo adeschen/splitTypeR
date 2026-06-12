@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{classification}
 \alias{classification}
-\title{Assign the typing for each sample and each gene signature}
+\title{Assign a signature-specific classification to each sample}
 \usage{
 classification(geneLists, gsvaRes, modelMix)
 }
@@ -22,25 +22,23 @@ values. The entry corresponds to the object returned by the
 }
 \value{
 a \code{list} containing one entry for each gene signature 
-present in the \code{geneLists} object. Each entry contains the typing 
-assigned to each sample for the specific signature. When the sample 
-is not assigned to the signature, the "unclassified" value is present. 
-When the sample is assigned to the signature, the name of the signature 
-is present.
+present in the \code{geneLists} object. Each entry contains the 
+signature-specific classification assigned to each sample. When the sample 
+is not assigned to the signature, the \code{unclassified} value is present. 
+Conversely, the name of the signature 
+is present when the sample is assigned to the signature.
 }
 \description{
-This function assigns the typing for all samples in each 
-signature using the 
-two normal distributions obtained for each signature. One normal 
-distribution is associated with the samples with the signatures while the 
-other normal distribution is called the alternative distribution.
-The null hypothesis is that the sample is part of the alternative 
-distribution. At this 
-step, the sample is considered "unclassified". The null 
-hypothesis is rejected when the probability of the sample being part of the 
-alternative distribution is inferior to 0.05. The sample is then considered 
-to be part of the distribution associated to the signature and is assigned 
-to the signature.
+This function assigns a signature-specific classification 
+to each sample using the mixture model of normal distributions. In the 
+mixture model, the sub-distribution with the lower mean value is 
+designated as the alternative distribution. The function applies a 
+hypothesis-testing approach where the null hypothesis posits that a 
+sample belongs to this alternative distribution. Samples that successfully 
+reject the null hypothesis are assigned to the signature classification. 
+By contrast, samples that fail to reject the null hypothesis remain 
+unclassified. The null hypothesis is rejected when the probability of 
+the samples being part of the alternative distribution is inferior to 0.05.
 }
 \examples{
 
