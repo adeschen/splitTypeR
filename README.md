@@ -1,16 +1,21 @@
-Transcriptomic subtyping using multimodal distribution with **splitTypeR**
+Transcriptomic subtyping using mixture of normal distributions with **splitTypeR**
 =====================
 [![R-CMD-check-bioc](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml/badge.svg)](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml)
 [![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
 [![codecov](https://codecov.io/gh/adeschen/splitTypeR/graph/badge.svg?token=6H50IVH4JG)](https://codecov.io/gh/adeschen/splitTypeR)
 
-This *splitTypeR* package ...
+The  **splitTypeR** package provides an automated statistical framework to classify 
+heterogeneous biological samples based on gene signature lists, effectively 
+isolating the signature-positive samples. This classification method is 
+designed for bulk transcriptomic datasets.
 
 ## Citing ##
 
 If you use this package for a publication, we would ask you to cite the following:
 
-> TODO
+>  Deschênes A, Belleau P (2026). _splitTypeR: Transcriptomic subtyping 
+  using  mixture of normal distributions_. R package version 0.99.0,
+  <https://github.com/adeschen/splitTypeR>.
 
 ## Authors ##
 
