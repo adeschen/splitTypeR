@@ -1,6 +1,22 @@
-#' @title TODO
+#' @title Classification of heterogeneous biological samples 
+#' based on gene signature lists
 #'
-#' @description TODO.
+#' @description This function classifies heterogeneous biological samples 
+#' based on gene signature lists, effectively isolating signature-positive 
+#' samples through an automated statistical framework. 
+#' 
+#' The workflow begins by calculating a Gene Set Variation Analysis (GSVA) 
+#' score for each sample to quantify the relative pathway activity. A 
+#' subsequent permutation step extracts sample-specific standard 
+#' deviations to capture the variance. By combining these metrics, a unique 
+#' normal distribution is established for each sample. Through an up-scaling 
+#' step, values are randomly drawn from these individual distributions 
+#' and pooled to construct a comprehensive mixture of normal 
+#' distributions that represent the entire sample population. A 
+#' hypothesis-testing approach in which the null hypothesis posits that a 
+#' sample belongs to this alternative distribution with the lower mean is 
+#' applied. Samples that successfully reject the null hypothesis are 
+#' assigned to the signature classification. 
 #'
 #' @param geneLists a \code{list} containing signature gene lists. At least 
 #' two signature gene lists must be present.
@@ -18,12 +34,12 @@
 #' @param permNbr a \code{integer}, 5 or higher, representing the
 #' number of permutation sampling done. In addition, the number of permutations 
 #' must be equal or inferior to the total number of unique permutations 
-#' with the dataset considering the parameters selected by the user. 
+#' possible with the dataset considering the parameters selected by the user. 
 #' Default: \code{20}.
 #' 
 #' @param upscaleNbr a \code{integer}, 2 or higher, representing the
 #' number of values taken for the normal distribution for each sample to run 
-#' the upscaling step. Default: \code{10}.
+#' the up-scaling step. Default: \code{10}.
 #'
 #' @return \code{TRUE}
 #'
@@ -35,8 +51,12 @@
 #' ## Load demo normalized expected counts for 30 patients
 #' data("expNormalCountsDemo")
 #' 
-#' ## Run subtyping on the 30 patients
-#' runSubtyping(geneLists=signaturesDemo, 
+#' ## Fix seed for reproducibility
+#' set.seed(121)
+#' 
+#' ## Run classification on the 30 patients using 20 permutations on 75% of 
+#' ## the dataset, and 10 points per patient for the up-scaling step
+#' results <- runSubtyping(geneLists=signaturesDemo, 
 #'     expectedCountsMatrix=expNormalCountsDemo, 
 #'     permRatio=0.75, permNbr=20, upscaleNbr=10)
 #'
