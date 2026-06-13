@@ -103,7 +103,9 @@ present in the <code>geneLists</code> object. Each entry contains the
 signature-specific classification assigned to each sample. When the sample
 is not assigned to the signature, the <code>unclassified</code> value is present.
 Conversely, the name of the signature
-is present when the sample is assigned to the signature.</p>
+is present when the sample is assigned to the signature. When the mixture
+of normal distributions has not been calculated successfully, the <code>NA</code>
+value is returned.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -151,22 +153,22 @@ is present when the sample is assigned to the signature.</p>
 <span class="r-in"><span>    modelMix<span class="op">=</span><span class="va">model</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">## Assignment for the classical signature</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">classical</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           GSVA_score assignedType</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  0.1422663 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  0.4274225    classical</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3 -0.7532768 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  0.3479971    classical</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5 -0.6732937 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  0.5735090    classical</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           GSVA_score classification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1  0.1422663   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2  0.4274225      classical</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3 -0.7532768   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4  0.3479971      classical</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5 -0.6732937   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6  0.5735090      classical</span>
 <span class="r-in"><span><span class="co">## Assignment for the basal signature</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">basal</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           GSVA_score assignedType</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1 -0.2385417 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2 -0.4403292 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3  0.8006550        basal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4 -0.4500838 unclassified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  0.8175287        basal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6 -0.6076389 unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           GSVA_score classification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_1 -0.2385417   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_2 -0.4403292   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_3  0.8006550          basal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_4 -0.4500838   unclassified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_5  0.8175287          basal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patient_6 -0.6076389   unclassified</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -182,7 +184,7 @@ is present when the sample is assigned to the signature.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
