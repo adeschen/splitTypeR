@@ -38,7 +38,12 @@
 #'
 #' @seealso
 #' \itemize{
-#'     \item{\code{\link{runSubtyping}} for TODO}
+#'     \item{\link{runSubtyping} for the classification of heterogeneous 
+#'     biological samples based on gene signature lists}
+#'     \item{\link{getGeneSignaturesNames} for the names of the available and 
+#'     ready-to-use gene signature lists}
+#'     \item{\link{getGeneSignatures} for the available and 
+#'     ready-to-use gene signature lists}
 #' }
 #' 
 #' @encoding UTF-8
@@ -78,7 +83,12 @@
 #'
 #' @seealso
 #' \itemize{
-#'     \item{\link{runSubtyping} for TODO}
+#'     \item{\link{runSubtyping} for the classification of heterogeneous 
+#'     biological samples based on gene signature lists}
+#'     \item{\link{getGeneSignaturesNames} for the names of the available and 
+#'     ready-to-use gene signature lists}
+#'     \item{\link{getGeneSignatures} for the available and 
+#'     ready-to-use gene signature lists}
 #' }
 #'
 #' @usage data(signaturesDemo)

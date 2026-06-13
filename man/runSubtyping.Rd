@@ -39,7 +39,9 @@ number of values taken for the normal distribution for each sample to run
 the up-scaling step. Default: \code{10}.}
 }
 \value{
-\code{TRUE}
+a \code{list} of class \code{splitTypeResults} containing the 
+signature-specific classification for each sample as well as all the 
+results generated at each step of the statistical workflow.
 }
 \description{
 This function classifies heterogeneous biological samples 

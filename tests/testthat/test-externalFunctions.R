@@ -3,6 +3,9 @@
 library(splitTypeR)
 library(testthat)
 
+data("expNormalCountsDemo")
+data("signaturesDemo")
+
 #############################################################################
 ### Tests runSubtyping() results
 #############################################################################
@@ -293,6 +296,60 @@ test_that("runSubtyping() must return an error when upscaleNbr is 1", {
     expect_error(runSubtyping(geneLists=gList, 
         expectedCountsMatrix=exCounts, permRatio=0.8, permNbr=5, 
         upscaleNbr=1), regexp=message)
+})
+
+test_that("runSubtyping() must return expected results", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+    
+    ## Fix seed
+    set.seed(12221)
+    
+    res <- runSubtyping(geneLists=gList, 
+                    expectedCountsMatrix=expNormalCountsDemo, permNbr=6, 
+                    permRatio=0.75, upscaleNbr=10)
+    
+    expect_equal(class(res), "splitTypeResults")
+    expect_true(is.list(res))
+    expect_equal(names(res), c("GSVA_RESULTS", "PERMUTATIONS", "SD", 
+                "UPSCALING", "MODEL", "CLASSIFICATION"))
+    expect_equal(rownames(res$GSVA_RESULTS), c("classical", "basal"))
+    expect_equal(colnames(res$GSVA_RESULTS), paste0("Patient_", 1:30))
+    expect_equal(unname(res$GSVA_RESULTS[1, 2:3]), c(0.4274225, -0.7532768), 
+                    tolerance=1e-5)
+    expect_equal(unname(res$GSVA_RESULTS[1, 12:14]), c(-0.2002262, 0.2448591, 
+                    0.3249211), tolerance=1e-5)
+    expect_equal(unname(res$GSVA_RESULTS[2, 24:27]), c(-0.4255245, 0.9387755, 
+                    0.6288557, -0.7916667), tolerance=1e-5)
+    expect_equal(unname(res$GSVA_RESULTS[2, 5:7]), c(0.8175287, -0.6076389, 
+                    0.1209839), tolerance=1e-5)
+    
+    expect_equal(names(res$PERMUTATIONS), c("classical", "basal"))
+    expect_true(is.matrix(res$PERMUTATIONS$basal))
+    expect_true(is.matrix(res$PERMUTATIONS$classical))
+    expect_equal(res$PERMUTATIONS$basal[4, ], c(-0.2769297, -0.5514667, 
+            NA, -0.1722816, NA, NA), tolerance=1e-5)
+    expect_equal(res$PERMUTATIONS$basal[23, ], c(NA, -0.6540043, -0.5772831, 
+            -0.3796117, -0.4266846, -0.7001045), tolerance=1e-5)
+    expect_equal(res$PERMUTATIONS$classical[14, ], c(0.2802591, NA, NA, 
+            0.2105685, 0.2259964, NA), tolerance=1e-5)
+    expect_equal(res$PERMUTATIONS$classical[25, ], c(NA, -0.8864572, 
+            -0.9043328,NA, -0.8846154, -0.9041733), tolerance=1e-5)
+    ## TODO more validations
+    expect_equal(names(res$CLASSIFICATION), c("classical", "basal"))
+    expect_equal(colnames(res$CLASSIFICATION$basal), c("GSVA_score", 
+                                                        "classification"))
+    expect_equal(colnames(res$CLASSIFICATION$classical), c("GSVA_score", 
+                                                       "classification"))
+    expect_equal(rownames(res$CLASSIFICATION$basal), paste0("Patient_", 1:30))
+    expect_equal(rownames(res$CLASSIFICATION$classical), 
+                 paste0("Patient_", 1:30))
+    
 })
 
 #############################################################################

@@ -321,7 +321,9 @@ normalMix <- function(geneLists, resultNorm) {
 #' signature-specific classification assigned to each sample. When the sample 
 #' is not assigned to the signature, the \code{unclassified} value is present. 
 #' Conversely, the name of the signature 
-#' is present when the sample is assigned to the signature. 
+#' is present when the sample is assigned to the signature. When the mixture 
+#' of normal distributions has not been calculated successfully, the \code{NA}
+#' value is returned.
 #' 
 #' @examples
 #'
@@ -372,19 +374,22 @@ normalMix <- function(geneLists, resultNorm) {
 classification <- function(geneLists, gsvaRes, modelMix) {
 
     ## Storage for the results of the mixed model
-    resModel <- list()
+    result <- list()
     for (i in names(geneLists)) {
         model <- modelMix[[i]]
-        
-        posMin <- which.min(model$mu)
-        q95Min <- qnorm(p=0.95, mean=model$mu[posMin], sd=model$sigma[posMin], 
-                            lower.tail=TRUE)
-        resultTable <- as.data.frame(gsvaRes[i,])
-        colnames(resultTable) <- c("GSVA_score")
-        resultTable$assignedType <- "unclassified"
-        resultTable$assignedType[resultTable$GSVA_score > q95Min] <- i
-        resModel[[i]] <- resultTable
+        if (!all(is.na(model))) {
+            posMin <- which.min(model$mu)
+            q95Min <- qnorm(p=0.95, mean=model$mu[posMin], 
+                        sd=model$sigma[posMin], lower.tail=TRUE)
+            resultTable <- as.data.frame(gsvaRes[i,])
+            colnames(resultTable) <- c("GSVA_score")
+            resultTable$classification <- "unclassified"
+            resultTable$classification[resultTable$GSVA_score > q95Min] <- i
+            result[[i]] <- resultTable
+        } else {
+            result[[i]] <- NA
+        }
     }
     
-    return(resModel)
+    return(result)
 }

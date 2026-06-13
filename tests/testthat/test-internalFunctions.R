@@ -293,3 +293,114 @@ test_that("normalMix() must generate a NA value when a distribution cannot be ca
     expect_true(is.na(result$basal))
     expect_equal(class(result$classical), "mixEM")
 })
+
+#############################################################################
+### Tests classification() results
+#############################################################################
+
+test_that("classification() must return expected results", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+    
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=12, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:12)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971, 
+        -0.6732937,  0.5735090, -0.1247647, -0.1261704, -0.1287452,  0.4370278, 
+        0.5913501, -0.2002262)
+    gsvaRes["basal", ] <- c(-0.2385417, -0.4403292,  0.8006550, -0.4500838,  
+        0.8175287, -0.6076389,  0.1209839, 0.2276770, 0.1643817, -0.4448441, 
+        -0.6485138, 0.1993417)
+    
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, NA, 0.11087233, 
+        0.03055436, 0.03655507, 0.08054100, 0.07157925, 0.10636982,
+        0.08411299, 0.07672066, 0.05807137)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:12)    
+    gsvaSD[["basal"]] <- c(0.09652651, 0.07183212, NA, 0.11841886, 0.02106352, 
+        0.01166254, 0.11538878, 0.06553981, 0.13836817, 0.09841366, 0.06659764, 
+        0.11975838)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:12)
+    
+    ## Fix seed
+    set.seed(121)
+    
+    normRes <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=10)
+    
+    modelRes <- splitTypeR:::normalMix(geneLists=gList, resultNorm=normRes)
+    
+    results <- splitTypeR:::classification(geneLists=gList, gsvaRes=gsvaRes, 
+                                           modelMix=modelRes)
+    
+    expect_true(is.list(results))
+    expect_equal(names(results), c("classical", "basal"))
+    expect_equal(class(results$classical), "data.frame")
+    expect_equal(class(results$basal), "data.frame")
+    expect_equal(rownames(results$basal), paste0("Patient_", 1:12))
+    expect_equal(rownames(results$classical), paste0("Patient_", 1:12))
+    expect_equal(colnames(results$basal), c("GSVA_score", "classification"))
+    expect_equal(colnames(results$classical), c("GSVA_score", "classification"))
+    expect_equal(results$classical$classification, c("unclassified", 
+        "classical", "unclassified", "classical", "unclassified", "classical", 
+        "unclassified", "unclassified", "unclassified", "classical", 
+        "classical", "unclassified"))
+    expect_equal(results$basal$classification, c("basal", 
+        "unclassified", "basal", "unclassified", "basal", "unclassified", 
+        "basal", "basal", "basal", "unclassified", "unclassified", "basal"))
+    expect_equal(results$basal$GSVA_score, unname(gsvaRes["basal", ]), 
+                    tolerance=1e-5)
+    expect_equal(results$classical$GSVA_score, unname(gsvaRes["classical", ]), 
+                    tolerance=1e-5)
+})
+
+test_that("classification() must return expected results when mixture model is not present", {
+    
+    ## Basal and classical gene list signatures
+    gList <- list()
+    gList[["classical"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_classical_signature`
+    gList[["basal"]] <- 
+        signaturesDemo$`2018_Tiriac_PDAC_PDO_basal-like_signature`
+    
+    gsvaRes<- matrix(data=NA, nrow=2, ncol=4, byrow=FALSE)
+    colnames(gsvaRes) <- paste0("Patient_", 1:4)
+    rownames(gsvaRes) <- c("classical", "basal")
+    gsvaRes["classical", ] <- c(0.1422663,  0.4274225, -0.7532768,  0.3479971)
+    gsvaRes["basal", ] <- c(0.4585417, 0.4403292,  0.4506550, 0.4500838)
+    
+    gsvaSD <- list()
+    gsvaSD[["classical"]] <- c(0.10273488, 0.03622632, 0.44444444, 0.11087233)
+    names(gsvaSD[["classical"]]) <- paste0("Patient_", 1:4)    
+    gsvaSD[["basal"]] <- c(0.11, NA, NA, 0.11)
+    names(gsvaSD[["basal"]]) <- paste0("Patient_", 1:4)
+    
+    ## Fix seed
+    set.seed(1221)
+    
+    normRes <- splitTypeR:::extractFromNormalDist(geneLists=gList, 
+        gsvaRes=gsvaRes, gsvaSD=gsvaSD, nbValues=1)
+    
+    captions <- capture.output(modelRes <- suppressWarnings(
+        splitTypeR:::normalMix(geneLists=gList, resultNorm=normRes)))
+    
+    results <- splitTypeR:::classification(geneLists=gList, gsvaRes=gsvaRes, 
+                                           modelMix=modelRes)
+    
+    expect_true(is.list(results))
+    expect_equal(names(results), c("classical", "basal"))
+    expect_equal(class(results$classical), "data.frame")
+    expect_equal(class(results$basal), "logical")
+    expect_true(is.na(results$basal))
+    expect_equal(rownames(results$classical), paste0("Patient_", 1:4))
+    expect_equal(colnames(results$classical), c("GSVA_score", "classification"))
+    expect_equal(results$classical$classification, c("unclassified", 
+        "classical", "unclassified", "unclassified"))
+    expect_equal(results$classical$GSVA_score, unname(gsvaRes["classical", ]), 
+                 tolerance=1e-5)
+})

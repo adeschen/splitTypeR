@@ -26,7 +26,9 @@ present in the \code{geneLists} object. Each entry contains the
 signature-specific classification assigned to each sample. When the sample 
 is not assigned to the signature, the \code{unclassified} value is present. 
 Conversely, the name of the signature 
-is present when the sample is assigned to the signature.
+is present when the sample is assigned to the signature. When the mixture 
+of normal distributions has not been calculated successfully, the \code{NA}
+value is returned.
 }
 \description{
 This function assigns a signature-specific classification 

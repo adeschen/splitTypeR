@@ -41,7 +41,9 @@
 #' number of values taken for the normal distribution for each sample to run 
 #' the up-scaling step. Default: \code{10}.
 #'
-#' @return \code{TRUE}
+#' @return a \code{list} of class \code{splitTypeResults} containing the 
+#' signature-specific classification for each sample as well as all the 
+#' results generated at each step of the statistical workflow.
 #'
 #' @examples
 #'
@@ -85,26 +87,37 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     ## Subset matrix to retained genes
     retained <- expectedCountsMatrix[genes, ]
 
+    ## Object will all results
+    finalSaveData <- list()
+    
+    ## GSVA on the real dataset
     gsvaParameter <- gsvaParam(exprData=as.matrix(retained),
         geneSets=geneLists)
-
     resGSVA <- gsva(param=gsvaParameter, verbose=FALSE)
-
-    finalSaveData <- list()
     finalSaveData[["GSVA_RESULTS"]] <- resGSVA
 
+    ## Permutation step
     permResult <- permuteGSVA(geneLists=geneLists, countMatrix=retained, 
         permRatio=permRatio, permNbr=permNbr)
-    
     finalSaveData[["PERMUTATIONS"]] <- permResult$PERMUTATIONS
     finalSaveData[["SD"]] <- permResult$SD
 
+    ## Up-scaling step
     normResult <- extractFromNormalDist(geneLists=geneLists, gsvaRes=resGSVA, 
         gsvaSD=permResult$SD, nbValues=upscaleNbr)
+    finalSaveData[["UPSCALING"]] <- normResult
 
+    ## Mixture of normal distributions step
     resMix <- normalMix(geneLists=geneLists, resultNorm=normResult)
+    finalSaveData[["MODEL"]] <- resMix
+    
+    ## Classification step
     resClass <- classification(geneLists=geneLists, gsvaRes=resGSVA, 
             modelMix=resMix)
+    finalSaveData[["CLASSIFICATION"]] <- resClass
+    
+    ## The returned list is of class "splitTypeResults"
+    class(finalSaveData) <- "splitTypeResults"
     
     return(finalSaveData)
 }
