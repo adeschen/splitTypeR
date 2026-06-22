@@ -61,12 +61,29 @@ the Bioconductor Genefu package for breast cancer molecular
 subtyping [@Gendoo2016], and the CMScaller package for subtyping of 
 colorectal cancer [@Eide2017].
 
+In the absence of dedicated software, unsupervised clustering with a 
+heatmap visualization to classify 
+transcriptomic samples with a gene signature is often employed. This method 
+is relatively simple and offers an instant visual support. However, this method
+has a few drawbacks:
 
-The `r Rpackage("splitTypeR")` can ...
+* _Lack of statistical metrics_: It doesn't 
+provide a statistical probability score for a sample's class assignment; it 
+mainly acts as a visual summary. 
+* _Metric sensitivity_: Changing the clustering metric (ex: from "Euclidean" to 
+"Pearson" distance) can alters the resulting clusters. 
+* _Outlier distortion_: Extreme outliers can squash the color scale, and 
+artificially create skewed subsets.
+
+The __`r Rpackage("splitTypeR")`__ package resolves these issues by providing 
+an automated statistical framework to classify heterogeneous biological 
+samples based on gene signature lists, effectively isolating the 
+signature-positive samples. 
+This classification method is designed for bulk transcriptomic datasets.
 
 <br />
 
-# Loading `r Rpackage("splitTypeR")` package
+# Loading the `r Rpackage("splitTypeR")` package
 
 As with any R package, the `r Rpackage("splitTypeR")` package should first be 
 loaded with the following command:
