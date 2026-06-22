@@ -126,11 +126,32 @@ cancers, machine learning models and dedicated software are available
 such as the Bioconductor Genefu package for breast cancer molecular
 subtyping <span class="citation">(Gendoo et al. 2016)</span>, and the
 CMScaller package for subtyping of colorectal cancer <span class="citation">(Eide et al. 2017)</span>.</p>
-<p>The <em>splitTypeR</em> can …</p>
+<p>In the absence of dedicated software, unsupervised clustering with a
+heatmap visualization to classify transcriptomic samples with a gene
+signature is often employed. This method is relatively simple and offers
+an instant visual support. However, this method has a few drawbacks:</p>
+<ul>
+<li>
+<em>Lack of statistical metrics</em>: It doesn’t provide a
+statistical probability score for a sample’s class assignment; it mainly
+acts as a visual summary.</li>
+<li>
+<em>Metric sensitivity</em>: Changing the clustering metric (ex:
+from “Euclidean” to “Pearson” distance) can alters the resulting
+clusters.</li>
+<li>
+<em>Outlier distortion</em>: Extreme outliers can squash the color
+scale, and artificially create skewed subsets.</li>
+</ul>
+<p>The <strong><em>splitTypeR</em></strong> package resolves these
+issues by providing an automated statistical framework to classify
+heterogeneous biological samples based on gene signature lists,
+effectively isolating the signature-positive samples. This
+classification method is designed for bulk transcriptomic datasets.</p>
 <p><br></p>
 </div>
 <div class="section level2">
-<h2 id="loading-splittyper-package">Loading <em>splitTypeR</em> package<a class="anchor" aria-label="anchor" href="#loading-splittyper-package"></a>
+<h2 id="loading-the-splittyper-package">Loading the <em>splitTypeR</em> package<a class="anchor" aria-label="anchor" href="#loading-the-splittyper-package"></a>
 </h2>
 <p>As with any R package, the <em>splitTypeR</em> package should first
 be loaded with the following command:</p>
@@ -147,7 +168,7 @@ be loaded with the following command:</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-06-19 r90183)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-06-21 r90185)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
