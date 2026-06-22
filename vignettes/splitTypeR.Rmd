@@ -3,6 +3,7 @@ title: "Transcriptomic classification using mixture of normal distributions"
 output:
   BiocStyle::html_document:
     toc: true
+bibliography: splitTypeR.bibtex
 vignette: >
   %\VignetteIndexEntry{Transcriptomic classification using mixture of normal distributions}
   %\VignettePackage{splitTypeR}
@@ -35,10 +36,35 @@ following:
   using mixture of normal distributions_. R package version 0.99.0,
   <https://github.com/adeschen/splitTypeR>.
 
+<br />
+
 # Introduction
 
-`r Rpackage("splitTypeR")` can ...
+Cancer classification, using RNA sequencing, is now part of modern precision 
+oncology. For some cancers, RNA classification provides deep insights into 
+tumor aggressiveness and growth rates. For example, breast cancer subtypes 
+(like Luminal-A, Luminal-B, HER2-enriched, or Basal-like) help forecast 
+patient outcomes [@Cascianelli2020]. The Luminal-A is the most 
+common molecular subtype of breast cancer, making up to 60% of all breast 
+cancer cases. It also is associated with good prognosis. While 
+Luminal-B tumors have a more aggressive phenotype and a worse 
+prognosis [@Yersal2014].
 
+Once gene signatures for RNA subtyping become widly accepted by major 
+oncology organizations, they start to classify cancer subtypes, predict 
+patient survival, and guide treatment.
+
+From a research aspect, the classification of new samples using their 
+transcriptional profiles can be done using different tools. For some cancers, 
+machine learning models and dedicated software are available such as 
+the Bioconductor Genefu package for breast cancer molecular 
+subtyping [@Gendoo2016], and the CMScaller package for subtyping of 
+colorectal cancer [@Eide2017].
+
+
+The `r Rpackage("splitTypeR")` can ...
+
+<br />
 
 # Loading `r Rpackage("splitTypeR")` package
 
