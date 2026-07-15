@@ -13,10 +13,13 @@ vignette: >
 
 ```{r style, echo = FALSE, results = 'asis', message = FALSE}
 BiocStyle::markdown()
-library(knitr)
+suppressPackageStartupMessages({
+  library(knitr)
+})
 ```
 
-<br>
+<br />
+
 **Package**: `r Rpackage("splitTypeR")`<br />
 **Authors**: `r packageDescription("splitTypeR")[["Author"]]`<br />
 **Version**: `r packageDescription("splitTypeR")$Version`<br />
@@ -48,11 +51,9 @@ patient outcomes [@Cascianelli2020]. The Luminal-A is the most
 common molecular subtype of breast cancer, making up to 60% of all breast 
 cancer cases. It also is associated with good prognosis. While 
 Luminal-B tumors have a more aggressive phenotype and a worse 
-prognosis [@Yersal2014].
-
-Once gene signatures for RNA subtyping become widly accepted by major 
-oncology organizations, they start to classify cancer subtypes, predict 
-patient survival, and guide treatment.
+prognosis [@Yersal2014]. Once gene signatures for RNA subtyping become 
+widly accepted by major oncology organizations, they start to classify cancer 
+subtypes, predict patient survival, and guide treatment.
 
 From a research aspect, the classification of new samples using their 
 transcriptional profiles can be done using different tools. For some cancers, 
@@ -62,10 +63,9 @@ subtyping [@Gendoo2016], and the CMScaller package for subtyping of
 colorectal cancer [@Eide2017].
 
 In the absence of dedicated software, unsupervised clustering with a 
-heatmap visualization to classify 
-transcriptomic samples with a gene signature is often employed. This method 
-is relatively simple and offers an instant visual support. However, this method
-has a few drawbacks:
+heatmap visualization to classify transcriptomic samples with a 
+gene signature is often employed. This method is relatively simple and 
+offers an instant visual support. However, this method has a few drawbacks:
 
 * _Lack of statistical metrics_: It doesn't 
 provide a statistical probability score for a sample's class assignment; it 
@@ -79,11 +79,12 @@ The __`r Rpackage("splitTypeR")`__ package resolves these issues by providing
 an automated statistical framework to classify heterogeneous biological 
 samples based on gene signature lists, effectively isolating the 
 signature-positive samples. 
+
 This classification method is designed for bulk transcriptomic datasets.
 
 <br />
 
-# Loading the `r Rpackage("splitTypeR")` package
+# Installation
 
 As with any R package, the `r Rpackage("splitTypeR")` package should first be 
 loaded with the following command:
@@ -92,10 +93,26 @@ loaded with the following command:
 library(splitTypeR)
 ```
 
+<br />
 
-# Description
+# Method
+
+From a specific gene set, gene set enrichments are first calculated through the 
+samples of a expression dataset with the Bioconductor GSVA 
+package [@Hanzelmann2013].
+
+Through an upscaling step that using a non-parametric permutation method, 
+synthetic values are calculated to enable the calculation of a normal 
+distribution using a mixture model approach implemented in the 
+mixtools package [@JSSv032i06].   
+
+# General workflow
 
 TODO
+
+The 
+
+<br />
 
 # Session info
 
