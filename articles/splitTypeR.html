@@ -87,9 +87,10 @@ document.addEventListener("DOMContentLoaded", function() {
     if (links[i].hostname != window.location.hostname)
       links[i].target = '_blank';
 });
-</script><p><br><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
+</script><p><br></p>
+<p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-06-22<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-07-15<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -116,10 +117,10 @@ Basal-like) help forecast patient outcomes <span class="citation">(Cascianelli e
 most common molecular subtype of breast cancer, making up to 60% of all
 breast cancer cases. It also is associated with good prognosis. While
 Luminal-B tumors have a more aggressive phenotype and a worse prognosis
-<span class="citation">(Yersal 2014)</span>.</p>
-<p>Once gene signatures for RNA subtyping become widly accepted by major
-oncology organizations, they start to classify cancer subtypes, predict
-patient survival, and guide treatment.</p>
+<span class="citation">(Yersal 2014)</span>. Once gene signatures for
+RNA subtyping become widly accepted by major oncology organizations,
+they start to classify cancer subtypes, predict patient survival, and
+guide treatment.</p>
 <p>From a research aspect, the classification of new samples using their
 transcriptional profiles can be done using different tools. For some
 cancers, machine learning models and dedicated software are available
@@ -146,22 +147,38 @@ scale, and artificially create skewed subsets.</li>
 <p>The <strong><em>splitTypeR</em></strong> package resolves these
 issues by providing an automated statistical framework to classify
 heterogeneous biological samples based on gene signature lists,
-effectively isolating the signature-positive samples. This
-classification method is designed for bulk transcriptomic datasets.</p>
+effectively isolating the signature-positive samples.</p>
+<p>This classification method is designed for bulk transcriptomic
+datasets.</p>
 <p><br></p>
 </div>
 <div class="section level2">
-<h2 id="loading-the-splittyper-package">Loading the <em>splitTypeR</em> package<a class="anchor" aria-label="anchor" href="#loading-the-splittyper-package"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>As with any R package, the <em>splitTypeR</em> package should first
 be loaded with the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adeschen/splitTypeR" class="external-link">splitTypeR</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
-<h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+<h2 id="method">Method<a class="anchor" aria-label="anchor" href="#method"></a>
+</h2>
+<p>From a specific gene set, gene set enrichments are first calculated
+through the samples of a expression dataset with the Bioconductor GSVA
+package <span class="citation">(Hänzelmann et al. 2013)</span>.</p>
+<p>Through an upscaling step that using a non-parametric permutation
+method, synthetic values are calculated to enable the calculation of a
+normal distribution using a mixture model approach implemented in the
+mixtools package <span class="citation">(Benaglia et al.
+2009)</span>.</p>
+</div>
+<div class="section level2">
+<h2 id="general-workflow">General workflow<a class="anchor" aria-label="anchor" href="#general-workflow"></a>
 </h2>
 <p>TODO</p>
+<p>The</p>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
@@ -195,9 +212,9 @@ which this document was compiled:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
 <span><span class="co">##   [1] DBI_1.3.0                   GSEABase_1.75.0            </span></span>
-<span><span class="co">##   [3] rlang_1.2.0                 magrittr_2.0.5             </span></span>
+<span><span class="co">##   [3] rlang_1.3.0                 magrittr_2.0.5             </span></span>
 <span><span class="co">##   [5] otel_0.2.0                  matrixStats_1.5.0          </span></span>
-<span><span class="co">##   [7] compiler_4.7.0              RSQLite_3.53.2             </span></span>
+<span><span class="co">##   [7] compiler_4.7.0              RSQLite_3.53.3             </span></span>
 <span><span class="co">##   [9] DelayedMatrixStats_1.35.0   png_0.1-9                  </span></span>
 <span><span class="co">##  [11] systemfonts_1.3.2           vctrs_0.7.3                </span></span>
 <span><span class="co">##  [13] pkgconfig_2.0.3             SpatialExperiment_1.23.0   </span></span>
@@ -206,29 +223,29 @@ which this document was compiled:</p>
 <span><span class="co">##  [19] XVector_0.53.0              rmarkdown_2.31             </span></span>
 <span><span class="co">##  [21] graph_1.91.0                ragg_1.5.2                 </span></span>
 <span><span class="co">##  [23] purrr_1.2.2                 bit_4.6.0                  </span></span>
-<span><span class="co">##  [25] xfun_0.59                   cachem_1.1.0               </span></span>
+<span><span class="co">##  [25] xfun_0.60                   cachem_1.1.0               </span></span>
 <span><span class="co">##  [27] beachmat_2.29.0             jsonlite_2.0.0             </span></span>
 <span><span class="co">##  [29] blob_1.3.0                  rhdf5filters_1.25.0        </span></span>
 <span><span class="co">##  [31] DelayedArray_0.39.3         Rhdf5lib_2.1.0             </span></span>
 <span><span class="co">##  [33] BiocParallel_1.47.0         irlba_2.3.7                </span></span>
 <span><span class="co">##  [35] parallel_4.7.0              R6_2.6.1                   </span></span>
 <span><span class="co">##  [37] bslib_0.11.0                RColorBrewer_1.1-3         </span></span>
-<span><span class="co">##  [39] GenomicRanges_1.65.0        jquerylib_0.1.4            </span></span>
-<span><span class="co">##  [41] Rcpp_1.1.1-1.1              Seqinfo_1.3.0              </span></span>
+<span><span class="co">##  [39] GenomicRanges_1.65.1        jquerylib_0.1.4            </span></span>
+<span><span class="co">##  [41] Rcpp_1.1.2                  Seqinfo_1.3.0              </span></span>
 <span><span class="co">##  [43] bookdown_0.47               SummarizedExperiment_1.43.0</span></span>
-<span><span class="co">##  [45] GSVA_2.7.4                  mixtools_2.0.0.1           </span></span>
+<span><span class="co">##  [45] GSVA_2.7.8                  mixtools_2.0.0.1           </span></span>
 <span><span class="co">##  [47] IRanges_2.47.2              splines_4.7.0              </span></span>
 <span><span class="co">##  [49] Matrix_1.7-5                tidyselect_1.2.1           </span></span>
 <span><span class="co">##  [51] abind_1.4-8                 yaml_2.3.12                </span></span>
 <span><span class="co">##  [53] codetools_0.2-20            lattice_0.22-9             </span></span>
 <span><span class="co">##  [55] tibble_3.3.1                Biobase_2.73.1             </span></span>
 <span><span class="co">##  [57] KEGGREST_1.53.1             S7_0.2.2                   </span></span>
-<span><span class="co">##  [59] evaluate_1.0.5              survival_3.8-6             </span></span>
+<span><span class="co">##  [59] evaluate_1.0.5              survival_3.8-9             </span></span>
 <span><span class="co">##  [61] desc_1.4.3                  kernlab_0.9-33             </span></span>
-<span><span class="co">##  [63] Biostrings_2.81.3           pillar_1.11.1              </span></span>
+<span><span class="co">##  [63] Biostrings_2.81.5           pillar_1.11.1              </span></span>
 <span><span class="co">##  [65] BiocManager_1.30.27         MatrixGenerics_1.25.0      </span></span>
 <span><span class="co">##  [67] stats4_4.7.0                plotly_4.12.0              </span></span>
-<span><span class="co">##  [69] generics_0.1.4              S4Vectors_0.51.3           </span></span>
+<span><span class="co">##  [69] generics_0.1.4              S4Vectors_0.51.5           </span></span>
 <span><span class="co">##  [71] ggplot2_4.0.3               sparseMatrixStats_1.25.0   </span></span>
 <span><span class="co">##  [73] scales_1.4.0                xtable_1.8-8               </span></span>
 <span><span class="co">##  [75] glue_1.8.1                  lazyeval_0.2.3             </span></span>
@@ -244,7 +261,7 @@ which this document was compiled:</p>
 <span><span class="co">##  [95] viridisLite_0.4.3           S4Arrays_1.13.0            </span></span>
 <span><span class="co">##  [97] dplyr_1.2.1                 gtable_0.3.6               </span></span>
 <span><span class="co">##  [99] sass_0.4.10                 digest_0.6.39              </span></span>
-<span><span class="co">## [101] BiocGenerics_0.59.7         SparseArray_1.13.2         </span></span>
+<span><span class="co">## [101] BiocGenerics_0.59.10        SparseArray_1.13.2         </span></span>
 <span><span class="co">## [103] rjson_0.2.23                htmlwidgets_1.6.4          </span></span>
 <span><span class="co">## [105] farver_2.1.2                memoise_2.0.1              </span></span>
 <span><span class="co">## [107] htmltools_0.5.9             pkgdown_2.2.0              </span></span>
@@ -252,6 +269,12 @@ which this document was compiled:</p>
 <span><span class="co">## [111] httr_1.4.8                  MASS_7.3-65                </span></span>
 <span><span class="co">## [113] bit64_4.8.2</span></span></code></pre>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-JSSv032i06" class="csl-entry">
+Benaglia, Tatiana, Didier Chauveau, David R. Hunter, and Derek S. Young.
+2009. <span>“Mixtools: An r Package for Analyzing Mixture
+Models.”</span> <em>Journal of Statistical Software</em> 32 (6): 1–29.
+<a href="https://doi.org/10.18637/jss.v032.i06" class="external-link">https://doi.org/10.18637/jss.v032.i06</a>.
+</div>
 <div id="ref-Cascianelli2020" class="csl-entry">
 Cascianelli, Silvia, Ivan Molineris, Claudio Isella, Marco Masseroli,
 and Enzo Medico. 2020. <span>“Machine Learning for RNA Sequencing-Based
@@ -269,6 +292,11 @@ Gendoo, Deena M. A., Natchar Ratanasirigulchai, Markus S. Schröder, et
 al. 2016. <span>“Genefu: An r/Bioconductor Package for Computation of
 Gene Expression-Based Signatures in Breast Cancer.”</span>
 <em>Bioinformatics</em> 32 (April): 1097–99. <a href="https://doi.org/10.1093/bioinformatics/btv693" class="external-link">https://doi.org/10.1093/bioinformatics/btv693</a>.
+</div>
+<div id="ref-Hanzelmann2013" class="csl-entry">
+Hänzelmann, S., R Castelo, and J. Guinney. 2013. <span>“GSVA: Gene Set
+Variation Analysis for Microarray and RNA-Seq Data.”</span> <em>BMC
+Bioinformatics</em> 14: 7. <a href="https://doi.org/10.1186/1471-2105-14-7" class="external-link">https://doi.org/10.1186/1471-2105-14-7</a>.
 </div>
 <div id="ref-Yersal2014" class="csl-entry">
 Yersal, Ozlem. 2014. <span>“Biological Subtypes of Breast Cancer:
