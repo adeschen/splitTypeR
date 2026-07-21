@@ -46,7 +46,7 @@
 #' plotDensityFromUpscaling(results, 
 #'     signature="2018_Tiriac_PDAC_PDO_classical_signature")
 #'
-#' @importFrom graphics hist legend
+#' @importFrom graphics hist legend par
 #' @importFrom stats rnorm density
 #' @export
 plotDensityWithUpscalingSamples <- function(x, signature, 
