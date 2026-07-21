@@ -1,5 +1,5 @@
-#' @title  Graph the alternative and signature distributions obtained for a 
-#' specific signature
+#' @title  Graph both the alternative and the signature distributions 
+#' obtained for a specific signature
 #'
 #' @description TODO
 #' 
@@ -24,9 +24,10 @@
 #' color of the histogram filling for the sample distribution. 
 #' Default: \code{"azure3"}.
 #'
+#' @return TODO
+#' 
 #' @examples
 #'
-#' 
 #' ## Loading signatures
 #' data("signaturesDemo")
 #'
@@ -43,11 +44,13 @@
 #'     permRatio=0.75, permNbr=20, upscaleNbr=5)
 #'     
 #' ## Graph result
-#' plotDensityFromUpscaling(results, 
+#' plotDensityWithUpscalingSamples(x=results, 
 #'     signature="2018_Tiriac_PDAC_PDO_classical_signature")
 #'
+#' @author Astrid Deschênes
 #' @importFrom graphics hist legend par
 #' @importFrom stats rnorm density
+#' @encoding UTF-8
 #' @export
 plotDensityWithUpscalingSamples <- function(x, signature, 
     colorSignature="black", colorAlternative="#A9A9AD", 
