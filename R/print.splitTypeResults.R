@@ -6,11 +6,8 @@
 #'
 #' @description Print a \code{splitTypeResults} object
 #'
-#' @param x the output object from \code{mergePermutationAndObservation}
-#' function, \code{runPermutationUsingRDSFile} function (when
-#' \code{runObservationAnalysis} = \code{TRUE} and
-#' \code{runPermutationUsingMethylKitInfo} function (when
-#' \code{runObservationAnalysis} = \code{TRUE} to be printed
+#' @param x the output object from \code{runSubtyping}
+#' function to be printed
 #'
 #' @param \ldots arguments passed to or from other methods
 #'

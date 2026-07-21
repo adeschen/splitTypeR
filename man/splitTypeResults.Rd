@@ -7,11 +7,8 @@
 \method{print}{splitTypeResults}(x, ...)
 }
 \arguments{
-\item{x}{the output object from \code{mergePermutationAndObservation}
-function, \code{runPermutationUsingRDSFile} function (when
-\code{runObservationAnalysis} = \code{TRUE} and
-\code{runPermutationUsingMethylKitInfo} function (when
-\code{runObservationAnalysis} = \code{TRUE} to be printed}
+\item{x}{the output object from \code{runSubtyping}
+function to be printed}
 
 \item{\ldots}{arguments passed to or from other methods}
 }
