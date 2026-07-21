@@ -106,6 +106,8 @@ synthetic values are calculated to enable the calculation of a normal
 distribution using a mixture model approach implemented in the 
 mixtools package [@JSSv032i06].   
 
+
+
 # General workflow
 
 TODO
