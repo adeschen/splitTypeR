@@ -73,8 +73,9 @@ basal-like signatures are present (row).</p>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index">
-<ul><li><p><a href="runSubtyping.html">runSubtyping</a> for the classification of heterogeneous
-    biological samples based on gene signature lists</p></li>
+<ul><li><p><a href="runSubtypingBimodal.html">runSubtypingBimodal</a> for the classification of heterogeneous
+    biological samples based on gene signature lists using a mixture of
+    two normal distributions</p></li>
 <li><p><a href="getGeneSignaturesNames.html">getGeneSignaturesNames</a> for the names of the available and
     ready-to-use gene signature lists</p></li>
 <li><p><a href="getGeneSignatures.html">getGeneSignatures</a> for the available and
@@ -96,7 +97,7 @@ basal-like signatures are present (row).</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Run classification on the 30 patients using 25 permutations on 70% of </span></span></span>
 <span class="r-in"><span><span class="co">## the cohort, and 10 points per patient for the up-scaling step</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="runSubtyping.html">runSubtyping</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>, </span></span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="runSubtypingBimodal.html">runSubtypingBimodal</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>, </span></span>
 <span class="r-in"><span>    expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
 <span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.70</span>, permNbr<span class="op">=</span><span class="fl">25</span>, upscaleNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> number of iterations= 79 </span>
