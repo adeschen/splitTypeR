@@ -37,8 +37,9 @@ heterogeneous transcriptomic datasets.
 }
 \seealso{
 \itemize{
-    \item{\link{runSubtyping} for the classification of heterogeneous 
-    biological samples based on gene signature lists}
+    \item{\link{runSubtypingBimodal} for the classification of heterogeneous 
+    biological samples based on gene signature lists using a mixture of 
+    two normal distributions}
     \item{\link{getGeneSignaturesNames} for the names of the available and 
     ready-to-use gene signature lists}
     \item{\link{getGeneSignatures} for the available and 

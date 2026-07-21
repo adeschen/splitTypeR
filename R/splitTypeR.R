@@ -38,8 +38,9 @@
 #'
 #' @seealso
 #' \itemize{
-#'     \item{\link{runSubtyping} for the classification of heterogeneous 
-#'     biological samples based on gene signature lists}
+#'     \item{\link{runSubtypingBimodal} for the classification of heterogeneous 
+#'     biological samples based on gene signature lists using a mixture of 
+#'     two normal distributions}
 #'     \item{\link{getGeneSignaturesNames} for the names of the available and 
 #'     ready-to-use gene signature lists}
 #'     \item{\link{getGeneSignatures} for the available and 
@@ -83,8 +84,9 @@
 #'
 #' @seealso
 #' \itemize{
-#'     \item{\link{runSubtyping} for the classification of heterogeneous 
-#'     biological samples based on gene signature lists}
+#'     \item{\link{runSubtypingBimodal} for the classification of heterogeneous 
+#'     biological samples based on gene signature lists using a mixture of 
+#'     two normal distributions}
 #'     \item{\link{getGeneSignaturesNames} for the names of the available and 
 #'     ready-to-use gene signature lists}
 #'     \item{\link{getGeneSignatures} for the available and 
@@ -133,8 +135,9 @@
 #'
 #' @seealso
 #' \itemize{
-#'     \item{\link{runSubtyping} for the classification of heterogeneous 
-#'     biological samples based on gene signature lists}
+#'     \item{\link{runSubtypingBimodal} for the classification of heterogeneous 
+#'     biological samples based on gene signature lists using a mixture of 
+#'     two normal distributions }
 #'     \item{\link{getGeneSignaturesNames} for the names of the available and 
 #'     ready-to-use gene signature lists}
 #'     \item{\link{getGeneSignatures} for the available and 
@@ -157,7 +160,7 @@
 #' 
 #' ## Run classification on the 30 patients using 25 permutations on 70% of 
 #' ## the cohort, and 10 points per patient for the up-scaling step
-#' results <- runSubtyping(geneLists=signaturesDemo, 
+#' results <- runSubtypingBimodal(geneLists=signaturesDemo, 
 #'     expectedCountsMatrix=expNormalCountsDemo, 
 #'     permRatio=0.70, permNbr=25, upscaleNbr=10)
 #' 

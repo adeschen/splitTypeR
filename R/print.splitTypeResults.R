@@ -28,7 +28,7 @@
 #' 
 #' ## Run classification on the 30 patients using 20 permutations on 75% of 
 #' ## the dataset, and 10 points per patient for the up-scaling step
-#' results <- runSubtyping(geneLists=signaturesDemo, 
+#' results <- runSubtypingBimodal(geneLists=signaturesDemo, 
 #'     expectedCountsMatrix=expNormalCountsDemo, 
 #'     permRatio=0.75, permNbr=10, upscaleNbr=10)
 #'     

@@ -1,5 +1,5 @@
 #' @title Classification of heterogeneous biological samples 
-#' based on gene signature lists
+#' based on gene signature lists using a mixture of two normal distributions
 #'
 #' @description This function classifies heterogeneous biological samples 
 #' based on gene signature lists, effectively isolating signature-positive 
@@ -58,7 +58,7 @@
 #' 
 #' ## Run classification on the 30 patients using 20 permutations on 75% of 
 #' ## the dataset, and 10 points per patient for the up-scaling step
-#' results <- runSubtyping(geneLists=signaturesDemo, 
+#' results <- runSubtypingBimodal(geneLists=signaturesDemo, 
 #'     expectedCountsMatrix=expNormalCountsDemo, 
 #'     permRatio=0.75, permNbr=20, upscaleNbr=10)
 #'
@@ -66,7 +66,7 @@
 #' @importFrom GSVA gsvaParam gsva
 #' @encoding UTF-8
 #' @export
-runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75, 
+runSubtypingBimodal <- function(geneLists, expectedCountsMatrix, permRatio=0.75, 
     permNbr=20, upscaleNbr=10) {
 
     ## Validate parameters
@@ -118,6 +118,7 @@ runSubtyping <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
     
     ## The returned list is of class "splitTypeResults"
     class(finalSaveData) <- "splitTypeResults"
+    attr(finalSaveData, "mode") <- "bimodal"
     
     return(finalSaveData)
 }

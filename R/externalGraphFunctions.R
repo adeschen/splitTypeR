@@ -39,12 +39,12 @@
 #' 
 #' ## Run classification on the 30 patients using 20 permutations on 75% of 
 #' ## the dataset, and 10 points per patient for the up-scaling step
-#' results <- runSubtyping(geneLists=signaturesDemo, 
+#' results <- runSubtypingBimodal(geneLists=signaturesDemo, 
 #'     expectedCountsMatrix=expNormalCountsDemo, 
 #'     permRatio=0.75, permNbr=20, upscaleNbr=5)
 #'     
 #' ## Graph result
-#' plotDensityWithUpscalingSamples(x=results, 
+#' plotDensityWithUpscalingSamplesBimodal(x=results, 
 #'     signature="2018_Tiriac_PDAC_PDO_classical_signature")
 #'
 #' @author Astrid Deschênes
@@ -52,12 +52,16 @@
 #' @importFrom stats rnorm density
 #' @encoding UTF-8
 #' @export
-plotDensityWithUpscalingSamples <- function(x, signature, 
+plotDensityWithUpscalingSamplesBimodal <- function(x, signature, 
     colorSignature="black", colorAlternative="#A9A9AD", 
     colorBorderSamples="azure4", colorFillingSamples="azure3") {
     
     if (!inherits(x, "splitTypeResults")) {
         stop("The x object must be of class \'splitTypeResults\'.")
+    }
+
+    if (!"mode" %in% names(attributes(x)) || attr(x, "mode") != "bimodal") {
+        stop("The x object must be for a bimodal distribution.")
     }
 
     if (!signature %in% names(x$MODEL) || !signature %in% names(x$UPSCALING)) {

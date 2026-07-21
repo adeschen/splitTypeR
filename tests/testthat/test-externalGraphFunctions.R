@@ -8,43 +8,59 @@ data("signaturesDemo")
 
 
 #############################################################################
-### Tests plotDensityWithUpscalingSamples() 
+### Tests plotDensityWithUpscalingSamplesBinomal() 
 #############################################################################
 
-test_that("plotDensityWithUpscalingSamples() must return an error when x is a list", {
+test_that("plotDensityWithUpscalingSamplesBimodal() must return an error when x is a list", {
     
     error_message <- "The x object must be of class \'splitTypeResults\'."
     
     gList <- list()
     gList[["test"]] <- c("ABC1", "ABC2")
     
-    expect_error(plotDensityWithUpscalingSamples(x=gList, 
+    expect_error(plotDensityWithUpscalingSamplesBimodal(x=gList, 
         signature="test"), error_message)
 })
 
-test_that("plotDensityWithUpscalingSamples() must return an error when signature is not in object", {
+test_that("plotDensityWithUpscalingSamplesBimodal() must return an error when signature is not in object", {
 
     error_message <- paste0("The signature \'DO_NOT_TEST\' must be present ", 
         "in the 'splitTypeResults\' object.")
     
     set.seed(1221)
 
-    results <- runSubtyping(geneLists=signaturesDemo, 
+    results <- runSubtypingBimodal(geneLists=signaturesDemo, 
         expectedCountsMatrix=expNormalCountsDemo, 
         permRatio=0.75, permNbr=10, upscaleNbr=5)
     
-    expect_error(plotDensityWithUpscalingSamples(x=results, 
+    expect_error(plotDensityWithUpscalingSamplesBimodal(x=results, 
         signature="DO_NOT_TEST"), error_message)
 })
 
-test_that("plotDensityWithUpscalingSamples() must return a list when all parameters valid", {
+test_that("plotDensityWithUpscalingSamplesBimodal() must return an error when x is not bimodal", {
+    
+    error_message <- "The x object must be for a bimodal distribution."
     
     set.seed(121)
 
-    results <- runSubtyping(geneLists=signaturesDemo, 
+    results <- runSubtypingBimodal(geneLists=signaturesDemo, 
+        expectedCountsMatrix=expNormalCountsDemo, 
+        permRatio=0.75, permNbr=5, upscaleNbr=3)
+    
+    attr(results, "mode") <- "TEST"
+    
+    expect_error(plotDensityWithUpscalingSamplesBimodal(x=results, 
+        signature="2018_Tiriac_PDAC_PDO_basal-like_signature"), error_message)
+})
+
+test_that("plotDensityWithUpscalingSamplesBimodal() must return a list when all parameters valid", {
+    
+    set.seed(121)
+
+    results <- runSubtypingBimodal(geneLists=signaturesDemo, 
         expectedCountsMatrix=expNormalCountsDemo, 
         permRatio=0.75, permNbr=10, upscaleNbr=5)
     
-    expect_true(is.list(plotDensityWithUpscalingSamples(x=results, 
+    expect_true(is.list(plotDensityWithUpscalingSamplesBimodal(x=results, 
         signature="2018_Tiriac_PDAC_PDO_basal-like_signature")))
 })
