@@ -14,6 +14,7 @@ plotPermutationSamplesDistribution(
   pointColor = "black",
   positionJitter = 0.2,
   alpha = 0.25,
+  size = 0.95,
   seed = NA
 )
 }
@@ -44,6 +45,9 @@ graph. Default: \code{0.20}.}
 \item{alpha}{a \code{numeric} representing the amount of the opacity of 
 the points on the graph. If \code{NA}, the color is completely transparent. 
 Default: \code{0.25}.}
+
+\item{size}{a \code{numeric} that represents the size of the points 
+on the graph. Default: \code{0.95}.}
 
 \item{seed}{a \code{integer} that will be used as seed to make the jitter 
 reproducible. If \code{NA}, the seed is initialized with a random value. 
@@ -79,7 +83,7 @@ plotPermutationSamplesDistribution(x=results,
     signature="2018_Tiriac_PDAC_PDO_basal-like_signature",
     samples=c("Patient_9", "Patient_25", "Patient_29"), 
     violinColor="darkred", pointColor="darkviolet", positionJitter=0.20, 
-    seed=121)
+    size=1.2, seed=121)
 
 }
 \author{

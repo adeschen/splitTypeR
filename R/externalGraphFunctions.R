@@ -141,6 +141,9 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #' the points on the graph. If \code{NA}, the color is completely transparent. 
 #' Default: \code{0.25}.
 #' 
+#' @param size a \code{numeric} that represents the size of the points 
+#' on the graph. Default: \code{0.95}.
+#' 
 #' @param seed a \code{integer} that will be used as seed to make the jitter 
 #' reproducible. If \code{NA}, the seed is initialized with a random value. 
 #' Default: \code{NA}.
@@ -171,7 +174,7 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #'     signature="2018_Tiriac_PDAC_PDO_basal-like_signature",
 #'     samples=c("Patient_9", "Patient_25", "Patient_29"), 
 #'     violinColor="darkred", pointColor="darkviolet", positionJitter=0.20, 
-#'     seed=121)
+#'     size=1.2, seed=121)
 #'
 #' @author Astrid Deschênes
 #' @encoding UTF-8
@@ -181,7 +184,7 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #' @export
 plotPermutationSamplesDistribution <- function(x, signature, samples, 
     violinColor="black", pointColor="black", positionJitter=0.20, alpha=0.25, 
-    seed=NA) {
+    size=0.95, seed=NA) {
 
     if (!inherits(x, "splitTypeResults")) {
         stop("The x object must be of class \'splitTypeResults\'.")
@@ -192,18 +195,17 @@ plotPermutationSamplesDistribution <- function(x, signature, samples,
                 "\'splitTypeResults\' object.")
     }
     
-    if (is.array(samples) && is.character(samples) && length(samples) > 0 && 
-            all(samples %in% rownames(x$PERMUTATIONS[[signatures]]))) {
-        stop("The samples must all be present in the ", 
+    if (!is.vector(samples) || !is.character(samples) || length(samples) == 0 || 
+            !all(samples %in% rownames(x$PERMUTATIONS[[signature]]))) {
+        stop("All the samples must all be present in the ", 
                 "\'splitTypeResults\' object.")
     }
 
     permutRes <- x$PERMUTATIONS[[signature]]
     nPerm <- ncol(permutRes)
-    nSamples <- length(samples)
 
     allRes <- list()
-    for (i in samples) {
+    for (i in unique(samples)) {
         tmp <- data.frame(sample=rep(i, nPerm), score=permutRes[i, ])
         allRes[[length(allRes) + 1]] <- tmp
     }
@@ -213,7 +215,7 @@ plotPermutationSamplesDistribution <- function(x, signature, samples,
     g1 <- ggplot(allRes, aes(x=.data$sample, y=.data$score)) + 
             geom_violin(color=violinColor, trim=FALSE) + 
             ggtitle(str_replace_all(signature, "_", " ")) +
-            geom_jitter(shape=16, color=pointColor, alpha=alpha, cex=0.95, 
+            geom_jitter(shape=16, color=pointColor, alpha=alpha, size=size, 
                             position=position_jitter(positionJitter, 
                                                         seed=seed)) +
             ylab("Enrichment score") + theme_minimal() + 

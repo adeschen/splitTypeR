@@ -95,3 +95,19 @@ test_that("plotPermutationSamplesDistribution() must return an error when the si
         signature="DO_NOT_TEST", samples=c("sample_1", "sample_2")), 
         error_message)
 })
+
+test_that("plotPermutationSamplesDistribution() must return an error when one sample is not in the object", {
+    
+    error_message <- paste0("All the samples must all be present in ", 
+                    "the \'splitTypeResults\' object")
+    
+    set.seed(1221)
+
+    results <- runSubtypingBimodal(geneLists=signaturesDemo, 
+        expectedCountsMatrix=expNormalCountsDemo, 
+        permRatio=0.75, permNbr=10, upscaleNbr=5)
+    
+    expect_error(plotPermutationSamplesDistribution(x=results, 
+        signature="2018_Tiriac_PDAC_PDO_basal-like_signature", 
+        samples=c("sample_154", "sample_2")), error_message)
+})
