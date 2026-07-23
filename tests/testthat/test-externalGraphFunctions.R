@@ -111,3 +111,18 @@ test_that("plotPermutationSamplesDistribution() must return an error when one sa
         signature="2018_Tiriac_PDAC_PDO_basal-like_signature", 
         samples=c("sample_154", "sample_2")), error_message)
 })
+
+test_that("plotPermutationSamplesDistribution() must return a ggplot object when successful", {
+    
+    set.seed(1241)
+
+    results <- runSubtypingBimodal(geneLists=signaturesDemo, 
+        expectedCountsMatrix=expNormalCountsDemo, 
+        permRatio=0.75, permNbr=10, upscaleNbr=5)
+    
+    resultGraph <- plotPermutationSamplesDistribution(x=results, 
+        signature="2018_Tiriac_PDAC_PDO_basal-like_signature", 
+        samples=c("Patient_3", "Patient_13", "Patient_29"))
+
+    expect_true(inherits(resultGraph, "ggplot"))
+})
