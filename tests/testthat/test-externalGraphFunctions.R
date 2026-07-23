@@ -66,21 +66,21 @@ test_that("plotDensityWithUpscalingSamplesBimodal() must return a list when all 
 })
 
 #############################################################################
-### Tests plotDemoSamplesDistribution() 
+### Tests plotPermutationSamplesDistribution() 
 #############################################################################
 
-test_that("plotDemoSamplesDistribution() must return an error when x is a list", {
+test_that("plotPermutationSamplesDistribution() must return an error when x is a list", {
     
     error_message <- "The x object must be of class \'splitTypeResults\'."
     
     gList <- list()
     gList[["test"]] <- c("ABC1", "ABC2")
     
-    expect_error(plotDemoSamplesDistribution(x=gList, 
+    expect_error(plotPermutationSamplesDistribution(x=gList, 
         signature="test", samples=c("sample_1", "sample_2")), error_message)
 })
 
-test_that("plotDemoSamplesDistribution() must return an error when the signature is not in the object", {
+test_that("plotPermutationSamplesDistribution() must return an error when the signature is not in the object", {
     
     error_message <- paste0("The signature \'DO_NOT_TEST\' must be present ", 
         "in the 'splitTypeResults\' object.")
@@ -91,7 +91,7 @@ test_that("plotDemoSamplesDistribution() must return an error when the signature
         expectedCountsMatrix=expNormalCountsDemo, 
         permRatio=0.75, permNbr=10, upscaleNbr=5)
     
-    expect_error(plotDemoSamplesDistribution(x=results, 
+    expect_error(plotPermutationSamplesDistribution(x=results, 
         signature="DO_NOT_TEST", samples=c("sample_1", "sample_2")), 
         error_message)
 })

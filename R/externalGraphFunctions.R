@@ -167,7 +167,7 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #'     permRatio=0.75, permNbr=30, upscaleNbr=5)
 #'     
 #' ## Graph the enrichment results from the permutation for 3 samples
-#' plotDemoSamplesDistribution(x=results, 
+#' plotPermutationSamplesDistribution(x=results, 
 #'     signature="2018_Tiriac_PDAC_PDO_basal-like_signature",
 #'     samples=c("Patient_9", "Patient_25", "Patient_29"), 
 #'     violinColor="darkred", pointColor="darkviolet", positionJitter=0.20, 
@@ -177,9 +177,9 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #' @encoding UTF-8
 #' @importFrom stringr str_replace_all
 #' @importFrom rlang .data
-#' @importFrom ggplot2 ggplot aes ggtitle geom_violin element_text theme_minimal position_jitter geom_jitter ylab ylim theme
+#' @importFrom ggplot2 ggplot aes ggtitle geom_violin element_text xlab theme_minimal position_jitter geom_jitter ylab ylim theme
 #' @export
-plotDemoSamplesDistribution <- function(x, signature, samples, 
+plotPermutationSamplesDistribution <- function(x, signature, samples, 
     violinColor="black", pointColor="black", positionJitter=0.20, alpha=0.25, 
     seed=NA) {
 
