@@ -109,11 +109,14 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
         box.lty=0, lty=c(4,4,1), cex=0.9)
 }
 
-#' @title  Graph both the alternative and the signature distributions 
+#' @title Graph both the alternative and the signature distributions 
 #' obtained for a specific signature
 #'
-#' @description TODO
-#' 
+#' @description The function generates a graph of all the enrichment results 
+#' obtained during the permutation step for the selected signature and the 
+#' specified samples. The graph also includes a compact display of the 
+#' continuous distribution of the values for each sample. 
+#'
 #' @param x a \code{list} of class "splitTypeResults", the output object 
 #' from \code{runSubtyping}function, to be graphed.
 #'
@@ -150,7 +153,7 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
 #' 
 #' @return a \code{ggplot} object that contains all the enrichment scores 
 #' obtained through the permutation step with the kernel desntiy distributions 
-#' for the selected samples.
+#' for the selected samples and the selected signature.
 #' 
 #' @examples
 #'
