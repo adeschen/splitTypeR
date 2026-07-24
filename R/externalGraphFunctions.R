@@ -1,7 +1,11 @@
 #' @title  Graph both the alternative and the signature distributions 
 #' obtained for a specific signature
 #'
-#' @description TODO
+#' @description The function generates a graph showing the signature and 
+#' alternative distributions obtained from the upscaling step followed by the 
+#' extraction of the mixture of two normal distributions for each 
+#' selected signature. The graph also contains the histogram of the 
+#' enriched scores for the upscaled dataset (not the original dataset).
 #' 
 #' @param x a \code{list} of class "splitTypeResults", the output object 
 #' from \code{runSubtyping}function, to be graphed.
@@ -229,3 +233,4 @@ plotPermutationSamplesDistribution <- function(x, signature, samples,
 
     return(g1)
 }
+
