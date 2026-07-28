@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{plotPermutationSamplesDistribution}
 \alias{plotPermutationSamplesDistribution}
-\title{Graph both the alternative and the signature distributions 
+\title{Graph showing both the alternative and the signature distributions 
 obtained for a specific signature}
 \usage{
 plotPermutationSamplesDistribution(

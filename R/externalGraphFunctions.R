@@ -113,7 +113,7 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
         box.lty=0, lty=c(4,4,1), cex=0.9)
 }
 
-#' @title Graph both the alternative and the signature distributions 
+#' @title Graph showing both the alternative and the signature distributions 
 #' obtained for a specific signature
 #'
 #' @description The function generates a graph of all the enrichment results 
@@ -234,3 +234,125 @@ plotPermutationSamplesDistribution <- function(x, signature, samples,
     return(g1)
 }
 
+#' @title Graph TODO
+#'
+#' @description TODO
+#'
+#' @param x a \code{list} of class "splitTypeResults", the output object 
+#' from \code{runSubtyping}function, to be graphed.
+#'
+#' @param signature a \code{character} string representing the signature 
+#' that will be used to create the graph. The signature must 
+#' be present in the object.
+#' 
+#' @param samples a \code{list} of \code{character} string representing 
+#' the names of the samples that will be used to create the graph. The samples 
+#' must be present in the object.
+#' 
+#' @param pointColor a \code{character} string representing the color of the 
+#' dots representing the enrichment scores for the sampled values, obtained 
+#' during the upscaling step, in the graph. Default: \code{"darkred"}.
+#' 
+#' @return a \code{ggplot} object that contains the density distribution of the
+#' enrichment score (shown as dashed lines) from the normal distribution 
+#' calculated for each selected sample. The mean of the distribution is 
+#' the enrichment score for the selected sample (shown as a vertical dotted 
+#' line in the graph) while the standard deviation is obtained from the 
+#' permutation step. The enrichment scores values sampled at the upscaling 
+#' step are shown as dots in the graph. 
+#' 
+#' @examples
+#'
+#' ## Loading signatures
+#' data("signaturesDemo")
+#'
+#' ## Load demo normalized expected counts for 30 patients
+#' data("expNormalCountsDemo")
+#' 
+#' ## Fix seed for reproducibility
+#' set.seed(1221)
+#' 
+#' ## Run classification on the 30 patients using 20 permutations on 75% of 
+#' ## the dataset, and 10 points per patient for the up-scaling step
+#' results <- runSubtypingBimodal(geneLists=signaturesDemo, 
+#'     expectedCountsMatrix=expNormalCountsDemo, 
+#'     permRatio=0.75, permNbr=30, upscaleNbr=5)
+#'     
+#' ## Graph the enrichment results from the permutation for 3 samples
+#' plotPermutationSamplesNormal(x=results, 
+#'     signature="2018_Tiriac_PDAC_PDO_basal-like_signature",
+#'     samples=c("Patient_9", "Patient_25", "Patient_29"))
+#'
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom stringr str_replace_all
+#' @importFrom rlang .data
+#' @importFrom stats dnorm
+#' @importFrom ggplot2 ggplot aes geom_line geom_vline ylab xlim geom_point facet_grid theme_bw xlab theme
+#' @export
+plotPermutationSamplesNormal <- function(x, signature, samples, 
+    pointColor="darkred") {
+
+    if (!inherits(x, "splitTypeResults")) {
+        stop("The x object must be of class \'splitTypeResults\'.")
+    }
+
+    if (!signature %in% names(x$UPSCALING)) {
+        stop("The signature \'", signature, "\' must be present in the ", 
+                "\'splitTypeResults\' object.")
+    }
+    
+    if (!is.vector(samples) || !is.character(samples) || 
+            length(samples) == 0 || 
+            !all(samples %in% rownames(x$UPSCALING[[signature]]))) { ## || 
+         ##   !all(samples %in% colnames(x$GSVA_RESULTS))) {                                                        ) {
+        stop("All the samples must all be present in the ", 
+                "\'splitTypeResults\' object.")
+    }
+
+    samples <- unique(samples) 
+    upscaleRes <- x$UPSCALING[[signature]]
+    nPerm <- ncol(upscaleRes)
+    nSample <- length(samples)
+
+    allPoints <- list()
+    for (i in samples) {
+        tmp <- data.frame(sample=rep(i, nPerm), score=upscaleRes[i, ])
+        allPoints[[length(allPoints) + 1]] <- tmp
+    }
+    allPoints <- do.call(rbind, allPoints)
+
+    realGSEA <- data.frame(sample=samples,
+                    score=x$GSVA_RESULTS[signature, samples])
+
+    seqPos <- seq(from=-1, to=1, by=0.005)
+    nbPositions <- length(seqPos)
+    dataTmp <- data.frame(x_value=rep(seqPos, nSample),
+                    sample=rep(samples, each=nbPositions))
+    
+    for (i in samples) {
+        dataTmp$density[dataTmp$sample == i] <- 
+            dnorm(seqPos, mean=x$GSVA_RESULTS[signature, i],
+                    sd=x$SD[[signature]][i]) 
+    }
+  
+    maxValue <- max(dataTmp$density)
+    allPoints$y_value <- sample(seq(from=0.03, to=floor(maxValue-0.03), 
+                                    by=0.01), size=nrow(allPoints), 
+                                    replace=TRUE)
+  
+    densityPlot <-  ggplot(dataTmp, aes(x=.data$x_value)) +
+        geom_line(aes(y=.data$density), size=1, linetype="longdash", 
+                    show.legend=TRUE) + 
+        xlim(-1, 1) + ylab("Density") +
+        geom_vline(data=realGSEA, aes(xintercept=.data$score), 
+                    linetype="dotted",  color = "gray15", size=1) +
+        geom_point(data=allPoints, aes(x=.data$score, y=.data$y_value), 
+                    color=pointColor, show.legend=TRUE) +
+        facet_grid(sample ~ .) + theme_bw() + xlab("Enrichment score") +
+        theme(axis.title=element_text(size=12, face="bold"), 
+            axis.text=element_text(size=9), 
+            strip.text=element_text(size=11, face="bold"))
+
+    return(densityPlot)
+}
