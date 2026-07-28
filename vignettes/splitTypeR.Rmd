@@ -107,14 +107,19 @@ distribution using a mixture model approach implemented in the
 mixtools package [@JSSv032i06].   
 
 
+<br />
 
 # General workflow
 
 TODO
-
+```{r piplineSchema, echo=FALSE, fig.align='center', out.width="110%"}
+knitr::include_graphics("pipline_schema_v01.jpg")
+```
 The 
 
 <br />
+
+
 
 # Session info
 
