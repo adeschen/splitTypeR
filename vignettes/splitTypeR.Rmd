@@ -111,14 +111,14 @@ The statistical method is split into 5 steps. Each of those steps are
 performed for one specific signature at the time. A signature is typically a predefined set of features (transcriptomic expression in this situation) that is associated with some biological state, pathway, or phenotype.
 
 
-## Enrichment score
+## Step 1. Enrichment score
 
 The enrichment scores are first computed for every single sample 
 with the Bioconductor GSVA package [@Hanzelmann2013]. Those scores represent 
 the real score for each sample. Later steps treats this real score as the 
 anchor point around which uncertainty gets modeled.
 
-## Permutation
+## Step 2. Permutation
 
 Random subsets of samples, of fixed size, from the full dataset are 
 repetitively drawn. For each of these resampled subsets, the enrichment score 
@@ -126,7 +126,7 @@ for the samples present are recomputed.
 
 This step enables a per-sample uncertainty estimation (standard deviation).
 
-## Upscaling 
+## Step 3. Upscaling 
 
 For each sample, a fixed number of simulated enrichment scores are drawn 
 from a normal distribution centered on the real score, using the standard 
@@ -135,7 +135,7 @@ deviation estimated from permutations.
 This step enables the upscaling of the total number of values that will 
 be used in the next step. 
 
-## Mixture model
+## Step 4. Mixture model
 
 The synthetic values across all samples are pooled to fit two overlapping 
 normal distributions to them. The two normal distributions are extracted using 
@@ -143,7 +143,7 @@ a mixture model approach implemented in the mixtools package [@JSSv032i06].
 The idea being that the whole cohort is actually a blend of two underlying populations (a "low enrichment" group and a "high enrichment" group). 
  
 
-## Classification
+## Step 5. Classification
 
 For each sample, a hypothesis testing whether its real score is more consistent with belonging to the low-enrichment distribution or the high-enrichment one, and assign it accordingly.
 
