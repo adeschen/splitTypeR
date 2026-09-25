@@ -182,7 +182,7 @@ typically a predefined set of features (transcriptomic expression in
 this situation) that is associated with some biological state, pathway,
 or phenotype.</p>
 <div class="section level3">
-<h3 id="enrichment-score">Enrichment score<a class="anchor" aria-label="anchor" href="#enrichment-score"></a>
+<h3 id="step-1--enrichment-score">Step 1. Enrichment score<a class="anchor" aria-label="anchor" href="#step-1--enrichment-score"></a>
 </h3>
 <p>The enrichment scores are first computed for every single sample with
 the Bioconductor GSVA package <span class="citation">(Hänzelmann et al.
@@ -191,7 +191,7 @@ Later steps treats this real score as the anchor point around which
 uncertainty gets modeled.</p>
 </div>
 <div class="section level3">
-<h3 id="permutation">Permutation<a class="anchor" aria-label="anchor" href="#permutation"></a>
+<h3 id="step-2--permutation">Step 2. Permutation<a class="anchor" aria-label="anchor" href="#step-2--permutation"></a>
 </h3>
 <p>Random subsets of samples, of fixed size, from the full dataset are
 repetitively drawn. For each of these resampled subsets, the enrichment
@@ -200,7 +200,7 @@ score for the samples present are recomputed.</p>
 deviation).</p>
 </div>
 <div class="section level3">
-<h3 id="upscaling">Upscaling<a class="anchor" aria-label="anchor" href="#upscaling"></a>
+<h3 id="step-3--upscaling">Step 3. Upscaling<a class="anchor" aria-label="anchor" href="#step-3--upscaling"></a>
 </h3>
 <p>For each sample, a fixed number of simulated enrichment scores are
 drawn from a normal distribution centered on the real score, using the
@@ -209,7 +209,7 @@ standard deviation estimated from permutations.</p>
 will be used in the next step.</p>
 </div>
 <div class="section level3">
-<h3 id="mixture-model">Mixture model<a class="anchor" aria-label="anchor" href="#mixture-model"></a>
+<h3 id="step-4--mixture-model">Step 4. Mixture model<a class="anchor" aria-label="anchor" href="#step-4--mixture-model"></a>
 </h3>
 <p>The synthetic values across all samples are pooled to fit two
 overlapping normal distributions to them. The two normal distributions
@@ -220,7 +220,7 @@ populations (a “low enrichment” group and a “high enrichment”
 group).</p>
 </div>
 <div class="section level3">
-<h3 id="classification">Classification<a class="anchor" aria-label="anchor" href="#classification"></a>
+<h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
 <p>For each sample, a hypothesis testing whether its real score is more
 consistent with belonging to the low-enrichment distribution or the
