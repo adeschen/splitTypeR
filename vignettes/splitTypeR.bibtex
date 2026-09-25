@@ -1,5 +1,4 @@
 @article{Cascianelli2020,
-   abstract = {Stratification of breast cancer (BC) into molecular subtypes by multigene expression assays is of demonstrated clinical utility. In principle, global RNA-sequencing (RNA-seq) should enable reconstructing existing transcriptional classifications of BC samples. Yet, it is not clear whether adaptation to RNA-seq of classifiers originally developed using PCR or microarrays, or reconstruction through machine learning (ML) is preferable. Hence, we focused on robustness and portability of PAM50, a nearest-centroid classifier developed on microarray data to identify five BC “intrinsic subtypes”. We found that standard PAM50 is profoundly affected by the composition of the sample cohort used for reference construction, and we propose a strategy, named AWCA, to mitigate this issue, improving classification robustness, with over 90% of concordance, and prognostic ability; we also show that AWCA-based PAM50 can even be applied as single-sample method. Furthermore, we explored five supervised learners to build robust, single-sample intrinsic subtype callers via RNA-seq. From our ML-based survey, regularized multiclass logistic regression (mLR) displayed the best performance, further increased by ad-hoc gene selection on the global transcriptome. On external test sets, mLR classifications reached 90% concordance with PAM50-based calls, without need of reference sample; mLR proven robustness and prognostic ability make it an equally valuable single-sample method to strengthen BC subtyping.},
    author = {Silvia Cascianelli and Ivan Molineris and Claudio Isella and Marco Masseroli and Enzo Medico},
    doi = {10.1038/s41598-020-70832-2},
    issn = {20452322},
@@ -12,6 +11,21 @@
    volume = {10},
    year = {2020}
 }
+
+@article{Dobin2013,
+   author = {Alexander Dobin and Carrie A. Davis and Felix Schlesinger and Jorg Drenkow and Chris Zaleski and Sonali Jha and Philippe Batut and Mark Chaisson and Thomas R. Gingeras},
+   doi = {10.1093/bioinformatics/bts635},
+   issn = {13674803},
+   issue = {1},
+   journal = {Bioinformatics},
+   month = {1},
+   pages = {15-21},
+   pmid = {23104886},
+   title = {STAR: Ultrafast universal RNA-seq aligner},
+   volume = {29},
+   year = {2013}
+}
+
 @article{Yersal2014,
    author = {Ozlem Yersal},
    doi = {10.5306/wjco.v5.i3.412},
@@ -26,7 +40,6 @@
 }
 
 @article{Gendoo2016,
-   abstract = {Summary: Breast cancer is one of the most frequent cancers among women. Extensive studies into the molecular heterogeneity of breast cancer have produced a plethora of molecular subtype classification and prognosis prediction algorithms, as well as numerous gene expression signatures. However, reimplementation of these algorithms is a tedious but important task to enable comparison of existing signatures and classification models between each other and with new models. Here, we present the genefu R/Bioconductor package, a multi-tiered compendium of bioinformatics algorithms and gene signatures for molecular subtyping and prognostication in breast cancer.},
    author = {Deena M.A. Gendoo and Natchar Ratanasirigulchai and Markus S. Schröder and Laia Paré and Joel S. Parker and Aleix Prat and Benjamin Haibe-Kains},
    doi = {10.1093/bioinformatics/btv693},
    issn = {14602059},
@@ -42,7 +55,6 @@
 }
 
 @article{Eide2017,
-   abstract = {Colorectal cancers (CRCs) can be divided into four gene expression-based biologically distinct consensus molecular subtypes (CMS). This classification provides a potential framework for stratified treatment, but to identify novel CMS-drug associations, translation of the subtypes to pre-clinical models is essential. The currently available classifier is dependent on gene expression signals from the immune and stromal compartments of tumors and fails to identify the poor-prognostic CMS4-mesenchymal group in immortalized cell lines, patient-derived organoids and xenografts. To address this, we present a novel CMS classifier based on a filtered set of cancer cell-intrinsic, subtype-enriched gene expression markers. This new classifier, referred to as CMScaller, recapitulated the subtypes in both in vitro and in vivo models (551 in total). Importantly, by analyzing public drug response data from patient-derived xenografts and cell lines, we show that the subtypes are predictive of response to standard CRC drugs. CMScaller is available as an R package.},
    author = {Peter W. Eide and Jarle Bruun and Ragnhild A. Lothe and Anita Sveen},
    doi = {10.1038/s41598-017-16747-x},
    issn = {20452322},
@@ -54,6 +66,21 @@
    title = {CMScaller: An R package for consensus molecular subtyping of colorectal cancer pre-clinical models},
    volume = {7},
    year = {2017}
+}
+
+@article{OKane2020,
+   author = {Grainne M. O’Kane and Barbara T. Grunwald and Gun Ho Jang and Mehdi Masoomian and Sarah Picardo and Robert C. Grant and Robert E. Denroche and Amy Zhang and Yifan Wang and Bernard Lam and Paul M. Krzyzanowski and Illinca M. Lungu and John M.S. Bartlett and Melanie Peralta and Foram Vyas and Rama Khokha and James Biagi and Dianne Chadwick and Stephanie Ramotar and Shawn Hutchinson and Anna Dodd and Julie M. Wilson and Faiyaz Notta and George Zogopoulos and Steven Gallinger and Jennifer J. Knox and Sandra E. Fischer},
+   doi = {10.1158/1078-0432.CCR-19-3724},
+   issn = {15573265},
+   issue = {18},
+   journal = {Clinical Cancer Research},
+   month = {9},
+   pages = {4901-4910},
+   pmid = {32156747},
+   publisher = {American Association for Cancer Research Inc.},
+   title = {GATA6 Expression Distinguishes Classical and Basal-like Subtypes in Advanced Pancreatic Cancer},
+   volume = {26},
+   year = {2020}
 }
 
 @article{Hanzelmann2013,
@@ -72,10 +99,54 @@
    volume={32},
    url={https://www.jstatsoft.org/index.php/jss/article/view/v032i06},
    doi={10.18637/jss.v032.i06},
-   abstract={The &amp;lt;b&amp;gt;mixtools&amp;lt;/b&amp;gt; package for &amp;lt;code&amp;gt;R&amp;lt;/code&amp;gt; provides a set of functions for analyzing a variety of finite mixture models. These functions include both traditional methods, such as EM algorithms for univariate and multivariate normal mixtures, and newer methods that reflect some recent research in finite mixture models. In the latter category, &amp;lt;b&amp;gt;mixtools&amp;lt;/b&amp;gt; provides algorithms for estimating parameters in a wide range of different mixture-of-regression contexts, in multinomial mixtures such as those arising from discretizing continuous multivariate data, in nonparametric situations where the multivariate component densities are completely unspecified, and in semiparametric situations such as a univariate location mixture of symmetric but otherwise unspecified densities. Many of the algorithms of the &amp;lt;b&amp;gt;mixtools&amp;lt;/b&amp;gt; package are EM algorithms or are based on EM-like ideas, so this article includes an overview of EM algorithms for finite mixture models.},
    number={6},
    journal={Journal of Statistical Software},
    author={Benaglia, Tatiana and Chauveau, Didier and Hunter, David R. and Young, Derek S.},
    year={2009},
    pages={1–29}
 }
+
+@article{Love2014,
+   author = {Michael I. Love and Wolfgang Huber and Simon Anders},
+   doi = {10.1186/s13059-014-0550-8},
+   issn = {1474760X},
+   issue = {12},
+   journal = {Genome Biology},
+   month = {12},
+   pmid = {25516281},
+   publisher = {BioMed Central Ltd.},
+   title = {Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2},
+   volume = {15},
+   year = {2014}
+}
+
+@article{Moffitt2015,
+   author = {Richard A. Moffitt and Raoud Marayati and Elizabeth L. Flate and Keith E. Volmar and S. Gabriela Herrera Loeza and Katherine A. Hoadley and Naim U. Rashid and Lindsay A. Williams and Samuel C. Eaton and Alexander H. Chung and Jadwiga K. Smyla and Judy M. Anderson and Hong Jin Kim and David J. Bentrem and Mark S. Talamonti and Christine A. Iacobuzio-Donahue and Michael A. Hollingsworth and Jen Jen Yeh},
+   doi = {10.1038/ng.3398},
+   isbn = {1546-1718 (Electronic)\r1061-4036 (Linking)},
+   issn = {15461718},
+   issue = {10},
+   journal = {Nature Genetics},
+   pages = {1168-1178},
+   pmid = {26343385},
+   publisher = {Nature Publishing Group},
+   title = {Virtual microdissection identifies distinct tumor- and stroma-specific subtypes of pancreatic ductal adenocarcinoma},
+   volume = {47},
+   url = {http://dx.doi.org/10.1038/ng.3398},
+   year = {2015}
+}
+
+@article{Tiriac2018,
+   author = {Hervé Tiriac and Pascal Belleau and Dannielle D. Engle and Dennis Plenker and Astrid Deschênes and Tim D.D. Somerville and Fieke E.M. Froeling and Richard A. Burkhart and Robert E. Denroche and Gun Ho Jang and Koji Miyabayashi and C. Megan Young and Hardik Patel and Michelle Ma and Joseph F. Lacomb and Randze Lerie D. Palmaira and Ammar A. Javed and Jasmine C. Huynh and Molly Johnson and Kanika Arora and Nicolas Robine and Minita Shah and Rashesh Sanghvi and Austin B. Goetz and Cinthya Y. Lowder and Laura Martello and Else Driehuis and Nicolas Lecomte and Gokce Askan and Christine A. Iacobuzio-Donahue and Hans Clevers and Laura D. Wood and Ralph H. Hruban and Elizabeth Thompson and Andrew J. Aguirre and Brian M. Wolpin and Aaron Sasson and Joseph Kim and Maoxin Wu and Juan Carlos Bucobo and Peter Allen and Divyesh V. Sejpal and William Nealon and James D. Sullivan and Jordan M. Winter and Phyllis A. Gimotty and Jean L. Grem and Dominick J. Dimaio and Jonathan M. Buscaglia and Paul M. Grandgenett and Jonathan R. Brody and Michael A. Hollingsworth and Grainne M. O’kane and Faiyaz Notta and Edward Kim and James M. Crawford and Craig Devoe and Allyson Ocean and Christopher L. Wolfgang and Kenneth H. Yu and Ellen Li and Christopher R. Vakoc and Benjamin Hubert and Sandra E. Fischer and Julie M. Wilson and Richard Moffitt and Jennifer Knox and Alexander Krasnitz and Steven Gallinger and David A. Tuveson},
+   doi = {10.1158/2159-8290.CD-18-0349},
+   isbn = {5163678353},
+   issn = {21598290},
+   issue = {9},
+   journal = {Cancer Discovery},
+   pages = {1112-1129},
+   pmid = {29853643},
+   title = {Organoid profiling identifies common responders to chemotherapy in pancreatic cancer},
+   volume = {8},
+   year = {2018}
+}
+
