@@ -36,6 +36,34 @@ test_that("create a splitTypeRdata class with all default parameters should retu
     expect_true(is.null(paramTest@classification))
 })
 
+test_that("create a splitTypeRdata() function with all default parameters should return an object", {
+    
+    ## New splitTypeRdata with all default values
+    paramTest <- SplitTypeRdata()
+    
+    ## Test signatures
+    expect_true(is.null(paramTest@signatures))
+    
+    ## Test gsvaResults
+    expect_true(is.null(paramTest@gsvaResults))
+    
+    ## Test permutations
+    expect_true(is.null(paramTest@permutations))
+    
+    ## Test standardDeviation
+    expect_true(is.null(paramTest@standardDeviation))
+    
+    ## Test upscaling
+    expect_true(is.null(paramTest@upscaling))
+    
+    ## Test model
+    expect_true(is.null(paramTest@model))
+    
+    ## Test classification
+    expect_true(is.null(paramTest@classification))
+})
+
+
 test_that("create a SplitTypeRdata class with integer for signatures parameter should generate an error", {
     
     expect_error(new("SplitTypeRdata", signatures=33), 
