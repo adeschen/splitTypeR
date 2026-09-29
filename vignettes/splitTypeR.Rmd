@@ -233,9 +233,9 @@ result <- runSubtypingBimodal(geneLists=signaturesList,
 
 
 ee<- splitTypeR::plotDensityWithUpscalingSamplesBimodal(breaks = 32L,
-    signature="2018_Tiriac_PDAC_PDO_classical_signature", result)
+    signature="Basal-like", result)
  splitTypeR::plotDensityWithUpscalingSamplesBimodal(breaks = 14L,
-    signature="2018_Tiriac_PDAC_PDO_basal-like_signature", result)
+    signature="Classical", result)
 ```
 
 

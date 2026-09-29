@@ -17,7 +17,8 @@ Imports: S4Vectors,
     ggplot2,
     stringr,
     rlang,
-    GSVA
+    GSVA,
+    methods
 Suggests: 
     BiocStyle,
     knitr,

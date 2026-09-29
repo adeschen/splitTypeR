@@ -26,13 +26,9 @@ setClassUnion("ListOrNULL", members = c("list", "NULL"))
 #' for each signature. The \code{list} should be have one entry per signature. 
 #' Default: \code{NULL}.
 #' 
-#' @slot standardDeviation \code{NULL} or a \code{list} of the standard 
-#' deviation results  for each signature. The \code{list} should be have one 
-#' entry per signature. 
-#' Default: \code{NULL}.
-#' 
-#' @slot upscaling \code{NULL} or a \code{list} of the upscaling data 
-#' for each signature. The \code{list} should be have one entry per signature. 
+#' @slot standardDeviation \code{NULL} or a \code{list} of the sample standard 
+#' deviation for each signature. The \code{list} should be have one entry 
+#' per signature. 
 #' Default: \code{NULL}.
 #' 
 #' @slot upscaling \code{NULL} or a \code{list} of the upscaling data 
@@ -371,3 +367,67 @@ setMethod("signatures<-", "SplitTypeRdata", function(x, value) {
     validObject(x) 
     return(x)
 })
+
+
+#' @title Create a SplitTypeRdata object 
+#'
+#' @description This function creates a SplitTypeRdata object using the values 
+#' present in the paramters.
+#' 
+#' @param signatures \code{NULL} or a \code{list} of the genes   
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param gsvaResults \code{NULL} or a \code{list} of the GSVA results  
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param permutations \code{NULL} or a \code{list} of the permutations results  
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param standardDeviation \code{NULL} or a \code{list} of the standard 
+#' deviation results  for each signature. The \code{list} should be have one 
+#' entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param upscaling \code{NULL} or a \code{list} of the upscaling data 
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param model \code{NULL} or a \code{list} of the mixture models calculated 
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @param classification \code{NULL} or a \code{list} of the classification for 
+#' each signature. The \code{list} should be have one entry per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @return an object of class \code{SplitTypeRdata} that contains all the 
+#' required parameters needed by the RAIDS workflow.
+#' 
+#'
+#' @examples
+#' 
+#' ## New object of class "SplitTypeRdata" with default parameters
+#' newSplitData1 <- SplitTypeRdata()
+#' 
+#' ## New object of class "SplitTypeRdata" with non-default parameters
+#' newSplitData2 <- SplitTypeRdata(signatures=list("Signature1"=c("ABL1", 
+#'     "BLM", "BRCA1"), "Signature2"=c("COP1", "RAD50", "FANCD2", "TERF2")), 
+#'     gsvaResults=NULL, permutations=NULL,   
+#'     standardDeviation=NULL, upscaling=NULL, model=NULL, 
+#'     classification=NULL)
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods new
+#' @export
+SplitTypeRdata <- function(signatures=NULL, gsvaResults=NULL, 
+    permutations=NULL, standardDeviation=NULL, upscaling=NULL, model=NULL, 
+    classification=NULL) {
+    
+    new("SplitTypeRdata", signatures=signatures, gsvaResults=gsvaResults, 
+        permutations=permutations, standardDeviation=standardDeviation,
+        upscaling=upscaling, model=model, classification=classification)
+}

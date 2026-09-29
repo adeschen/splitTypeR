@@ -23,13 +23,9 @@ Default: \code{NULL}.}
 for each signature. The \code{list} should be have one entry per signature. 
 Default: \code{NULL}.}
 
-\item{\code{standardDeviation}}{\code{NULL} or a \code{list} of the standard 
-deviation results  for each signature. The \code{list} should be have one 
-entry per signature. 
-Default: \code{NULL}.}
-
-\item{\code{upscaling}}{\code{NULL} or a \code{list} of the upscaling data 
-for each signature. The \code{list} should be have one entry per signature. 
+\item{\code{standardDeviation}}{\code{NULL} or a \code{list} of the sample standard 
+deviation for each signature. The \code{list} should be have one entry 
+per signature. 
 Default: \code{NULL}.}
 
 \item{\code{upscaling}}{\code{NULL} or a \code{list} of the upscaling data 
