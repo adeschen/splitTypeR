@@ -23,6 +23,7 @@ Suggests:
     BiocStyle,
     knitr,
     rmarkdown,
+    SummarizedExperiment,
     testthat (>= 3.0.0)
 biocViews: BiologicalQuestion,
     Classification, 
