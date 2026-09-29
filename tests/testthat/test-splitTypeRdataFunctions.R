@@ -73,7 +73,7 @@ test_that("create a SplitTypeRdata class with integer for signatures parameter s
 test_that("create a SplitTypeRdata class with integer for gsvaResults parameter should generate an error", {
     
     expect_error(new("SplitTypeRdata", gsvaResults=33), 
-                 "got class \"numeric\", should be or extend class \"ListOrNULL\"")
+                 "got class \"numeric\", should be or extend class \"MatrixOrNULL\"")
 })
 
 test_that("create a SplitTypeRdata class with integer for permutations parameter should generate an error", {
@@ -117,4 +117,26 @@ test_that("create a SplitTypeRdata class with signatures setter and getter shoul
     expect_equal(signatures(paramTest), exp)
     expect_error(signatures(paramTest) <- 33L)
     expect_equal(signatures(paramTest), exp)
+})
+
+test_that("create a SplitTypeRdata class with gsvaResults setter and getter should return an object", {
+    
+    sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
+                "SignatureB"=c("Gene10", "Gene12"))
+    
+    expResults <- matrix(data=c(0.23772165, -0.71262458, 0.42328775, 
+                                  -0.65149268, 0.18324268, 0.007158662, 
+                                  0.263418803, 0.169815921, -0.708384551, 
+                                  0.440403512), nrow=2, ncol=5, byrow=FALSE)
+    colnames(expResults) <- paste0("Patient_", 1:5)
+    rownames(expResults) <- c("SignatureA", "SignatureB")
+    
+    paramTest <- new("SplitTypeRdata", signatures=sign, 
+                        gsvaResults=NULL)
+    
+    gsvaResults(paramTest) <- expResults
+    
+    expect_equal(gsvaResults(paramTest), expResults)
+    expect_error(gsvaResults(paramTest) <- 33L)
+    expect_equal(gsvaResults(paramTest), expResults)
 })

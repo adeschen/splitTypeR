@@ -12,14 +12,29 @@
 setClassUnion("ListOrNULL", members = c("list", "NULL"))
 
 
+#' @title Class Union for matrix or NULL
+#' 
+#' @description A virtual class that groups matrix and \code{NULL} 
+#' together.
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' 
+#' @name MatrixOrNULL-class
+#' @rdname MatrixOrNULL-class
+#' @exportClass MatrixOrNULL
+setClassUnion("MatrixOrNULL", members = c("matrix", "NULL"))
+
+
 #' @title An S4 class to represent the splitTypeR data
 #'
 #' @slot signatures \code{NULL} or a \code{list} of the genes   
 #' for each signature. The \code{list} should be have one entry per signature. 
 #' Default: \code{NULL}.
 #' 
-#' @slot gsvaResults \code{NULL} or a \code{list} of the GSVA results  
-#' for each signature. The \code{list} should be have one entry per signature. 
+#' @slot gsvaResults \code{NULL} or a  \code{numeric} \code{matrix} with 
+#' the sample GSVA results for each signature. The \code{matrix} should be 
+#' have one row per signature. 
 #' Default: \code{NULL}.
 #' 
 #' @slot permutations \code{NULL} or a \code{list} of the permutations results  
@@ -55,7 +70,7 @@ setClassUnion("ListOrNULL", members = c("list", "NULL"))
 setClass("SplitTypeRdata",
          slots = c(
              signatures="ListOrNULL",
-             gsvaResults="ListOrNULL",
+             gsvaResults="MatrixOrNULL",
              permutations="ListOrNULL",
              standardDeviation="ListOrNULL",
              upscaling="ListOrNULL",
@@ -74,12 +89,16 @@ setClass("SplitTypeRdata",
 )
 
 ## Validation
-setValidity("SplitTypeRdata",
-            function(object)
-            {
-                TRUE
-            }
-)
+setValidity("SplitTypeRdata", function(object) {
+ 
+    if (!is.null(object@signatures)) {
+        signTmp <- names(object@signatures)
+        
+        
+    }
+    
+    TRUE
+})
 
 
 ###########################################################################
@@ -151,7 +170,8 @@ setGeneric("gsvaResults", function(x) standardGeneric("gsvaResults"))
 #' 
 #' @param x a \code{SplitTypeRdata} object.
 #' 
-#' @return a \code{list}.
+#' @return \code{NULL} or a \code{matrix} of the GSVA results for each 
+#' signature. The \code{matrix} should be have one entry per signature. 
 #' 
 #' @examples
 #' 
@@ -331,9 +351,9 @@ setMethod("upscaling", "SplitTypeRdata", function(x) {
 setGeneric("signatures<-", function(x, value) standardGeneric("signatures<-"))
 
 
-#' Replacement of studyDF slot in a \code{SplitTypeRdata} object
+#' Replacement of signatures slot in a \code{SplitTypeRdata} object
 #' 
-#' @description A function for replacement of the studyDF slot in a 
+#' @description A function for replacement of the signatures slot in a 
 #' \code{SplitTypeRdata} class.
 #' 
 #' @param x a \code{SplitTypeRdata} object.
@@ -350,8 +370,8 @@ setGeneric("signatures<-", function(x, value) standardGeneric("signatures<-"))
 #' paramDemo <- new("SplitTypeRdata")
 #' 
 #' ## Demo study data frame
-#' signaDemo <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
-#'     "SignatureB"=c("Gene10", "Gene12"))
+#' signaDemo <- list("SignatureA"=c("KRAS", "AKT1", "MTOR"), 
+#'     "SignatureB"=c("PIK3CB", "CTTN"))
 #' 
 #' ## Assign the new list to the signatures slot in the object
 #' signatures(paramDemo) <- signaDemo
@@ -369,17 +389,90 @@ setMethod("signatures<-", "SplitTypeRdata", function(x, value) {
 })
 
 
+#' Generic function for replacement of gsvaResults slot in a class
+#' 
+#' @description A generic function for replacement of gsvaResults slot in a 
+#' S4 object.
+#' 
+#' @param x a S4 object.
+#' 
+#' @param value the new value to assign or update.
+#' 
+#' @return the modified S4 object when the new value is valid.
+#' 
+#' @examples
+#'  
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(gsvaResults="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", gsvaResults="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # gsvaResults(obj) <- "333"
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("gsvaResults<-", function(x, value) 
+    standardGeneric("gsvaResults<-"))
+
+
+#' Replacement of gsvaResults slot in a \code{SplitTypeRdata} object
+#' 
+#' @description A function for replacement of the gsvaResults slot in a 
+#' \code{SplitTypeRdata} class.
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @param value \code{NULL} or a \code{matrix} of the GSVA results for each 
+#' signature. The \code{matrix} should be have one row per signature. 
+#' Default: \code{NULL}.
+#' 
+#' @return the modified \code{SplitTypeRdata} object when the new value is 
+#' valid.
+#' 
+#' @examples
+#' 
+#' ## Two demo signatures
+#' sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"), 
+#'     "SignatureB"=c("ACTR2", "AKT1"))
+#'     
+#' ## Create a SplitTypeRdata object with the signatures
+#' demo <- new("SplitTypeRdata", signatures=sign)
+#' 
+#' ## Demo study data frame
+#' signaDemo <- matrix(data=c(0.23772165, -0.71262458, 0.42328775, 
+#'     -0.65149268, 0.18324268, 0.007158662), nrow=2, ncol=3, byrow=FALSE)
+#' colnames(signaDemo) <- paste0("Patient_", 1:3)
+#' rownames(signaDemo) <- c("SignatureA", "SignatureB")
+#' 
+#' gsvaResults(demo) <- signaDemo
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods validObject
+#' @export
+setMethod("gsvaResults<-", "SplitTypeRdata", function(x, value) {
+    x@gsvaResults <- value
+    
+    # Validate and return the modified object
+    validObject(x) 
+    return(x)
+})
+
+
 #' @title Create a SplitTypeRdata object 
 #'
 #' @description This function creates a SplitTypeRdata object using the values 
-#' present in the paramters.
+#' present in the parameters.
 #' 
 #' @param signatures \code{NULL} or a \code{list} of the genes   
 #' for each signature. The \code{list} should be have one entry per signature. 
 #' Default: \code{NULL}.
 #' 
-#' @param gsvaResults \code{NULL} or a \code{list} of the GSVA results  
-#' for each signature. The \code{list} should be have one entry per signature. 
+#' @param gsvaResults \code{NULL} or a \code{matrix} of the GSVA results  
+#' for each signature. The \code{matrix} should be have one row per signature. 
 #' Default: \code{NULL}.
 #' 
 #' @param permutations \code{NULL} or a \code{list} of the permutations results  

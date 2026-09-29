@@ -15,8 +15,9 @@ An S4 class to represent the splitTypeR data
 for each signature. The \code{list} should be have one entry per signature. 
 Default: \code{NULL}.}
 
-\item{\code{gsvaResults}}{\code{NULL} or a \code{list} of the GSVA results
-for each signature. The \code{list} should be have one entry per signature. 
+\item{\code{gsvaResults}}{\code{NULL} or a  \code{numeric} \code{matrix} with 
+the sample GSVA results for each signature. The \code{matrix} should be 
+have one row per signature. 
 Default: \code{NULL}.}
 
 \item{\code{permutations}}{\code{NULL} or a \code{list} of the permutations results

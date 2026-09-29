@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{signatures<-,SplitTypeRdata-method}
 \alias{signatures<-,SplitTypeRdata-method}
-\title{Replacement of studyDF slot in a \code{SplitTypeRdata} object}
+\title{Replacement of signatures slot in a \code{SplitTypeRdata} object}
 \usage{
 \S4method{signatures}{SplitTypeRdata}(x) <- value
 }
@@ -18,7 +18,7 @@ the modified \code{SplitTypeRdata} object when the new value is
 valid.
 }
 \description{
-A function for replacement of the studyDF slot in a 
+A function for replacement of the signatures slot in a 
 \code{SplitTypeRdata} class.
 }
 \examples{
@@ -27,8 +27,8 @@ A function for replacement of the studyDF slot in a
 paramDemo <- new("SplitTypeRdata")
 
 ## Demo study data frame
-signaDemo <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
-    "SignatureB"=c("Gene10", "Gene12"))
+signaDemo <- list("SignatureA"=c("KRAS", "AKT1", "MTOR"), 
+    "SignatureB"=c("PIK3CB", "CTTN"))
 
 ## Assign the new list to the signatures slot in the object
 signatures(paramDemo) <- signaDemo

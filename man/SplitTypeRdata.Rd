@@ -20,8 +20,8 @@ SplitTypeRdata(
 for each signature. The \code{list} should be have one entry per signature. 
 Default: \code{NULL}.}
 
-\item{gsvaResults}{\code{NULL} or a \code{list} of the GSVA results
-for each signature. The \code{list} should be have one entry per signature. 
+\item{gsvaResults}{\code{NULL} or a \code{matrix} of the GSVA results
+for each signature. The \code{matrix} should be have one row per signature. 
 Default: \code{NULL}.}
 
 \item{permutations}{\code{NULL} or a \code{list} of the permutations results
@@ -51,7 +51,7 @@ required parameters needed by the RAIDS workflow.
 }
 \description{
 This function creates a SplitTypeRdata object using the values 
-present in the paramters.
+present in the parameters.
 }
 \examples{
 
