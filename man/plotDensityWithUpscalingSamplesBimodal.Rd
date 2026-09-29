@@ -9,6 +9,7 @@ obtained for a specific signature}
 plotDensityWithUpscalingSamplesBimodal(
   x,
   signature,
+  breaks = 22L,
   colorSignature = "black",
   colorAlternative = "#A9A9AD",
   colorBorderSamples = "azure4",
@@ -22,6 +23,8 @@ from \code{runSubtyping}function, to be graphed.}
 \item{signature}{a \code{character} string representing the signature 
 that will be used to create the graph. The signature must 
 be present in the object.}
+
+\item{breaks}{a single \code{integer} value TODO}
 
 \item{colorSignature}{a \code{character} string representing the color of 
 the signature distribution curve. Default: \code{"black"}.}

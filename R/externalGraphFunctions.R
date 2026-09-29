@@ -14,6 +14,8 @@
 #' that will be used to create the graph. The signature must 
 #' be present in the object.
 #' 
+#' @param breaks a single \code{integer} value TODO
+#' 
 #' @param colorSignature a \code{character} string representing the color of 
 #' the signature distribution curve. Default: \code{"black"}.
 #' 
@@ -56,7 +58,7 @@
 #' @importFrom stats rnorm density
 #' @encoding UTF-8
 #' @export
-plotDensityWithUpscalingSamplesBimodal <- function(x, signature, 
+plotDensityWithUpscalingSamplesBimodal <- function(x, signature, breaks=22L,
     colorSignature="black", colorAlternative="#A9A9AD", 
     colorBorderSamples="azure4", colorFillingSamples="azure3") {
     
@@ -86,14 +88,14 @@ plotDensityWithUpscalingSamplesBimodal <- function(x, signature,
                             sd=model$sigma[posMax])))
     
     ## Obtain the counts per bin
-    histTmp <- hist(upscalingResults, breaks=22, plot=FALSE) 
+    histTmp <- hist(upscalingResults, breaks=breaks, plot=FALSE) 
     
     yMax <- max(curveMax$y, curveMin$y, max(histTmp$density))
     yMax <- yMax + 0.4
 
     par(new=FALSE)
     par(lwd=3)
-    hist(upscalingResults, freq=FALSE, breaks=22, ylab="", xlab="", 
+    hist(upscalingResults, freq=FALSE, breaks=breaks, ylab="", xlab="", 
         col=colorFillingSamples, ylim=c(0, yMax), xlim=c(-1, 1), main="", 
         border=colorBorderSamples) 
     par(new=TRUE)

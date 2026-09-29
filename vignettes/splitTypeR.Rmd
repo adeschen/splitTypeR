@@ -167,14 +167,78 @@ counts were processed with DESeq2 v1.50.2 [@Love2014] on genes expressed in at
 least 20% of the PDOs. The normalized expression is available in a 
 _SummarizedExperiment_ object. 
 
-In PDAC, the basal-like and classical subtypes, as defined in Moffitt et al. [@Moffitt2015], are the two consistently employed molecular subtypes. The 
-classical signature is associated to better prognosis and better response to standard chemotherapy while the basal-like subtype is associated 
+In PDAC, the basal-like and classical subtypes, as defined in Moffitt et 
+al [@Moffitt2015], are the two consistently employed molecular subtypes. The 
+classical signature is associated to better prognosis and better response to 
+standard chemotherapy while the basal-like subtype is associated 
 with worse overall prognosis [@Moffitt2015, @OKane2020].
+
+## Prepare the signatures
+
+The basal-like and classical gene signatures are the one defined for 
+PDOs in Tiriac et al. [@Tiriac2018]. 
+
+```{r geneSignatures}
+
+## Prepare the PDOs basal-like and classical signatures
+signaturesList <- list()
+signaturesList[["Basal-like"]] <- 
+        getGeneSignatures("2018_Tiriac_PDAC_PDO_basal-like_signature")[[1]]
+signaturesList[["Classical"]] <- 
+        getGeneSignatures("2018_Tiriac_PDAC_PDO_classical_signature")[[1]]
+
+```
+
+
+## Prepare the normalized expected counts
+
+A matrix of normalized expected counts is required. The row are the genes while 
+the patients (samples) are the columns.
+
+The row annotation must correspond to the signature format. As an example, if 
+the signatures are composed of gene names, the row annotation for the 
+normalized expected counts must also be gene names. 
 
 ```{r expCount}
 
+library(SummarizedExperiment)
+
+## Load the SummarizedExperiment object
+path <- system.file("extdata", "Tiriac_NormExpCounts.RDS", package = "splitTypeR")
+se <- readRDS(path)
+
+## Extract the normalized counts and assign the gene names as row names
+## The row names should correspond to the information present in the 
+## gene signatures. In this case, the gene names are used. 
+normCounts <- assays(se)[["normalizedCounts"]]
+rownames(normCounts) <- rowRanges(se)$gene_name
+
 
 ```
+
+## Run the subtyping method
+
+The _runSubtypingBimodal_ function runs all the steps.
+
+```{r toto2}
+
+## Fix seed for reproducible results
+set.seed(121)
+result <- runSubtypingBimodal(geneLists=signaturesList, 
+  expectedCountsMatrix=normCounts,
+  permRatio = 0.75,
+  permNbr = 15,
+  upscaleNbr = 25)
+
+
+
+ee<- splitTypeR::plotDensityWithUpscalingSamplesBimodal(breaks = 32L,
+    signature="2018_Tiriac_PDAC_PDO_classical_signature", result)
+ splitTypeR::plotDensityWithUpscalingSamplesBimodal(breaks = 14L,
+    signature="2018_Tiriac_PDAC_PDO_basal-like_signature", result)
+```
+
+
 
 
 # Acknowledgment

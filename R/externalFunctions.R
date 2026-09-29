@@ -148,7 +148,7 @@ runSubtypingBimodal <- function(geneLists, expectedCountsMatrix, permRatio=0.75,
 #' @encoding UTF-8
 #' @export
 getGeneSignaturesNames <- function() {
-    return(names(signatures))
+    return(names(signaturesDemo))
 }
 
 #' @title Return the selected gene list signatures
@@ -188,13 +188,13 @@ getGeneSignatures <- function(nameList=NULL) {
             "representing the selected signature names or \'NULL\'.")
     }
 
-    if (!is.null(nameList) && !all(nameList %in% names(signatures))) {
+    if (!is.null(nameList) && !all(nameList %in% names(signaturesDemo))) {
         stop("At least one signature is not available.")
     }
 
-    res <- signatures
+    res <- signaturesDemo
     if (!is.null(nameList)) {
-        res <- signatures[nameList]
+        res <- signaturesDemo[nameList]
     }
 
     return(res)
