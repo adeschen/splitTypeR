@@ -17,6 +17,18 @@ an object.
 A generic function for getting the upscaling slot in a 
 class. The function is implemented for the \code{SplitTypeRdata} class.
 }
+\examples{
+
+# Define a dummy class to show usage
+setClass("MyClass", slots = list(upscaling="character"))
+
+# Create an instance
+obj <- new("MyClass", upscaling="123")
+
+# Call the generic (assuming a method is implemented)
+# upscaling(obj)
+
+}
 \author{
 Astrid Deschênes
 }

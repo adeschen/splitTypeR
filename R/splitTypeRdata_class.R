@@ -179,7 +179,6 @@ setMethod("signatures", "SplitTypeRdata", function(x) {
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setGeneric("gsvaResults", function(x) standardGeneric("gsvaResults"))
 
@@ -256,7 +255,6 @@ setGeneric("permutations", function(x) standardGeneric("permutations"))
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setMethod("permutations", "SplitTypeRdata", function(x) {
     return(x@permutations)
@@ -281,12 +279,11 @@ setMethod("permutations", "SplitTypeRdata", function(x) {
 #' obj <- new("MyClass", standardDeviation="123")
 #' 
 # # Call the generic (assuming a method is implemented)
-# # gsvaResults(obj)
+# # standardDeviation(obj)
 #' 
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setGeneric("standardDeviation", function(x) 
         standardGeneric("standardDeviation"))
@@ -311,7 +308,6 @@ setGeneric("standardDeviation", function(x)
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setMethod("standardDeviation", "SplitTypeRdata", function(x) {
     return(x@standardDeviation)
@@ -327,9 +323,19 @@ setMethod("standardDeviation", "SplitTypeRdata", function(x) {
 #' 
 #' @return an object.
 #' 
+#' @examples
+#' 
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(upscaling="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", upscaling="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # upscaling(obj)
+#' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setGeneric("upscaling", function(x) 
     standardGeneric("upscaling"))
@@ -354,7 +360,6 @@ setGeneric("upscaling", function(x)
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setMethod("upscaling", "SplitTypeRdata", function(x) {
     return(x@upscaling)
