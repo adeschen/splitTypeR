@@ -1,6 +1,6 @@
 #' @title Parameters validation for the runSubtyping function
 #' 
-#' @description This function is validation the parameters for the 
+#' @description This function validates the parameters for the 
 #' runSubtyping function. When a parameter is incorrect, a message is sent to 
 #' the user before quitting the program.
 #' 
@@ -86,7 +86,7 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
 
 #' @title Permutation parameters validation for the runSubtyping function
 #' 
-#' @description This function is validation the permutation parameters for the 
+#' @description This function validates the permutation parameters for the 
 #' runSubtyping function. When a parameter is incorrect, a message is sent to 
 #' the user before quitting the program.
 #' 
