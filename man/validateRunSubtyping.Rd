@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{validateRunSubtyping}
 \alias{validateRunSubtyping}
-\title{Parameters validation for the runSubtyping function}
+\title{Parameter validation for the runSubtyping function}
 \usage{
 validateRunSubtyping(
   geneLists,
@@ -37,7 +37,7 @@ the upscaling step.}
 \code{TRUE} when all parameters are valid
 }
 \description{
-This function is validation the parameters for the 
+This function validates the parameters for the 
 runSubtyping function. When a parameter is incorrect, a message is sent to 
 the user before quitting the program.
 }

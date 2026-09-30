@@ -1,4 +1,4 @@
-#' @title Parameters validation for the runSubtyping function
+#' @title Parameter validation for the runSubtyping function
 #' 
 #' @description This function validates the parameters for the 
 #' runSubtyping function. When a parameter is incorrect, a message is sent to 
@@ -103,7 +103,7 @@ validateRunSubtyping <- function(geneLists, expectedCountsMatrix,
 #' number of permutation samplings done. 
 #' 
 #' @param upscaleNbr a \code{integer}, 2 or higher, representing the
-#' number of values taken for the normal distribution for each sample to run 
+#' number of values taken from the normal distribution for each sample to run 
 #' the upscaling step. 
 #' 
 #' @return \code{TRUE} when all parameters are valid

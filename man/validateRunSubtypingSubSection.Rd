@@ -21,14 +21,14 @@ permutation step is not done on the entire cohort.}
 number of permutation samplings done.}
 
 \item{upscaleNbr}{a \code{integer}, 2 or higher, representing the
-number of values taken for the normal distribution for each sample to run 
+number of values taken from the normal distribution for each sample to run 
 the upscaling step.}
 }
 \value{
 \code{TRUE} when all parameters are valid
 }
 \description{
-This function is validation the permutation parameters for the 
+This function validates the permutation parameters for the 
 runSubtyping function. When a parameter is incorrect, a message is sent to 
 the user before quitting the program.
 }
