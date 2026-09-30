@@ -199,9 +199,20 @@ setMethod("gsvaResults", "SplitTypeRdata", function(x) {
 #' 
 #' @return an object.
 #' 
+#' 
+#' @examples
+#' 
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(permutations="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", permutations="123")
+#' 
+# # Call the generic (assuming a method is implemented)
+# # permutations(obj)
+
 #' @author Astrid Deschênes
 #' @encoding UTF-8
-#' 
 #' @export
 setGeneric("permutations", function(x) standardGeneric("permutations"))
 
@@ -240,6 +251,18 @@ setMethod("permutations", "SplitTypeRdata", function(x) {
 #' @param x an object.
 #' 
 #' @return an object.
+#' 
+#' @examples
+#' 
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(standardDeviation="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", standardDeviation="123")
+#' 
+# # Call the generic (assuming a method is implemented)
+# # gsvaResults(obj)
+#' 
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8

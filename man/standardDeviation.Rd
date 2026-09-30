@@ -17,6 +17,17 @@ an object.
 A generic function for getting the standardDeviation slot in a 
 class. The function is implemented for the \code{SplitTypeRdata} class.
 }
+\examples{
+
+# Define a dummy class to show usage
+setClass("MyClass", slots = list(standardDeviation="character"))
+
+# Create an instance
+obj <- new("MyClass", standardDeviation="123")
+
+
+
+}
 \author{
 Astrid Deschênes
 }

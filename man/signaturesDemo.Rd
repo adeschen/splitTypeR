@@ -40,7 +40,7 @@ compiled for demonstration purposes.
 }
 \details{
 The PDAC patient-derived organoids (PDO) classical and basal-like 
-signatures are associated to this publication:
+signatures are associated with this publication:
 
 Tiriac et al. Organoid Profiling Identifies Common Responders to 
 Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 

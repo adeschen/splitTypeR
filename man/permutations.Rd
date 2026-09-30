@@ -17,6 +17,15 @@ an object.
 A generic function for getting the permutations slot in a 
 class. The function is implemented for the \code{SplitTypeRdata} class.
 }
+\examples{
+
+# Define a dummy class to show usage
+setClass("MyClass", slots = list(permutations="character"))
+
+# Create an instance
+obj <- new("MyClass", permutations="123")
+
+}
 \author{
 Astrid Deschênes
 }

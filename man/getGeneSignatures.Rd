@@ -22,7 +22,7 @@ The function returns the selected gene list signatures.
 }
 \details{
 The PDAC PDO classical and basal-like signatures are 
-associated to this publication:
+associated with this publication:
 
 Tiriac et al. Organoid Profiling Identifies Common Responders to 
 Chemotherapy in Pancreatic Cancer. Cancer Discov. 2018 Sep;8(9):1112-1129. 
