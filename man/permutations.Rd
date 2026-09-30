@@ -25,6 +25,9 @@ setClass("MyClass", slots = list(permutations="character"))
 # Create an instance
 obj <- new("MyClass", permutations="123")
 
+# Call the generic (assuming a method is implemented)
+# permutations(obj)
+
 }
 \author{
 Astrid Deschênes

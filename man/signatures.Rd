@@ -17,6 +17,18 @@ an object.
 A generic function for getting the signatures slot in a 
 class. The function is implemented for the \code{SplitTypeRdata} class.
 }
+\examples{
+
+# Define a dummy class to show usage
+setClass("MyClass", slots = list(signatures="character"))
+
+# Create an instance
+obj <- new("MyClass", signatures="123")
+
+# Call the generic (assuming a method is implemented)
+# signatures(obj)
+
+}
 \author{
 Astrid Deschênes
 }

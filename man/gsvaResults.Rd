@@ -17,6 +17,18 @@ an object.
 A generic function for getting the gsvaResults slot in a 
 class. The function is implemented for the \code{SplitTypeRdata} class.
 }
+\examples{
+
+# Define a dummy class to show usage
+setClass("MyClass", slots = list(gsvaResults="character"))
+
+# Create an instance
+obj <- new("MyClass", gsvaResults="123")
+
+# Call the generic (assuming a method is implemented)
+# gsvaResults(obj)
+
+}
 \author{
 Astrid Deschênes
 }
