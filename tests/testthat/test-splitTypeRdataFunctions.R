@@ -140,3 +140,34 @@ test_that("create a SplitTypeRdata class with gsvaResults setter and getter shou
     expect_error(gsvaResults(paramTest) <- 33L)
     expect_equal(gsvaResults(paramTest), expResults)
 })
+
+
+test_that("create a SplitTypeRdata class with permutations setter and getter should return an object", {
+    
+    sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
+                 "SignatureB"=c("Gene10", "Gene12"))
+    
+    expResults1 <- matrix(data=c(0.23772165, -0.71262458, 0.42328775, 
+                                -0.65149268, 0.18324268, 0.007158662, 
+                                0.263418803, 0.169815921, -0.708384551, 
+                                0.440403512), nrow=2, ncol=5, byrow=FALSE)
+    rownames(expResults1) <- paste0("Patient_", 1:2)
+    expResults2 <- matrix(data=c(0.29772165, 0.21262458, 0.42218775, 
+                                 0.65133268, 0.18324268, -0.017158662, 
+                                 0.263418803, 0.269805921, 0.708384551, 
+                                 0.240403512), nrow=2, ncol=5, byrow=FALSE)
+    rownames(expResults2) <- paste0("Patient_", 1:2)
+    
+    expResults <- list()
+    expResults[[names(sign)[1]]] <- expResults1
+    expResults[[names(sign)[2]]] <- expResults2
+    
+    paramTest <- new("SplitTypeRdata", signatures=sign, 
+                     permutations=NULL)
+    
+    permutations(paramTest) <- expResults
+    
+    expect_equal(permutations(paramTest), expResults)
+    expect_error(permutations(paramTest) <- 33L)
+    expect_equal(permutations(paramTest), expResults)
+})

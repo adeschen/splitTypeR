@@ -27,7 +27,7 @@ should be inferior to the total number of patients so that the
 permutation step is not done on the entire cohort.}
 
 \item{permNbr}{a \code{integer} bigger than or equal to 5 representing the
-number of permutation samplings done.}
+number of permutation sampling done.}
 
 \item{upscaleNbr}{a \code{integer}, 2 or higher, representing the
 number of values taken for the normal distribution for each sample to run 

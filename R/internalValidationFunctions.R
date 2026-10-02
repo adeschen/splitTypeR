@@ -17,7 +17,7 @@
 #' permutation step is not done on the entire cohort.
 #'
 #' @param permNbr a \code{integer} bigger than or equal to 5 representing the
-#' number of permutation samplings done. 
+#' number of permutation sampling done. 
 #' 
 #' @param upscaleNbr a \code{integer}, 2 or higher, representing the
 #' number of values taken for the normal distribution for each sample to run 

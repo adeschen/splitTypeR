@@ -296,7 +296,8 @@ setGeneric("standardDeviation", function(x)
 #' 
 #' @param x a \code{SplitTypeRdata} object.
 #' 
-#' @return a \code{list}.
+#' @return \code{NULL} or a \code{list} of the sample standard deviation 
+#' for each signature. The \code{list} should be have one entry per signature. 
 #' 
 #' @examples
 #' 
@@ -348,7 +349,8 @@ setGeneric("upscaling", function(x)
 #' 
 #' @param x a \code{SplitTypeRdata} object.
 #' 
-#' @return a \code{list}.
+#' @return \code{NULL} or a \code{list} of the upscaling data for each 
+#' signature. The \code{list} should be have one entry per signature. 
 #' 
 #' @examples
 #' 
@@ -363,6 +365,59 @@ setGeneric("upscaling", function(x)
 #' @export
 setMethod("upscaling", "SplitTypeRdata", function(x) {
     return(x@upscaling)
+})
+
+
+#' Generic function for getting the model slot in a class
+#' 
+#' @description A generic function for getting the model slot in a 
+#' class. The function is implemented for the \code{SplitTypeRdata} class.
+#' 
+#' @param x an object.
+#' 
+#' @return an object.
+#' 
+#' @examples
+#' 
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(model="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", model="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # model(obj)
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("model", function(x) 
+    standardGeneric("model"))
+
+
+#' Getter for the model slot in a SplitTypeRdata class
+#' 
+#' @description A function for getting the model slot in a 
+#' \code{SplitTypeRdata} class. 
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @return \code{NULL} or a \code{list} of the mixture models calculated  
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' 
+#' @examples
+#' 
+#' ## Create a SplitTypeRdata object
+#' splitData <- SplitTypeRdata()
+#' 
+#' ## Extract the model slot for the object
+#' model(splitData)
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setMethod("model", "SplitTypeRdata", function(x) {
+    return(x@model)
 })
 
 
@@ -503,6 +558,85 @@ setGeneric("gsvaResults<-", function(x, value)
 #' @export
 setMethod("gsvaResults<-", "SplitTypeRdata", function(x, value) {
     x@gsvaResults <- value
+    
+    # Validate and return the modified object
+    validObject(x) 
+    return(x)
+})
+
+
+#' Generic function for replacement of permutations slot in a class
+#' 
+#' @description A generic function for replacement of permutations slot in a 
+#' S4 object.
+#' 
+#' @param x a S4 object.
+#' 
+#' @param value the new value to assign or update.
+#' 
+#' @return the modified S4 object when the new value is valid.
+#' 
+#' @examples
+#'  
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(permutations="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", permutations="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # permutations(obj) <- "333"
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("permutations<-", function(x, value) 
+    standardGeneric("permutations<-"))
+
+
+#' Replacement of permutations slot in a \code{SplitTypeRdata} object
+#' 
+#' @description A function for replacement of the permutations slot in a 
+#' \code{SplitTypeRdata} class.
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @param value \code{NULL} or a \code{list} of the permutations results 
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' 
+#' @return the modified \code{SplitTypeRdata} object when the new value is 
+#' valid.
+#' 
+#' @examples
+#' 
+#' ## Two demo signatures
+#' sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"), 
+#'     "SignatureB"=c("ACTR2", "AKT1"))
+#'     
+#' ## Create a SplitTypeRdata object with the signatures
+#' demo <- new("SplitTypeRdata", signatures=sign)
+#' 
+#' ## Demo study data frame
+#' demoPerm1 <- matrix(data=c(0.23772165, -0.71262458, 0.42328775, 
+#'         -0.65149268, 0.18324268, 0.007158662), nrow=2, ncol=3, byrow=FALSE)
+#' rownames(demoPerm1) <- paste0("Patient_", 1:2)
+#' 
+#' demoPerm2 <- matrix(data=c(0.29772165, 0.21262458, 0.42218775, 
+#'         0.65133268, 0.18324268, -0.017158662), nrow=2, ncol=4, byrow=FALSE)
+#' rownames(demoPerm2) <- paste0("Patient_", 1:2)
+#' demoPerm <- list()
+#' expResults[[names(sign)[1]]] <- demoPerm1
+#' expResults[[names(sign)[2]]] <- demoPerm2
+#' 
+#' 
+#' permutations(demo) <- demoPerm
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods validObject
+#' @export
+setMethod("permutations<-", "SplitTypeRdata", function(x, value) {
+    x@permutations <- value
     
     # Validate and return the modified object
     validObject(x) 
