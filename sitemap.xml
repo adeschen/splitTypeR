@@ -18,8 +18,12 @@
 <url><loc>/reference/gsvaResults-set.html</loc></url>
 <url><loc>/reference/gsvaResults.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/model-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/model.html</loc></url>
 <url><loc>/reference/normalMix.html</loc></url>
 <url><loc>/reference/permutations-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/permutations-set-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/permutations-set.html</loc></url>
 <url><loc>/reference/permutations.html</loc></url>
 <url><loc>/reference/permuteGSVA.html</loc></url>
 <url><loc>/reference/plotDensityWithUpscalingSamplesBimodal.html</loc></url>
