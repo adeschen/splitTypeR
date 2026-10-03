@@ -35,8 +35,8 @@ demo <- new("SplitTypeRdata", signatures=sign)
 
 ## Create demo model
 set.seed(121)
-modelExp <- normalmixEM(c(sample(1:25, size=12, replace=T), 
-                sample(23:45, size=12, replace=T)), k=2, verb=FALSE)
+modelExp <- normalmixEM(c(sample(1:25, size=12, replace=TRUE), 
+                sample(23:45, size=12, replace=TRUE)), k=2, verb=FALSE)
                 
 ## Create demo models
 demoModels <- list()
