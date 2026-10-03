@@ -644,6 +644,82 @@ setMethod("permutations<-", "SplitTypeRdata", function(x, value) {
 })
 
 
+#' Generic function for replacement of model slot in a class
+#' 
+#' @description A generic function for replacement of model slot in a 
+#' S4 object.
+#' 
+#' @param x a S4 object.
+#' 
+#' @param value the new value to assign or update.
+#' 
+#' @return the modified S4 object when the new value is valid.
+#' 
+#' @examples
+#'  
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(model="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", model="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # model(obj) <- "333"
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("model<-", function(x, value) 
+    standardGeneric("model<-"))
+
+
+#' Replacement of model slot in a \code{SplitTypeRdata} object
+#' 
+#' @description A function for replacement of the model slot in a 
+#' \code{SplitTypeRdata} class.
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @param value \code{NULL} or a \code{list} of the mixture models calculated 
+#' for each signature. The \code{list} should be have one entry per signature. 
+#' 
+#' @return the modified \code{SplitTypeRdata} object when the new value is 
+#' valid.
+#' 
+#' @examples
+#' 
+#' ## Two demo signatures
+#' sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"), 
+#'     "SignatureB"=c("ACTR2", "AKT1"))
+#'     
+#' ## Create a SplitTypeRdata object with the signatures
+#' demo <- new("SplitTypeRdata", signatures=sign)
+#' 
+#' ## Create demo model
+#' set.seed(121)
+#' modelExp <- normalmixEM(c(sample(1:25, size=12, replace=T), 
+#'                 sample(23:45, size=12, replace=T)), k=2, verb=FALSE)
+#'                 
+#' ## Create demo models
+#' demoModels <- list()
+#' demoModels[[names(sign)[1]]] <- modelExp
+#' demoModels[[names(sign)[2]]] <- modelExp
+#' 
+#' model(demo) <- demoModels
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods validObject
+#' @export
+setMethod("model<-", "SplitTypeRdata", function(x, value) {
+    x@model <- value
+    
+    # Validate and return the modified object
+    validObject(x) 
+    return(x)
+})
+
+
 #' @title Create a SplitTypeRdata object 
 #'
 #' @description This function creates a SplitTypeRdata object using the values 

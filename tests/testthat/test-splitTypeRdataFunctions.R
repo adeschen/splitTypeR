@@ -141,7 +141,6 @@ test_that("create a SplitTypeRdata class with gsvaResults setter and getter shou
     expect_equal(gsvaResults(paramTest), expResults)
 })
 
-
 test_that("create a SplitTypeRdata class with permutations setter and getter should return an object", {
     
     sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
@@ -170,4 +169,26 @@ test_that("create a SplitTypeRdata class with permutations setter and getter sho
     expect_equal(permutations(paramTest), expResults)
     expect_error(permutations(paramTest) <- 33L)
     expect_equal(permutations(paramTest), expResults)
+})
+
+test_that("create a SplitTypeRdata class with model setter and getter should return an object", {
+    
+    sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
+                 "SignatureB"=c("Gene10", "Gene12"))
+    set.seed(121)
+    modelExp <- normalmixEM(c(sample(1:25, size=12, replace=T), 
+                    sample(23:45, size=12, replace=T)), k=2, verb=FALSE)
+    
+    expResults <- list()
+    expResults[[names(sign)[1]]] <- modelExp
+    expResults[[names(sign)[2]]] <- modelExp
+    
+    paramTest <- new("SplitTypeRdata", signatures=sign, 
+                     model=NULL)
+    
+    model(paramTest) <- expResults
+    
+    expect_equal(model(paramTest), expResults)
+    expect_error(model(paramTest) <- 33L)
+    expect_equal(model(paramTest), expResults)
 })
