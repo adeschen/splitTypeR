@@ -625,8 +625,8 @@ setGeneric("permutations<-", function(x, value)
 #'         0.65133268, 0.18324268, -0.017158662), nrow=2, ncol=4, byrow=FALSE)
 #' rownames(demoPerm2) <- paste0("Patient_", 1:2)
 #' demoPerm <- list()
-#' expResults[[names(sign)[1]]] <- demoPerm1
-#' expResults[[names(sign)[2]]] <- demoPerm2
+#' demoPerm[[names(sign)[1]]] <- demoPerm1
+#' demoPerm[[names(sign)[2]]] <- demoPerm2
 #' 
 #' 
 #' permutations(demo) <- demoPerm
