@@ -192,3 +192,25 @@ test_that("create a SplitTypeRdata class with model setter and getter should ret
     expect_error(model(paramTest) <- 33L)
     expect_equal(model(paramTest), expResults)
 })
+
+
+test_that("create a SplitTypeRdata class with standardDeviation setter and getter should return an object", {
+    
+    sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
+                 "SignatureB"=c("Gene10", "Gene12"))
+    
+    expResults <- list()
+    expResults[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 
+                                            0.0747440)
+    expResults[[names(sign)[2]]] <- c(0.0205218364, 0.0847276766, 
+                                            0.1478349058, 0.1009854961)
+    
+    paramTest <- new("SplitTypeRdata", signatures=sign, 
+                     model=NULL)
+    
+    standardDeviation(paramTest) <- expResults
+    
+    expect_equal(standardDeviation(paramTest), expResults)
+    expect_error(standardDeviation(paramTest) <- 33L)
+    expect_equal(standardDeviation(paramTest), expResults)
+})

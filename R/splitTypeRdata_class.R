@@ -723,6 +723,83 @@ setMethod("model<-", "SplitTypeRdata", function(x, value) {
 })
 
 
+#' Generic function for replacement of standardDeviation slot in a class
+#' 
+#' @description A generic function for replacement of standardDeviation slot 
+#' in a S4 object.
+#' 
+#' @param x a S4 object.
+#' 
+#' @param value the new value to assign or update.
+#' 
+#' @return the modified S4 object when the new value is valid.
+#' 
+#' @examples
+#'  
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(standardDeviation="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", standardDeviation="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # standardDeviation(obj) <- "333"
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("standardDeviation<-", function(x, value) 
+    standardGeneric("standardDeviation<-"))
+
+
+#' Replacement of standardDeviation slot in a \code{SplitTypeRdata} object
+#' 
+#' @description A function for replacement of the standardDeviation slot in a 
+#' \code{SplitTypeRdata} class.
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @param value \code{NULL} or a \code{list} of the standard deviation results 
+#' for each signature. The \code{list} should be have one entry per signature.
+#' 
+#' @return the modified \code{SplitTypeRdata} object when the new value is 
+#' valid.
+#' 
+#' @examples
+#' 
+#' ## Load required library
+#' library(mixtools)
+#' 
+#' ## Two demo signatures
+#' sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"), 
+#'     "SignatureB"=c("ACTR2", "AKT1"))
+#'     
+#' ## Create a SplitTypeRdata object with the signatures
+#' demo <- new("SplitTypeRdata", signatures=sign)
+#' 
+#'                 
+#' ## Create demo standard devitaions
+#' demoSD <- list()
+#' demoSD[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 
+#' 0.07474401, 0.06546492)
+#' demoSD[[names(sign)[2]]] <- c(0.21748928, 0.18392200, 0.14785561, 
+#' 0.65474401, 0.44446492)
+#' 
+#' standardDeviation(demo) <- demoSD
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods validObject
+#' @export
+setMethod("standardDeviation<-", "SplitTypeRdata", function(x, value) {
+    x@standardDeviation <- value
+    
+    # Validate and return the modified object
+    validObject(x) 
+    return(x)
+})
+
+
 #' @title Create a SplitTypeRdata object 
 #'
 #' @description This function creates a SplitTypeRdata object using the values 
