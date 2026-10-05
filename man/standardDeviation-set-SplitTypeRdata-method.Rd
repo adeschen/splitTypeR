@@ -3,15 +3,14 @@
 \encoding{UTF-8}
 \name{standardDeviation<-,SplitTypeRdata-method}
 \alias{standardDeviation<-,SplitTypeRdata-method}
-\title{Replacement of standardDeviation slot in a \code{SplitTypeRdata} object}
+\title{Replacement of the standardDeviation slot in a \code{SplitTypeRdata} object}
 \usage{
 \S4method{standardDeviation}{SplitTypeRdata}(x) <- value
 }
 \arguments{
 \item{x}{a \code{SplitTypeRdata} object.}
 
-\item{value}{\code{NULL} or a \code{list} of the standard deviation results 
-for each signature. The \code{list} should be have one entry per signature.}
+\item{value}{\code{NULL} or a TODO}
 }
 \value{
 the modified \code{SplitTypeRdata} object when the new value is 
@@ -33,13 +32,10 @@ sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"),
 ## Create a SplitTypeRdata object with the signatures
 demo <- new("SplitTypeRdata", signatures=sign)
 
-                
-## Create demo standard devitaions
+## Create standard deviations
 demoSD <- list()
-demoSD[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 
-0.07474401, 0.06546492)
-demoSD[[names(sign)[2]]] <- c(0.21748928, 0.18392200, 0.14785561, 
-0.65474401, 0.44446492)
+demoSD[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 0.0747440)
+demoSD[[names(sign)[2]]] <- c(0.02058364, 0.08476766, 0.14783058, 0.1009961)
 
 standardDeviation(demo) <- demoSD
 

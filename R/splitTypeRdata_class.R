@@ -752,15 +752,88 @@ setGeneric("standardDeviation<-", function(x, value)
     standardGeneric("standardDeviation<-"))
 
 
-#' Replacement of standardDeviation slot in a \code{SplitTypeRdata} object
+#' Replacement of the standardDeviation slot in a \code{SplitTypeRdata} object
 #' 
 #' @description A function for replacement of the standardDeviation slot in a 
 #' \code{SplitTypeRdata} class.
 #' 
 #' @param x a \code{SplitTypeRdata} object.
 #' 
-#' @param value \code{NULL} or a \code{list} of the standard deviation results 
-#' for each signature. The \code{list} should be have one entry per signature.
+#' @param value \code{NULL} or a TODO 
+#' 
+#' @return the modified \code{SplitTypeRdata} object when the new value is 
+#' valid.
+#' 
+#' @examples
+#' 
+#' ## Load required library
+#' library(mixtools)
+#' 
+#' ## Two demo signatures
+#' sign <- list("SignatureA"=c("EGFR", "CTTN", "ACTB"), 
+#'     "SignatureB"=c("ACTR2", "AKT1"))
+#'     
+#' ## Create a SplitTypeRdata object with the signatures
+#' demo <- new("SplitTypeRdata", signatures=sign)
+#' 
+#' ## Create standard deviations
+#' demoSD <- list()
+#' demoSD[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 0.0747440)
+#' demoSD[[names(sign)[2]]] <- c(0.02058364, 0.08476766, 0.14783058, 0.1009961)
+#' 
+#' standardDeviation(demo) <- demoSD
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @importFrom methods validObject
+#' @export
+setMethod("standardDeviation<-", "SplitTypeRdata", function(x, value) {
+    x@standardDeviation <- value
+    
+    # Validate and return the modified object
+    validObject(x) 
+    return(x)
+})
+
+
+#' Generic function for replacement of the upscaling slot in a class
+#' 
+#' @description A generic function for replacement of the upscaling slot 
+#' in a S4 object.
+#' 
+#' @param x a S4 object.
+#' 
+#' @param value the new value to assign or update.
+#' 
+#' @return the modified S4 object when the new value is valid.
+#' 
+#' @examples
+#'  
+#' # Define a dummy class to show usage
+#' setClass("MyClass", slots = list(upscaling="character"))
+#' 
+#' # Create an instance
+#' obj <- new("MyClass", upscaling="123")
+#' 
+#' # Call the generic (assuming a method is implemented)
+#' # upscaling(obj) <- "333"
+#' 
+#' @author Astrid Deschênes
+#' @encoding UTF-8
+#' @export
+setGeneric("upscaling<-", function(x, value) 
+    standardGeneric("upscaling<-"))
+
+
+#' Replacement of the upscaling slot in a \code{SplitTypeRdata} object
+#' 
+#' @description A function for replacement of the upscaling slot in a 
+#' \code{SplitTypeRdata} class.
+#' 
+#' @param x a \code{SplitTypeRdata} object.
+#' 
+#' @param value \code{NULL} or a \code{list} of the upscaling data for 
+#' each signature. The \code{list} should be have one entry per signature.
 #' 
 #' @return the modified \code{SplitTypeRdata} object when the new value is 
 #' valid.
@@ -779,20 +852,20 @@ setGeneric("standardDeviation<-", function(x, value)
 #' 
 #'                 
 #' ## Create demo standard devitaions
-#' demoSD <- list()
-#' demoSD[[names(sign)[1]]] <- c(0.01748988, 0.08992500, 0.11781061, 
-#' 0.07474401, 0.06546492)
-#' demoSD[[names(sign)[2]]] <- c(0.21748928, 0.18392200, 0.14785561, 
-#' 0.65474401, 0.44446492)
+#' demoUp <- list()
+#' demoUp[[names(sign)[1]]] <- matrix(data=c(0.0174988, 0.0892500, 0.1178101, 
+#' 0.0744401, 0.0654692, 0.2546492), nrow=2, ncol=3, byrow=FALSE)
+#' demoUp[[names(sign)[2]]] <- matrix(data=c(0.3749488, 0.4894500, 0.2118101, 
+#' 0.4444401, 0.4154692, 0.8543392), nrow=2, ncol=3, byrow=FALSE)
 #' 
-#' standardDeviation(demo) <- demoSD
+#' upscaling(demo) <- demoUp
 #' 
 #' @author Astrid Deschênes
 #' @encoding UTF-8
 #' @importFrom methods validObject
 #' @export
-setMethod("standardDeviation<-", "SplitTypeRdata", function(x, value) {
-    x@standardDeviation <- value
+setMethod("upscaling<-", "SplitTypeRdata", function(x, value) {
+    x@upscaling <- value
     
     # Validate and return the modified object
     validObject(x) 

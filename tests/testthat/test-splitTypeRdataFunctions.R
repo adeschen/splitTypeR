@@ -214,3 +214,24 @@ test_that("create a SplitTypeRdata class with standardDeviation setter and gette
     expect_error(standardDeviation(paramTest) <- 33L)
     expect_equal(standardDeviation(paramTest), expResults)
 })
+
+test_that("create a SplitTypeRdata class with upscaling setter and getter should return an object", {
+    
+    sign <- list("SignatureA"=c("Gene1", "Gene2", "Gene3"), 
+                 "SignatureB"=c("Gene10", "Gene12"))
+    
+    expResults <- list()
+    expResults[[names(sign)[1]]] <- matrix(data=c(0.0174988, 0.0892500, 0.1178101, 
+                0.0744401, 0.0654692, 0.2546492), nrow=2, ncol=3, byrow=FALSE)
+    expResults[[names(sign)[2]]] <- matrix(data=c(0.3749488, 0.4894500, 0.2118101, 
+                0.4444401, 0.4154692, 0.8543392), nrow=2, ncol=3, byrow=FALSE)
+    
+    paramTest <- new("SplitTypeRdata", signatures=sign, 
+                     upscaling=NULL)
+    
+    upscaling(paramTest) <- expResults
+    
+    expect_equal(upscaling(paramTest), expResults)
+    expect_error(upscaling(paramTest) <- 33L)
+    expect_equal(upscaling(paramTest), expResults)
+})
