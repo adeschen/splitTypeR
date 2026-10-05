@@ -40,8 +40,12 @@
 <url><loc>/reference/splitTypeR-package.html</loc></url>
 <url><loc>/reference/splitTypeResults.html</loc></url>
 <url><loc>/reference/standardDeviation-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/standardDeviation-set-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/standardDeviation-set.html</loc></url>
 <url><loc>/reference/standardDeviation.html</loc></url>
 <url><loc>/reference/upscaling-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/upscaling-set-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/upscaling-set.html</loc></url>
 <url><loc>/reference/upscaling.html</loc></url>
 <url><loc>/reference/validateRunSubtyping.html</loc></url>
 <url><loc>/reference/validateRunSubtypingSubSection.html</loc></url>
