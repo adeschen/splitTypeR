@@ -83,7 +83,7 @@ assigned to the signature classification.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">runSubtypingBimodal</span><span class="op">(</span></span>
 <span>  <span class="va">geneLists</span>,</span>
-<span>  <span class="va">expectedCountsMatrix</span>,</span>
+<span>  <span class="va">expectedCountsMatrixLog</span>,</span>
 <span>  permRatio <span class="op">=</span> <span class="fl">0.75</span>,</span>
 <span>  permNbr <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  upscaleNbr <span class="op">=</span> <span class="fl">10</span></span>
@@ -99,9 +99,12 @@ assigned to the signature classification.</p>
 two signature gene lists must be present.</p></dd>
 
 
-<dt id="arg-expectedcountsmatrix">expectedCountsMatrix<a class="anchor" aria-label="anchor" href="#arg-expectedcountsmatrix"></a></dt>
-<dd><p>a normalized gene expression data
-<code>matrix</code> with rows corresponding to genes and columns to samples.</p></dd>
+<dt id="arg-expectedcountsmatrixlog">expectedCountsMatrixLog<a class="anchor" aria-label="anchor" href="#arg-expectedcountsmatrixlog"></a></dt>
+<dd><p>a log2-normalized gene expression data
+<code>matrix</code> with rows corresponding to genes and columns to samples.
+Other data that also be used as long as it conforms with the Gaussian
+behavior. As examples, log2(TPM + 1), log2(CPM + 1), or vst(counts) would
+be acceptable.</p></dd>
 
 
 <dt id="arg-permratio">permRatio<a class="anchor" aria-label="anchor" href="#arg-permratio"></a></dt>
@@ -153,7 +156,7 @@ results generated at each step of the statistical workflow.</p>
 <span class="r-in"><span><span class="co">## Run classification on the 30 patients using 20 permutations on 75% of </span></span></span>
 <span class="r-in"><span><span class="co">## the dataset, and 10 points per patient for the up-scaling step</span></span></span>
 <span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">runSubtypingBimodal</span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>, </span></span>
-<span class="r-in"><span>    expectedCountsMatrix<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
+<span class="r-in"><span>    expectedCountsMatrixLog<span class="op">=</span><span class="va">expNormalCountsDemo</span>, </span></span>
 <span class="r-in"><span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span>, upscaleNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> number of iterations= 55 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> number of iterations= 72 </span>

@@ -8,6 +8,9 @@
 <url><loc>/reference/MatrixOrNULL-class.html</loc></url>
 <url><loc>/reference/SplitTypeRdata-class.html</loc></url>
 <url><loc>/reference/SplitTypeRdata.html</loc></url>
+<url><loc>/reference/classification-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/classification-set-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/classification-set.html</loc></url>
 <url><loc>/reference/classification.html</loc></url>
 <url><loc>/reference/expNormalCountsDemo.html</loc></url>
 <url><loc>/reference/extractFromNormalDist.html</loc></url>
@@ -18,6 +21,7 @@
 <url><loc>/reference/gsvaResults-set.html</loc></url>
 <url><loc>/reference/gsvaResults.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/internalSignatures.html</loc></url>
 <url><loc>/reference/model-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/model-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/model-set.html</loc></url>
@@ -32,13 +36,13 @@
 <url><loc>/reference/plotPermutationSamplesDistribution.html</loc></url>
 <url><loc>/reference/plotPermutationSamplesNormal.html</loc></url>
 <url><loc>/reference/runSubtypingBimodal.html</loc></url>
+<url><loc>/reference/sampleClassification.html</loc></url>
 <url><loc>/reference/signatures-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/signatures-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/signatures-set.html</loc></url>
 <url><loc>/reference/signatures.html</loc></url>
 <url><loc>/reference/signaturesDemo.html</loc></url>
 <url><loc>/reference/splitTypeR-package.html</loc></url>
-<url><loc>/reference/splitTypeResults.html</loc></url>
 <url><loc>/reference/standardDeviation-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/standardDeviation-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/standardDeviation-set.html</loc></url>
