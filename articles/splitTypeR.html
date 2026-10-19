@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script><p><br></p>
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-10-14<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-10-19<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -222,9 +222,8 @@ group).</p>
 <div class="section level3">
 <h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
-<p>For each sample, a hypothesis testing whether its real score is more
-consistent with belonging to the low-enrichment distribution or the
-high-enrichment one, and assign it accordingly.</p>
+<p>For each sample, a hypothesis testing whether its real score is<br>
+consistent with belonging to the low-enrichment distribution.</p>
 <p>For each sample, the pipeline runs a hypothesis test where the Null
 hypothesis (H₀) is that the sample actually belongs to the
 lower-enrichment distribution. The sample’s real enrichment score (from
@@ -255,6 +254,7 @@ associated to better prognosis and better response to standard
 chemotherapy while the basal-like subtype is associated with worse
 overall prognosis <span class="citation">O’Kane et al.
 (2020)</span>.</p>
+<p></p>
 <div class="section level3">
 <h3 id="prepare-the-signatures">Prepare the signatures<a class="anchor" aria-label="anchor" href="#prepare-the-signatures"></a>
 </h3>
@@ -262,15 +262,19 @@ overall prognosis <span class="citation">O’Kane et al.
 PDOs in Tiriac et al. <span class="citation">(Tiriac et al.
 2018)</span>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Prepare the PDOs basal-like and classical signatures</span></span>
+<code class="sourceCode R"><span><span class="co">## Require package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adeschen/splitTypeR" class="external-link">splitTypeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Prepare the PDOs basal-like and classical signatures</span></span>
 <span><span class="va">signaturesList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Basal-like"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Classical"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_classical_signature"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_classical_signature"</span><span class="op">)</span></span></code></pre></div>
+<p></p>
 </div>
 <div class="section level3">
-<h3 id="prepare-the-normalized-expected-counts">Prepare the normalized expected counts<a class="anchor" aria-label="anchor" href="#prepare-the-normalized-expected-counts"></a>
+<h3 id="prepare-the-log2-transformed-normalized-expected-counts">Prepare the log2-transformed normalized expected counts<a class="anchor" aria-label="anchor" href="#prepare-the-log2-transformed-normalized-expected-counts"></a>
 </h3>
 <p>A matrix of normalized expected counts is required. The row are the
 genes while the patients (samples) are the columns.</p>
@@ -278,82 +282,15 @@ genes while the patients (samples) are the columns.</p>
 example, if the signatures are composed of gene names, the row
 annotation for the normalized expected counts must also be gene
 names.</p>
+<p>For GSVA analysis, the normalized expect counts should be
+log-transform to enable the use of the Gaussian distribution function.
+The current behavior of GSVA is to automatically choose one of the
+available distribution functions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Loading required package: MatrixGenerics</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: matrixStats</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'MatrixGenerics'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:matrixStats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,</span></span>
-<span><span class="co">##     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,</span></span>
-<span><span class="co">##     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,</span></span>
-<span><span class="co">##     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,</span></span>
-<span><span class="co">##     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,</span></span>
-<span><span class="co">##     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,</span></span>
-<span><span class="co">##     colWeightedMeans, colWeightedMedians, colWeightedSds,</span></span>
-<span><span class="co">##     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,</span></span>
-<span><span class="co">##     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,</span></span>
-<span><span class="co">##     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,</span></span>
-<span><span class="co">##     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,</span></span>
-<span><span class="co">##     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,</span></span>
-<span><span class="co">##     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,</span></span>
-<span><span class="co">##     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,</span></span>
-<span><span class="co">##     rowWeightedSds, rowWeightedVars</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: GenomicRanges</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: stats4</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: BiocGenerics</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: generics</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'generics'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,</span></span>
-<span><span class="co">##     setequal, union</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'BiocGenerics'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     IQR, mad, sd, var, xtabs</span></span></code></pre>
-<pre><code><span><span class="co">## The following object is masked from 'package:utils':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     data</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
-<span><span class="co">##     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
-<span><span class="co">##     get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,</span></span>
-<span><span class="co">##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span></span>
-<span><span class="co">##     rbind, Reduce, rownames, sapply, saveRDS, scale, sequence, table,</span></span>
-<span><span class="co">##     tapply, transform, unique, unsplit, which.max, which.min</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: S4Vectors</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'S4Vectors'</span></span></code></pre>
-<pre><code><span><span class="co">## The following object is masked from 'package:utils':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     findMatches</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     expand.grid, I, unname</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: IRanges</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: Seqinfo</span></span></code></pre>
-<pre><code><span><span class="co">## Loading required package: Biobase</span></span></code></pre>
-<pre><code><span><span class="co">## Welcome to Bioconductor</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     Vignettes contain introductory material; view with</span></span>
-<span><span class="co">##     'browseVignettes()'. To cite Bioconductor, see</span></span>
-<span><span class="co">##     'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'Biobase'</span></span></code></pre>
-<pre><code><span><span class="co">## The following object is masked from 'package:MatrixGenerics':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     rowMedians</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:matrixStats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     anyMissing, rowMedians</span></span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Load the SummarizedExperiment object</span></span>
+<code class="sourceCode R"><span><span class="co">## Required package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Load the SummarizedExperiment object</span></span>
 <span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Tiriac_NormExpCounts.RDS"</span>, package <span class="op">=</span> <span class="st">"splitTypeR"</span><span class="op">)</span></span>
 <span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
 <span></span>
@@ -363,79 +300,411 @@ names.</p>
 <span><span class="va">normCounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">se</span><span class="op">)</span><span class="op">[[</span><span class="st">"normalizedCounts"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">normCounts</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">rowRanges</span><span class="op">(</span><span class="va">se</span><span class="op">)</span><span class="op">$</span><span class="va">gene_name</span></span>
 <span></span>
-<span><span class="co">## Log2 transform the data dds a small pseudo-count to prevent log2(0) errors </span></span>
+<span><span class="co">## Log2-transform the data, adding a small pseudo-count to </span></span>
+<span><span class="co">## prevent log2(0) errors </span></span>
 <span><span class="va">log2normCounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">normCounts</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p></p>
 </div>
 <div class="section level3">
 <h3 id="run-the-subtyping-method">Run the subtyping method<a class="anchor" aria-label="anchor" href="#run-the-subtyping-method"></a>
 </h3>
 <p>The <em>runSubtypingBimodal</em> function runs all the steps.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## The 2 retained signatures, basal-like and classical from Tiriac et al.</span></span>
-<span><span class="va">signaturesList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Classical"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_classical_signature"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    <span class="st">"Basal-like"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Fix seed for reproducible results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">81</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Fix seed for reproducible results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span><span class="co">## Run the subtyping method using the log2-transformed data</span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runSubtypingBimodal.html">runSubtypingBimodal</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesList</span>, </span>
 <span>  expectedCountsMatrixLog<span class="op">=</span><span class="va">log2normCounts</span>,</span>
 <span>  permRatio<span class="op">=</span><span class="fl">0.75</span>,</span>
 <span>  permNbr<span class="op">=</span><span class="fl">20</span>,</span>
-<span>  upscaleNbr<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## number of iterations= 80 </span></span>
-<span><span class="co">## number of iterations= 144</span></span></code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<span>  upscaleNbr<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## number of iterations= 136 </span></span>
+<span><span class="co">## number of iterations= 135</span></span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Summary of the classification results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Classification: </span></span>
-<span><span class="co">##          Classical   Basal-like</span></span>
-<span><span class="co">## hF2   unclassified   Basal-like</span></span>
-<span><span class="co">## hF23     Classical unclassified</span></span>
-<span><span class="co">## hF24     Classical unclassified</span></span>
-<span><span class="co">## hF27     Classical unclassified</span></span>
-<span><span class="co">## hF28  unclassified   Basal-like</span></span>
-<span><span class="co">## hF3   unclassified   Basal-like</span></span>
-<span><span class="co">## hF31     Classical unclassified</span></span>
-<span><span class="co">## hF32     Classical unclassified</span></span>
-<span><span class="co">## hF34     Classical unclassified</span></span>
-<span><span class="co">## hF39     Classical unclassified</span></span>
-<span><span class="co">## hF43     Classical unclassified</span></span>
-<span><span class="co">## hF44     Classical unclassified</span></span>
-<span><span class="co">## hF50  unclassified unclassified</span></span>
-<span><span class="co">## hF57     Classical unclassified</span></span>
-<span><span class="co">## hM17D    Classical unclassified</span></span>
-<span><span class="co">## hM19A unclassified   Basal-like</span></span>
-<span><span class="co">## hM1A  unclassified unclassified</span></span>
-<span><span class="co">## hM8   unclassified   Basal-like</span></span>
-<span><span class="co">## hT1   unclassified unclassified</span></span>
-<span><span class="co">## hT101    Classical unclassified</span></span>
-<span><span class="co">## hT102    Classical unclassified</span></span>
-<span><span class="co">## hT105 unclassified unclassified</span></span>
-<span><span class="co">## hT108    Classical unclassified</span></span>
-<span><span class="co">## hT123    Classical unclassified</span></span>
-<span><span class="co">## hT125 unclassified unclassified</span></span>
-<span><span class="co">## hT127 unclassified   Basal-like</span></span>
-<span><span class="co">## hT25     Classical unclassified</span></span>
-<span><span class="co">## hT3      Classical unclassified</span></span>
-<span><span class="co">## hT30     Classical unclassified</span></span>
-<span><span class="co">## hT48     Classical unclassified</span></span>
-<span><span class="co">## hT60  unclassified   Basal-like</span></span>
-<span><span class="co">## hT81     Classical unclassified</span></span>
-<span><span class="co">## hT82  unclassified   Basal-like</span></span>
-<span><span class="co">## hT85     Classical unclassified</span></span>
-<span><span class="co">## hT89     Classical unclassified</span></span>
-<span><span class="co">## hT91     Classical unclassified</span></span>
-<span><span class="co">## hT93     Classical unclassified</span></span>
-<span><span class="co">## hT96     Classical unclassified</span></span>
-<span><span class="co">## hT98     Classical unclassified</span></span></code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">splitTypeR</span><span class="fu">::</span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
+<span><span class="co">##         Basal-like    Classical</span></span>
+<span><span class="co">## hF2     Basal-like unclassified</span></span>
+<span><span class="co">## hF23  unclassified    Classical</span></span>
+<span><span class="co">## hF24  unclassified    Classical</span></span>
+<span><span class="co">## hF27  unclassified    Classical</span></span>
+<span><span class="co">## hF28    Basal-like unclassified</span></span>
+<span><span class="co">## hF3     Basal-like unclassified</span></span>
+<span><span class="co">## hF31  unclassified    Classical</span></span>
+<span><span class="co">## hF32  unclassified    Classical</span></span>
+<span><span class="co">## hF34  unclassified    Classical</span></span>
+<span><span class="co">## hF39  unclassified    Classical</span></span>
+<span><span class="co">## hF43  unclassified    Classical</span></span>
+<span><span class="co">## hF44  unclassified    Classical</span></span>
+<span><span class="co">## hF50    Basal-like    Classical</span></span>
+<span><span class="co">## hF57  unclassified    Classical</span></span>
+<span><span class="co">## hM17D unclassified    Classical</span></span>
+<span><span class="co">## hM19A   Basal-like unclassified</span></span>
+<span><span class="co">## hM1A    Basal-like unclassified</span></span>
+<span><span class="co">## hM8     Basal-like unclassified</span></span>
+<span><span class="co">## hT1     Basal-like unclassified</span></span>
+<span><span class="co">## hT101 unclassified    Classical</span></span>
+<span><span class="co">## hT102 unclassified    Classical</span></span>
+<span><span class="co">## hT105   Basal-like unclassified</span></span>
+<span><span class="co">## hT108 unclassified    Classical</span></span>
+<span><span class="co">## hT123 unclassified    Classical</span></span>
+<span><span class="co">## hT125   Basal-like unclassified</span></span>
+<span><span class="co">## hT127   Basal-like unclassified</span></span>
+<span><span class="co">## hT25  unclassified    Classical</span></span>
+<span><span class="co">## hT3   unclassified    Classical</span></span>
+<span><span class="co">## hT30  unclassified    Classical</span></span>
+<span><span class="co">## hT48  unclassified    Classical</span></span>
+<span><span class="co">## hT60    Basal-like unclassified</span></span>
+<span><span class="co">## hT81  unclassified    Classical</span></span>
+<span><span class="co">## hT82    Basal-like unclassified</span></span>
+<span><span class="co">## hT85  unclassified    Classical</span></span>
+<span><span class="co">## hT89  unclassified    Classical</span></span>
+<span><span class="co">## hT91  unclassified    Classical</span></span>
+<span><span class="co">## hT93  unclassified    Classical</span></span>
+<span><span class="co">## hT96  unclassified    Classical</span></span>
+<span><span class="co">## hT98  unclassified    Classical</span></span></code></pre>
+<p></p>
+<p>The resulting object contains information from each step of the
+process. The information can be accessed using the appropriate getter
+function.</p>
+<p></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the list of genes in each signature</span></span>
+<span><span class="fu"><a href="../reference/signatures.html">signatures</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $`Basal-like`</span></span>
+<span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
+<span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
+<span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
+<span><span class="co">## [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span></span>
+<span><span class="co">## [25] "CST6"     "CATSPER1"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $Classical</span></span>
+<span><span class="co">##  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span></span>
+<span><span class="co">##  [6] "VIL1"       "DDC"        "LGALS4"     "TSPAN8"     "SLC5A1"    </span></span>
+<span><span class="co">## [11] "SEMA4G"     "TNFRSF11A"  "HSD17B2"    "CKMT1A"     "DPCR1"     </span></span>
+<span><span class="co">## [16] "GCNT3"      "SLC6A20"    "POF1B"      "NR1I2"      "MUC17"     </span></span>
+<span><span class="co">## [21] "HHLA2"      "BTNL8"      "HEPH"       "PDZD3"      "MYO1A"     </span></span>
+<span><span class="co">## [26] "CDH17"      "MYO7B"      "GPA33"      "CALML4"     "ANXA13"    </span></span>
+<span><span class="co">## [31] "TM4SF20"    "SI"         "SLC44A4"    "FAM83E"     "SLC40A1"   </span></span>
+<span><span class="co">## [36] "CTSE"       "BACE2"      "SULT1C2"    "AGR3"       "ATP7B"     </span></span>
+<span><span class="co">## [41] "LYZ"        "TESC"       "TOX3"       "SH3BGRL2"   "GMDS"      </span></span>
+<span><span class="co">## [46] "GATA6"      "GPX2"       "CA2"        "ST6GALNAC1" "FOXA3"     </span></span>
+<span><span class="co">## [51] "AKR1C3"     "TMC5"       "CYP2S1"     "PAQR8"      "HKDC1"     </span></span>
+<span><span class="co">## [56] "IYD"        "DOK4"       "CYP2C18"    "KCNE3"      "FZD5"      </span></span>
+<span><span class="co">## [61] "RASEF"      "GKN1"</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the GSVA scores for all samples in each signature</span></span>
+<span><span class="fu"><a href="../reference/gsvaResults.html">gsvaResults</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                   hF2        hF23       hF24       hF27       hF28        hF3</span></span>
+<span><span class="co">## Basal-like  0.9318280 -0.03854167 -0.2301837  0.1225434  0.5857513  0.9833333</span></span>
+<span><span class="co">## Classical  -0.9134078  0.10297767  0.2214765 -0.1309421 -0.5614173 -0.9829707</span></span>
+<span><span class="co">##                  hF31       hF32       hF34       hF39       hF43       hF44</span></span>
+<span><span class="co">## Basal-like -0.4769812 -0.3051282 -0.5843797 -0.4853994 -0.2838235 -0.7680835</span></span>
+<span><span class="co">## Classical   0.4431077  0.2409733  0.3870926  0.4834900  0.1909814  0.6826443</span></span>
+<span><span class="co">##                  hF50       hF57      hM17D      hM19A       hM1A        hM8</span></span>
+<span><span class="co">## Basal-like  0.3194667 -0.8285276 -0.1657321  0.8758845  0.5039683  0.9084949</span></span>
+<span><span class="co">## Classical  -0.2185772  0.7852966  0.1781993 -0.8022948 -0.4360974 -0.7763975</span></span>
+<span><span class="co">##                   hT1      hT101      hT102      hT105      hT108      hT123</span></span>
+<span><span class="co">## Basal-like  0.4552901 -0.0738573 -0.7361761  0.2980769 -0.1111111 -0.2083333</span></span>
+<span><span class="co">## Classical  -0.3147877  0.1204267  0.6841604 -0.3511774  0.1682968  0.2387448</span></span>
+<span><span class="co">##                 hT125     hT127       hT25        hT3       hT30        hT48</span></span>
+<span><span class="co">## Basal-like  0.3246225  0.804817 -0.4921797 -0.8297218 -0.3125731  0.12342611</span></span>
+<span><span class="co">## Classical  -0.2855204 -0.718669  0.3966346  0.7642829  0.2075656 -0.06132129</span></span>
+<span><span class="co">##                  hT60       hT81       hT82      hT85       hT89       hT91</span></span>
+<span><span class="co">## Basal-like  0.9600173 -0.4809993  0.6633929 -0.950000 -0.3759857 -0.9194444</span></span>
+<span><span class="co">## Classical  -0.9035783  0.4877874 -0.5354225  0.941871  0.3297384  0.8405669</span></span>
+<span><span class="co">##                  hT93       hT96       hT98</span></span>
+<span><span class="co">## Basal-like -0.5982201 -0.3102627 -0.2657718</span></span>
+<span><span class="co">## Classical   0.5818909  0.3609801  0.2376757</span></span>
+<span><span class="co">## attr(,"gsvaParam")</span></span>
+<span><span class="co">## attr(,"gsvaParam")$originalClassWasSE</span></span>
+<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$geneSets</span></span>
+<span><span class="co">## attr(,"gsvaParam")$geneSets$`Basal-like`</span></span>
+<span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
+<span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
+<span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
+<span><span class="co">## [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span></span>
+<span><span class="co">## [25] "CST6"     "CATSPER1"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$geneSets$Classical</span></span>
+<span><span class="co">##  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span></span>
+<span><span class="co">##  [6] "VIL1"       "DDC"        "LGALS4"     "TSPAN8"     "SLC5A1"    </span></span>
+<span><span class="co">## [11] "SEMA4G"     "TNFRSF11A"  "HSD17B2"    "CKMT1A"     "DPCR1"     </span></span>
+<span><span class="co">## [16] "GCNT3"      "SLC6A20"    "POF1B"      "NR1I2"      "MUC17"     </span></span>
+<span><span class="co">## [21] "HHLA2"      "BTNL8"      "HEPH"       "PDZD3"      "MYO1A"     </span></span>
+<span><span class="co">## [26] "CDH17"      "MYO7B"      "GPA33"      "CALML4"     "ANXA13"    </span></span>
+<span><span class="co">## [31] "TM4SF20"    "SI"         "SLC44A4"    "FAM83E"     "SLC40A1"   </span></span>
+<span><span class="co">## [36] "CTSE"       "BACE2"      "SULT1C2"    "AGR3"       "ATP7B"     </span></span>
+<span><span class="co">## [41] "LYZ"        "TESC"       "TOX3"       "SH3BGRL2"   "GMDS"      </span></span>
+<span><span class="co">## [46] "GATA6"      "GPX2"       "CA2"        "ST6GALNAC1" "FOXA3"     </span></span>
+<span><span class="co">## [51] "AKR1C3"     "TMC5"       "CYP2S1"     "PAQR8"      "HKDC1"     </span></span>
+<span><span class="co">## [56] "IYD"        "DOK4"       "CYP2C18"    "KCNE3"      "FZD5"      </span></span>
+<span><span class="co">## [61] "RASEF"      "GKN1"      </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$assay</span></span>
+<span><span class="co">## [1] NA</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$annotation</span></span>
+<span><span class="co">## geneIdType: Null</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$minSize</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$maxSize</span></span>
+<span><span class="co">## [1] Inf</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$nzcount</span></span>
+<span><span class="co">## [1] 3354</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$ondisk</span></span>
+<span><span class="co">## [1] "auto"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$checkNA</span></span>
+<span><span class="co">## [1] "auto"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$didCheckNA</span></span>
+<span><span class="co">## [1] TRUE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$anyNA</span></span>
+<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$use</span></span>
+<span><span class="co">## [1] "everything"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$rowNorm</span></span>
+<span><span class="co">## [1] "ecdf"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$kcdf</span></span>
+<span><span class="co">## [1] "auto"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$kcdfNoneMinSampleSize</span></span>
+<span><span class="co">## [1] 200</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$tau</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$maxDiff</span></span>
+<span><span class="co">## [1] TRUE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$absRanking</span></span>
+<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$sparse</span></span>
+<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"gsvaParam")$filterRows</span></span>
+<span><span class="co">## [1] TRUE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"assay")</span></span>
+<span><span class="co">## [1] "es"</span></span>
+<span><span class="co">## attr(,"gsvaVersion")</span></span>
+<span><span class="co">## [1] "2.7.25"</span></span>
+<span><span class="co">## attr(,"geneSets")</span></span>
+<span><span class="co">## attr(,"geneSets")$`Basal-like`</span></span>
+<span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
+<span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
+<span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
+<span><span class="co">## [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span></span>
+<span><span class="co">## [25] "CST6"     "CATSPER1"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## attr(,"geneSets")$Classical</span></span>
+<span><span class="co">##  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span></span>
+<span><span class="co">##  [6] "VIL1"       "DDC"        "LGALS4"     "TSPAN8"     "SLC5A1"    </span></span>
+<span><span class="co">## [11] "SEMA4G"     "TNFRSF11A"  "HSD17B2"    "CKMT1A"     "GCNT3"     </span></span>
+<span><span class="co">## [16] "SLC6A20"    "POF1B"      "NR1I2"      "MUC17"      "HHLA2"     </span></span>
+<span><span class="co">## [21] "BTNL8"      "HEPH"       "MYO1A"      "CDH17"      "MYO7B"     </span></span>
+<span><span class="co">## [26] "GPA33"      "CALML4"     "ANXA13"     "TM4SF20"    "SI"        </span></span>
+<span><span class="co">## [31] "SLC44A4"    "FAM83E"     "SLC40A1"    "CTSE"       "BACE2"     </span></span>
+<span><span class="co">## [36] "SULT1C2"    "AGR3"       "ATP7B"      "LYZ"        "TESC"      </span></span>
+<span><span class="co">## [41] "TOX3"       "SH3BGRL2"   "GMDS"       "GATA6"      "GPX2"      </span></span>
+<span><span class="co">## [46] "CA2"        "ST6GALNAC1" "FOXA3"      "AKR1C3"     "TMC5"      </span></span>
+<span><span class="co">## [51] "CYP2S1"     "PAQR8"      "HKDC1"      "IYD"        "DOK4"      </span></span>
+<span><span class="co">## [56] "CYP2C18"    "KCNE3"      "FZD5"       "RASEF"      "GKN1"</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the GSVA scores for the first 5 samples in the first 8 permutations done </span></span>
+<span><span class="co">## for the classical signature</span></span>
+<span><span class="fu"><a href="../reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##             [,1]        [,2]        [,3]        [,4]        [,5]       [,6]</span></span>
+<span><span class="co">## hF2  -0.87955840          NA -0.87809349          NA -0.91255814 -0.8899771</span></span>
+<span><span class="co">## hF23          NA -0.08950456  0.23653846  0.04872661  0.22668030  0.0604898</span></span>
+<span><span class="co">## hF24          NA  0.02841517  0.42270683  0.22947277  0.31273837  0.1506945</span></span>
+<span><span class="co">## hF27 -0.03941731 -0.20563925  0.01829787 -0.08884449 -0.03654507         NA</span></span>
+<span><span class="co">## hF28 -0.51596289          NA -0.39893080 -0.49631064 -0.47531573 -0.5683230</span></span>
+<span><span class="co">##            [,7]        [,8]</span></span>
+<span><span class="co">## hF2  -0.8630515          NA</span></span>
+<span><span class="co">## hF23  0.2599190  0.06674773</span></span>
+<span><span class="co">## hF24  0.4097079  0.11590088</span></span>
+<span><span class="co">## hF27  0.0612709 -0.15658149</span></span>
+<span><span class="co">## hF28 -0.4315780 -0.57955907</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the standard deviation for the GSVA scores for all samples in each </span></span>
+<span><span class="co">## signature </span></span>
+<span><span class="co">## The standard deviation is inferred from the permutation step</span></span>
+<span><span class="fu"><a href="../reference/standardDeviation.html">standardDeviation</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $`Basal-like`</span></span>
+<span><span class="co">##         hF2        hF23        hF24        hF27        hF28         hF3 </span></span>
+<span><span class="co">## 0.020988222 0.079051005 0.112858573 0.116266538 0.065004569 0.001478971 </span></span>
+<span><span class="co">##        hF31        hF32        hF34        hF39        hF43        hF44 </span></span>
+<span><span class="co">## 0.057958059 0.062458370 0.082055947 0.076677281 0.083266192 0.047327637 </span></span>
+<span><span class="co">##        hF50        hF57       hM17D       hM19A        hM1A         hM8 </span></span>
+<span><span class="co">## 0.103832038 0.018745125 0.129426804 0.016652911 0.066230777 0.027710342 </span></span>
+<span><span class="co">##         hT1       hT101       hT102       hT105       hT108       hT123 </span></span>
+<span><span class="co">## 0.060906904 0.197250806 0.041963703 0.075690201 0.095950835 0.142959308 </span></span>
+<span><span class="co">##       hT125       hT127        hT25         hT3        hT30        hT48 </span></span>
+<span><span class="co">## 0.076517433 0.034908554 0.074779104 0.030916171 0.103978461 0.093969133 </span></span>
+<span><span class="co">##        hT60        hT81        hT82        hT85        hT89        hT91 </span></span>
+<span><span class="co">## 0.013078550 0.067588422 0.044032365 0.020209683 0.104973168 0.025136841 </span></span>
+<span><span class="co">##        hT93        hT96        hT98 </span></span>
+<span><span class="co">## 0.060698031 0.052789153 0.116248218 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $Classical</span></span>
+<span><span class="co">##         hF2        hF23        hF24        hF27        hF28         hF3 </span></span>
+<span><span class="co">## 0.026561380 0.095755725 0.120798797 0.081266938 0.065186429 0.008675902 </span></span>
+<span><span class="co">##        hF31        hF32        hF34        hF39        hF43        hF44 </span></span>
+<span><span class="co">## 0.058667114 0.066535776 0.058671052 0.054471237 0.067684116 0.046198986 </span></span>
+<span><span class="co">##        hF50        hF57       hM17D       hM19A        hM1A         hM8 </span></span>
+<span><span class="co">## 0.077368473 0.023114593 0.092320169 0.018058727 0.056724043 0.034555804 </span></span>
+<span><span class="co">##         hT1       hT101       hT102       hT105       hT108       hT123 </span></span>
+<span><span class="co">## 0.053921809 0.090626892 0.044054124 0.055389871 0.089983704 0.127169294 </span></span>
+<span><span class="co">##       hT125       hT127        hT25         hT3        hT30        hT48 </span></span>
+<span><span class="co">## 0.079977292 0.032523448 0.075156258 0.022793985 0.073668955 0.105088007 </span></span>
+<span><span class="co">##        hT60        hT81        hT82        hT85        hT89        hT91 </span></span>
+<span><span class="co">## 0.025490655 0.057336766 0.047046295 0.022329616 0.070573879 0.021891698 </span></span>
+<span><span class="co">##        hT93        hT96        hT98 </span></span>
+<span><span class="co">## 0.046301231 0.041979712 0.088366419</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the first 8 upscaling GSVA scores for the first 5 samples for the </span></span>
+<span><span class="co">## classical signature </span></span>
+<span><span class="fu"><a href="../reference/upscaling.html">upscaling</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##            [,1]        [,2]        [,3]        [,4]        [,5]         [,6]</span></span>
+<span><span class="co">## hF2  -0.8904656 -0.89107386 -0.90166058 -0.90156532 -0.92802494 -0.928665397</span></span>
+<span><span class="co">## hF23  0.2105585  0.19225589  0.12700464  0.05938685  0.10731097 -0.005661387</span></span>
+<span><span class="co">## hF24  0.4323339  0.21149687  0.09129895  0.16668457  0.08051689  0.028841760</span></span>
+<span><span class="co">## hF27 -0.2041871 -0.04549904 -0.03582384 -0.16268045 -0.12812664 -0.130654394</span></span>
+<span><span class="co">## hF28 -0.3981220 -0.68175972 -0.63945097 -0.41295596 -0.46945658 -0.610334888</span></span>
+<span><span class="co">##             [,7]        [,8]</span></span>
+<span><span class="co">## hF2  -0.87795376 -0.91709966</span></span>
+<span><span class="co">## hF23  0.01530612  0.04174056</span></span>
+<span><span class="co">## hF24  0.33616289  0.19088511</span></span>
+<span><span class="co">## hF27 -0.19437588 -0.06951162</span></span>
+<span><span class="co">## hF28 -0.69437592 -0.61316655</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the mixture model for the classical signature</span></span>
+<span><span class="co">## This is a mixEM object</span></span>
+<span><span class="va">classicalModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/model.html">model</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">## Get the two distribution means</span></span>
+<span><span class="va">classicalModel</span><span class="op">$</span><span class="va">mu</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] -0.6505149  0.3254568</span></span></code></pre>
+<p></p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the final classification of the samples for  the classical signature</span></span>
+<span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##        GSVA_score classification</span></span>
+<span><span class="co">## hF2   -0.91340782   unclassified</span></span>
+<span><span class="co">## hF23   0.10297767      Classical</span></span>
+<span><span class="co">## hF24   0.22147651      Classical</span></span>
+<span><span class="co">## hF27  -0.13094209      Classical</span></span>
+<span><span class="co">## hF28  -0.56141732   unclassified</span></span>
+<span><span class="co">## hF3   -0.98297067   unclassified</span></span>
+<span><span class="co">## hF31   0.44310774      Classical</span></span>
+<span><span class="co">## hF32   0.24097331      Classical</span></span>
+<span><span class="co">## hF34   0.38709257      Classical</span></span>
+<span><span class="co">## hF39   0.48348998      Classical</span></span>
+<span><span class="co">## hF43   0.19098143      Classical</span></span>
+<span><span class="co">## hF44   0.68264431      Classical</span></span>
+<span><span class="co">## hF50  -0.21857717      Classical</span></span>
+<span><span class="co">## hF57   0.78529657      Classical</span></span>
+<span><span class="co">## hM17D  0.17819927      Classical</span></span>
+<span><span class="co">## hM19A -0.80229479   unclassified</span></span>
+<span><span class="co">## hM1A  -0.43609744   unclassified</span></span>
+<span><span class="co">## hM8   -0.77639752   unclassified</span></span>
+<span><span class="co">## hT1   -0.31478775   unclassified</span></span>
+<span><span class="co">## hT101  0.12042674      Classical</span></span>
+<span><span class="co">## hT102  0.68416036      Classical</span></span>
+<span><span class="co">## hT105 -0.35117739   unclassified</span></span>
+<span><span class="co">## hT108  0.16829684      Classical</span></span>
+<span><span class="co">## hT123  0.23874484      Classical</span></span>
+<span><span class="co">## hT125 -0.28552036   unclassified</span></span>
+<span><span class="co">## hT127 -0.71866897   unclassified</span></span>
+<span><span class="co">## hT25   0.39663462      Classical</span></span>
+<span><span class="co">## hT3    0.76428289      Classical</span></span>
+<span><span class="co">## hT30   0.20756564      Classical</span></span>
+<span><span class="co">## hT48  -0.06132129      Classical</span></span>
+<span><span class="co">## hT60  -0.90357832   unclassified</span></span>
+<span><span class="co">## hT81   0.48778736      Classical</span></span>
+<span><span class="co">## hT82  -0.53542252   unclassified</span></span>
+<span><span class="co">## hT85   0.94187103      Classical</span></span>
+<span><span class="co">## hT89   0.32973843      Classical</span></span>
+<span><span class="co">## hT91   0.84056687      Classical</span></span>
+<span><span class="co">## hT93   0.58189090      Classical</span></span>
+<span><span class="co">## hT96   0.36098015      Classical</span></span>
+<span><span class="co">## hT98   0.23767573      Classical</span></span></code></pre>
+<p></p>
+</div>
+<div class="section level3">
+<h3 id="visual-representation-of-the-results-at-the-permutation-step">Visual representation of the results at the permutation step<a class="anchor" aria-label="anchor" href="#visual-representation-of-the-results-at-the-permutation-step"></a>
+</h3>
+<p>The <em>plotPermutationSamplesDistribution()</em> function enable the
+visualization of the GSVA results obtained during the permutation step
+for a specific signature and specific samples.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## The GSVA results obtained for three samples during the permutation step </span></span>
+<span><span class="co">## for the classical signature</span></span>
+<span><span class="co">## The seed is fixed to ensure reproducibility</span></span>
+<span><span class="fu"><a href="../reference/plotPermutationSamplesDistribution.html">plotPermutationSamplesDistribution</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">result</span>, signature<span class="op">=</span><span class="st">"Classical"</span>, </span>
+<span>    pointColor<span class="op">=</span><span class="st">"darkorange"</span>, alpha<span class="op">=</span><span class="fl">1</span>, samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hF23"</span>, <span class="st">"hT82"</span>, <span class="st">"hT89"</span><span class="op">)</span>, </span>
+<span>    seed<span class="op">=</span><span class="fl">121</span><span class="op">)</span></span></code></pre></div>
+<p><img src="splitTypeR_files/figure-html/graphPermutation-1.png" class="r-plt" alt="" width="700"></p>
+<p></p>
+</div>
+<div class="section level3">
+<h3 id="visual-representation-of-the-results-at-the-upscaling-step">Visual representation of the results at the upscaling step<a class="anchor" aria-label="anchor" href="#visual-representation-of-the-results-at-the-upscaling-step"></a>
+</h3>
+<p>From the permutation step, the standard deviation is calculated for
+each samples. The upscaling is done with the real GSVA score as mean and
+the calculated standard deviation.</p>
+<p>The <em>plotPermutationSamplesNormal()</em> function shown the GSVA
+scores sampled during the upscaling step. The mean is shown as a
+vertical dotted line while the normal distribution is shown as a dashed
+line. The samples GSVA scores are shown as dots in this graph.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Fix seed for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## The GSVA scores sampled for three samples during the upscaling step </span></span>
+<span><span class="co">## for the classical signature</span></span>
+<span><span class="fu"><a href="../reference/plotPermutationSamplesNormal.html">plotPermutationSamplesNormal</a></span><span class="op">(</span><span class="va">result</span>, signature<span class="op">=</span><span class="st">"Classical"</span>, </span>
+<span>    samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hF23"</span>, <span class="st">"hT82"</span>, <span class="st">"hT89"</span><span class="op">)</span>, pointColor<span class="op">=</span><span class="st">"darkviolet"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="splitTypeR_files/figure-html/graphUp-1.png" class="r-plt" alt="" width="700"></p>
+<p></p>
+</div>
+<div class="section level3">
+<h3 id="visual-representation-of-the-results-at-the-mixture-model-step">Visual representation of the results at the mixture model step<a class="anchor" aria-label="anchor" href="#visual-representation-of-the-results-at-the-mixture-model-step"></a>
+</h3>
+<p>The <em>plotDensityWithUpscalingSamplesBimodal()</em> function
+enables the visualization of the two normal distributions obtained for a
+specific signature. In this graph, the GSVA values are the one obtained
+from the upscaling step.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Basal-like"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<p><img src="splitTypeR_files/figure-html/toto2-1.png" class="r-plt" alt="" width="700"></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">splitTypeR</span><span class="fu">::</span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
+<p><img src="splitTypeR_files/figure-html/graphDensity-1.png" class="r-plt" alt="" width="700"></p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Classical"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<p><img src="splitTypeR_files/figure-html/toto2-2.png" class="r-plt" alt="" width="700"></p>
+<p><img src="splitTypeR_files/figure-html/graphDensity-2.png" class="r-plt" alt="" width="700"></p>
+<p></p>
 </div>
 </div>
 <div class="section level2">
@@ -443,13 +712,14 @@ names.</p>
 </h2>
 <p>Claude Sonnet 5 was used for improving the workflow figure. It was
 also use for proofreading and copyediting sections of this text.</p>
+<p></p>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-13 r90668)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-17 r90697)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
@@ -473,65 +743,67 @@ which this document was compiled:</p>
 <span><span class="co">## [8] base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">##  [1] SummarizedExperiment_1.43.0 Biobase_2.73.2             </span></span>
-<span><span class="co">##  [3] GenomicRanges_1.65.4        Seqinfo_1.3.2              </span></span>
-<span><span class="co">##  [5] IRanges_2.47.5              S4Vectors_0.51.10          </span></span>
-<span><span class="co">##  [7] BiocGenerics_0.59.12        generics_0.1.4             </span></span>
-<span><span class="co">##  [9] MatrixGenerics_1.25.0       matrixStats_1.5.0          </span></span>
-<span><span class="co">## [11] splitTypeR_0.99.0           knitr_1.52                 </span></span>
+<span><span class="co">##  [1] splitTypeR_0.99.0           SummarizedExperiment_1.43.0</span></span>
+<span><span class="co">##  [3] Biobase_2.73.2              GenomicRanges_1.65.4       </span></span>
+<span><span class="co">##  [5] Seqinfo_1.3.2               IRanges_2.47.5             </span></span>
+<span><span class="co">##  [7] S4Vectors_0.51.10           BiocGenerics_0.59.12       </span></span>
+<span><span class="co">##  [9] generics_0.1.4              MatrixGenerics_1.25.0      </span></span>
+<span><span class="co">## [11] matrixStats_1.5.0           knitr_1.52                 </span></span>
 <span><span class="co">## [13] BiocStyle_2.41.0           </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] DBI_1.3.0                   GSEABase_1.75.0            </span></span>
-<span><span class="co">##  [3] rlang_1.3.0                 magrittr_2.0.5             </span></span>
-<span><span class="co">##  [5] otel_0.2.0                  compiler_4.7.0             </span></span>
-<span><span class="co">##  [7] RSQLite_3.53.3              DelayedMatrixStats_1.35.0  </span></span>
-<span><span class="co">##  [9] png_0.1-9                   systemfonts_1.3.2          </span></span>
-<span><span class="co">## [11] vctrs_0.7.3                 stringr_1.6.0              </span></span>
-<span><span class="co">## [13] pkgconfig_2.0.3             SpatialExperiment_1.23.0   </span></span>
-<span><span class="co">## [15] crayon_1.5.3                memuse_4.2-3               </span></span>
-<span><span class="co">## [17] fastmap_1.2.0               magick_2.9.1               </span></span>
-<span><span class="co">## [19] XVector_0.53.0              rmarkdown_2.32             </span></span>
-<span><span class="co">## [21] graph_1.91.0                ragg_1.5.2                 </span></span>
-<span><span class="co">## [23] purrr_1.2.2                 bit_4.6.0                  </span></span>
-<span><span class="co">## [25] xfun_0.61                   cachem_1.1.0               </span></span>
-<span><span class="co">## [27] jsonlite_2.0.0              blob_1.3.0                 </span></span>
-<span><span class="co">## [29] rhdf5filters_1.25.4         DelayedArray_0.39.8        </span></span>
-<span><span class="co">## [31] Rhdf5lib_2.1.0              BiocParallel_1.47.0        </span></span>
-<span><span class="co">## [33] parallel_4.7.0              R6_2.6.1                   </span></span>
-<span><span class="co">## [35] stringi_1.8.9               bslib_0.12.0               </span></span>
-<span><span class="co">## [37] RColorBrewer_1.1-3          jquerylib_0.1.4            </span></span>
-<span><span class="co">## [39] Rcpp_1.1.2                  bookdown_0.48              </span></span>
-<span><span class="co">## [41] GSVA_2.7.23                 mixtools_2.0.0.1           </span></span>
-<span><span class="co">## [43] BiocBaseUtils_1.15.1        Matrix_1.7-6               </span></span>
-<span><span class="co">## [45] splines_4.7.0               tidyselect_1.2.1           </span></span>
-<span><span class="co">## [47] abind_1.4-8                 yaml_2.3.12                </span></span>
-<span><span class="co">## [49] codetools_0.2-20            lattice_0.23-1             </span></span>
-<span><span class="co">## [51] tibble_3.3.1                KEGGREST_1.53.6            </span></span>
-<span><span class="co">## [53] S7_0.2.2                    evaluate_1.0.5             </span></span>
-<span><span class="co">## [55] survival_3.8-12             desc_1.4.3                 </span></span>
-<span><span class="co">## [57] kernlab_0.9-33              Biostrings_2.81.9          </span></span>
-<span><span class="co">## [59] pillar_1.11.1               BiocManager_1.30.27        </span></span>
-<span><span class="co">## [61] plotly_4.12.1               ggplot2_4.0.3              </span></span>
-<span><span class="co">## [63] sparseMatrixStats_1.25.0    scales_1.4.0               </span></span>
-<span><span class="co">## [65] xtable_1.8-8                glue_1.8.1                 </span></span>
-<span><span class="co">## [67] tools_4.7.0                 data.table_1.18.6.1        </span></span>
-<span><span class="co">## [69] annotate_1.91.0             fs_2.1.0                   </span></span>
-<span><span class="co">## [71] XML_3.99-0.25               rhdf5_2.57.20              </span></span>
-<span><span class="co">## [73] grid_4.7.0                  tidyr_1.3.2                </span></span>
-<span><span class="co">## [75] AnnotationDbi_1.75.2        SingleCellExperiment_1.35.2</span></span>
-<span><span class="co">## [77] nlme_3.1-171                HDF5Array_1.41.3           </span></span>
-<span><span class="co">## [79] cli_3.6.6                   textshaping_1.0.5          </span></span>
-<span><span class="co">## [81] segmented_2.2-2             S4Arrays_1.13.2            </span></span>
-<span><span class="co">## [83] viridisLite_0.4.3           dplyr_1.2.1                </span></span>
-<span><span class="co">## [85] gtable_0.3.6                sass_0.4.10                </span></span>
-<span><span class="co">## [87] digest_0.6.39               SparseArray_1.13.4         </span></span>
-<span><span class="co">## [89] rjson_0.2.23                htmlwidgets_1.6.4          </span></span>
-<span><span class="co">## [91] farver_2.1.2                memoise_2.0.1              </span></span>
-<span><span class="co">## [93] htmltools_0.5.9             pkgdown_2.2.0              </span></span>
-<span><span class="co">## [95] lifecycle_1.0.5             h5mread_1.5.3              </span></span>
-<span><span class="co">## [97] httr_1.4.9                  MASS_7.3-66                </span></span>
-<span><span class="co">## [99] bit64_4.8.6</span></span></code></pre>
+<span><span class="co">##   [1] DBI_1.3.0                   GSEABase_1.75.0            </span></span>
+<span><span class="co">##   [3] rlang_1.3.0                 magrittr_2.0.5             </span></span>
+<span><span class="co">##   [5] otel_0.2.0                  compiler_4.7.0             </span></span>
+<span><span class="co">##   [7] RSQLite_3.53.3              DelayedMatrixStats_1.35.0  </span></span>
+<span><span class="co">##   [9] png_0.1-9                   systemfonts_1.3.2          </span></span>
+<span><span class="co">##  [11] vctrs_0.7.3                 stringr_1.6.0              </span></span>
+<span><span class="co">##  [13] pkgconfig_2.0.3             SpatialExperiment_1.23.0   </span></span>
+<span><span class="co">##  [15] crayon_1.5.3                memuse_4.2-3               </span></span>
+<span><span class="co">##  [17] fastmap_1.2.0               magick_2.9.1               </span></span>
+<span><span class="co">##  [19] XVector_0.53.0              labeling_0.4.3             </span></span>
+<span><span class="co">##  [21] rmarkdown_2.32              graph_1.91.0               </span></span>
+<span><span class="co">##  [23] ragg_1.5.2                  purrr_1.2.2                </span></span>
+<span><span class="co">##  [25] bit_4.6.0                   xfun_0.62                  </span></span>
+<span><span class="co">##  [27] cachem_1.1.0                jsonlite_2.0.0             </span></span>
+<span><span class="co">##  [29] blob_1.3.0                  rhdf5filters_1.25.4        </span></span>
+<span><span class="co">##  [31] DelayedArray_0.39.8         Rhdf5lib_2.1.0             </span></span>
+<span><span class="co">##  [33] BiocParallel_1.47.0         parallel_4.7.0             </span></span>
+<span><span class="co">##  [35] R6_2.6.1                    stringi_1.8.9              </span></span>
+<span><span class="co">##  [37] bslib_0.12.0                RColorBrewer_1.1-3         </span></span>
+<span><span class="co">##  [39] jquerylib_0.1.4             Rcpp_1.1.2                 </span></span>
+<span><span class="co">##  [41] bookdown_0.48               GSVA_2.7.25                </span></span>
+<span><span class="co">##  [43] mixtools_2.0.0.1            BiocBaseUtils_1.15.1       </span></span>
+<span><span class="co">##  [45] Matrix_1.7-6                splines_4.7.0              </span></span>
+<span><span class="co">##  [47] tidyselect_1.2.1            abind_1.4-8                </span></span>
+<span><span class="co">##  [49] yaml_2.3.12                 codetools_0.2-20           </span></span>
+<span><span class="co">##  [51] lattice_0.23-1              tibble_3.3.1               </span></span>
+<span><span class="co">##  [53] withr_3.0.3                 KEGGREST_1.53.6            </span></span>
+<span><span class="co">##  [55] S7_0.2.2                    evaluate_1.0.5             </span></span>
+<span><span class="co">##  [57] survival_3.8-12             desc_1.4.3                 </span></span>
+<span><span class="co">##  [59] kernlab_0.9-33              Biostrings_2.81.9          </span></span>
+<span><span class="co">##  [61] pillar_1.11.1               BiocManager_1.30.27        </span></span>
+<span><span class="co">##  [63] plotly_4.12.1               ggplot2_4.0.3              </span></span>
+<span><span class="co">##  [65] sparseMatrixStats_1.25.0    scales_1.4.0               </span></span>
+<span><span class="co">##  [67] xtable_1.8-8                glue_1.8.1                 </span></span>
+<span><span class="co">##  [69] tools_4.7.0                 data.table_1.18.6.1        </span></span>
+<span><span class="co">##  [71] annotate_1.91.0             fs_2.1.0                   </span></span>
+<span><span class="co">##  [73] XML_3.99-0.25               rhdf5_2.57.20              </span></span>
+<span><span class="co">##  [75] grid_4.7.0                  tidyr_1.3.2                </span></span>
+<span><span class="co">##  [77] AnnotationDbi_1.75.2        SingleCellExperiment_1.35.2</span></span>
+<span><span class="co">##  [79] nlme_3.1-171                HDF5Array_1.41.3           </span></span>
+<span><span class="co">##  [81] cli_3.6.6                   textshaping_1.0.5          </span></span>
+<span><span class="co">##  [83] segmented_2.2-2             S4Arrays_1.13.2            </span></span>
+<span><span class="co">##  [85] viridisLite_0.4.3           dplyr_1.2.1                </span></span>
+<span><span class="co">##  [87] gtable_0.3.6                sass_0.4.10                </span></span>
+<span><span class="co">##  [89] digest_0.6.39               SparseArray_1.13.4         </span></span>
+<span><span class="co">##  [91] rjson_0.2.23                htmlwidgets_1.6.4          </span></span>
+<span><span class="co">##  [93] farver_2.1.2                memoise_2.0.1              </span></span>
+<span><span class="co">##  [95] htmltools_0.5.9             pkgdown_2.2.0              </span></span>
+<span><span class="co">##  [97] lifecycle_1.0.5             h5mread_1.5.3              </span></span>
+<span><span class="co">##  [99] httr_1.4.9                  MASS_7.3-66                </span></span>
+<span><span class="co">## [101] bit64_4.8.6</span></span></code></pre>
+<p></p>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-JSSv032i06" class="csl-entry">
 Benaglia, Tatiana, Didier Chauveau, David R. Hunter, and Derek S. Young.
