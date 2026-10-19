@@ -706,6 +706,53 @@ from the upscaling step.</p>
 <p><img src="splitTypeR_files/figure-html/graphDensity-2.png" class="r-plt" alt="" width="700"></p>
 <p></p>
 </div>
+<div class="section level3">
+<h3 id="classification-of-the-samples">Classification of the samples<a class="anchor" aria-label="anchor" href="#classification-of-the-samples"></a>
+</h3>
+<p>Let’s compare the classification obtained here with the one from
+Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Assignation from Tiriac et al</span></span>
+<span><span class="va">tiriacAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"Moffitt_Tiriac_Assignation.txt"</span>, sep<span class="op">=</span><span class="st">"\t"</span>,</span>
+<span>                                    header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Assignation from the mixture model are extracted from the result</span></span>
+<span><span class="co">## Be default, the samples are considered unclassified</span></span>
+<span><span class="co">## The samples are classified only if they are assign to one of the signatures</span></span>
+<span><span class="co">## When assigned to both signatures, the samples remain unclassified</span></span>
+<span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>                            newAssignation<span class="op">=</span><span class="st">"unclassified"</span><span class="op">)</span></span>
+<span><span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">classification</span></span>
+<span><span class="va">assignation</span><span class="op">$</span><span class="va">Basal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">classification</span></span>
+<span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">==</span> <span class="st">"Classical"</span> <span class="op">&amp;</span> </span>
+<span>                    <span class="va">assignation</span><span class="op">$</span><span class="va">Basal</span> <span class="op">==</span> <span class="st">"unclassified"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Classical"</span></span>
+<span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">Basal</span> <span class="op">==</span> <span class="st">"Basal-like"</span> <span class="op">&amp;</span> </span>
+<span>                    <span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">==</span> <span class="st">"unclassified"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Basal-like"</span></span>
+<span></span>
+<span><span class="co">## Merge the current assignations with the Tiriac et al. assignations into </span></span>
+<span><span class="co">## one data frame</span></span>
+<span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Samples"</span>, <span class="st">"newAssignation"</span><span class="op">)</span><span class="op">]</span>, </span>
+<span>                     <span class="va">tiriacAssign</span>, by.x<span class="op">=</span><span class="st">"Samples"</span>, </span>
+<span>                     by.y<span class="op">=</span><span class="st">"Line"</span>, all.y<span class="op">=</span><span class="cn">FALSE</span>, all.x<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span>, <span class="va">assignation</span><span class="op">$</span><span class="va">Moffitt</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##               </span></span>
+<span><span class="co">##                Basal-like Classical</span></span>
+<span><span class="co">##   Basal-like            8         3</span></span>
+<span><span class="co">##   Classical             1        24</span></span>
+<span><span class="co">##   unclassified          0         1</span></span></code></pre>
+<p></p>
+<p>More than 85% of the samples (32 out of 37) are assigned the same
+subtype.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gsva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Classical<span class="op">=</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">GSVA_score</span>, </span>
+<span>                   Basal<span class="op">=</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">GSVA_score</span>, </span>
+<span>                   row.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">retained</span> <span class="op">&lt;-</span> <span class="va">assignation</span><span class="op">$</span><span class="va">Samples</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span> <span class="op">!=</span> </span>
+<span>                                            <span class="va">assignation</span><span class="op">$</span><span class="va">Moffitt</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<p></p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="acknowledgment">Acknowledgment<a class="anchor" aria-label="anchor" href="#acknowledgment"></a>
@@ -719,7 +766,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-17 r90697)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
