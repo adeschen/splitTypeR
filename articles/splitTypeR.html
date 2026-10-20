@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script><p><br></p>
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-10-19<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-10-20<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -118,7 +118,7 @@ most common molecular subtype of breast cancer, making up to 60% of all
 breast cancer cases. It also is associated with good prognosis. While
 Luminal-B tumors have a more aggressive phenotype and a worse prognosis
 <span class="citation">(Yersal 2014)</span>. Once gene signatures for
-RNA subtyping become widly accepted by major oncology organizations,
+RNA subtyping become widely accepted by major oncology organizations,
 they start to classify cancer subtypes, predict patient survival, and
 guide treatment.</p>
 <p>From a research aspect, the classification of new samples using their
@@ -138,7 +138,7 @@ statistical probability score for a sample’s class assignment; it mainly
 acts as a visual summary.</li>
 <li>
 <em>Metric sensitivity</em>: Changing the clustering metric (ex:
-from “Euclidean” to “Pearson” distance) can alters the resulting
+from “Euclidean” to “Pearson” distance) can alter the resulting
 clusters.</li>
 <li>
 <em>Outlier distortion</em>: Extreme outliers can squash the color
@@ -164,8 +164,8 @@ be loaded with the following command:</p>
 <div class="section level2">
 <h2 id="method">Method<a class="anchor" aria-label="anchor" href="#method"></a>
 </h2>
-<p>This following figure represent the statistical method employ to turn
-a noisy, single-number enrichment score into a confident binary
+<p>The following figure represents the statistical method employed to
+turn a noisy, single-number enrichment score into a confident binary
 classification of each sample. In summary, the method builds a
 confidence interval around the enrichment score, models the cohort as a
 mixture of two biological states, and then statistically tests each
@@ -187,7 +187,7 @@ or phenotype.</p>
 <p>The enrichment scores are first computed for every single sample with
 the Bioconductor GSVA package <span class="citation">(Hänzelmann et al.
 2013)</span>. Those scores represent the real score for each sample.
-Later steps treats this real score as the anchor point around which
+Later steps treat this real score as the anchor point around which
 uncertainty gets modeled.</p>
 </div>
 <div class="section level3">
@@ -232,7 +232,7 @@ implausible under the low-enrichment distribution (i.e., it falls
 somewhere that distribution would rarely produce), the null hypothesis
 is rejected. In that situation, the sample is classified as belonging to
 the higher-enrichment group which implies it is assigned to the tested
-signature. Otherwise, the samples is not classified.</p>
+signature. Otherwise, the sample is not classified.</p>
 <p><br></p>
 </div>
 </div>
@@ -282,8 +282,8 @@ genes while the patients (samples) are the columns.</p>
 example, if the signatures are composed of gene names, the row
 annotation for the normalized expected counts must also be gene
 names.</p>
-<p>For GSVA analysis, the normalized expect counts should be
-log-transform to enable the use of the Gaussian distribution function.
+<p>For GSVA analysis, the normalized expected counts should be
+log-transformed to enable the use of the Gaussian distribution function.
 The current behavior of GSVA is to automatically choose one of the
 available distribution functions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -655,9 +655,9 @@ function.</p>
 <div class="section level3">
 <h3 id="visual-representation-of-the-results-at-the-permutation-step">Visual representation of the results at the permutation step<a class="anchor" aria-label="anchor" href="#visual-representation-of-the-results-at-the-permutation-step"></a>
 </h3>
-<p>The <em>plotPermutationSamplesDistribution()</em> function enable the
-visualization of the GSVA results obtained during the permutation step
-for a specific signature and specific samples.</p>
+<p>The <em>plotPermutationSamplesDistribution()</em> function enables
+the visualization of the GSVA results obtained during the permutation
+step for a specific signature and specific samples.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The GSVA results obtained for three samples during the permutation step </span></span>
 <span><span class="co">## for the classical signature</span></span>
@@ -674,7 +674,7 @@ for a specific signature and specific samples.</p>
 <p>From the permutation step, the standard deviation is calculated for
 each samples. The upscaling is done with the real GSVA score as mean and
 the calculated standard deviation.</p>
-<p>The <em>plotPermutationSamplesNormal()</em> function shown the GSVA
+<p>The <em>plotPermutationSamplesNormal()</em> function shows the GSVA
 scores sampled during the upscaling step. The mean is shown as a
 vertical dotted line while the normal distribution is shown as a dashed
 line. The samples GSVA scores are shown as dots in this graph.</p>
@@ -712,12 +712,12 @@ from the upscaling step.</p>
 <p>Let’s compare the classification obtained here with the one from
 Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Assignation from Tiriac et al</span></span>
+<code class="sourceCode R"><span><span class="co">## Assignments from Tiriac et al</span></span>
 <span><span class="va">tiriacAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"Moffitt_Tiriac_Assignation.txt"</span>, sep<span class="op">=</span><span class="st">"\t"</span>,</span>
 <span>                                    header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Assignation from the mixture model are extracted from the result</span></span>
-<span><span class="co">## Be default, the samples are considered unclassified</span></span>
+<span><span class="co">## Assignments from the mixture model are extracted from the result</span></span>
+<span><span class="co">## By default, the samples are considered unclassified</span></span>
 <span><span class="co">## The samples are classified only if they are assign to one of the signatures</span></span>
 <span><span class="co">## When assigned to both signatures, the samples remain unclassified</span></span>
 <span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, </span>
@@ -729,7 +729,7 @@ Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">Basal</span> <span class="op">==</span> <span class="st">"Basal-like"</span> <span class="op">&amp;</span> </span>
 <span>                    <span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">==</span> <span class="st">"unclassified"</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Basal-like"</span></span>
 <span></span>
-<span><span class="co">## Merge the current assignations with the Tiriac et al. assignations into </span></span>
+<span><span class="co">## Merge the current assignments with the Tiriac et al. assignments into </span></span>
 <span><span class="co">## one data frame</span></span>
 <span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Samples"</span>, <span class="st">"newAssignation"</span><span class="op">)</span><span class="op">]</span>, </span>
 <span>                     <span class="va">tiriacAssign</span>, by.x<span class="op">=</span><span class="st">"Samples"</span>, </span>
@@ -766,7 +766,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
