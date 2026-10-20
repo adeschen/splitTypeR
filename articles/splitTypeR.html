@@ -329,9 +329,9 @@ PDOs in Tiriac et al. <span class="citation">(Tiriac et al.
 <span><span class="co">## Prepare the PDOs basal-like and classical signatures</span></span>
 <span><span class="va">signaturesList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Basal-like"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"Tiriac_PDAC_PDO_Basal_like"</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Classical"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_classical_signature"</span><span class="op">)</span></span></code></pre></div>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"Tiriac_PDAC_PDO_Classical"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -820,15 +820,76 @@ subtype.</p>
 <div class="section level2">
 <h2 id="available-signatures">Available signatures<a class="anchor" aria-label="anchor" href="#available-signatures"></a>
 </h2>
-<p>The <em>splitTypeR</em> package provides few transcriptomic
+<p>The <em>splitTypeR</em> package provides two transcriptomic
 signatures.</p>
+<p>The <em>getGeneSignaturesNames()</em> function lists the names of all
+the available signatures.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## List the names of the available signatures</span></span>
+<span><span class="fu"><a href="../reference/getGeneSignaturesNames.html">getGeneSignaturesNames</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Tiriac_PDAC_PDO_Basal_like" "Tiriac_PDAC_PDO_Classical"</span></span></code></pre>
 <p><br></p>
+<p>The <em>getGenesInSignature()</em> function returns the genes of one
+signature, while the <em>getGeneSignatures()</em> function returns a
+named list containing one or more signatures. When no name is given,
+<em>getGeneSignatures()</em> returns all the available signatures.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the genes of the basal-like signature</span></span>
+<span><span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Tiriac_PDAC_PDO_Basal_like"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
+<span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
+<span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
+<span><span class="co">## [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span></span>
+<span><span class="co">## [25] "CST6"     "CATSPER1"</span></span></code></pre>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get all the available signatures and count the genes in each one</span></span>
+<span><span class="va">allSignatures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html" class="external-link">lengths</a></span><span class="op">(</span><span class="va">allSignatures</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Tiriac_PDAC_PDO_Basal_like  Tiriac_PDAC_PDO_Classical </span></span>
+<span><span class="co">##                         26                         62</span></span></code></pre>
+<p><br></p>
+<p>The current signatures are:</p>
+<ul>
+<li>
+<strong>Tiriac_PDAC_PDO_Basal_like</strong>: the basal-like
+signature (26 genes) defined for pancreatic ductal adenocarcinoma (PDAC)
+patient-derived organoids (PDOs) in Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</li>
+<li>
+<strong>Tiriac_PDAC_PDO_Classical</strong>: the classical signature
+(62 genes) defined for PDAC PDOs in Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</li>
+</ul>
+<p><br></p>
+<div class="section level3">
+<h3 id="using-your-own-signatures">Using your own signatures<a class="anchor" aria-label="anchor" href="#using-your-own-signatures"></a>
+</h3>
+<p>The method is not limited to the signatures included in the
+<em>splitTypeR</em> package. Any named <code>list</code> of at least two
+gene vectors can be passed to the <em>runSubtypingBimodal()</em>
+function. The names of the list are used as the signature names in the
+results. The gene identifiers must use the same format as the row names
+of the expression matrix (ex: gene names, Ensembl IDs). Genes absent
+from the expression matrix are ignored. It is recommended to use
+signatures with 10 genes or more to ensure statistical stability and
+reliability of the enrichment scores</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Example of custom signatures</span></span>
+<span><span class="va">mySignatures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    SignatureA<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENE1"</span>, <span class="st">"GENE2"</span>, <span class="st">"GENE3"</span>, <span class="st">"GENE4"</span>, <span class="st">"GENE5"</span>, <span class="st">"GENE6"</span>,</span>
+<span>            <span class="st">"GENE7"</span>, <span class="st">"GENE8"</span>, <span class="st">"GENE9"</span>, <span class="st">"GENE10"</span>, <span class="st">"GENE11"</span><span class="op">)</span>,</span>
+<span>    SignatureB<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENE4"</span>, <span class="st">"GENE9"</span>, <span class="st">"GENE10"</span>, <span class="st">"GENE12"</span>, <span class="st">"GENE13"</span>, <span class="st">"GENE15"</span>,</span>
+<span>            <span class="st">"GENE16"</span>, <span class="st">"GENE17"</span>, <span class="st">"GENE18"</span>, <span class="st">"GENE19"</span>, <span class="st">"GENE20"</span>, <span class="st">"GENE21"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="acknowledgment">Acknowledgment<a class="anchor" aria-label="anchor" href="#acknowledgment"></a>
 </h2>
 <p>Claude Sonnet 5 was used for improving the workflow figure. It was
 also use for proofreading and copyediting sections of this text.</p>
+<p>Claude Opus 5.5, through Claude Code, was used to assist with code
+maintenance, including renaming the demonstration signatures, updating
+the associated documentation and unit tests, removing unused internal
+data, and adding the Quick start section to this vignette. All changes
+were reviewed and validated by the package maintainer.</p>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -836,7 +897,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
