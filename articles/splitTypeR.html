@@ -89,7 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script><p><br></p>
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
-[aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
+[aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>), David A. Tuveson
+[aut] (ORCID: <a href="https://orcid.org/0000-0002-8017-2712" class="external-link uri">https://orcid.org/0000-0002-8017-2712</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
 2026-10-20<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
@@ -100,9 +101,9 @@ redistribute this software.</p>
 <p>If you use this package for a publication, we would ask you to cite
 the following:</p>
 <blockquote>
-<p>Deschênes A, Belleau P (2026). <em>splitTypeR: Transcriptomic
-classification using mixture of normal distributions</em>. R package
-version 0.99.0, <a href="https://github.com/adeschen/splitTypeR" class="external-link uri">https://github.com/adeschen/splitTypeR</a>.</p>
+<p>Deschênes A, Belleau P, Tuveson David A (2026). <em>splitTypeR:
+Transcriptomic classification using mixture of normal
+distributions</em>. R package version 0.99.0, <a href="https://github.com/adeschen/splitTypeR" class="external-link uri">https://github.com/adeschen/splitTypeR</a>.</p>
 </blockquote>
 <p><br></p>
 </div>
@@ -164,10 +165,11 @@ be loaded with the following command:</p>
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>The package includes a small demonstration dataset: two gene
-signatures (<code>signaturesDemo</code>) and a matrix of normalized
-expected counts for 30 patients (<code>expNormalCountsDemo</code>). The
-whole subtyping method can be run on it in a few lines:</p>
+<p>The <strong><em>splitTypeR</em></strong> package includes a small
+demonstration dataset: two gene signatures (<code>signaturesDemo</code>)
+and a matrix of normalized expected counts for 30 patients
+(<code>expNormalCountsDemo</code>). The whole subtyping method can be
+run on it in a few lines:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Load the demo signatures and the demo normalized expected counts</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">signaturesDemo</span><span class="op">)</span></span>
@@ -177,11 +179,12 @@ whole subtyping method can be run on it in a few lines:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Run the subtyping method and print the classification of each sample</span></span>
+<span><span class="co">## The normalized expected counts are log2-transformed </span></span>
 <span><span class="va">quickResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runSubtypingBimodal.html">runSubtypingBimodal</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>,</span>
-<span>    expectedCountsMatrixLog<span class="op">=</span><span class="va">expNormalCountsDemo</span>,</span>
+<span>    expectedCountsMatrixLog<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span>, upscaleNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## number of iterations= 55 </span></span>
-<span><span class="co">## number of iterations= 72</span></span></code></pre>
+<pre><code><span><span class="co">## number of iterations= 52 </span></span>
+<span><span class="co">## number of iterations= 129</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">quickResult</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Classification: </span></span>
@@ -1025,7 +1028,7 @@ Clinical Oncology</em> 5: 412. <a href="https://doi.org/10.5306/wjco.v5.i3.412" 
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Astrid Deschênes, Pascal Belleau.</p>
+<p>Developed by Astrid Deschênes, Pascal Belleau, David A. Tuveson.</p>
 </div>
 
 <div class="pkgdown">
