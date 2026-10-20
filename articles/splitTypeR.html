@@ -162,6 +162,96 @@ be loaded with the following command:</p>
 <p><br></p>
 </div>
 <div class="section level2">
+<h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
+<p>The package includes a small demonstration dataset: two gene
+signatures (<code>signaturesDemo</code>) and a matrix of normalized
+expected counts for 30 patients (<code>expNormalCountsDemo</code>). The
+whole subtyping method can be run on it in a few lines:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Load the demo signatures and the demo normalized expected counts</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">signaturesDemo</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Fix seed for reproducible results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Run the subtyping method and print the classification of each sample</span></span>
+<span><span class="va">quickResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runSubtypingBimodal.html">runSubtypingBimodal</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>,</span>
+<span>    expectedCountsMatrixLog<span class="op">=</span><span class="va">expNormalCountsDemo</span>,</span>
+<span>    permRatio<span class="op">=</span><span class="fl">0.75</span>, permNbr<span class="op">=</span><span class="fl">20</span>, upscaleNbr<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## number of iterations= 55 </span></span>
+<span><span class="co">## number of iterations= 72</span></span></code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">quickResult</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Classification: </span></span>
+<span><span class="co">##            2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_1                              unclassified</span></span>
+<span><span class="co">## Patient_2  2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_3                              unclassified</span></span>
+<span><span class="co">## Patient_4  2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_5                              unclassified</span></span>
+<span><span class="co">## Patient_6  2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_7                              unclassified</span></span>
+<span><span class="co">## Patient_8                              unclassified</span></span>
+<span><span class="co">## Patient_9                              unclassified</span></span>
+<span><span class="co">## Patient_10 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_11 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_12                             unclassified</span></span>
+<span><span class="co">## Patient_13 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_14 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_15                             unclassified</span></span>
+<span><span class="co">## Patient_16                             unclassified</span></span>
+<span><span class="co">## Patient_17                             unclassified</span></span>
+<span><span class="co">## Patient_18 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_19                             unclassified</span></span>
+<span><span class="co">## Patient_20                             unclassified</span></span>
+<span><span class="co">## Patient_21 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_22                             unclassified</span></span>
+<span><span class="co">## Patient_23 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_24 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_25                             unclassified</span></span>
+<span><span class="co">## Patient_26                             unclassified</span></span>
+<span><span class="co">## Patient_27 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_28                             unclassified</span></span>
+<span><span class="co">## Patient_29 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">## Patient_30 2018_Tiriac_PDAC_PDO_classical_signature</span></span>
+<span><span class="co">##            2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_1                               unclassified</span></span>
+<span><span class="co">## Patient_2                               unclassified</span></span>
+<span><span class="co">## Patient_3  2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_4                               unclassified</span></span>
+<span><span class="co">## Patient_5  2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_6                               unclassified</span></span>
+<span><span class="co">## Patient_7  2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_8  2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_9  2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_10                              unclassified</span></span>
+<span><span class="co">## Patient_11                              unclassified</span></span>
+<span><span class="co">## Patient_12 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_13                              unclassified</span></span>
+<span><span class="co">## Patient_14                              unclassified</span></span>
+<span><span class="co">## Patient_15 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_16 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_17 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_18                              unclassified</span></span>
+<span><span class="co">## Patient_19 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_20 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_21                              unclassified</span></span>
+<span><span class="co">## Patient_22 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_23                              unclassified</span></span>
+<span><span class="co">## Patient_24                              unclassified</span></span>
+<span><span class="co">## Patient_25 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_26 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_27                              unclassified</span></span>
+<span><span class="co">## Patient_28 2018_Tiriac_PDAC_PDO_basal-like_signature</span></span>
+<span><span class="co">## Patient_29                              unclassified</span></span>
+<span><span class="co">## Patient_30                              unclassified</span></span></code></pre>
+<p>Each step of the method is detailed in the next section, followed by
+a complete demonstration on a published dataset.</p>
+<p><br></p>
+</div>
+<div class="section level2">
 <h2 id="method">Method<a class="anchor" aria-label="anchor" href="#method"></a>
 </h2>
 <p>The following figure represents the statistical method employed to
@@ -260,7 +350,7 @@ al. 2020)</span>.</p>
 <p>The basal-like and classical gene signatures are the one defined for
 PDOs in Tiriac et al. <span class="citation">(Tiriac et al.
 2018)</span>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Require package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adeschen/splitTypeR" class="external-link">splitTypeR</a></span><span class="op">)</span></span>
 <span></span>
@@ -285,7 +375,7 @@ names.</p>
 log-transformed to enable the use of the Gaussian distribution function.
 The current behavior of GSVA is to automatically choose one of the
 available distribution functions.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Required package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
 <span></span>
@@ -309,7 +399,7 @@ available distribution functions.</p>
 <h3 id="run-the-subtyping-method">Run the subtyping method<a class="anchor" aria-label="anchor" href="#run-the-subtyping-method"></a>
 </h3>
 <p>The <em>runSubtypingBimodal</em> function runs all the steps.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducible results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">81</span><span class="op">)</span></span>
 <span></span>
@@ -321,7 +411,7 @@ available distribution functions.</p>
 <span>  upscaleNbr<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## number of iterations= 136 </span></span>
 <span><span class="co">## number of iterations= 135</span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Summary of the classification results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Classification: </span></span>
@@ -370,7 +460,7 @@ available distribution functions.</p>
 process. The information can be accessed using the appropriate getter
 function.</p>
 <p><br></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the list of genes in each signature</span></span>
 <span><span class="fu"><a href="../reference/signatures.html">signatures</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`Basal-like`</span></span>
@@ -395,7 +485,7 @@ function.</p>
 <span><span class="co">## [56] "IYD"        "DOK4"       "CYP2C18"    "KCNE3"      "FZD5"      </span></span>
 <span><span class="co">## [61] "RASEF"      "GKN1"</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the GSVA scores for all samples in each signature</span></span>
 <span><span class="fu"><a href="../reference/gsvaResults.html">gsvaResults</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                   hF2        hF23       hF24       hF27       hF28        hF3</span></span>
@@ -527,7 +617,7 @@ function.</p>
 <span><span class="co">## [51] "CYP2S1"     "PAQR8"      "HKDC1"      "IYD"        "DOK4"      </span></span>
 <span><span class="co">## [56] "CYP2C18"    "KCNE3"      "FZD5"       "RASEF"      "GKN1"</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the GSVA scores for the first 5 samples in the first 8 permutations done </span></span>
 <span><span class="co">## for the classical signature</span></span>
 <span><span class="fu"><a href="../reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
@@ -544,7 +634,7 @@ function.</p>
 <span><span class="co">## hF27  0.0612709 -0.15658149</span></span>
 <span><span class="co">## hF28 -0.4315780 -0.57955907</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the standard deviation for the GSVA scores for all samples in each </span></span>
 <span><span class="co">## signature </span></span>
 <span><span class="co">## The standard deviation is inferred from the permutation step</span></span>
@@ -581,7 +671,7 @@ function.</p>
 <span><span class="co">##        hT93        hT96        hT98 </span></span>
 <span><span class="co">## 0.046301231 0.041979712 0.088366419</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the first 8 upscaling GSVA scores for the first 5 samples for the </span></span>
 <span><span class="co">## classical signature </span></span>
 <span><span class="fu"><a href="../reference/upscaling.html">upscaling</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
@@ -598,7 +688,7 @@ function.</p>
 <span><span class="co">## hF27 -0.19437588 -0.06951162</span></span>
 <span><span class="co">## hF28 -0.69437592 -0.61316655</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the mixture model for the classical signature</span></span>
 <span><span class="co">## This is a mixEM object</span></span>
 <span><span class="va">classicalModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/model.html">model</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span>
@@ -607,7 +697,7 @@ function.</p>
 <span><span class="va">classicalModel</span><span class="op">$</span><span class="va">mu</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -0.6505149  0.3254568</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the final classification of the samples for  the classical signature</span></span>
 <span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##        GSVA_score classification</span></span>
@@ -658,7 +748,7 @@ function.</p>
 <p>The <em>plotPermutationSamplesDistribution()</em> function enables
 the visualization of the GSVA results obtained during the permutation
 step for a specific signature and specific samples.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The GSVA results obtained for three samples during the permutation step </span></span>
 <span><span class="co">## for the classical signature</span></span>
 <span><span class="co">## The seed is fixed to ensure reproducibility</span></span>
@@ -678,7 +768,7 @@ the calculated standard deviation.</p>
 scores sampled during the upscaling step. The mean is shown as a
 vertical dotted line while the normal distribution is shown as a dashed
 line. The samples GSVA scores are shown as dots in this graph.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span></span>
@@ -696,11 +786,11 @@ line. The samples GSVA scores are shown as dots in this graph.</p>
 enables the visualization of the two normal distributions obtained for a
 specific signature. In this graph, the GSVA values are the one obtained
 from the upscaling step.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Basal-like"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-1.png" class="r-plt" alt="" width="700"></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Classical"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-2.png" class="r-plt" alt="" width="700"></p>
@@ -711,7 +801,7 @@ from the upscaling step.</p>
 </h3>
 <p>Let’s compare the classification obtained here with the one from
 Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Assignments from Tiriac et al</span></span>
 <span><span class="va">tiriacAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"Moffitt_Tiriac_Assignation.txt"</span>, sep<span class="op">=</span><span class="st">"\t"</span>,</span>
 <span>                                    header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -745,7 +835,7 @@ Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <p><br></p>
 <p>More than 86% of the samples (32 out of 37) are assigned the same
 subtype.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gsva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Classical<span class="op">=</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">GSVA_score</span>, </span>
 <span>                   Basal<span class="op">=</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">GSVA_score</span>, </span>
 <span>                   row.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -774,7 +864,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
