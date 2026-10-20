@@ -185,10 +185,10 @@ or phenotype.</p>
 <h3 id="step-1--enrichment-score">Step 1. Enrichment score<a class="anchor" aria-label="anchor" href="#step-1--enrichment-score"></a>
 </h3>
 <p>The enrichment scores are first computed for every single sample with
-the Bioconductor GSVA package <span class="citation">(Hänzelmann et al.
-2013)</span>. Those scores represent the real score for each sample.
-Later steps treat this real score as the anchor point around which
-uncertainty gets modeled.</p>
+the Bioconductor <em><a href="https://bioconductor.org/packages/3.24/GSVA" class="external-link">GSVA</a></em> package
+<span class="citation">(Hänzelmann et al. 2013)</span>. Those scores
+represent the real score for each sample. Later steps treat this real
+score as the anchor point around which uncertainty gets modeled.</p>
 </div>
 <div class="section level3">
 <h3 id="step-2--permutation">Step 2. Permutation<a class="anchor" aria-label="anchor" href="#step-2--permutation"></a>
@@ -213,7 +213,7 @@ will be used in the next step.</p>
 </h3>
 <p>The synthetic values across all samples are pooled to fit two
 overlapping normal distributions to them. The two normal distributions
-are extracted using a mixture model approach implemented in the mixtools
+are extracted using a mixture model approach implemented in the <em><a href="https://CRAN.R-project.org/package=mixtools" class="external-link">mixtools</a></em>
 package <span class="citation">(Benaglia et al. 2009)</span>. The idea
 being that the whole cohort is actually a blend of two underlying
 populations (a “low enrichment” group and a “high enrichment”
@@ -222,7 +222,7 @@ group).</p>
 <div class="section level3">
 <h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
-<p>For each sample, a hypothesis testing whether its real score is<br>
+<p>For each sample, a hypothesis testing whether its real score is
 consistent with belonging to the low-enrichment distribution.</p>
 <p>For each sample, the pipeline runs a hypothesis test where the Null
 hypothesis (H₀) is that the sample actually belongs to the
@@ -243,10 +243,10 @@ signature. Otherwise, the sample is not classified.</p>
 dataset of pancreatic ductal adenocarcinoma (PDAC) patients-derived
 organoids (PDOs) published in Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>. The RNA-seq has been
 aligned with GENCODE v48 on GRCh38.p14 genome with STAR v2.7.9a <span class="citation">(Dobin et al. 2013)</span>. Only one PDO per patient
-was retained. The expected counts were processed with DESeq2 v1.50.2
-<span class="citation">(Love et al. 2014)</span> on genes expressed in
-at least 20% of the PDOs. The normalized expression is available in a
-<em>SummarizedExperiment</em> object.</p>
+was retained. The expected counts were processed with <em><a href="https://bioconductor.org/packages/3.24/DESeq2" class="external-link">DESeq2</a></em>
+v1.50.2 <span class="citation">(Love et al. 2014)</span> on genes
+expressed in at least 20% of the PDOs. The normalized expression is
+available in a <em>SummarizedExperiment</em> object.</p>
 <p>In PDAC, the basal-like and classical subtypes, as defined in Moffitt
 et al <span class="citation">(Moffitt et al. 2015)</span>, are the two
 consistently employed molecular subtypes. The classical signature is
@@ -291,7 +291,8 @@ available distribution functions.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Load the SummarizedExperiment object</span></span>
-<span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Tiriac_NormExpCounts.RDS"</span>, package <span class="op">=</span> <span class="st">"splitTypeR"</span><span class="op">)</span></span>
+<span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Tiriac_NormExpCounts.RDS"</span>, </span>
+<span>                        package<span class="op">=</span><span class="st">"splitTypeR"</span><span class="op">)</span></span>
 <span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Extract the normalized counts and assign the gene names as row names</span></span>
@@ -720,8 +721,9 @@ Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <span><span class="co">## By default, the samples are considered unclassified</span></span>
 <span><span class="co">## The samples are classified only if they are assign to one of the signatures</span></span>
 <span><span class="co">## When assigned to both signatures, the samples remain unclassified</span></span>
-<span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, </span>
-<span>                            newAssignation<span class="op">=</span><span class="st">"unclassified"</span><span class="op">)</span></span>
+<span><span class="va">assignation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>        Samples<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>        newAssignation<span class="op">=</span><span class="st">"unclassified"</span><span class="op">)</span></span>
 <span><span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">classification</span></span>
 <span><span class="va">assignation</span><span class="op">$</span><span class="va">Basal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">classification</span></span>
 <span><span class="va">assignation</span><span class="op">$</span><span class="va">newAssignation</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">assignation</span><span class="op">$</span><span class="va">Classical</span> <span class="op">==</span> <span class="st">"Classical"</span> <span class="op">&amp;</span> </span>
@@ -766,7 +768,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
