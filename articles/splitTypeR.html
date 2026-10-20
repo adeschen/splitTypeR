@@ -216,22 +216,21 @@ overlapping normal distributions to them. The two normal distributions
 are extracted using a mixture model approach implemented in the <em><a href="https://CRAN.R-project.org/package=mixtools" class="external-link">mixtools</a></em>
 package <span class="citation">(Benaglia et al. 2009)</span>. The idea
 being that the whole cohort is actually a blend of two underlying
-populations (a “low enrichment” group and a “high enrichment”
-group).</p>
+populations (a “low mean” group and a “high mean” group).</p>
 </div>
 <div class="section level3">
 <h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
 <p>For each sample, a hypothesis testing whether its real score is
-consistent with belonging to the low-enrichment distribution.</p>
+consistent with belonging to the low-mean distribution.</p>
 <p>For each sample, the pipeline runs a hypothesis test where the Null
-hypothesis (H₀) is that the sample actually belongs to the
-lower-enrichment distribution. The sample’s real enrichment score (from
-Step 1) is checked against that null distribution. If the real score is
-implausible under the low-enrichment distribution (i.e., it falls
-somewhere that distribution would rarely produce), the null hypothesis
-is rejected. In that situation, the sample is classified as belonging to
-the higher-enrichment group which implies it is assigned to the tested
+hypothesis (H₀) is that the sample actually belongs to the lower-mean
+distribution. The sample’s real enrichment score (from Step 1) is
+checked against that null distribution. If the real score is implausible
+under the low-mean distribution (i.e., it falls somewhere that
+distribution would rarely produce), the null hypothesis is rejected. In
+that situation, the sample is classified as belonging to the
+higher-enrichment group which implies it is assigned to the tested
 signature. Otherwise, the sample is not classified.</p>
 <p><br></p>
 </div>
@@ -252,8 +251,8 @@ et al <span class="citation">(Moffitt et al. 2015)</span>, are the two
 consistently employed molecular subtypes. The classical signature is
 associated to better prognosis and better response to standard
 chemotherapy while the basal-like subtype is associated with worse
-overall prognosis <span class="citation">O’Kane et al.
-(2020)</span>.</p>
+overall prognosis <span class="citation">(Moffitt et al. 2015; O’Kane et
+al. 2020)</span>.</p>
 <p><br></p>
 <div class="section level3">
 <h3 id="prepare-the-signatures">Prepare the signatures<a class="anchor" aria-label="anchor" href="#prepare-the-signatures"></a>
@@ -744,7 +743,7 @@ Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <span><span class="co">##   Classical             1        24</span></span>
 <span><span class="co">##   unclassified          0         1</span></span></code></pre>
 <p><br></p>
-<p>More than 85% of the samples (32 out of 37) are assigned the same
+<p>More than 86% of the samples (32 out of 37) are assigned the same
 subtype.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gsva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Classical<span class="op">=</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">GSVA_score</span>, </span>
@@ -755,6 +754,13 @@ subtype.</p>
 <span>                                            <span class="va">assignation</span><span class="op">$</span><span class="va">Moffitt</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <p><br></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="available-signatures">Available signatures<a class="anchor" aria-label="anchor" href="#available-signatures"></a>
+</h2>
+<p>The <em>splitTypeR</em> package provides few transcriptomic
+signatures.</p>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgment">Acknowledgment<a class="anchor" aria-label="anchor" href="#acknowledgment"></a>
@@ -768,7 +774,7 @@ also use for proofreading and copyediting sections of this text.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
