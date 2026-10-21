@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>), David A. Tuveson
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-8017-2712" class="external-link uri">https://orcid.org/0000-0002-8017-2712</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-10-20<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-10-21<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -329,9 +329,9 @@ PDOs in Tiriac et al. <span class="citation">(Tiriac et al.
 <span><span class="co">## Prepare the PDOs basal-like and classical signatures</span></span>
 <span><span class="va">signaturesList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Basal-like"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"Tiriac_PDAC_PDO_Basal_like"</span><span class="op">)</span></span>
 <span><span class="va">signaturesList</span><span class="op">[[</span><span class="st">"Classical"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
-<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"2018_Tiriac_PDAC_PDO_classical_signature"</span><span class="op">)</span></span></code></pre></div>
+<span>        <span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span><span class="st">"Tiriac_PDAC_PDO_Classical"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">
@@ -820,15 +820,15 @@ subtype.</p>
 <div class="section level2">
 <h2 id="available-signatures">Available signatures<a class="anchor" aria-label="anchor" href="#available-signatures"></a>
 </h2>
-<p>The <em>splitTypeR</em> package provides two transcriptomic
+<p>The <em>splitTypeR</em> package provides transcriptomic
 signatures.</p>
 <p>The <em>getGeneSignaturesNames()</em> function lists the names of all
 the available signatures.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## List the names of the available signatures</span></span>
 <span><span class="fu"><a href="../reference/getGeneSignaturesNames.html">getGeneSignaturesNames</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "2018_Tiriac_PDAC_PDO_basal-like_signature"</span></span>
-<span><span class="co">## [2] "2018_Tiriac_PDAC_PDO_classical_signature"</span></span></code></pre>
+<pre><code><span><span class="co">## [1] "Tiriac_PDAC_PDO_Basal_like" "Tiriac_PDAC_PDO_Classical" </span></span>
+<span><span class="co">## [3] "Moffitt_Basal_like"         "Moffitt_Classical"</span></span></code></pre>
 <p><br></p>
 <p>The <em>getGenesInSignature()</em> function returns the genes of one
 signature, while the <em>getGeneSignatures()</em> function returns a
@@ -836,7 +836,7 @@ named list containing one or more signatures. When no name is given,
 <em>getGeneSignatures()</em> returns all the available signatures.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the genes of the basal-like signature</span></span>
-<span><span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"2018_Tiriac_PDAC_PDO_basal-like_signature"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/getGenesInSignature.html">getGenesInSignature</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Tiriac_PDAC_PDO_Basal_like"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
 <span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
 <span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
@@ -846,22 +846,26 @@ named list containing one or more signatures. When no name is given,
 <code class="sourceCode R"><span><span class="co">## Get all the available signatures and count the genes in each one</span></span>
 <span><span class="va">allSignatures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getGeneSignatures.html">getGeneSignatures</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html" class="external-link">lengths</a></span><span class="op">(</span><span class="va">allSignatures</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 2018_Tiriac_PDAC_PDO_basal-like_signature </span></span>
-<span><span class="co">##                                        26 </span></span>
-<span><span class="co">##  2018_Tiriac_PDAC_PDO_classical_signature </span></span>
-<span><span class="co">##                                        62</span></span></code></pre>
+<pre><code><span><span class="co">## Tiriac_PDAC_PDO_Basal_like  Tiriac_PDAC_PDO_Classical </span></span>
+<span><span class="co">##                         26                         62 </span></span>
+<span><span class="co">##         Moffitt_Basal_like          Moffitt_Classical </span></span>
+<span><span class="co">##                         25                         25</span></span></code></pre>
 <p><br></p>
 <p>The current signatures are:</p>
 <ul>
 <li>
-<strong>2018_Tiriac_PDAC_PDO_basal-like_signature</strong>: the
-basal-like signature (26 genes) defined for pancreatic ductal
-adenocarcinoma (PDAC) patient-derived organoids (PDOs) in Tiriac et al.
-<span class="citation">(Tiriac et al. 2018)</span>.</li>
+<strong>Tiriac_PDAC_PDO_Basal_like</strong>: the basal-like
+signature (26 genes) defined for pancreatic ductal adenocarcinoma (PDAC)
+patient-derived organoids (PDOs) in Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</li>
 <li>
-<strong>2018_Tiriac_PDAC_PDO_classical_signature</strong>: the
-classical signature (62 genes) defined for PDAC PDOs in Tiriac et al.
-<span class="citation">(Tiriac et al. 2018)</span>.</li>
+<strong>Tiriac_PDAC_PDO_Classical</strong>: the classical signature
+(62 genes) defined for PDAC PDOs in Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</li>
+<li>
+<strong>Moffitt_Basal_like</strong>: the original basal-like
+signature (25 genes) defined for PDAC in Moffitt et al. <span class="citation">(Moffitt et al. 2015)</span>.</li>
+<li>
+<strong>Moffitt_Classical</strong>: the original classical signature
+(25 genes) defined for PDAC in Moffitt et al. <span class="citation">(Moffitt et al. 2015)</span>.</li>
 </ul>
 <p><br></p>
 <div class="section level3">
@@ -902,7 +906,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-18 r90707)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-20 r90728)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
