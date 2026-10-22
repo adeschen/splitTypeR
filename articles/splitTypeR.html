@@ -286,14 +286,14 @@ populations (a “low-mean” population and a “high-mean” population).</p>
 <p>For each sample, a hypothesis testing whether its real score is
 consistent with belonging to the “low-mean” distribution.</p>
 <p>For each sample, the pipeline runs a hypothesis test where the Null
-hypothesis (H₀) is that the sample actually belongs to the lower-mean
+hypothesis (H₀) is that the sample actually belongs to the “low-mean”
 distribution. The sample’s real enrichment score (from Step 1) is
 checked against that null distribution. If the real score is implausible
 under the “low-mean” distribution (i.e., it falls somewhere that
 distribution would rarely produce), the null hypothesis is rejected. In
-that situation, the sample is classified as belonging to the
-higher-enrichment group which implies it is assigned to the tested
-signature. Otherwise, the sample is not classified.</p>
+that situation, the sample is classified as belonging to the “high-mean”
+population, which implies it is assigned to the tested signature.
+Otherwise, the sample is not classified.</p>
 <p><br></p>
 </div>
 </div>
@@ -907,7 +907,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-20 r90728)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
