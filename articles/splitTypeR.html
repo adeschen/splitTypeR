@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>), David A. Tuveson
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-8017-2712" class="external-link uri">https://orcid.org/0000-0002-8017-2712</a>)<br><strong>Version</strong>: 0.99.0<br><strong>Compiled date</strong>:
-2026-10-21<br><strong>License</strong>: Artistic-2.0<br></p>
+2026-10-22<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -188,37 +188,37 @@ run on it in a few lines:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">quickResult</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Classification: </span></span>
-<span><span class="co">##            Tiriac_PDAC_PDO_Classical Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_1               unclassified               unclassified</span></span>
-<span><span class="co">## Patient_2  Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_3               unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_4  Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_5               unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_6  Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_7               unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_8               unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_9               unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_10 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_11 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_12              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_13 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_14 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_15              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_16              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_17              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_18 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_19              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_20              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_21 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_22              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_23 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_24 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_25              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_26              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_27 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_28              unclassified Tiriac_PDAC_PDO_Basal-like</span></span>
-<span><span class="co">## Patient_29 Tiriac_PDAC_PDO_Classical               unclassified</span></span>
-<span><span class="co">## Patient_30 Tiriac_PDAC_PDO_Classical               unclassified</span></span></code></pre>
+<span><span class="co">##               Classical   Basal-like</span></span>
+<span><span class="co">## Patient_1  unclassified unclassified</span></span>
+<span><span class="co">## Patient_2     Classical unclassified</span></span>
+<span><span class="co">## Patient_3  unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_4     Classical unclassified</span></span>
+<span><span class="co">## Patient_5  unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_6     Classical unclassified</span></span>
+<span><span class="co">## Patient_7  unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_8  unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_9  unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_10    Classical unclassified</span></span>
+<span><span class="co">## Patient_11    Classical unclassified</span></span>
+<span><span class="co">## Patient_12 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_13    Classical unclassified</span></span>
+<span><span class="co">## Patient_14    Classical unclassified</span></span>
+<span><span class="co">## Patient_15 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_16 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_17 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_18    Classical unclassified</span></span>
+<span><span class="co">## Patient_19 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_20 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_21    Classical unclassified</span></span>
+<span><span class="co">## Patient_22 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_23    Classical unclassified</span></span>
+<span><span class="co">## Patient_24    Classical unclassified</span></span>
+<span><span class="co">## Patient_25 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_26 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_27    Classical unclassified</span></span>
+<span><span class="co">## Patient_28 unclassified   Basal-like</span></span>
+<span><span class="co">## Patient_29    Classical unclassified</span></span>
+<span><span class="co">## Patient_30    Classical unclassified</span></span></code></pre>
 <p>Each step of the method is detailed in the next section, followed by
 a complete demonstration on a published dataset.</p>
 <p><br></p>
@@ -906,7 +906,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-20 r90728)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-19 r90719)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
