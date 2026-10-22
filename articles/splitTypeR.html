@@ -467,7 +467,53 @@ available distribution functions.</p>
 <div class="section level3">
 <h3 id="run-the-subtyping-method">Run the subtyping method<a class="anchor" aria-label="anchor" href="#run-the-subtyping-method"></a>
 </h3>
-<p>The <em>runSubtypingBimodal</em> function runs all the steps.</p>
+<p>The <em>runSubtypingBimodal</em> function runs all the steps. Three
+parameters control the permutation and upscaling steps:</p>
+<table class="table">
+<colgroup>
+<col width="25%">
+<col width="29%">
+<col width="20%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="center">Default</th>
+<th align="left">Trade-off</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>permRatio</code></td>
+<td align="left">Proportion of the samples randomly selected in each
+permutation (Step 2). Must be between 0 and 1, and must not select all
+the samples.</td>
+<td align="center">0.75</td>
+<td align="left">A lower value creates more variation between
+permutations, but each GSVA score is computed on fewer samples.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>permNbr</code></td>
+<td align="left">Number of permutations (Step 2). Must be 5 or
+higher.</td>
+<td align="center">20</td>
+<td align="left">More permutations give a more stable standard deviation
+for each sample, but take longer to run since GSVA is run once per
+permutation.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>upscaleNbr</code></td>
+<td align="left">Number of values drawn from the normal distribution of
+each sample (Step 3). Must be 2 or higher.</td>
+<td align="center">10</td>
+<td align="left">More values give more data to fit the mixture model
+(Step 4), with little impact on the run time.</td>
+</tr>
+</tbody>
+</table>
+<p>Each sample is present, on average, in <code>permRatio</code> ×
+<code>permNbr</code> permutations (15 with the default values), which is
+the number of values used to estimate its standard deviation.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducible results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">81</span><span class="op">)</span></span>
