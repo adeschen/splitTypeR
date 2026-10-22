@@ -283,7 +283,7 @@ populations (a “low-mean” population and a “high-mean” population).</p>
 <div class="section level3">
 <h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
-<p>For each sample, a hypothesis testing whether its real score is
+<p>For each sample, a hypothesis test checks whether its real score is
 consistent with belonging to the “low-mean” distribution.</p>
 <p>For each sample, the pipeline runs a hypothesis test where the Null
 hypothesis (H₀) is that the sample actually belongs to the “low-mean”
@@ -812,8 +812,8 @@ each sample. The upscaling is done with the real GSVA score as mean and
 the calculated standard deviation.</p>
 <p>The <em>plotPermutationSamplesNormal()</em> function shows the GSVA
 scores sampled during the upscaling step. The mean is shown as a
-vertical dotted line while the normal distribution is shown as a dashed
-line. The samples GSVA scores are shown as dots in this graph.</p>
+vertical dotted line, while the normal distribution is shown as a dashed
+line. The sampled GSVA scores are shown as dots in this graph.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
