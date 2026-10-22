@@ -283,17 +283,27 @@ populations (a “low-mean” population and a “high-mean” population).</p>
 <div class="section level3">
 <h3 id="step-5--classification">Step 5. Classification<a class="anchor" aria-label="anchor" href="#step-5--classification"></a>
 </h3>
-<p>For each sample, a hypothesis test checks whether its real score is
-consistent with belonging to the “low-mean” distribution.</p>
-<p>For each sample, the pipeline runs a hypothesis test where the Null
-hypothesis (H₀) is that the sample actually belongs to the “low-mean”
-distribution. The sample’s real enrichment score (from Step 1) is
-checked against that null distribution. If the real score is implausible
-under the “low-mean” distribution (i.e., it falls somewhere that
-distribution would rarely produce), the null hypothesis is rejected. In
-that situation, the sample is classified as belonging to the “high-mean”
-population, which implies it is assigned to the tested signature.
-Otherwise, the sample is not classified.</p>
+<p>Each sample is classified with a one-sided hypothesis test based on
+the “low-mean” distribution of the mixture model (from Step 4):</p>
+<ul>
+<li>
+<strong>Null hypothesis (H₀)</strong>: the sample belongs to the
+“low-mean” distribution</li>
+<li>
+<strong>Alternative hypothesis (H₁)</strong>: the sample belongs to
+the “high-mean” population</li>
+</ul>
+<p>The sample’s real enrichment score (from Step 1) is compared to the
+“low-mean” distribution. The p-value is the probability that this
+distribution produces a score at least as high as the real score. H₀ is
+rejected when the real score is above the 95th percentile of the
+“low-mean” distribution.</p>
+<p>When H₀ is rejected (p-value &lt; 0.05), the sample is assigned to
+the tested signature. Otherwise, the sample is labeled as “unclassified”
+for that signature.</p>
+<p>Since each signature is tested independently, a sample can be
+assigned to one signature, to several signatures, or to none of
+them.</p>
 <p><br></p>
 </div>
 </div>
