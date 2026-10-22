@@ -311,6 +311,16 @@ classification threshold. Each sample’s real enrichment score (from Step
 1) is compared to this threshold. A score above the threshold has less
 than a 5% probability of being produced by the “low-mean” distribution
 (one-sided p-value &lt; 0.05). In that case, H₀ is rejected.</p>
+<div class="figure" style="text-align: center">
+<img src="splitTypeR_files/figure-html/step5Schematic-1.png" class="r-plt" alt='Classification of the samples (schematic). The curve represents the "low-mean" distribution of the mixture model. The dashed line is the classification threshold (95th percentile) and the shaded area represents the upper 5% of the distribution. Sample A, with a score below the threshold, remains unclassified while sample B, with a score above the threshold, is assigned to the signature.' width="672"><p class="caption">
+Classification of the samples (schematic). The curve represents the
+“low-mean” distribution of the mixture model. The dashed line is the
+classification threshold (95th percentile) and the shaded area
+represents the upper 5% of the distribution. Sample A, with a score
+below the threshold, remains unclassified while sample B, with a score
+above the threshold, is assigned to the signature.
+</p>
+</div>
 <p>When H₀ is rejected (p-value &lt; 0.05), the sample is assigned to
 the tested signature. Otherwise, the sample is labeled as “unclassified”
 for that signature.</p>
@@ -1016,7 +1026,7 @@ are assigned and therefore remains unclassified.</p>
 <p>D.A. Tuveson is a distinguished scholar of the Lustgarten Foundation
 and Director of the Lustgarten Foundation-designated Laboratory of
 Pancreatic Cancer Research. This project is supported by the Lustgarten
-Foundation,</p>
+Foundation.</p>
 <p>Claude Sonnet 5 was used for improving the workflow figure. It was
 also used for proofreading and copyediting sections of this text.</p>
 <p>Claude Opus 5.5, through Claude Code, was used to assist with code
