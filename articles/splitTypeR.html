@@ -304,13 +304,13 @@ the “low-mean” distribution of the mixture model (from Step 4):</p>
 “low-mean” distribution</li>
 <li>
 <strong>Alternative hypothesis (H₁)</strong>: the sample belongs to
-the “high-mean” population</li>
+the “high-mean” distribution</li>
 </ul>
-<p>The 95th percentile of the “low-mean” distribution (equivalent to a
-p-value below 0.05) is calculated and considered as the threshold. H₀ is
-rejected when the real score is above this threshold. Each sample’s real
-enrichment score (from Step 1) is compared to this threshold to do the
-classification.</p>
+<p>The 95th percentile of the “low-mean” distribution is used as the
+classification threshold. Each sample’s real enrichment score (from Step
+1) is compared to this threshold. A score above the threshold has less
+than a 5% probability of being produced by the “low-mean” distribution
+(one-sided p-value &lt; 0.05). In that case, H₀ is rejected.</p>
 <p>When H₀ is rejected (p-value &lt; 0.05), the sample is assigned to
 the tested signature. Otherwise, the sample is labeled as “unclassified”
 for that signature.</p>
