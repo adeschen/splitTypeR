@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
-<p>This package and the underlying <em>splitTypeR</em> code are
-distributed under the Artistic license 2.0. You are free to use and
-redistribute this software.</p>
+<p>This package and the underlying <strong><em>splitTypeR</em></strong>
+code are distributed under the Artistic license 2.0. You are free to use
+and redistribute this software.</p>
 <p>If you use this package for a publication, we would ask you to cite
 the following:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -169,8 +169,8 @@ datasets.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>As with any R package, the <em>splitTypeR</em> package should first
-be loaded with the following command:</p>
+<p>As with any R package, the <strong><em>splitTypeR</em></strong>
+package should first be loaded with the following command:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adeschen/splitTypeR" class="external-link">splitTypeR</a></span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -306,11 +306,11 @@ the “low-mean” distribution of the mixture model (from Step 4):</p>
 <strong>Alternative hypothesis (H₁)</strong>: the sample belongs to
 the “high-mean” population</li>
 </ul>
-<p>The sample’s real enrichment score (from Step 1) is compared to the
-“low-mean” distribution. The p-value is the probability that this
-distribution produces a score at least as high as the real score. H₀ is
-rejected when the real score is above the 95th percentile of the
-“low-mean” distribution (equivalent to a p-value below 0.05).</p>
+<p>The 95th percentile of the “low-mean” distribution (equivalent to a
+p-value below 0.05) is calculated and considered as the threshold. H₀ is
+rejected when the real score is above this threshold. Each sample’s real
+enrichment score (from Step 1) is compared to this threshold to do the
+classification.</p>
 <p>When H₀ is rejected (p-value &lt; 0.05), the sample is assigned to
 the tested signature. Otherwise, the sample is labeled as “unclassified”
 for that signature.</p>
@@ -323,8 +323,8 @@ them.</p>
 <div class="section level2">
 <h2 id="available-signatures">Available signatures<a class="anchor" aria-label="anchor" href="#available-signatures"></a>
 </h2>
-<p>The <em>splitTypeR</em> package provides transcriptomic
-signatures.</p>
+<p>The <strong><em>splitTypeR</em></strong> package provides
+transcriptomic signatures.</p>
 <p>The <em>getGeneSignaturesNames()</em> function lists the names of all
 the available signatures.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -375,14 +375,14 @@ signature (25 genes) defined for PDAC in Moffitt et al. <span class="citation">(
 <h3 id="using-your-own-signatures">Using your own signatures<a class="anchor" aria-label="anchor" href="#using-your-own-signatures"></a>
 </h3>
 <p>The method is not limited to the signatures included in the
-<em>splitTypeR</em> package. Any named <code>list</code> of at least two
-gene vectors can be passed to the <em>runSubtypingBimodal()</em>
-function. The names of the list are used as the signature names in the
-results. The gene identifiers must use the same format as the row names
-of the expression matrix (e.g., gene names, Ensembl IDs). Genes absent
-from the expression matrix are ignored. It is recommended to use
-signatures with 10 genes or more to ensure statistical stability and
-reliability of the enrichment scores.</p>
+<strong><em>splitTypeR</em></strong> package. Any named
+<code>list</code> of at least two gene vectors can be passed to the
+<em>runSubtypingBimodal()</em> function. The names of the list are used
+as the signature names in the results. The gene identifiers must use the
+same format as the row names of the expression matrix (e.g., gene names,
+Ensembl IDs). Genes absent from the expression matrix are ignored. It is
+recommended to use signatures with 10 genes or more to ensure
+statistical stability and reliability of the enrichment scores.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Example of custom signatures</span></span>
 <span><span class="va">mySignatures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -1027,7 +1027,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-20 r90728)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-21 r90732)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
