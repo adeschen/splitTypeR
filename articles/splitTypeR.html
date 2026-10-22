@@ -808,7 +808,7 @@ step for a specific signature and specific samples.</p>
 <h3 id="visual-representation-of-the-results-at-the-upscaling-step">Visual representation of the results at the upscaling step<a class="anchor" aria-label="anchor" href="#visual-representation-of-the-results-at-the-upscaling-step"></a>
 </h3>
 <p>From the permutation step, the standard deviation is calculated for
-each samples. The upscaling is done with the real GSVA score as mean and
+each sample. The upscaling is done with the real GSVA score as mean and
 the calculated standard deviation.</p>
 <p>The <em>plotPermutationSamplesNormal()</em> function shows the GSVA
 scores sampled during the upscaling step. The mean is shown as a
@@ -830,8 +830,8 @@ line. The samples GSVA scores are shown as dots in this graph.</p>
 </h3>
 <p>The <em>plotDensityWithUpscalingSamplesBimodal()</em> function
 enables the visualization of the two normal distributions obtained for a
-specific signature. In this graph, the GSVA values are the one obtained
-from the upscaling step.</p>
+specific signature. In this graph, the GSVA values are those generated
+during the upscaling step.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Basal-like"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
