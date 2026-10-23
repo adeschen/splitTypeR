@@ -242,10 +242,10 @@ a complete demonstration on a published dataset.</p>
 </h2>
 <p>The following figure represents the statistical method employed to
 turn a noisy, single-number enrichment score into a confident binary
-classification of each sample. In summary, the method builds a
-confidence interval around the enrichment score, models the cohort as a
-mixture of two biological states, and then statistically tests each
-sample against that mixture.</p>
+classification of each sample. In summary, the method estimates the
+uncertainty around each enrichment score, models the cohort as a mixture
+of two biological states, and then statistically tests each sample
+against that mixture.</p>
 <div class="figure" style="text-align: center">
 <img src="enrichment_pipeline_300dpi_crop2.jpg" class="r-plt" alt="General workflow." width="100%"><p class="caption">
 General workflow.
@@ -824,8 +824,17 @@ function.</p>
 <span><span class="co">## Get the two distribution means</span></span>
 <span><span class="va">classicalModel</span><span class="op">$</span><span class="va">mu</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] -0.6505149  0.3254568</span></span></code></pre>
-<p><br></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the two distribution standard deviations</span></span>
+<span><span class="va">classicalModel</span><span class="op">$</span><span class="va">sigma</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.2503627 0.3296842</span></span></code></pre>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the mixing proportions (the fraction of the values assigned to each</span></span>
+<span><span class="co">## distribution)</span></span>
+<span><span class="va">classicalModel</span><span class="op">$</span><span class="va">lambda</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.2802048 0.7197952</span></span></code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the final classification of the samples for the classical signature</span></span>
 <span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##        GSVA_score classification</span></span>
@@ -876,7 +885,7 @@ function.</p>
 <p>The <em>plotPermutationSamplesDistribution()</em> function enables
 the visualization of the GSVA results obtained during the permutation
 step for a specific signature and specific samples.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The GSVA results obtained for three samples during the permutation step </span></span>
 <span><span class="co">## for the classical signature</span></span>
 <span><span class="co">## The seed is fixed to ensure reproducibility</span></span>
@@ -896,7 +905,7 @@ the calculated standard deviation.</p>
 scores sampled during the upscaling step. The mean is shown as a
 vertical dotted line, while the normal distribution is shown as a dashed
 line. The sampled GSVA scores are shown as dots in this graph.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span></span>
@@ -914,11 +923,11 @@ line. The sampled GSVA scores are shown as dots in this graph.</p>
 enables the visualization of the two normal distributions obtained for a
 specific signature. In this graph, the GSVA values are those generated
 during the upscaling step.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Basal-like"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-1.png" class="r-plt" alt="" width="700"></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Classical"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-2.png" class="r-plt" alt="" width="700"></p>
@@ -929,7 +938,7 @@ during the upscaling step.</p>
 </h3>
 <p>Let’s compare the classification obtained here with the one from
 Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Assignments from Tiriac et al.</span></span>
 <span><span class="va">pathAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Moffitt_Tiriac_2018_Assignation.txt"</span>,</span>
 <span>                        package<span class="op">=</span><span class="st">"splitTypeR"</span><span class="op">)</span></span>
@@ -972,7 +981,7 @@ classical signature, while a sample located above the horizontal line is
 assigned to the basal-like signature. The samples for which the
 classification differs from Tiriac et al. <span class="citation">(Tiriac
 et al. 2018)</span> are labeled.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Required package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
