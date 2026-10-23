@@ -770,48 +770,16 @@ function.</p>
 <span><span class="co">## [1] -0.238705</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Get the final classification of the samples for the classical signature</span></span>
-<span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">##        GSVA_score classification</span></span>
-<span><span class="co">## hF2   -0.91340782   unclassified</span></span>
-<span><span class="co">## hF23   0.10297767      Classical</span></span>
-<span><span class="co">## hF24   0.22147651      Classical</span></span>
-<span><span class="co">## hF27  -0.13094209      Classical</span></span>
-<span><span class="co">## hF28  -0.56141732   unclassified</span></span>
-<span><span class="co">## hF3   -0.98297067   unclassified</span></span>
-<span><span class="co">## hF31   0.44310774      Classical</span></span>
-<span><span class="co">## hF32   0.24097331      Classical</span></span>
-<span><span class="co">## hF34   0.38709257      Classical</span></span>
-<span><span class="co">## hF39   0.48348998      Classical</span></span>
-<span><span class="co">## hF43   0.19098143      Classical</span></span>
-<span><span class="co">## hF44   0.68264431      Classical</span></span>
-<span><span class="co">## hF50  -0.21857717      Classical</span></span>
-<span><span class="co">## hF57   0.78529657      Classical</span></span>
-<span><span class="co">## hM17D  0.17819927      Classical</span></span>
-<span><span class="co">## hM19A -0.80229479   unclassified</span></span>
-<span><span class="co">## hM1A  -0.43609744   unclassified</span></span>
-<span><span class="co">## hM8   -0.77639752   unclassified</span></span>
-<span><span class="co">## hT1   -0.31478775   unclassified</span></span>
-<span><span class="co">## hT101  0.12042674      Classical</span></span>
-<span><span class="co">## hT102  0.68416036      Classical</span></span>
-<span><span class="co">## hT105 -0.35117739   unclassified</span></span>
-<span><span class="co">## hT108  0.16829684      Classical</span></span>
-<span><span class="co">## hT123  0.23874484      Classical</span></span>
-<span><span class="co">## hT125 -0.28552036   unclassified</span></span>
-<span><span class="co">## hT127 -0.71866897   unclassified</span></span>
-<span><span class="co">## hT25   0.39663462      Classical</span></span>
-<span><span class="co">## hT3    0.76428289      Classical</span></span>
-<span><span class="co">## hT30   0.20756564      Classical</span></span>
-<span><span class="co">## hT48  -0.06132129      Classical</span></span>
-<span><span class="co">## hT60  -0.90357832   unclassified</span></span>
-<span><span class="co">## hT81   0.48778736      Classical</span></span>
-<span><span class="co">## hT82  -0.53542252   unclassified</span></span>
-<span><span class="co">## hT85   0.94187103      Classical</span></span>
-<span><span class="co">## hT89   0.32973843      Classical</span></span>
-<span><span class="co">## hT91   0.84056687      Classical</span></span>
-<span><span class="co">## hT93   0.58189090      Classical</span></span>
-<span><span class="co">## hT96   0.36098015      Classical</span></span>
-<span><span class="co">## hT98   0.23767573      Classical</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co">## Get the final classification of the first samples </span></span>
+<span><span class="co">## for the classical signature</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##      GSVA_score classification</span></span>
+<span><span class="co">## hF2  -0.9134078   unclassified</span></span>
+<span><span class="co">## hF23  0.1029777      Classical</span></span>
+<span><span class="co">## hF24  0.2214765      Classical</span></span>
+<span><span class="co">## hF27 -0.1309421      Classical</span></span>
+<span><span class="co">## hF28 -0.5614173   unclassified</span></span>
+<span><span class="co">## hF3  -0.9829707   unclassified</span></span></code></pre>
 <p><br></p>
 </div>
 <div class="section level3">
