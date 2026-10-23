@@ -8,6 +8,7 @@
 <url><loc>/reference/MatrixOrNULL-class.html</loc></url>
 <url><loc>/reference/SplitTypeRdata-class.html</loc></url>
 <url><loc>/reference/SplitTypeRdata.html</loc></url>
+<url><loc>/reference/calculateThreshold.html</loc></url>
 <url><loc>/reference/classification-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/classification-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/classification-set.html</loc></url>
@@ -48,6 +49,10 @@
 <url><loc>/reference/standardDeviation-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/standardDeviation-set.html</loc></url>
 <url><loc>/reference/standardDeviation.html</loc></url>
+<url><loc>/reference/threshold-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/threshold-set-SplitTypeRdata-method.html</loc></url>
+<url><loc>/reference/threshold-set.html</loc></url>
+<url><loc>/reference/threshold.html</loc></url>
 <url><loc>/reference/upscaling-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/upscaling-set-SplitTypeRdata-method.html</loc></url>
 <url><loc>/reference/upscaling-set.html</loc></url>

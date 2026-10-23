@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">splitTypeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.2</span>
       </span>
     </div>
 
@@ -92,6 +92,14 @@ Default: <code>NULL</code>.</p></dd>
 <dt><code>model</code></dt>
 <dd><p><code>NULL</code> or a <code>list</code> of the mixture models calculated
 for each signature. The <code>list</code> should be have one entry per signature.
+Default: <code>NULL</code>.</p></dd>
+
+
+<dt><code>threshold</code></dt>
+<dd><p><code>NULL</code> or a <code>list</code> of the classification
+thresholds for each signature. The threshold corresponds to the 95th
+percentile of the "low-mean" distribution of the mixture model. The
+<code>list</code> should be have one entry per signature.
 Default: <code>NULL</code>.</p></dd>
 
 

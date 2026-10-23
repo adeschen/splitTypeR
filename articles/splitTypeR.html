@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">splitTypeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.2</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>), David A. Tuveson
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-8017-2712" class="external-link uri">https://orcid.org/0000-0002-8017-2712</a>), Lustgarten
-Foundation [fnd]<br><strong>Version</strong>: 0.99.1<br><strong>Compiled date</strong>: 2026-10-23<br><strong>License</strong>: Artistic-2.0<br></p>
+Foundation [fnd]<br><strong>Version</strong>: 0.99.2<br><strong>Compiled date</strong>: 2026-10-23<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -107,7 +107,7 @@ the following:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Deschênes A, Belleau P, Tuveson DA (2026). _splitTypeR:</span></span>
 <span><span class="co">##   Transcriptomic Classification using Mixture of Normal Distributions_.</span></span>
-<span><span class="co">##   R package version 0.99.1, &lt;https://github.com/adeschen/splitTypeR&gt;.</span></span>
+<span><span class="co">##   R package version 0.99.2, &lt;https://github.com/adeschen/splitTypeR&gt;.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">## </span></span>
@@ -115,7 +115,7 @@ the following:</p>
 <span><span class="co">##     title = {splitTypeR: Transcriptomic Classification using Mixture of Normal Distributions},</span></span>
 <span><span class="co">##     author = {Astrid Deschênes and Pascal Belleau and David A. Tuveson},</span></span>
 <span><span class="co">##     year = {2026},</span></span>
-<span><span class="co">##     note = {R package version 0.99.1},</span></span>
+<span><span class="co">##     note = {R package version 0.99.2},</span></span>
 <span><span class="co">##     url = {https://github.com/adeschen/splitTypeR},</span></span>
 <span><span class="co">##   }</span></span></code></pre>
 <p><br></p>
@@ -835,6 +835,16 @@ function.</p>
 <pre><code><span><span class="co">## [1] 0.2802048 0.7197952</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Get the classification threshold of each signature</span></span>
+<span><span class="co">## The threshold is the 95th percentile of the "low-mean" distribution</span></span>
+<span><span class="fu"><a href="../reference/threshold.html">threshold</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $`Basal-like`</span></span>
+<span><span class="co">## [1] 0.249288</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $Classical</span></span>
+<span><span class="co">## [1] -0.238705</span></span></code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the final classification of the samples for the classical signature</span></span>
 <span><span class="fu"><a href="../reference/classification.html">classification</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##        GSVA_score classification</span></span>
@@ -885,7 +895,7 @@ function.</p>
 <p>The <em>plotPermutationSamplesDistribution()</em> function enables
 the visualization of the GSVA results obtained during the permutation
 step for a specific signature and specific samples.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## The GSVA results obtained for three samples during the permutation step </span></span>
 <span><span class="co">## for the classical signature</span></span>
 <span><span class="co">## The seed is fixed to ensure reproducibility</span></span>
@@ -905,7 +915,7 @@ the calculated standard deviation.</p>
 scores sampled during the upscaling step. The mean is shown as a
 vertical dotted line, while the normal distribution is shown as a dashed
 line. The sampled GSVA scores are shown as dots in this graph.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fix seed for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span></span>
@@ -923,11 +933,11 @@ line. The sampled GSVA scores are shown as dots in this graph.</p>
 enables the visualization of the two normal distributions obtained for a
 specific signature. In this graph, the GSVA values are those generated
 during the upscaling step.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Basal-like"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-1.png" class="r-plt" alt="" width="700"></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotDensityWithUpscalingSamplesBimodal.html">plotDensityWithUpscalingSamplesBimodal</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">26L</span>,</span>
 <span>    signature<span class="op">=</span><span class="st">"Classical"</span>, <span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <p><img src="splitTypeR_files/figure-html/graphDensity-2.png" class="r-plt" alt="" width="700"></p>
@@ -938,7 +948,7 @@ during the upscaling step.</p>
 </h3>
 <p>Let’s compare the classification obtained here with the one from
 Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Assignments from Tiriac et al.</span></span>
 <span><span class="va">pathAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Moffitt_Tiriac_2018_Assignation.txt"</span>,</span>
 <span>                        package<span class="op">=</span><span class="st">"splitTypeR"</span><span class="op">)</span></span>
@@ -981,7 +991,7 @@ classical signature, while a sample located above the horizontal line is
 assigned to the basal-like signature. The samples for which the
 classification differs from Tiriac et al. <span class="citation">(Tiriac
 et al. 2018)</span> are labeled.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Required package</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -997,14 +1007,9 @@ et al. 2018)</span> are labeled.</p>
 <span><span class="va">gsva</span><span class="op">$</span><span class="va">Agreement</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">gsva</span><span class="op">$</span><span class="va">newAssignation</span> <span class="op">==</span> <span class="va">gsva</span><span class="op">$</span><span class="va">Moffitt</span>,</span>
 <span>    <span class="st">"Same classification"</span>, <span class="st">"Different classification"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Classification threshold of each signature: the 95th percentile of the</span></span>
-<span><span class="co">## "low-mean" distribution of the mixture model</span></span>
-<span><span class="va">getThreshold</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mixModel</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">posMin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">mixModel</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span>p<span class="op">=</span><span class="fl">0.95</span>, mean<span class="op">=</span><span class="va">mixModel</span><span class="op">$</span><span class="va">mu</span><span class="op">[</span><span class="va">posMin</span><span class="op">]</span>, sd<span class="op">=</span><span class="va">mixModel</span><span class="op">$</span><span class="va">sigma</span><span class="op">[</span><span class="va">posMin</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">thresholdClassical</span> <span class="op">&lt;-</span> <span class="fu">getThreshold</span><span class="op">(</span><span class="fu"><a href="../reference/model.html">model</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">thresholdBasal</span> <span class="op">&lt;-</span> <span class="fu">getThreshold</span><span class="op">(</span><span class="fu"><a href="../reference/model.html">model</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">## Classification threshold of each signature</span></span>
+<span><span class="va">thresholdClassical</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/threshold.html">threshold</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">thresholdBasal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/threshold.html">threshold</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Basal-like'</span><span class="op">]</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co">## Scatter plot of the GSVA scores with the classification thresholds</span></span>
 <span><span class="co">## The vertical dashed line is the classical threshold and the horizontal</span></span>
@@ -1077,7 +1082,7 @@ which this document was compiled:</p>
 <span><span class="co">## [8] base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">##  [1] ggplot2_4.0.3               splitTypeR_0.99.1          </span></span>
+<span><span class="co">##  [1] ggplot2_4.0.3               splitTypeR_0.99.2          </span></span>
 <span><span class="co">##  [3] SummarizedExperiment_1.43.0 Biobase_2.73.2             </span></span>
 <span><span class="co">##  [5] GenomicRanges_1.65.4        Seqinfo_1.3.2              </span></span>
 <span><span class="co">##  [7] IRanges_2.47.5              S4Vectors_0.51.10          </span></span>
