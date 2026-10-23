@@ -342,7 +342,8 @@ the available signatures.</p>
 <code class="sourceCode R"><span><span class="co">## List the names of the available signatures</span></span>
 <span><span class="fu"><a href="../reference/getGeneSignaturesNames.html">getGeneSignaturesNames</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "Tiriac_PDAC_PDO_Basal_like" "Tiriac_PDAC_PDO_Classical" </span></span>
-<span><span class="co">## [3] "Moffitt_Basal_like"         "Moffitt_Classical"</span></span></code></pre>
+<span><span class="co">## [3] "Moffitt_Basal_like"         "Moffitt_Classical"         </span></span>
+<span><span class="co">## [5] "Miyabayashi_Fast"           "Miyabayashi_Slow"</span></span></code></pre>
 <p><br></p>
 <p>The <em>getGenesInSignature()</em> function returns the genes of one
 signature, while the <em>getGeneSignatures()</em> function returns a
@@ -363,7 +364,9 @@ named list containing one or more signatures. When no name is given,
 <pre><code><span><span class="co">## Tiriac_PDAC_PDO_Basal_like  Tiriac_PDAC_PDO_Classical </span></span>
 <span><span class="co">##                         26                         62 </span></span>
 <span><span class="co">##         Moffitt_Basal_like          Moffitt_Classical </span></span>
-<span><span class="co">##                         25                         25</span></span></code></pre>
+<span><span class="co">##                         25                         25 </span></span>
+<span><span class="co">##           Miyabayashi_Fast           Miyabayashi_Slow </span></span>
+<span><span class="co">##                        231                        334</span></span></code></pre>
 <p><br></p>
 <p>The current signatures are:</p>
 <ul>
@@ -380,8 +383,16 @@ signature (25 genes) defined for PDAC in Moffitt et al. <span class="citation">(
 <li>
 <strong>Moffitt_Classical</strong>: the original classical signature
 (25 genes) defined for PDAC in Moffitt et al. <span class="citation">(Moffitt et al. 2015)</span>.</li>
+<li>
+<strong>Miyabayashi_Fast</strong>: the fast signature (231 genes),
+updated from the Ensembl IDs (GENCODE v48/org.Hs.eg.db), defined for
+PDAC xenografts in Miyabayashi et al. <span class="citation">(Miyabayashi et al. 2020)</span>.</li>
+<li>
+<strong>Miyabayashi_Slow</strong>: the slow signature (334 genes),
+updated from the Ensembl IDs (GENCODE v48/org.Hs.eg.db), defined for
+PDAC xenografts in Miyabayashi et al. <span class="citation">(Miyabayashi et al. 2020)</span>. ß <br>
+</li>
 </ul>
-<p><br></p>
 <div class="section level3">
 <h3 id="using-your-own-signatures">Using your own signatures<a class="anchor" aria-label="anchor" href="#using-your-own-signatures"></a>
 </h3>
@@ -1181,6 +1192,12 @@ Bioinformatics</em> 14: 7. <a href="https://doi.org/10.1186/1471-2105-14-7" clas
 Love, Michael I., Wolfgang Huber, and Simon Anders. 2014.
 <span>“Moderated Estimation of Fold Change and Dispersion for RNA-Seq
 Data with DESeq2.”</span> <em>Genome Biology</em> 15 (December). <a href="https://doi.org/10.1186/s13059-014-0550-8" class="external-link">https://doi.org/10.1186/s13059-014-0550-8</a>.
+</div>
+<div id="ref-Miyabayashi2020" class="csl-entry">
+Miyabayashi, Koji, Lindsey A. Baker, Astrid Deschênes, et al. 2020.
+<span>“Intraductal Transplantation Models of Human Pancreatic Ductal
+Adenocarcinoma Reveal Progressive Transition of Molecular
+Subtypes.”</span> <em>Cancer Discovery</em> 10: 1566–89. <a href="https://doi.org/10.1158/2159-8290.CD-20-0133" class="external-link">https://doi.org/10.1158/2159-8290.CD-20-0133</a>.
 </div>
 <div id="ref-Moffitt2015" class="csl-entry">
 Moffitt, Richard A., Raoud Marayati, Elizabeth L. Flate, et al. 2015.
