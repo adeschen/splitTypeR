@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">splitTypeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.5</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <p><strong>Package</strong>: <em>splitTypeR</em><br><strong>Authors</strong>: Astrid Deschênes [aut, cre] (ORCID: <a href="https://orcid.org/0000-0001-7846-6749" class="external-link uri">https://orcid.org/0000-0001-7846-6749</a>), Pascal Belleau
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-0802-1071" class="external-link uri">https://orcid.org/0000-0002-0802-1071</a>), David A. Tuveson
 [aut] (ORCID: <a href="https://orcid.org/0000-0002-8017-2712" class="external-link uri">https://orcid.org/0000-0002-8017-2712</a>), Lustgarten
-Foundation [fnd]<br><strong>Version</strong>: 0.99.4<br><strong>Compiled date</strong>: 2026-10-23<br><strong>License</strong>: Artistic-2.0<br></p>
+Foundation [fnd]<br><strong>Version</strong>: 0.99.5<br><strong>Compiled date</strong>: 2026-10-23<br><strong>License</strong>: Artistic-2.0<br></p>
 <div class="section level2">
 <h2 id="licensing-and-citing">Licensing and citing<a class="anchor" aria-label="anchor" href="#licensing-and-citing"></a>
 </h2>
@@ -107,7 +107,7 @@ the following:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">##   Deschênes A, Belleau P, Tuveson DA (2026). _splitTypeR:</span></span>
 <span><span class="co">##   Transcriptomic Classification using Mixture of Normal Distributions_.</span></span>
-<span><span class="co">##   R package version 0.99.4, &lt;https://github.com/adeschen/splitTypeR&gt;.</span></span>
+<span><span class="co">##   R package version 0.99.5, &lt;https://github.com/adeschen/splitTypeR&gt;.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">## </span></span>
@@ -115,7 +115,7 @@ the following:</p>
 <span><span class="co">##     title = {splitTypeR: Transcriptomic Classification using Mixture of Normal Distributions},</span></span>
 <span><span class="co">##     author = {Astrid Deschênes and Pascal Belleau and David A. Tuveson},</span></span>
 <span><span class="co">##     year = {2026},</span></span>
-<span><span class="co">##     note = {R package version 0.99.4},</span></span>
+<span><span class="co">##     note = {R package version 0.99.5},</span></span>
 <span><span class="co">##     url = {https://github.com/adeschen/splitTypeR},</span></span>
 <span><span class="co">##   }</span></span></code></pre>
 <p><br></p>
@@ -191,8 +191,7 @@ run on it in a few lines:</p>
 <span><span class="co">## Fix seed for reproducible results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">121</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Run the subtyping method and </span></span>
-<span><span class="co">## print the classification of each sample</span></span>
+<span><span class="co">## Run the subtyping method</span></span>
 <span><span class="co">## The normalized expected counts used as input are log2-transformed </span></span>
 <span><span class="va">quickResult</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runSubtypingBimodal.html">runSubtypingBimodal</a></span><span class="op">(</span>geneLists<span class="op">=</span><span class="va">signaturesDemo</span>,</span>
 <span>    expectedCountsMatrixLog<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">expNormalCountsDemo</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -200,39 +199,16 @@ run on it in a few lines:</p>
 <pre><code><span><span class="co">## number of iterations= 52 </span></span>
 <span><span class="co">## number of iterations= 129</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">quickResult</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Classification: </span></span>
-<span><span class="co">##               Classical   Basal-like</span></span>
-<span><span class="co">## Patient_1  unclassified unclassified</span></span>
-<span><span class="co">## Patient_2     Classical unclassified</span></span>
-<span><span class="co">## Patient_3  unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_4     Classical unclassified</span></span>
-<span><span class="co">## Patient_5  unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_6     Classical unclassified</span></span>
-<span><span class="co">## Patient_7  unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_8  unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_9  unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_10    Classical unclassified</span></span>
-<span><span class="co">## Patient_11    Classical unclassified</span></span>
-<span><span class="co">## Patient_12 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_13    Classical unclassified</span></span>
-<span><span class="co">## Patient_14    Classical unclassified</span></span>
-<span><span class="co">## Patient_15 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_16 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_17 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_18    Classical unclassified</span></span>
-<span><span class="co">## Patient_19 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_20 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_21    Classical unclassified</span></span>
-<span><span class="co">## Patient_22 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_23    Classical unclassified</span></span>
-<span><span class="co">## Patient_24    Classical unclassified</span></span>
-<span><span class="co">## Patient_25 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_26 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_27    Classical unclassified</span></span>
-<span><span class="co">## Patient_28 unclassified   Basal-like</span></span>
-<span><span class="co">## Patient_29    Classical unclassified</span></span>
-<span><span class="co">## Patient_30    Classical unclassified</span></span></code></pre>
+<code class="sourceCode R"><span><span class="co">## Display a summary of the results</span></span>
+<span><span class="va">quickResult</span></span></code></pre></div>
+<pre><code><span><span class="co">## A SplitTypeRdata object</span></span>
+<span><span class="co">## Signatures (2): Classical (62 genes), Basal-like (26 genes)</span></span>
+<span><span class="co">## Samples: 30</span></span>
+<span><span class="co">## Completed steps: gsvaResults, permutations, standardDeviation, upscaling, model, threshold, classification</span></span>
+<span><span class="co">## Classification:</span></span>
+<span><span class="co">##   Classical: 14 assigned, 16 unclassified</span></span>
+<span><span class="co">##   Basal-like: 15 assigned, 15 unclassified</span></span>
+<span><span class="co">## Use classification() to get the classification of each sample.</span></span></code></pre>
 <p>Each step of the method is detailed in the next section, followed by
 a complete demonstration on a published dataset.</p>
 <p><br></p>
@@ -552,48 +528,15 @@ the number of values used to estimate its standard deviation.</p>
 <span><span class="co">## number of iterations= 135</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Summary of the classification results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Classification: </span></span>
-<span><span class="co">##         Basal-like    Classical</span></span>
-<span><span class="co">## hF2     Basal-like unclassified</span></span>
-<span><span class="co">## hF23  unclassified    Classical</span></span>
-<span><span class="co">## hF24  unclassified    Classical</span></span>
-<span><span class="co">## hF27  unclassified    Classical</span></span>
-<span><span class="co">## hF28    Basal-like unclassified</span></span>
-<span><span class="co">## hF3     Basal-like unclassified</span></span>
-<span><span class="co">## hF31  unclassified    Classical</span></span>
-<span><span class="co">## hF32  unclassified    Classical</span></span>
-<span><span class="co">## hF34  unclassified    Classical</span></span>
-<span><span class="co">## hF39  unclassified    Classical</span></span>
-<span><span class="co">## hF43  unclassified    Classical</span></span>
-<span><span class="co">## hF44  unclassified    Classical</span></span>
-<span><span class="co">## hF50    Basal-like    Classical</span></span>
-<span><span class="co">## hF57  unclassified    Classical</span></span>
-<span><span class="co">## hM17D unclassified    Classical</span></span>
-<span><span class="co">## hM19A   Basal-like unclassified</span></span>
-<span><span class="co">## hM1A    Basal-like unclassified</span></span>
-<span><span class="co">## hM8     Basal-like unclassified</span></span>
-<span><span class="co">## hT1     Basal-like unclassified</span></span>
-<span><span class="co">## hT101 unclassified    Classical</span></span>
-<span><span class="co">## hT102 unclassified    Classical</span></span>
-<span><span class="co">## hT105   Basal-like unclassified</span></span>
-<span><span class="co">## hT108 unclassified    Classical</span></span>
-<span><span class="co">## hT123 unclassified    Classical</span></span>
-<span><span class="co">## hT125   Basal-like unclassified</span></span>
-<span><span class="co">## hT127   Basal-like unclassified</span></span>
-<span><span class="co">## hT25  unclassified    Classical</span></span>
-<span><span class="co">## hT3   unclassified    Classical</span></span>
-<span><span class="co">## hT30  unclassified    Classical</span></span>
-<span><span class="co">## hT48  unclassified    Classical</span></span>
-<span><span class="co">## hT60    Basal-like unclassified</span></span>
-<span><span class="co">## hT81  unclassified    Classical</span></span>
-<span><span class="co">## hT82    Basal-like unclassified</span></span>
-<span><span class="co">## hT85  unclassified    Classical</span></span>
-<span><span class="co">## hT89  unclassified    Classical</span></span>
-<span><span class="co">## hT91  unclassified    Classical</span></span>
-<span><span class="co">## hT93  unclassified    Classical</span></span>
-<span><span class="co">## hT96  unclassified    Classical</span></span>
-<span><span class="co">## hT98  unclassified    Classical</span></span></code></pre>
+<span><span class="va">result</span></span></code></pre></div>
+<pre><code><span><span class="co">## A SplitTypeRdata object</span></span>
+<span><span class="co">## Signatures (2): Basal-like (26 genes), Classical (62 genes)</span></span>
+<span><span class="co">## Samples: 39</span></span>
+<span><span class="co">## Completed steps: gsvaResults, permutations, standardDeviation, upscaling, model, threshold, classification</span></span>
+<span><span class="co">## Classification:</span></span>
+<span><span class="co">##   Basal-like: 13 assigned, 26 unclassified</span></span>
+<span><span class="co">##   Classical: 27 assigned, 12 unclassified</span></span>
+<span><span class="co">## Use classification() to get the classification of each sample.</span></span></code></pre>
 <p><br></p>
 <p>The resulting object contains information from each step of the
 process. The information can be accessed using the appropriate getter
@@ -757,21 +700,15 @@ function.</p>
 <span><span class="co">## [56] "CYP2C18"    "KCNE3"      "FZD5"       "RASEF"      "GKN1"</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Get the GSVA scores for the first 5 samples in the first 8 permutations done </span></span>
-<span><span class="co">## for the classical signature</span></span>
-<span><span class="fu"><a href="../reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Get the GSVA scores for the first 5 samples in the first 6 permutations </span></span>
+<span><span class="co">## (columns) done for the classical signature</span></span>
+<span><span class="fu"><a href="../reference/permutations.html">permutations</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##             [,1]        [,2]        [,3]        [,4]        [,5]       [,6]</span></span>
 <span><span class="co">## hF2  -0.87955840          NA -0.87809349          NA -0.91255814 -0.8899771</span></span>
 <span><span class="co">## hF23          NA -0.08950456  0.23653846  0.04872661  0.22668030  0.0604898</span></span>
 <span><span class="co">## hF24          NA  0.02841517  0.42270683  0.22947277  0.31273837  0.1506945</span></span>
 <span><span class="co">## hF27 -0.03941731 -0.20563925  0.01829787 -0.08884449 -0.03654507         NA</span></span>
-<span><span class="co">## hF28 -0.51596289          NA -0.39893080 -0.49631064 -0.47531573 -0.5683230</span></span>
-<span><span class="co">##            [,7]        [,8]</span></span>
-<span><span class="co">## hF2  -0.8630515          NA</span></span>
-<span><span class="co">## hF23  0.2599190  0.06674773</span></span>
-<span><span class="co">## hF24  0.4097079  0.11590088</span></span>
-<span><span class="co">## hF27  0.0612709 -0.15658149</span></span>
-<span><span class="co">## hF28 -0.4315780 -0.57955907</span></span></code></pre>
+<span><span class="co">## hF28 -0.51596289          NA -0.39893080 -0.49631064 -0.47531573 -0.5683230</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the standard deviation for the GSVA scores for all samples in each </span></span>
@@ -1093,7 +1030,7 @@ which this document was compiled:</p>
 <span><span class="co">## [8] base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">##  [1] ggplot2_4.0.3               splitTypeR_0.99.4          </span></span>
+<span><span class="co">##  [1] ggplot2_4.0.3               splitTypeR_0.99.5          </span></span>
 <span><span class="co">##  [3] SummarizedExperiment_1.43.0 Biobase_2.73.2             </span></span>
 <span><span class="co">##  [5] GenomicRanges_1.65.4        Seqinfo_1.3.2              </span></span>
 <span><span class="co">##  [7] IRanges_2.47.5              S4Vectors_0.51.10          </span></span>
