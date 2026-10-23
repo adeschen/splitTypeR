@@ -931,8 +931,9 @@ during the upscaling step.</p>
 Tiriac et al. <span class="citation">(Tiriac et al. 2018)</span>.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Assignments from Tiriac et al.</span></span>
-<span><span class="va">tiriacAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"Moffitt_Tiriac_Assignation.txt"</span>, sep<span class="op">=</span><span class="st">"\t"</span>,</span>
-<span>                                    header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">pathAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"Moffitt_Tiriac_2018_Assignation.txt"</span>,</span>
+<span>                        package<span class="op">=</span><span class="st">"splitTypeR"</span><span class="op">)</span></span>
+<span><span class="va">tiriacAssign</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">pathAssign</span>, sep<span class="op">=</span><span class="st">"\t"</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Assignments from the mixture model are extracted from the result</span></span>
 <span><span class="co">## By default, the samples are considered unclassified</span></span>
@@ -1043,7 +1044,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-20 r90728)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-21 r90732)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
