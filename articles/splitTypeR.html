@@ -539,17 +539,9 @@ process. The information can be accessed using the appropriate getter
 function.</p>
 <p><br></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Get the list of genes in each signature</span></span>
-<span><span class="fu"><a href="../reference/signatures.html">signatures</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $`Basal-like`</span></span>
-<span><span class="co">##  [1] "ANO1"     "ADORA2B"  "S100A2"   "CSF2"     "ANXA1"    "EREG"    </span></span>
-<span><span class="co">##  [7] "RGS20"    "CELSR1"   "WNT7B"    "AMIGO2"   "PTHLH"    "C12orf54"</span></span>
-<span><span class="co">## [13] "TGM2"     "REEP3"    "DCBLD2"   "NMB"      "IKZF2"    "GPR87"   </span></span>
-<span><span class="co">## [19] "MUC16"    "IVL"      "SPRR1B"   "BCAR3"    "TTC9"     "PTGES"   </span></span>
-<span><span class="co">## [25] "CST6"     "CATSPER1"</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $Classical</span></span>
-<span><span class="co">##  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span></span>
+<code class="sourceCode R"><span><span class="co">## Get the list of genes in the classical signature</span></span>
+<span><span class="fu"><a href="../reference/signatures.html">signatures</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">"Classical"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "MUC13"      "GPR35"      "USH1C"      "BAIAP2L2"   "GAL3ST1"   </span></span>
 <span><span class="co">##  [6] "VIL1"       "DDC"        "LGALS4"     "TSPAN8"     "SLC5A1"    </span></span>
 <span><span class="co">## [11] "SEMA4G"     "TNFRSF11A"  "HSD17B2"    "CKMT1A"     "DPCR1"     </span></span>
 <span><span class="co">## [16] "GCNT3"      "SLC6A20"    "POF1B"      "NR1I2"      "MUC17"     </span></span>
@@ -947,7 +939,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-21 r90732)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-22 r90748)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
