@@ -711,28 +711,11 @@ function.</p>
 <span><span class="co">## hF28 -0.51596289          NA -0.39893080 -0.49631064 -0.47531573 -0.5683230</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Get the standard deviation for the GSVA scores for all samples in each </span></span>
-<span><span class="co">## signature </span></span>
+<code class="sourceCode R"><span><span class="co">## Get the standard deviation of the GSVA scores for all samples for the </span></span>
+<span><span class="co">## classical signature</span></span>
 <span><span class="co">## The standard deviation is inferred from the permutation step</span></span>
-<span><span class="fu"><a href="../reference/standardDeviation.html">standardDeviation</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## $`Basal-like`</span></span>
-<span><span class="co">##         hF2        hF23        hF24        hF27        hF28         hF3 </span></span>
-<span><span class="co">## 0.020988222 0.079051005 0.112858573 0.116266538 0.065004569 0.001478971 </span></span>
-<span><span class="co">##        hF31        hF32        hF34        hF39        hF43        hF44 </span></span>
-<span><span class="co">## 0.057958059 0.062458370 0.082055947 0.076677281 0.083266192 0.047327637 </span></span>
-<span><span class="co">##        hF50        hF57       hM17D       hM19A        hM1A         hM8 </span></span>
-<span><span class="co">## 0.103832038 0.018745125 0.129426804 0.016652911 0.066230777 0.027710342 </span></span>
-<span><span class="co">##         hT1       hT101       hT102       hT105       hT108       hT123 </span></span>
-<span><span class="co">## 0.060906904 0.197250806 0.041963703 0.075690201 0.095950835 0.142959308 </span></span>
-<span><span class="co">##       hT125       hT127        hT25         hT3        hT30        hT48 </span></span>
-<span><span class="co">## 0.076517433 0.034908554 0.074779104 0.030916171 0.103978461 0.093969133 </span></span>
-<span><span class="co">##        hT60        hT81        hT82        hT85        hT89        hT91 </span></span>
-<span><span class="co">## 0.013078550 0.067588422 0.044032365 0.020209683 0.104973168 0.025136841 </span></span>
-<span><span class="co">##        hT93        hT96        hT98 </span></span>
-<span><span class="co">## 0.060698031 0.052789153 0.116248218 </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $Classical</span></span>
-<span><span class="co">##         hF2        hF23        hF24        hF27        hF28         hF3 </span></span>
+<span><span class="fu"><a href="../reference/standardDeviation.html">standardDeviation</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">$</span><span class="va">Classical</span></span></code></pre></div>
+<pre><code><span><span class="co">##         hF2        hF23        hF24        hF27        hF28         hF3 </span></span>
 <span><span class="co">## 0.026561380 0.095755725 0.120798797 0.081266938 0.065186429 0.008675902 </span></span>
 <span><span class="co">##        hF31        hF32        hF34        hF39        hF43        hF44 </span></span>
 <span><span class="co">## 0.058667114 0.066535776 0.058671052 0.054471237 0.067684116 0.046198986 </span></span>
@@ -748,21 +731,15 @@ function.</p>
 <span><span class="co">## 0.046301231 0.041979712 0.088366419</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Get the first 8 upscaling GSVA scores for the first 5 samples for the </span></span>
-<span><span class="co">## classical signature </span></span>
-<span><span class="fu"><a href="../reference/upscaling.html">upscaling</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Get the first 6 upscaling GSVA scores (columns) for the first 5 samples </span></span>
+<span><span class="co">## for the classical signature</span></span>
+<span><span class="fu"><a href="../reference/upscaling.html">upscaling</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span><span class="op">[[</span><span class="st">'Classical'</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##            [,1]        [,2]        [,3]        [,4]        [,5]         [,6]</span></span>
 <span><span class="co">## hF2  -0.8904656 -0.89107386 -0.90166058 -0.90156532 -0.92802494 -0.928665397</span></span>
 <span><span class="co">## hF23  0.2105585  0.19225589  0.12700464  0.05938685  0.10731097 -0.005661387</span></span>
 <span><span class="co">## hF24  0.4323339  0.21149687  0.09129895  0.16668457  0.08051689  0.028841760</span></span>
 <span><span class="co">## hF27 -0.2041871 -0.04549904 -0.03582384 -0.16268045 -0.12812664 -0.130654394</span></span>
-<span><span class="co">## hF28 -0.3981220 -0.68175972 -0.63945097 -0.41295596 -0.46945658 -0.610334888</span></span>
-<span><span class="co">##             [,7]        [,8]</span></span>
-<span><span class="co">## hF2  -0.87795376 -0.91709966</span></span>
-<span><span class="co">## hF23  0.01530612  0.04174056</span></span>
-<span><span class="co">## hF24  0.33616289  0.19088511</span></span>
-<span><span class="co">## hF27 -0.19437588 -0.06951162</span></span>
-<span><span class="co">## hF28 -0.69437592 -0.61316655</span></span></code></pre>
+<span><span class="co">## hF28 -0.3981220 -0.68175972 -0.63945097 -0.41295596 -0.46945658 -0.610334888</span></span></code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Get the mixture model for the classical signature</span></span>
@@ -1006,7 +983,7 @@ were reviewed and validated by the package maintainer.</p>
 </h2>
 <p>Here is the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> on the system on
 which this document was compiled:</p>
-<pre><code><span><span class="co">## R Under development (unstable) (2026-10-21 r90732)</span></span>
+<pre><code><span><span class="co">## R Under development (unstable) (2026-10-22 r90748)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">## Running under: Ubuntu 24.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
