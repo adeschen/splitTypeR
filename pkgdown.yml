@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   splitTypeR: splitTypeR.html
-last_built: 2026-11-05T22:45Z
+last_built: 2026-11-05T22:50Z
 urls:
   reference: https://adeschen.github.io/splitTypeR/reference
   article: https://adeschen.github.io/splitTypeR/articles

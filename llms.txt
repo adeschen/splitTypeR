@@ -6,9 +6,9 @@ Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](h
 [![codecov](https://codecov.io/gh/adeschen/splitTypeR/branch/devel/graph/badge.svg?token=6H50IVH4JG)](https://codecov.io/gh/adeschen/splitTypeR)
 
 The **splitTypeR** package provides an automated statistical framework
-to classify heterogeneous biological samples based on gene signature
-lists, effectively isolating the signature-positive samples. This
-classification method is designed for bulk transcriptomic datasets.
+to classify heterogeneous biological samples using gene signature lists,
+effectively isolating signature-positive samples. This classification
+method is designed for bulk transcriptomic datasets.
 
 ## Citing
 
