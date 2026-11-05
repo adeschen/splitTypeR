@@ -1,4 +1,4 @@
-Transcriptomic Classification using Mixture of Normal Distributions with **splitTypeR**
+Transcriptomic Classification using Mixture of Normal Distributions with **splitTypeR** <img src="man/figures/logo.png" align="right" height="139" alt="splitTypeR logo: a camel whose two humps represent the two distributions of the mixture model" />
 =====================
 [![R-CMD-check-bioc](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml/badge.svg)](https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml)
 [![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
@@ -42,6 +42,11 @@ Artistic license 2.0. You are free to use and redistribute this software.
 
 For more information on Artistic 2.0 License see
 [http://opensource.org/licenses/Artistic-2.0](http://opensource.org/licenses/Artistic-2.0)
+
+The splitTypeR logo is distributed under the 
+[Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). 
+The logo and the code used to create it are available in the 
+[splitTypeR_logo](https://github.com/adeschen/splitTypeR_logo) repository.
 
 
 ## Bugs/Feature requests ##
