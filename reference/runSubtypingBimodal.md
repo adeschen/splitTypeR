@@ -1,0 +1,96 @@
+# Classification of heterogeneous biological samples based on gene signature lists using a mixture of two normal distributions
+
+This function classifies heterogeneous biological samples based on gene
+signature lists, effectively isolating signature-positive samples
+through an automated statistical framework.
+
+The workflow begins by calculating a Gene Set Variation Analysis (GSVA)
+score for each sample to quantify the relative pathway activity. A
+subsequent permutation step extracts sample-specific standard deviations
+to capture the variance. By combining these metrics, a unique normal
+distribution is established for each sample. Through an up-scaling step,
+values are randomly drawn from these individual distributions and pooled
+to construct a comprehensive mixture of normal distributions that
+represent the entire sample population. A hypothesis-testing approach in
+which the null hypothesis posits that a sample belongs to this
+alternative distribution with the lower mean is applied. Samples that
+successfully reject the null hypothesis are assigned to the signature
+classification.
+
+## Usage
+
+``` r
+runSubtypingBimodal(
+  geneLists,
+  expectedCountsMatrixLog,
+  permRatio = 0.75,
+  permNbr = 20,
+  upscaleNbr = 10
+)
+```
+
+## Arguments
+
+- geneLists:
+
+  a `list` containing signature gene lists. At least two signature gene
+  lists must be present.
+
+- expectedCountsMatrixLog:
+
+  a log2-normalized gene expression data `matrix` with rows
+  corresponding to genes and columns to samples. Other data that also be
+  used as long as it conforms with the Gaussian behavior. As examples,
+  log2(TPM + 1), log2(CPM + 1), or vst(counts) would be acceptable.
+
+- permRatio:
+
+  a `numeric` between 0 and 1 representing the number of samples that
+  are retained for the permutation step. The rounded value of the number
+  of patients multiplied by this `numeric` should be inferior to the
+  total number of patients so that the permutation step is not done on
+  the entire cohort. Default: `0.75`.
+
+- permNbr:
+
+  a `integer`, 5 or higher, representing the number of permutation
+  sampling done. In addition, the number of permutations must be equal
+  or inferior to the total number of unique permutations possible with
+  the dataset considering the parameters selected by the user. Default:
+  `20`.
+
+- upscaleNbr:
+
+  a `integer`, 2 or higher, representing the number of values taken for
+  the normal distribution for each sample to run the up-scaling step.
+  Default: `10`.
+
+## Value
+
+a `list` of class `splitTypeResults` containing the signature-specific
+classification for each sample as well as all the results generated at
+each step of the statistical workflow.
+
+## Author
+
+Astrid Deschênes
+
+## Examples
+
+``` r
+
+## Loading signatures
+data("signaturesDemo")
+
+## Load demo normalized expected counts for 30 patients
+data("expNormalCountsDemo")
+
+## Fix seed for reproducibility
+set.seed(121)
+
+## Run classification on the 30 patients using 20 permutations on 75% of 
+## the dataset, and 10 points per patient for the up-scaling step
+results <- runSubtypingBimodal(geneLists=signaturesDemo, 
+    expectedCountsMatrixLog=expNormalCountsDemo, 
+    permRatio=0.75, permNbr=20, upscaleNbr=10)
+```
