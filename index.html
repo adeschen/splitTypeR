@@ -13,6 +13,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Transcriptomic Classification using Mixture of Normal Distributions">
 <meta property="og:description" content="The splitTypeR package enables the classification of bulk transcriptomic samples using gene signature lists. For each signature, an enrichment score is first calculated for every sample with Bioconductor GSVA, and the uncertainty around each score is estimated through permutations of the samples. Values drawn from the sample-specific normal distributions are then pooled to fit a mixture of two normal distributions that represents the whole cohort. Each sample is finally tested against the distribution with the lower mean, and samples with a significantly higher score are assigned to the signature. Published gene signatures related to pancreatic ductal adenocarcinoma subtyping are also provided.">
+<meta property="og:image" content="/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -66,8 +67,7 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="transcriptomic-classification-using-mixture-of-normal-distributions-with-splittyper">Transcriptomic Classification using Mixture of Normal Distributions with <strong>splitTypeR</strong>
-<a class="anchor" aria-label="anchor" href="#transcriptomic-classification-using-mixture-of-normal-distributions-with-splittyper"></a>
+<div class="page-header"><h1 id="transcriptomic-classification-using-mixture-of-normal-distributions-with-splittyper-">Transcriptomic Classification using Mixture of Normal Distributions with <strong>splitTypeR</strong> <img src="reference/figures/logo.png" align="right" height="139" alt="splitTypeR logo: a camel whose two humps represent the two distributions of the mixture model"><a class="anchor" aria-label="anchor" href="#transcriptomic-classification-using-mixture-of-normal-distributions-with-splittyper-"></a>
 </h1></div>
 <p><a href="https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml" class="external-link"><img src="https://github.com/adeschen/splitTypeR/actions/workflows/check-bioc.yaml/badge.svg" alt="R-CMD-check-bioc"></a> <a href="https://opensource.org/licenses/Artistic-2.0" class="external-link"><img src="https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg" alt="License: Artistic-2.0"></a> <a href="https://codecov.io/gh/adeschen/splitTypeR" class="external-link"><img src="https://codecov.io/gh/adeschen/splitTypeR/branch/devel/graph/badge.svg?token=6H50IVH4JG" alt="codecov"></a></p>
 <p>The <strong>splitTypeR</strong> package provides an automated statistical framework to classify heterogeneous biological samples based on gene signature lists, effectively isolating the signature-positive samples. This classification method is designed for bulk transcriptomic datasets.</p>
@@ -94,6 +94,7 @@
 </h2>
 <p>This package and the underlying <em>splitTypeR</em> code are distributed under the Artistic license 2.0. You are free to use and redistribute this software.</p>
 <p>For more information on Artistic 2.0 License see <a href="http://opensource.org/licenses/Artistic-2.0" class="external-link">http://opensource.org/licenses/Artistic-2.0</a></p>
+<p>The splitTypeR logo is distributed under the <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>. The logo and the code used to create it are available in the <a href="https://github.com/adeschen/splitTypeR_logo" class="external-link">splitTypeR_logo</a> repository.</p>
 </div>
 <div class="section level2">
 <h2 id="bugsfeature-requests">Bugs/Feature requests<a class="anchor" aria-label="anchor" href="#bugsfeature-requests"></a>
